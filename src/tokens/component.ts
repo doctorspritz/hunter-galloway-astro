@@ -5,6 +5,7 @@
  */
 
 import { semantic } from './semantic';
+import { primitive } from './primitive';
 
 export const component = {
   // Button component tokens
@@ -127,7 +128,7 @@ export const component = {
 
   // Tooltip component tokens
   tooltip: {
-    background: semantic.color.gray[800],
+    background: primitive.color.gray[800],
     text: semantic.color.text.inverse,
     borderRadius: semantic.radius.sm,
     padding: semantic.space.sm,
@@ -144,6 +145,26 @@ export const component = {
     linkColor: semantic.color.text.primary,
     linkHoverColor: semantic.color.brand.primary,
     padding: semantic.space.sm,
+
+    dropdown: {
+      background: semantic.color.surface.white,
+      borderRadius: semantic.radius.dropdown,
+      shadow: semantic.shadow.dropdown,
+      padding: '30px 30px 17px', // WordPress dropdown padding
+      width: '735px',            // Default dropdown width
+      widthCalc: '770px',        // Calculator dropdown width
+      gap: semantic.space.lg,
+      columnMinWidth: '200px',
+      report: {
+        maxWidth: '220px',
+        paddingLeft: semantic.space.lg,
+        borderLeft: semantic.color.border.primary,
+      },
+      mobile: {
+        top: '57px',
+        padding: semantic.space.md,
+      },
+    },
   },
 
   // Section component tokens

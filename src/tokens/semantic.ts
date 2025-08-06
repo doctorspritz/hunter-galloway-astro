@@ -125,6 +125,7 @@ export const semantic = {
     sm: primitive.borderRadius.sm,        // Tooltips, small elements
     md: primitive.borderRadius.md,        // Cards, inputs
     lg: primitive.borderRadius.lg,        // Large cards
+    dropdown: primitive.borderRadius.dropdown, // WordPress dropdowns
     pill: primitive.borderRadius.full,    // Buttons, badges
   },
 
@@ -132,8 +133,9 @@ export const semantic = {
   shadow: {
     sm: primitive.shadow.sm,              // Small shadows
     subtle: primitive.shadow.sm,          // Subtle elevation
-    card: primitive.shadow.md,            // Card elevation  
+    card: primitive.shadow.md,            // Card elevation
     prominent: primitive.shadow.lg,       // Prominent elevation
+    dropdown: primitive.shadow.dropdown,  // WordPress dropdowns
   },
 
   // Animation timing by role

@@ -8,6 +8,7 @@ export { default as StatCard } from './StatCard/StatCard.astro';
 export { default as PurposeCard } from './PurposeCard/PurposeCard.astro';
 export { default as AwardItem } from './AwardItem/AwardItem.astro';
 export { default as Tooltip } from './Tooltip/Tooltip.astro';
+export { default as NavDropdown } from './NavDropdown/NavDropdown.astro';
 
 // Export types
 export type { StatCardProps } from './StatCard/StatCard.types';
