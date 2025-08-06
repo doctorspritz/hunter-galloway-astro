@@ -62,10 +62,8 @@ coverage/
 # Storybook build outputs
 storybook-static/
 
-# WordPress source files (reference only, not tracked)
-# These should be copied/referenced but not committed
-# wordpress-source/
-# wp-content/
+# WordPress source files - TRACKED for development reference
+# These are essential for the migration workflow
 
 # Development screenshots (for WordPress comparison)
 # Keep these local for development reference

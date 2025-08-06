@@ -1,0 +1,7 @@
+.awards {
+  background: #fef7ea;
+}
+
+.awards .container {
+  overflow: visible !important;
+}

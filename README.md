@@ -212,6 +212,19 @@ All commands are run from the root of the project:
 - [Development Guidelines](./docs/DEVELOPMENT_GUIDELINES.md) - Code standards and practices
 - [Project Structure](./docs/PROJECT_STRUCTURE.md) - File organization and conventions
 
+## 🗂️ WordPress Reference Files
+
+**CRITICAL**: The [`wordpress-source/`](./wordpress-source/) directory contains the complete WordPress theme files that serve as the **authoritative reference** for migration:
+
+- **`style.css`** (174KB) - Main WordPress CSS with exact measurements
+- **`functions.php`** - Theme functionality and WordPress hooks
+- **`header.php`** & **`footer.php`** - Template structure
+- **`assets/css/`** - Modular component CSS (pages, blocks, calculators)
+- **`assets/js/`** - Interactive functionality and form validation
+- **Page templates** - Complete WordPress page implementations
+
+These files are **essential** for the workflow - no component should be built without first analyzing the relevant WordPress source files.
+
 ## 🤝 Contributing
 
 ### For AI Agents
