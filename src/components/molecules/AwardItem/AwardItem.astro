@@ -1,0 +1,171 @@
+---
+/**
+ * AwardItem Component
+ * Hunter Galloway Design System - Molecular Component
+ * 
+ * An award display component with hover tooltip functionality.
+ * Used in the awards section to showcase Hunter Galloway achievements.
+ */
+
+import type { AwardItemProps } from './AwardItem.types';
+import { semantic } from '../../../tokens/semantic';
+
+interface Props extends AwardItemProps {}
+
+const {
+  image,
+  alt,
+  tooltip,
+  id,
+  size = 'md',
+  class: additionalClasses = '',
+} = Astro.props;
+
+// Size configurations
+const sizeConfigs = {
+  sm: {
+    container: 'h-12',
+    image: 'max-h-12',
+  },
+  md: {
+    container: 'h-20',
+    image: 'max-h-20',
+  },
+  lg: {
+    container: 'h-24',
+    image: 'max-h-24',
+  },
+};
+
+// Build CSS classes
+const containerClasses = [
+  'hg-award-item',
+  'relative',
+  'cursor-pointer',
+  'transition-transform duration-normal',
+  'hover:-translate-y-0.5',
+  'group',
+  sizeConfigs[size].container,
+  additionalClasses,
+].filter(Boolean).join(' ');
+
+const imageClasses = [
+  'hg-award-image',
+  'w-auto',
+  'object-contain',
+  sizeConfigs[size].image,
+].join(' ');
+---
+
+<div 
+  class={containerClasses}
+  data-award={id}
+  role="img"
+  aria-label={tooltip}
+>
+  <!-- Award Image -->
+  <img 
+    src={image} 
+    alt={alt}
+    class={imageClasses}
+    loading="lazy"
+  />
+  
+  <!-- Tooltip -->
+  <div class="hg-award-tooltip absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-3 py-2 bg-tooltip-bg text-tooltip-text text-sm rounded-sm whitespace-nowrap opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-normal z-tooltip pointer-events-none">
+    {tooltip}
+    <!-- Tooltip Arrow -->
+    <div class="absolute top-full left-1/2 transform -translate-x-1/2 border-4 border-transparent border-t-tooltip-bg"></div>
+  </div>
+</div>
+
+<style define:vars={{
+  tooltipBg: semantic.color.surface.primary,
+  tooltipText: semantic.color.text.primary,
+  shadowCard: semantic.shadow.card,
+  durationNormal: semantic.duration.normal,
+}}>
+/* AwardItem component styles */
+.hg-award-item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Award image styling */
+.hg-award-image {
+  height: 100%;
+  max-width: 100%;
+}
+
+/* Tooltip styling */
+.hg-award-tooltip {
+  background-color: var(--tooltipBg);
+  color: var(--tooltipText);
+  z-index: 10;
+  box-shadow: var(--shadowCard);
+}
+
+/* Tooltip arrow styling */
+.hg-award-tooltip::after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  border: 5px solid transparent;
+  border-top-color: var(--tooltipBg);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .hg-award-item {
+    height: 3rem;
+  }
+  
+  .hg-award-image {
+    max-height: 3rem;
+  }
+  
+  .hg-award-tooltip {
+    font-size: 0.75rem;
+    padding: 0.5rem;
+  }
+}
+</style>
+
+<script>
+// Award tooltip functionality - Enhanced version
+document.addEventListener('DOMContentLoaded', () => {
+  const awardItems = document.querySelectorAll('.hg-award-item');
+  
+  awardItems.forEach(item => {
+    const tooltip = item.querySelector('.hg-award-tooltip');
+    
+    if (tooltip) {
+      // Show tooltip on mouseenter
+      item.addEventListener('mouseenter', () => {
+        tooltip.classList.remove('opacity-0', 'invisible');
+        tooltip.classList.add('opacity-100', 'visible');
+      });
+      
+      // Hide tooltip on mouseleave
+      item.addEventListener('mouseleave', () => {
+        tooltip.classList.remove('opacity-100', 'visible');
+        tooltip.classList.add('opacity-0', 'invisible');
+      });
+      
+      // Keyboard accessibility
+      item.addEventListener('focus', () => {
+        tooltip.classList.remove('opacity-0', 'invisible');
+        tooltip.classList.add('opacity-100', 'visible');
+      });
+      
+      item.addEventListener('blur', () => {
+        tooltip.classList.remove('opacity-100', 'visible');
+        tooltip.classList.add('opacity-0', 'invisible');
+      });
+    }
+  });
+});
+</script>

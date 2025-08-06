@@ -1,0 +1,92 @@
+---
+/**
+ * Awards Section - Exact WordPress Content
+ * Refactored to use Hunter Galloway Design System components
+ */
+import Container from '../atoms/Container/Container.astro';
+import AwardItem from '../molecules/AwardItem/AwardItem.astro';
+import { semantic } from '../../tokens/semantic';
+
+const awards = [
+  {
+    id: '1',
+    image: '/images/2019_001.png',
+    alt: 'FBAA Award 2019',
+    tooltip: 'FBAA Broker of the Year in 2019'
+  },
+  {
+    id: '2', 
+    image: '/images/2019_002.png',
+    alt: 'FBAA Award 2019',
+    tooltip: 'FBAA Broker of the Year in 2019'
+  },
+  {
+    id: '3',
+    image: 'https://www.huntergalloway.com.au/wp-content/uploads/2024/12/2024-qld-nt-broker-of-the-year-hunter-galloway.png',
+    alt: 'EA Award 2024',
+    tooltip: 'EA Broker of the Year in 2024'
+  },
+  {
+    id: '4',
+    image: 'https://www.huntergalloway.com.au/wp-content/uploads/2024/12/QLD-NT-brokerage-of-the-year-under-5-brokers-hunter-galloway.png', 
+    alt: 'EA Brokerage Award 2024',
+    tooltip: 'EA Brokerage of the Year ≤ 5 Brokers in 2024'
+  },
+  {
+    id: '5',
+    image: '/images/awards/Mortgage-Broker-Brisbane-Hunter-Galloway-Award-2024.webp',
+    alt: 'ThreeBest Award 2024',
+    tooltip: 'ThreeBest Best Business of 2024'
+  },
+  {
+    id: '6',
+    image: '/images/best-mortgage-broker-2019.png',
+    alt: 'TheAdviser Award 2019',
+    tooltip: 'TheAdviser TOP 25 Brokerage 2019'
+  }
+];
+---
+
+<section class="hg-awards-section">
+  <Container>
+    <div class="hg-awards-grid">
+      {awards.map((award) => (
+        <AwardItem
+          id={award.id}
+          image={award.image}
+          alt={award.alt}
+          tooltip={award.tooltip}
+          size="md"
+        />
+      ))}
+    </div>
+  </Container>
+</section>
+
+<style define:vars={{
+  surfaceSecondary: semantic.color.surface.secondary,
+  spaceLg: semantic.space.lg,
+  spaceMd: semantic.space.md,
+  spaceXl: semantic.space.xl,
+}}>
+/* Awards Section Styles - Using Design System */
+.hg-awards-section {
+  padding: var(--spaceLg) 0;
+  background: var(--surfaceSecondary);
+}
+
+.hg-awards-grid {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: var(--spaceXl);
+  flex-wrap: wrap;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .hg-awards-grid {
+    gap: var(--spaceMd);
+  }
+}
+</style>
