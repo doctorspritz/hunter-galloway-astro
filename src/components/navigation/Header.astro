@@ -10,36 +10,109 @@ import Logo from '../atoms/Logo/Logo.astro';
 import Button from '../atoms/Button/Button.astro';
 import Icon from '../atoms/Icon/Icon.astro';
 import PhoneLink from '../molecules/PhoneLink/PhoneLink.astro';
+import NavDropdown from '../molecules/NavDropdown/NavDropdown.astro';
 import { semantic } from '../../tokens/semantic';
 
-// WordPress menu structure - matching ACF structure
+// WordPress menu structure replicated with Astro components
 const menuItems = [
-  { 
-    label: 'Home Loans', 
+  {
+    label: 'Home Loans',
     href: '/home-loans',
     hasDropdown: true,
-    megaMenu: true 
+    columns: [
+      {
+        title: 'Buy',
+        links: [
+          { label: 'First Home Buyer Loans', href: '/first-home-buyer-loans' },
+          { label: 'Upgrade My Home', href: '/upgrade-my-home' },
+        ],
+      },
+      {
+        title: 'Refinance',
+        links: [
+          { label: 'Refinance Home Loan', href: '/refinance-home-loan' },
+          { label: 'Lower Your Rate', href: '/lower-your-rate' },
+        ],
+      },
+      {
+        title: 'Invest',
+        links: [
+          { label: 'Property Investor Portfolio', href: '/property-investor-portfolio' },
+          { label: 'Your Property Investment Journey', href: '/your-property-investment-journey' },
+        ],
+      },
+    ],
   },
-  { 
-    label: 'Calculators', 
+  {
+    label: 'Calculators',
     href: '/calculators',
     hasDropdown: true,
-    special: 'calc' // Special calc dropdown styling
+    dropdownVariant: 'calc',
+    columns: [
+      {
+        title: 'Calculators',
+        links: [
+          { label: 'Mortgage Calculator', href: '/mortgage-calculator' },
+          { label: 'Mortgage vs Rent Calculator', href: '/mortgage-vs-rent-calculator' },
+        ],
+      },
+      {
+        title: 'Reports',
+        links: [
+          { label: 'Mortgage Report', href: '/mortgage-report' },
+        ],
+      },
+    ],
+    report: {
+      title: 'Free Property Report',
+      descr: 'See how much your property is worth.',
+      link: { label: 'Get Report', href: '/mortgage-report' },
+    },
   },
-  { 
-    label: 'Resources', 
+  {
+    label: 'Resources',
     href: '/resources',
     hasDropdown: true,
-    megaMenu: true
+    columns: [
+      {
+        title: 'Guides',
+        links: [
+          { label: 'What We Do', href: '/whatwedo' },
+          { label: 'Who We Help', href: '/whowehelp' },
+        ],
+      },
+      {
+        title: 'Team',
+        links: [
+          { label: 'Our Team', href: '/ourteam' },
+          { label: 'Contact', href: '/contact' },
+        ],
+      },
+      {
+        title: 'Blog',
+        links: [
+          { label: 'Mortgage Broker Brisbane Blog', href: '/blog' },
+        ],
+      },
+    ],
   },
-  { 
-    label: 'Brisbane', 
-    href: '/brisbane' 
+  {
+    label: 'Brisbane',
+    href: '/brisbane',
   },
-  { 
-    label: 'About', 
+  {
+    label: 'About',
     href: '/about',
-    hasDropdown: true 
+    hasDropdown: true,
+    columns: [
+      {
+        title: 'About Us',
+        links: [
+          { label: 'Our Team', href: '/ourteam' },
+          { label: 'Contact', href: '/contact' },
+        ],
+      },
+    ],
   },
 ];
 ---
@@ -61,13 +134,12 @@ const menuItems = [
               )}
             </a>
             
-            {/* Dropdown placeholder - will be implemented with navigation molecules */}
             {item.hasDropdown && (
-              <div class={`hg-dropdown ${item.special === 'calc' ? 'hg-dropdown--calc' : ''}`} data-dropdown-menu>
-                <div class="hg-dropdown__content">
-                  <p>Dropdown for {item.label} - To be implemented</p>
-                </div>
-              </div>
+              <NavDropdown
+                columns={item.columns}
+                variant={item.dropdownVariant}
+                report={item.report}
+              />
             )}
           </li>
         ))}
@@ -213,33 +285,7 @@ const menuItems = [
   color: var(--brandPrimary);
 }
 
-/* Dropdown Menus */
-.hg-dropdown {
-  position: absolute;
-  top: 100%;
-  left: 50%;
-  transform: translateX(-50%);
-  background: var(--surfaceWhite);
-  border-radius: 12px;
-  box-shadow: 0px 10px 40px rgba(0, 0, 0, 0.1);
-  padding: 30px;
-  min-width: 735px; /* WordPress dropdown width */
-  display: none;
-  opacity: 0;
-  transform: translateX(-50%) translateY(-10px);
-  transition: all 0.3s ease;
-  z-index: 1000;
-}
-
-.hg-dropdown--calc {
-  min-width: 770px; /* WordPress calc dropdown width */
-}
-
-.hg-nav-item:hover .hg-dropdown {
-  display: block;
-  opacity: 1;
-  transform: translateX(-50%) translateY(0);
-}
+/* Dropdown Menus handled via NavDropdown component and JS */
 
 /* Navigation Actions */
 .hg-nav-actions {

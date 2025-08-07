@@ -99,8 +99,9 @@ export const primitive = {
   borderRadius: {
     none: '0',
     sm: '4px',
-    md: '12px', 
+    md: '12px',
     lg: '24px',
+    dropdown: '8px',
     full: '9999px',
   },
 
@@ -109,6 +110,7 @@ export const primitive = {
     sm: '0 1px 2px rgba(0, 0, 0, 0.05)',
     md: '0 4px 8px rgba(0, 0, 0, 0.1)',
     lg: '0 8px 30px rgba(0, 0, 0, 0.15)',
+    dropdown: '0px 2px 10px rgba(0, 0, 0, 0.15)',
   },
 
   // Timing values
