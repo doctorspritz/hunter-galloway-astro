@@ -4,8 +4,8 @@ import { execSync } from 'node:child_process';
 
 function getChangedFiles() {
   try {
-    const base = process.env.GITHUB_BASE_REF || 'origin/main';
-    const out = execSync(`git diff --name-only ${base}...HEAD`, { encoding: 'utf8' });
+    const baseBranch = process.env.GITHUB_BASE_REF ? `origin/${process.env.GITHUB_BASE_REF}` : 'origin/main';
+    const out = execSync(`git diff --name-only ${baseBranch}...HEAD`, { encoding: 'utf8' });
     return out.split('\n').filter(f => f && f.startsWith('src/'));
   } catch {
     return [];
@@ -13,8 +13,15 @@ function getChangedFiles() {
 }
 
 let files = getChangedFiles();
-if (files.length === 0) {
+const isCI = process.env.CI === 'true' || process.env.GITHUB_ACTIONS === 'true';
+
+// In CI: only check changed files (fail fast on new issues)
+// Locally: check all files (help developers find all issues)
+if (files.length === 0 && !isCI) {
   files = await globby(['src/**/*.{astro,tsx,ts,css,scss}']);
+} else if (files.length === 0 && isCI) {
+  console.log('✅ No relevant files changed - skipping token check');
+  process.exit(0);
 }
 
 const errors = [];

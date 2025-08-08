@@ -17,6 +17,6 @@ jobs:
       - run: pnpm build
       - run: pnpm run check
         env:
-          GITHUB_BASE_REF: main
+          GITHUB_BASE_REF: ${{ github.base_ref }}
 
 

@@ -15,7 +15,7 @@ jobs:
       - run: pnpm i --frozen-lockfile
       - run: pnpm run check
         env:
-          GITHUB_BASE_REF: main
+          GITHUB_BASE_REF: ${{ github.base_ref }}
 
   # Optional screenshots of demo routes (for quick PR eyeballing)
   screenshots:
