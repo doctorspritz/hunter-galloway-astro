@@ -72,14 +72,20 @@ export const component = {
       borderRadius: semantic.radius.md,
       padding: semantic.spacing.card,
       shadow: 'none', // Per requirements
+      minWidth: '200px',
+      maxWidth: '250px',
+      maxWidthMobile: '300px',
       numberColor: semantic.color.text.primary,
       numberSize: semantic.typography.size['5xl'],
+      numberSizeTablet: semantic.typography.size['4xl'],
+      numberSizeMobile: semantic.typography.size['3xl'],
       numberWeight: semantic.typography.weight.display,
       descriptionColor: semantic.color.text.secondary,
       descriptionSize: semantic.typography.size.md,
       descriptionWeight: semantic.typography.weight.emphasis,
       transition: semantic.duration.normal,
       hoverTransform: 'translateY(-4px)',
+      paddingMobile: `${semantic.space.md} ${semantic.space.sm}`,
     },
 
     // Purpose card variant  
