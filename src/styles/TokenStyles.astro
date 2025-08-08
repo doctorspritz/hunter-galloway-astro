@@ -1,0 +1,102 @@
+---
+import { semantic } from '../tokens/semantic';
+---
+<style define:vars={{
+  // Colors
+  colorTextPrimary: semantic.color.text.primary,
+  colorTextSecondary: semantic.color.text.secondary,
+  colorSurfacePrimary: semantic.color.surface.primary,
+  colorSurfaceSecondary: semantic.color.surface.secondary,
+  colorInteractivePrimary: semantic.color.interactive.primary,
+  colorInteractivePrimaryHover: semantic.color.interactive.primaryHover,
+  // Typography
+  fontFamilyBody: semantic.typography.fontFamily.body.join(', '),
+  fontWeightBody: semantic.typography.weight.body,
+  fontWeightStrong: semantic.typography.weight.strong,
+  fontWeightHeading: semantic.typography.weight.heading,
+  fontWeightDisplay: semantic.typography.weight.display,
+  fontSizeSm: semantic.typography.size.sm,
+  fontSizeMd: semantic.typography.size.md,
+  fontSizeLg: semantic.typography.size.lg,
+  fontSizeXl: semantic.typography.size.xl,
+  fontSize2xl: semantic.typography.size['2xl'],
+  fontSize3xl: semantic.typography.size['3xl'],
+  fontSize4xl: semantic.typography.size['4xl'],
+  fontSize45xl: semantic.typography.size['4.5xl'],
+  fontSize5xl: semantic.typography.size['5xl'],
+  lineHeightTight: semantic.typography.lineHeight.tight,
+  lineHeightBody: semantic.typography.lineHeight.body,
+  // Spacing
+  spaceXs: semantic.space.xs,
+  spaceSm: semantic.space.sm,
+  spaceMd: semantic.space.md,
+  spaceLg: semantic.space.lg,
+  spaceXl: semantic.space.xl,
+  space2xl: semantic.space['2xl'],
+  // Radius
+  radiusSm: semantic.radius.sm,
+  radiusMd: semantic.radius.md,
+  radiusLg: semantic.radius.lg,
+  radiusPill: semantic.radius.pill,
+  // Border
+  colorBorderPrimary: semantic.color.border.primary,
+  colorBorderFocus: semantic.color.border.focus,
+  // Duration
+  durationNormal: semantic.duration.normal,
+  // Layout sizes (rem-based, not px)
+  sizeContainerMax: '79.5rem',
+}}>
+:root {
+  /* color */
+  --color-text-primary: var(--colorTextPrimary);
+  --color-text-secondary: var(--colorTextSecondary);
+  --color-surface-primary: var(--colorSurfacePrimary);
+  --color-surface-secondary: var(--colorSurfaceSecondary);
+  --color-interactive-primary: var(--colorInteractivePrimary);
+  --color-interactive-primary-hover: var(--colorInteractivePrimaryHover);
+
+  /* typography */
+  --font-family-body: var(--fontFamilyBody);
+  --font-weight-body: var(--fontWeightBody);
+  --font-weight-strong: var(--fontWeightStrong);
+  --font-weight-heading: var(--fontWeightHeading);
+  --font-weight-display: var(--fontWeightDisplay);
+  --font-size-sm: var(--fontSizeSm);
+  --font-size-md: var(--fontSizeMd);
+  --font-size-lg: var(--fontSizeLg);
+  --font-size-xl: var(--fontSizeXl);
+  --font-size-2xl: var(--fontSize2xl);
+  --font-size-3xl: var(--fontSize3xl);
+  --font-size-4xl: var(--fontSize4xl);
+  --font-size-45xl: var(--fontSize45xl);
+  --font-size-5xl: var(--fontSize5xl);
+  --line-height-tight: var(--lineHeightTight);
+  --line-height-body: var(--lineHeightBody);
+
+  /* spacing */
+  --space-xs: var(--spaceXs);
+  --space-sm: var(--spaceSm);
+  --space-md: var(--spaceMd);
+  --space-lg: var(--spaceLg);
+  --space-xl: var(--spaceXl);
+  --space-2xl: var(--space2xl);
+
+  /* radius */
+  --radius-sm: var(--radiusSm);
+  --radius-md: var(--radiusMd);
+  --radius-lg: var(--radiusLg);
+  --radius-pill: var(--radiusPill);
+
+  /* border */
+  --color-border-primary: var(--colorBorderPrimary);
+  --color-border-focus: var(--colorBorderFocus);
+
+  /* duration */
+  --durationNormal: var(--durationNormal);
+
+  /* layout */
+  --size-container-max: var(--sizeContainerMax);
+}
+</style>
+
+
