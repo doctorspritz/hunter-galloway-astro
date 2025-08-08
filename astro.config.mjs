@@ -8,6 +8,8 @@ import astrobook from 'astrobook';
 const env = loadEnv(process.env.NODE_ENV || 'production', process.cwd(), '');
 
 // https://astro.build/config
+const enableAstrobook = process.env.ASTROBOOK === 'true' || process.env.NODE_ENV === 'development';
+
 export default defineConfig({
   site: env.PUBLIC_SITE_URL || 'http://localhost:4321',
   
@@ -17,10 +19,14 @@ export default defineConfig({
 
   integrations: [
     react(),
-    astrobook({
-      subpath: '/astrobook',
-      directory: 'src/components'
-    }),
+    ...(enableAstrobook
+      ? [
+          astrobook({
+            subpath: '/astrobook',
+            directory: 'src/components',
+          }),
+        ]
+      : []),
     // Storyblok will be initialized separately
   ],
   

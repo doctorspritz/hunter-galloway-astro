@@ -1,0 +1,33 @@
+name: Agent Gatekeeper
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+jobs:
+  checks:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+        with: { version: 9 }
+      - run: pnpm i --frozen-lockfile
+      - run: pnpm run check
+
+  # Optional screenshots of demo routes (for quick PR eyeballing)
+  screenshots:
+    runs-on: ubuntu-latest
+    needs: checks
+    if: always()
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+        with: { version: 9 }
+      - run: pnpm i --frozen-lockfile
+      - run: pnpm run snap || true
+      - uses: actions/upload-artifact@v4
+        with:
+          name: design-system-screens
+          path: artifacts/screenshots
+          if-no-files-found: ignore
+
+
