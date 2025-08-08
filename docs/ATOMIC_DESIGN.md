@@ -133,14 +133,14 @@ More complex components that combine molecules and atoms into distinct interface
   <SocialLinks />
 </Footer>
 
-// HeroSection Organism - Homepage hero
-<HeroSection>
+// HeroWidget Organism - Homepage hero
+<HeroWidget>
   <Container>
     <Typography variant="h1" />
     <Typography variant="body" />
     <Button variant="primary" />
   </Container>
-</HeroSection>
+</HeroWidget>
 
 // Awards Organism - Awards showcase
 <Awards>
@@ -173,7 +173,7 @@ Templates define page-level structure by combining organisms in layout patterns.
 // Homepage Template
 <Layout>
   <Header />
-  <HeroSection />
+  <HeroWidget />
   <Awards />
   <LoanPurpose />
   <Statistics />
@@ -245,7 +245,7 @@ Specific implementations of templates with real content.
 **Priority Order:**
 1. **Header** - Complete navigation system
 2. **Footer** - Multi-section footer
-3. **HeroSection** - Homepage hero area
+3. **HeroWidget** - Flexible hero area
 4. **Awards** - Awards showcase section
 5. **Statistics** - Statistics cards section
 6. **Reviews** - Customer reviews section
@@ -362,9 +362,9 @@ component: {
 
 <!-- GOOD: Template using organisms -->
 <HomepageTemplate>
-  <HeroSection>
+  <HeroWidget>
     <Button variant="primary">Get Assessment</Button>
-  </HeroSection>
+  </HeroWidget>
 </HomepageTemplate>
 ```
 

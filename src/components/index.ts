@@ -48,7 +48,7 @@ export const designSystem = {
     },
     organisms: {
       count: 11,
-      list: ['Header', 'Footer', 'HeroSection', 'HeroWidget', 'Awards', 'BankLogos', 'LoanPurpose', 'PropertyMap', 'Reviews', 'Statistics', 'MortgageRentCalculator'],
+      list: ['Header', 'Footer', 'HeroWidget', 'Awards', 'BankLogos', 'LoanPurpose', 'PropertyMap', 'Reviews', 'Statistics', 'MortgageRentCalculator', 'RiskWidget'],
     },
   },
   

@@ -162,7 +162,7 @@ python manage_conversion.py add-component stamp-duty-calculator StateSelector
 ### Atomic Design System:
 - **Atoms**: Button, Icon, Logo, Typography
 - **Molecules**: StatCard, ReviewCard, PhoneLink
-- **Organisms**: Header, Footer, HeroSection
+- **Organisms**: Header, Footer, HeroWidget
 - **Pages**: Complete page templates
 
 ### Design Tokens:

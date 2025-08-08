@@ -18,7 +18,7 @@
       "estimatedHours": 40,
       "actualHours": 35,
       "componentsNeeded": [],
-      "componentsBuilt": ["Header", "Footer", "HeroSection", "Awards", "LoanPurpose", "BankLogos", "Statistics", "Reviews"],
+      "componentsBuilt": ["Header", "Footer", "HeroWidget", "Awards", "LoanPurpose", "BankLogos", "Statistics", "Reviews"],
       "notes": "Nearly complete, needs final polish and testing"
     },
     
@@ -312,7 +312,7 @@
   
   "components": {
     "reusable": {
-      "existing": ["Header", "Footer", "HeroSection", "Awards", "LoanPurpose", "BankLogos", "Statistics", "Reviews"],
+      "existing": ["Header", "Footer", "HeroWidget", "Awards", "LoanPurpose", "BankLogos", "Statistics", "Reviews"],
       "needed": ["ProfessionalHero", "RiskWidget", "WhyChooseWidget", "BlogCard", "FormValidation"]
     },
     "pageSpecific": {

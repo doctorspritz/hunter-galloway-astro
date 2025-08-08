@@ -29,9 +29,9 @@ Each task below is independently shippable. Use feature branches, add a demo to 
   - Tokens: text/surface/border/shadow only; no literals
   - Acceptance: renders 3–6 items, hover effects, responsive, a11y labels
 
-- [ ] HeroWidget (flexible hero refactor)
+- [x] HeroWidget (flexible hero refactor)
   - Branch: `feat/hero-widget`
-  - Files: `src/components/organisms/HeroWidget/HeroWidget.astro`; migrate usages from `HeroSection.astro`
+  - Files: `src/components/organisms/HeroWidget/HeroWidget.astro`; migrated usages from `HeroSection.astro`
   - Variants: professional/general/calculator; left/right media
   - Acceptance: tokenized colors/shadows; responsive; keyboard focus for CTAs
 
