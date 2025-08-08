@@ -2,6 +2,7 @@
 # Generated: January 8, 2025
 
 # === NODE.JS & NPM ===
+# Dependencies
 node_modules/
 npm-debug.log*
 yarn-debug.log*
@@ -11,6 +12,57 @@ lerna-debug.log*
 
 # Dependency directories
 jspm_packages/
+
+# Build outputs
+dist/
+.astro/
+
+# Environment variables
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production
+.env.test
+.env.production.local
+
+# IDE and editor files
+.vscode/
+.vscode/settings.json
+.vscode/launch.json
+*.code-workspace
+.idea/
+.idea/workspace.xml
+.idea/tasks.xml
+.idea/dictionaries/
+*.iml
+*.iws
+*.swp
+*.swo
+*~
+
+# OS generated files
+.DS_Store
+.DS_Store?
+**/.DS_Store
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+desktop.ini
+
+# Logs
+logs/
+*.log
+
+# Runtime data
+pids
+*.pid
+*.seed
+*.pid.lock
 
 # Optional npm cache directory
 .npm
@@ -36,71 +88,9 @@ jspm_packages/
 # Yarn Integrity file
 .yarn-integrity
 
-# === ASTRO BUILD OUTPUT ===
-# Astro build outputs
-dist/
-.astro/
-
-# === STORYBOOK ===
-storybook-static/
-
-# === ENVIRONMENT VARIABLES ===
-.env
-.env.local
-.env.development.local
-.env.test.local
-.env.production.local
-
-# === SYSTEM FILES ===
-# macOS
-.DS_Store
-.DS_Store?
-._*
-.Spotlight-V100
-.Trashes
-ehthumbs.db
-Thumbs.db
-
-# Windows
-Desktop.ini
-$RECYCLE.BIN/
-
-# Linux
-*~
-
-# === EDITOR FILES ===
-# VSCode
-.vscode/
-*.code-workspace
-
-# Sublime Text
-*.sublime-project
-*.sublime-workspace
-
-# IntelliJ/WebStorm
-.idea/
-*.iml
-*.iws
-
-# Vim
-*.swp
-*.swo
-*~
-
-# Emacs
-*~
-\#*\#
-.\#*
-
-# === LOGS & CACHE ===
-logs/
-*.log
-
-# Runtime data
-pids
-*.pid
-*.seed
-*.pid.lock
+# Temporary folders
+tmp/
+temp/
 
 # Coverage directory used by tools like istanbul
 coverage/
@@ -115,10 +105,44 @@ coverage/
 # Bower dependency directory
 bower_components
 
-# === TEMPORARY FILES ===
-# Temporary folders
-tmp/
-temp/
+# Storybook build outputs
+storybook-static/
+
+# WordPress source files - TRACKED for development reference
+# These are essential for the migration workflow
+
+# Development screenshots (for WordPress comparison)
+# Keep these local for development reference
+screenshots/
+visual-comparisons/
+
+# Component development assets (temporary)
+component-dev/
+temp-assets/
+
+# Design system exports (generated files)
+design-system-exports/
+
+# Local development certificates
+*.pem
+
+# Ignore specific WordPress reference files (too large for git)
+*.zip
+wordpress-theme-backup/
+
+# Project specific ignores
+# Ignore large WordPress asset copies during development
+/public/images/temp/
+/public/wordpress-assets/
+
+# Ignore development notes and analysis files
+dev-notes/
+wordpress-analysis/
+personal-notes.md
+
+# Ignore any potential sensitive data
+config.local.*
+secrets.*
 
 # === PROJECT SPECIFIC ===
 # Ignore entire archived folders (they have their own git history)
@@ -151,7 +175,6 @@ __pycache__/
 # Testing outputs
 test-results/
 playwright-report/
-coverage/
 
 # === DEPLOYMENT ===
 # Deployment artifacts

@@ -1,0 +1,1189 @@
+<?php
+/*
+
+Template name: Who We Help
+
+*/
+get_header();
+
+$is_page_builder_used = et_pb_is_pagebuilder_used( get_the_ID() );
+
+?>
+<style type="text/css">
+    .ourteam_wrapper {
+        align-items: flex-start;
+        display: flex;
+        margin: 0 -10px 40px;
+    }
+
+    .sidebar-nav {
+        box-sizing: border-box;
+        margin-top: 72px;
+        padding: 0 110px 20px 40px;
+        position: sticky;
+        width: 435px;
+        flex-shrink: 0;
+        top: 120px;
+    }
+
+    .sidebar-nav__item {
+        position: relative;
+        display: block;
+        font-size: 16px;
+        line-height: 1.1;
+        letter-spacing: -0.01em;
+        color: #000;
+        transition: color 0.35s;
+        opacity: 0.5;
+        padding-left: 15px;
+    }
+
+    .sidebar-nav__item:hover {
+        opacity: 0.8;
+        transition: color 0.35s;
+    }
+
+    .sidebar-nav__item:before {
+        content: '';
+        position: absolute;
+        left: 2px;
+        top: 50%;
+        transform: translateY(-50%);
+        background: #FFBA3A;
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        transition: 0.35s;
+    }
+
+    .sidebar-nav__item + .sidebar-nav__item {
+        margin-top: 20px;
+    }
+
+    .sidebar-nav__item.active {
+        opacity: 1;
+        font-weight: 700;
+    }
+
+    .sidebar-nav__item.active:before {
+        width: 9px;
+        height: 9px;
+        left: 0;
+    }
+
+    .fhbl_btn {
+        margin-top: 40px;
+    }
+
+    .fhbl_btn a {
+        margin: 0 auto;
+        padding: 0 5px;
+    }
+
+    #first_home_buyers .fhbl_btn a {
+        max-width: 300px;
+    }
+
+    #doctors_and_medical .fhbl_btn a {
+        max-width: 390px;
+    }
+
+    #first_home_buyers {
+        padding-bottom: 156px;
+    }
+
+    #doctors_and_medical {
+        padding-top: 0px;
+    }
+
+    @media (max-width: 1100px) {
+        .ourteam_wrapper {
+            display: block;
+            margin: 0 0 40px;
+        }
+
+        .sidebar-nav {
+            display: none;
+        }
+    }
+/* 	 */
+	.ourteam_wrapper{
+		display: flex;
+		padding: 0;		
+		width: 90%;
+		max-width: 1200px;
+		margin: 0 auto;
+	}
+	
+	body #main-content img{
+		max-width: 118% !important;
+	}
+	
+	#main-content{
+		padding: 0;
+	}
+	
+	.ourteam_block{
+	    padding: 0;
+		color: #000000;
+		margin: 0 auto 110px;
+		max-width: 800px;
+		width: 95%;
+	}
+	
+	.ourteam_block p{
+		font-weight: 400;
+		font-size: 14px;
+		line-height: 143%;
+	}
+	
+	/* h2 */
+	.ourteam_block h2{
+		margin-bottom: 32px;
+		font-weight: 700;
+		line-height: 130%;
+		color: #000000;
+		text-transform: capitalize;
+	}
+	
+	/* 	button */
+	.fhbl_btn{
+		margin: 32px 0;
+	}
+	
+	.btn_yellow{
+		height: 42px;
+		background: #FFB027;
+		box-shadow: 0px 3px 1px -2px rgba(0, 0, 0, 0.2), 0px 2px 2px rgba(0, 0, 0, 0.14), 0px 1px 5px rgba(0, 0, 0, 0.12);
+		border-radius: 20px;
+		font-weight: 600;
+		font-size: 15px;
+		line-height: 173%;
+	}
+	
+	/* first section	 */	
+	#first_home_buyers{
+		margin-top: 82px;
+		padding-bottom: 0;
+	}
+	
+	.whowehelp_first_h{
+		margin: 0;
+	}
+	
+	.ourteam_block img{
+		border-radius: unset;
+		margin: 0;
+		filter: unset;
+	}
+	
+	#first_home_buyers .fhbl_btn a{
+		max-width: 230px;
+	}
+	
+	/* second section*/
+	#doctors_and_medical ul{
+		display: flex;
+		margin-top: 32px;	
+		align-items: center;
+    	justify-content: space-between;
+		text-align: center;
+	}
+	
+	#doctors_and_medical ul li:before{
+		content: none;
+	}
+	
+	#doctors_and_medical ul li{
+		background: #FFF7E9;
+		border-radius: 10px;
+		font-weight: 600;
+		font-size: 14px;
+		line-height: 143%;
+		margin: 0;
+		padding: 24px 20px;
+		height: 164px;
+		width: 34%;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+	}
+	
+	#doctors_and_medical ul li:not(:last-child){
+		margin-right: 24px;
+	}
+	
+	#doctors_and_medical ul li img{
+		width: 44px;
+		display: block;
+		margin-bottom: 16px;
+	}
+	
+	#doctors_and_medical ul li:nth-child(2) img{
+		width: 60px;
+	}
+	
+	#doctors_and_medical ul li:nth-child(3) img{
+		width: 67px;
+	}
+	
+	/* 	third section */ 
+	#refinancers .refinansing_list{
+		display: flex;
+		align-items: center;
+		flex-wrap: wrap;
+		margin: 10px 0 64px;
+	}
+	
+	#refinancers .refinansing_list li{
+		width: 40%;
+		padding-left: 20px;
+		position: relative;
+	}
+	
+	#refinancers .refinansing_list li::before {
+		background-color: #000000;
+		border-radius: 50%;
+		content: '';
+		height: 3px;
+		left: 0px;
+		position: absolute;
+		top: 12px;
+		transform: translateY(-50%);
+		width: 3px;
+	}
+	
+	#refinancers h3{
+		margin: 32px 0 40px;
+		font-weight: 700;
+		font-size: 30px;
+		line-height: 137%;
+		text-align: center;
+		color: #000000;
+		text-transform: capitalize;
+	}
+	
+	#refinancers .fhbl_btn{
+		margin: 38px 0 0;
+	}
+	
+	#refinancers .fhbl_btn a{
+		max-width: 349px;
+	}
+	
+	#refinancers .pnd_list {
+		display: flex;
+		justify-content: space-between;
+		text-align: center;
+	}
+	
+	#refinancers .pnd_list li {
+		background: linear-gradient(0deg, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.9)), #5BD5FA;
+		border-radius: 10px;
+		margin: 0;
+		padding: 32px 17px 25px;
+		min-height: 246px;
+		width: 35%;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+	}
+	#refinancers .pnd_list li:not(:last-child){
+		margin-right: 27px;
+	}
+	
+	#refinancers .pnd_list li::before{
+		content: unset;
+	}
+	
+	#refinancers .pnd_list li img{
+		width: 60px;
+		height: 61px;
+		display: block;
+		margin-bottom: 8px;
+	}
+	
+	#refinancers .pnd_list li b{
+		display: block;
+		margin-bottom: 8px;
+		font-weight: 700;
+		font-size: 16px;
+		line-height: 125%;
+		color: #000000;
+	}
+
+	/* 	four section */ 
+	#investors .fhbl_btn a{
+		max-width: 217px;
+	}
+	
+	/* five section	 */	
+	#cant_help.ourteam_block{
+		padding-bottom: 20px;
+	} 
+	
+	.ourteam_block.gray{
+		background: unset;
+	}
+	
+	#cant_help .pnd_p_black{
+		font-weight: 600;
+		padding: 0;
+		color: #000000;
+	}
+	
+	#cant_help ul{
+		margin: 32px -32px -30px 0;
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: space-between;
+    	align-items: center;
+	}
+	
+	#cant_help ul li:before{
+		content: unset;
+	}
+	
+	#cant_help ul li{
+		padding: 0;
+		margin: 0 32px 30px 0;
+		width: 44%;
+	}
+	
+	#cant_help ul li strong{
+		margin-bottom: 16px;
+		display: inline-block;
+		font-weight: 600;
+		font-size: 20px;
+		line-height: 100%;
+		color: #000000;
+	}
+	
+	#cant_help ul li img{
+		width: 60px;
+		height: 60px;
+		display: block;
+		margin-bottom: 16px;
+	}
+	 
+	/* six section	 */
+	#wide_services.ourteam_block img{
+		margin-top: 32px;
+	}
+	
+/* heroy	 */
+	.ourteam_slider{
+		background-image: url("https://conversionratestore.github.io/projects/hantergalloway/img/who_we_help_banner_new.png");
+	}
+	.ourteam_slider_wrapper{
+		padding: 133px 0 152px 123px;
+		height: unset;
+		max-width: unset;
+	}
+	
+	.ourteam_slider .ourteam_slider_wrapper h1{
+		font-weight: 700;
+		font-size: 60px;
+		line-height: 137%;
+		text-transform: capitalize;
+		color: #FFFFFF !important;
+		margin: 0;
+	}
+	
+	.ourteam_slider_desc{
+		font-weight: 400;
+		font-size: 20px;
+		line-height: 27px;
+		max-width: 480px;
+		margin: 0;
+	}
+	
+	.ourteam_slider_bg{
+		background: unset;
+	}
+	
+	.sidebar-nav{
+		margin-top: 82px;
+	}
+	
+		.mobile_text_from_hero, .link_pages, .new_mobile_header{
+		display: none;
+	}
+	
+	/*mobile */
+	
+	@media (max-width: 768px) {
+		.page-template-page-whowehelp #et-main-area{
+			margin-top: 0;
+		}
+		
+		body .mobilehead{
+			display: none;
+		}
+		
+		.mobilehead, #et-main-area, {
+			margin: 0;
+		}
+		
+		html{
+			margin-top: 0 !important;
+		}
+		
+		.new_mobile_header{
+			display: flex;
+			justify-content: space-between;
+			padding: 20px 0;
+			width: 90%;
+			max-width: 1200px;
+			margin: 0 auto;
+		}
+		
+		.new_mobile_header .mobilehead_logo{
+			width: 35%;
+		}
+		
+		.new_mobile_header >div:last-child{
+			width: 60%;
+		}
+		
+		.mobilehead_logo img{
+			height: 42px;
+    		width: 118px;
+		}
+		
+		.new_mobile_header ul{
+			display: flex;
+			justify-content: space-between;
+			margin-top: 15px;
+		}
+		
+		.new_mobile_header ul a.mobilehead_phone_tel{
+			font-weight: 700;
+			font-size: 16px;
+			line-height: 135%;
+			color: #000000;
+		}
+		
+		.new_mobile_header a.mobilehead_phone_link{
+			font-weight: 400;
+			font-size: 15px;
+			line-height: 130%;
+			color: #000000;
+			border-bottom: 1px dashed #000000;
+			text-decoration: unset;
+		}
+		
+		.new_mobile_header .header_button_flex a{
+			font-weight: 600;
+			font-size: 15px;
+			line-height: 173%;
+			height: 42px;
+			background: #FFB027;
+			box-shadow: 0px 3px 1px -2px rgba(0, 0, 0, 0.2), 0px 2px 2px rgba(0, 0, 0, 0.14), 0px 1px 5px rgba(0, 0, 0, 0.12);
+			border-radius: 20px;
+		}
+		
+		.link_pages{
+			background: #F2F2F2;
+			padding: 18px 14px;
+			display: block;
+		}
+		
+		.link_pages ul{
+			display: flex;
+			justify-content: space-between;
+    		align-items: center;
+		}
+		
+		.link_pages ul li{
+			padding: 5px 0;
+			width: 30%;
+		}
+		
+		.link_pages ul li a{
+			font-weight: 400;
+			font-size: 15px;
+			line-height: 130%;
+			border-bottom: 1px dashed #000000;
+			color: #000000;
+		}
+		
+		.link_pages ul li:not(:last-child){
+			border-right: 1px solid #DCDCDC;
+		}
+/*  */
+		.ourteam_block img{
+			margin: 0 -9%;
+			width: 118%;
+		}
+		.ourteam_block{
+			    margin: 0 auto 50px;
+		}
+		
+		.fhbl_btn{
+			margin: 30px 0;
+		}
+		
+		.ourteam_block h2{
+			margin-bottom: 5px;
+			font-size: 30px;
+			line-height: 100%;
+			letter-spacing: -0.01em;
+			text-transform: unset;
+		}
+		
+		/* 	first section */
+		#first_home_buyers{
+			margin-top: 50px;
+		}
+		
+		#first_home_buyers.ourteam_block h2{
+			margin-bottom: 30px;
+		}
+		
+		#first_home_buyers .fhbl_btn{
+			margin: 24px 0 50px;
+		}
+		
+		/* 	second section */ 
+		#doctors_and_medical.ourteam_block h2{
+			margin-bottom: 30px;
+		}
+		
+		#doctors_and_medical ul{
+			margin-top: 24px;
+			display: block;
+		}
+		
+		#doctors_and_medical ul li{
+			width: 100%;
+			height: 100%;
+			padding: 24px 14px 24px 24px;
+			margin: 0;
+			flex-direction: unset;
+			justify-content: flex-start;
+			text-align: left;
+		}
+		
+		#doctors_and_medical ul li:not(:last-child){
+			margin-bottom: 16px;
+		}
+		
+		#doctors_and_medical ul li img{
+			width: 32px;
+			height: 22px;
+			margin: 0 18px 0 0;
+		}
+		
+		#doctors_and_medical ul li:nth-child(2) img, #doctors_and_medical ul li:nth-child(3) img{
+			width: 32px;
+			height: 32px;
+		}
+		
+		#doctors_and_medical .fhbl_btn a{
+			max-width: 299px;
+		}
+		
+		/* 	third section */ 
+		#refinancers.ourteam_block h2{
+			margin-bottom: 30px;
+		}
+		
+		#refinancers .refinansing_list{
+			margin-bottom: 30px;
+		}
+		
+		#refinancers .refinansing_list li{
+			width: 100%;
+		}
+		
+		#refinancers .refinansing_list li::before{
+			width: 4px;
+			height: 4px;
+    		left: 8px;
+		}
+		
+		#refinancers h3{
+			margin: 30px 0;
+			padding: 0;
+			text-transform: unset;
+			letter-spacing: -0.01em;
+			font-size: 20px;
+			line-height: 100%;
+		}
+		
+		#refinancers .pnd_list{
+			display: block;
+			text-align: left;
+		}
+		#refinancers .pnd_list li{
+			width: 100%;
+			margin: 0;
+			height: unset;
+			min-height: unset;
+			padding: 18px 22px;
+			flex-direction: unset;
+			align-items: unset;
+		}
+		
+		#refinancers .pnd_list li:not(:last-child){
+			margin-bottom: 30px;
+		}
+		
+		#refinancers .pnd_list li img{
+			width: 30px;
+			height: 40px;
+			margin: 0 15px 0 0;			
+		}
+		
+		#refinancers .pnd_list li b{
+			font-size: 14px;
+			line-height: 143%;
+		}
+		#refinancers .pnd_list li > div >p{
+			font-size: 12px;
+			line-height: 150%;
+		}
+		#refinancers .fhbl_btn a{
+			max-width: 100%;
+		}
+		
+		/* 	four section */ 
+		#investors.ourteam_block h2{
+			margin-bottom: 30px;
+		}
+		
+		/* five section	 */			
+		#cant_help.ourteam_block{
+			padding: 0;
+		}
+		#cant_help.ourteam_block h2{
+			margin-bottom: 30px;
+		}
+		
+		#cant_help ul{
+			margin-top: 24px;
+			margin-right: 0;
+		}
+		
+		#cant_help ul li{
+			width: 100%;
+			margin-right: 0;
+		}
+		
+		#cant_help ul li:nth-child(1){
+			order: 1;
+		}
+		#cant_help ul li:nth-child(2){
+			order: 5;
+		}
+		#cant_help ul li:nth-child(3){
+			order: 2;
+		}
+		#cant_help ul li:nth-child(4){
+			order: 6;
+		}
+		#cant_help ul li:nth-child(5){
+			order: 3;
+		}
+		#cant_help ul li:nth-child(6){
+			order: 7;
+		}
+		#cant_help ul li:nth-child(7){
+			order: 4;
+		}
+		
+		#cant_help ul li >div{
+			display: flex;
+			margin-bottom: 16px;
+			align-items: center;
+		}
+		
+		#cant_help ul li img{
+			width: 32px;
+			height: 32px;
+			position: absolute;
+			margin: 0;
+		}
+		
+		#cant_help ul li strong{
+			padding: 0 0 0 45px;
+			line-height: 150%;
+			margin: 0;
+		}
+		
+		
+		/* six section	 */
+		#wide_services.ourteam_block h2{
+			max-width: 340px;
+			margin: 0 auto 5px;
+		}
+		#wide_services.ourteam_block img {
+			margin-top: 24px;
+		}
+		
+		.ourteam_slider_wrapper{
+			padding: 47px 0 47px 32px;
+			width: 100%;
+		}
+		
+		.ourteam_slider_desc{
+			display: none;
+		}
+		
+		.ourteam_slider .ourteam_slider_wrapper h1{
+			font-size: 20px;
+			line-height: 27px;
+		}
+		
+		#footer-info{
+			text-align: left;
+			font-weight: 400;
+			font-size: 13px;
+			line-height: 140%;
+			padding: 0 0 70px;
+		}
+		
+		#main-footer #footer-widgets.clearfix{
+			margin: 0;
+			padding: 0 !important;
+		}
+		
+		#main-footer #footer-widgets .footer-widget{
+			padding: 0;
+			margin-bottom: 30px;
+		}
+		
+		#custom_html-5{
+			margin-top: 30px;
+		}
+		
+		#footer-widgets .footer-widget li{
+			padding: 0;
+		}
+		
+		#footer-widgets .footer-widget li:before{
+			content: unset;
+		}
+		
+		#footer-widgets .footer-widget li a{
+			color: #FDB948;
+		}
+		
+		.footer_adv_bottom.flex > p{
+			font-weight: 700;
+			font-size: 30px;
+			line-height: 130%;
+			letter-spacing: -0.01em;
+			color: #FDB948;
+		}
+		
+		.hg_adv.flex li div:first-child{
+			font-weight: 900;
+			font-size: 44px;
+			line-height: 100%;
+		}
+		
+		.hg_adv.flex li div:last-child{
+			font-weight: 400;
+			font-size: 13px;
+			line-height: 135%;
+			letter-spacing: 0.04em;
+			text-transform: uppercase;
+			color: #FFFFFF;
+			margin-top: 10px;
+		}
+		
+		.footer_adv_bottom a{
+			height: 59px;
+			background: #FDB948;
+			box-shadow: 0px 6px 12px rgba(43, 43, 43, 0.15);
+			border-radius: 33px;
+			font-weight: 700;
+			font-size: 23px;
+			line-height: 135%;
+		}
+		
+		.footer_video_text{
+			font-weight: 400;
+			font-size: 13px;
+			line-height: 140%;
+		}
+		
+		.footer_adv{
+			padding-top: 45px !important;
+			margin-bottom: -2px;
+		}
+		
+		#main-footer .container, .footer_adv .container{
+			width: unset;
+			padding: 0;
+		}
+		
+		#main-footer, .footer_adv{
+			padding: 0 14px;
+		}
+		
+		body .footer_logo img {
+			display: none;
+		}
+		
+		#footer-widgets .footer-widget .footer_logo a:nth-child(2){
+			margin-left: 0;
+		}
+		
+		#footer-widgets .footer-widget .footer_logo a{
+			text-decoration-line: underline;
+		}
+		
+		.footer_contact.flex span{
+			font-weight: 400;
+			font-size: 13px;
+			line-height: 140%;
+		}
+		
+		#et-footer-nav{
+			display: none;
+		}
+		
+		#main-footer #footer-bottom{
+			padding: 0 !important;
+		}
+
+	}
+	
+	@media (max-width: 320px){
+		.btn_yellow{			
+   			font-size: 12px;
+		}	
+		
+		.link_pages ul li a{
+			font-size: 13px;
+		}
+		
+		.new_mobile_header .header_button_flex a{
+			font-size: 12px;
+		}
+		
+		.new_mobile_header ul a.mobilehead_phone_tel, .new_mobile_header a.mobilehead_phone_link{
+			font-size: 13px;
+		}
+		
+		.footer_adv_bottom a{
+				width: 290px;
+			}
+	}
+	
+	
+</style>
+
+    <div class="new_mobile_header">
+      <div class="mobilehead_logo">
+        <a href="https://www.huntergalloway.com.au/" alt="logo hunter Galloway">
+          <img src="https://cjmhfp3t381yd87a17zl60cv-wpengine.netdna-ssl.com/wp-content/themes/Divi/images/hunter_logo_black_.svg" />
+        </a>
+      </div>
+      <div>
+        <div class="header_button_flex">
+          <a href="#" alt="" class="btn_yellow rc_open old_head_cta pum-trigger" style="cursor: pointer"> Get a Free Assessment </a>
+        </div>
+        <ul>
+          <li>
+            <a href="tel:1300088065" alt="" class="mobilehead_phone_tel">1300 088 065</a>
+          </li>
+          <li>
+            <a href="https://www.huntergalloway.com.au/contact/" alt="" class="mobilehead_phone_link">Contact Us</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="link_pages">
+      <ul>
+        <li><a href="https://www.huntergalloway.com.au/our-team/" target="blank">Who We Are</a></li>
+        <li><a href="https://www.huntergalloway.com.au/home-loans-brisbane/" target="blank">What We Do</a></li>
+        <li><a href="https://www.huntergalloway.com.au/who-we-help/" target="blank">Who We Help</a></li>
+      </ul>
+    </div>
+
+    <div class="ourteam_slider">
+      <div class="ourteam_slider_bg"></div>
+      <div class="ourteam_slider_wrapper container">
+        <h1 class="orange_color">Who We Help</h1>
+        <div class="ourteam_slider_desc">Hunter Galloway are experts at finding the right home solutions for our customers. We help people with loans of all shapes and sizes.</div>
+      </div>
+    </div>
+
+    <div id="main-content">
+      <div class="ourteam_wrapper">
+        <!-- ourteam_wrapper -->
+        <div class="whowehelp_main">
+          <div id="first_home_buyers" class="ourteam_block">
+            <div>
+              <!-- <p>
+                        <ul class="pnd_list">
+                            <li>First Home Buyers</li>
+                            <li>First time investors</li>
+                            <li>Busy professionals</li>
+                            <li>Home Upgraders</li>
+                            <li>Doctors and medical professionals</li>
+                            <li>Experienced property investors building a portfolio</li>
+                        </ul>
+                    </p> -->
+              <h2 class="whowehelp_first_h">First Home Buyers</h2>
+
+              <p>
+                If you are a first home buyer, rest assured that you have come to the right place. Here at Hunter Galloway, we specialise in helping Australians who want to take
+                that first step on the property ladder.
+              </p>
+              <p>
+                We dedicate a lot of time and energy towards creating videos, blog posts, and training courses to help you to learn about the home buying process. And when you're
+                ready to buy, we'll help to guide you through every step of your home loan application.
+              </p>
+              <p>We have helped over 1000 people like you to buy their first home. Will you be the next?</p>
+              <div class="fhbl_btn">
+			  	<a href="javascript:void(0)" alt="" class="btn_yellow rc_open old_head_cta pum-trigger">First Home Buyer Loans</a>
+              </div>
+              <img src="<?php echo get_template_directory_uri(); ?>/images/who_we_help_001.jpg" alt="Our vision" style="margin-top: 0px" />
+            </div>
+          </div>
+          <div id="doctors_and_medical" class="ourteam_block">
+            <div>
+              <h2>Doctors and Medical Professionals</h2>
+              <p>
+                We also specialise in home loans for doctors, and other medical professionals. Due to the nature of your profession, banks and lenders are eligible for special
+                deals, including:
+              </p>
+              <ul class="pnd_list">
+                <li>
+                  <img src="https://conversionratestore.github.io/projects/hantergalloway/img/svg1.svg" alt="images" />
+                  No LMI on mortgages
+                </li>
+                <li>
+                  <img src="https://conversionratestore.github.io/projects/hantergalloway/img/svg2.svg" alt="images" />
+                  Exclusive interest rate discounts
+                </li>
+                <li>
+                  <img src="https://conversionratestore.github.io/projects/hantergalloway/img/svg3.svg" alt="images" />
+                  Higher maximum borrowing capacity
+                </li>
+              </ul>
+              <div class="fhbl_btn">
+                <a href="https://www.huntergalloway.com.au/home-loans-for-doctors/" alt="doctors" target="blank" class="btn_yellow">Doctors and Medical Professionals</a>
+              </div>
+              <img src="https://conversionratestore.github.io/projects/hantergalloway/img/doctors.jpg" alt="Our vision" style="margin-top: 0px" />
+            </div>
+          </div>
+          <div id="refinancers" class="ourteam_block">
+            <div>
+              <h2>Refinancers</h2>
+              <p>
+                Refinancing your home loan could help you save on interest with a lower variable or fixed interest rate. Some banks will even
+                <strong>give you money</strong> refinance your mortgage with them.
+              </p>
+              <p>
+                <b>Refinancing your home loan can help you:</b>
+              </p>
+              <ul class="refinansing_list">
+                <li>Reduce your home loan repayments</li>
+                <li>Increase your loan and take cash out</li>
+                <li>Consolidate your debt</li>
+                <li>Renovate your home</li>
+              </ul>
+              <img src="https://conversionratestore.github.io/projects/hantergalloway/img/refinancers.jpg" alt="Our vision" style="margin-top: 0px" />
+              <h3>How to refinance your mortgage</h3>
+              <ul class="pnd_list">
+                <li>
+                  <img src="https://conversionratestore.github.io/projects/hantergalloway/img/svg4.svg" alt="images" />
+                  <div>
+                    <b>Get a free Home Loan Health Check</b>
+                    <p>We will compare hundreds of home loans with your current loan to make sure you're getting the best deal</p>
+                  </div>
+                </li>
+                <li>
+                  <img src="https://conversionratestore.github.io/projects/hantergalloway/img/svg5.svg" alt="images" />
+                  <div>
+                    <b>Fing out how much you can save</b>
+                    <p>Your broker will crunch the numbers and figure out whether you’ll be better off refinancing</p>
+                  </div>
+                </li>
+                <li>
+                  <img src="https://conversionratestore.github.io/projects/hantergalloway/img/svg6.svg" alt="images" />
+                  <div>
+                    <b>We'll do all the paperwork for you</b>
+                    <p>Once you've chosen your loan, we'll do everything required to submit the loan and get it approved</p>
+                  </div>
+                </li>
+              </ul>
+              <div class="fhbl_btn">
+			  	<a href="javascript:void(0)" alt="" class="btn_yellow rc_open old_head_cta pum-trigger">Book Your Free Home Loan Health Check</a>
+              </div>
+            </div>
+          </div>
+
+          <div id="investors" class="ourteam_block">
+            <div>
+              <h2 class="whowehelp_first_h">Investors</h2>
+              <p>
+                Looking to invest in property? We can help you find the right loan and interest rate for your property, whether you're a first-time investor or a seasoned expert.
+              </p>
+              <p>
+                Our experienced team of brokers have over 30 years of combined experience in investment home loans. We've all invested in property ourselves, so we know exactly how
+                to structure your home loans to maximise your return on investment.
+              </p>
+			  <p>&nbsp</p>
+              <img src="https://conversionratestore.github.io/projects/hantergalloway/img/investors.jpg" alt="Our investors" />
+			  <div class="fhbl_btn">
+                <a href="javascript:void(0)" alt="" class="btn_yellow rc_open old_head_cta pum-trigger">Get a Free Assessment</a>
+              </div>
+            </div>
+          </div>
+
+          <div id="cant_help" class="ourteam_block gray">
+            <div>
+              <h2>Who we <span>can't</span> help</h2>
+              <p>
+                We are committed to delivering an exceptional experience to each and every one of our customers. And in an ideal world, we would love to be able to help everyone
+                with their finance needs. However, we are a boutique agency and there are only so many people we can help at one time.
+              </p>
+              <p>
+                We can only take on so many clients and maintain our high standards. It takes us around 40 hours on average to process a home loan application. The worst thing for
+                us would be to take on your loan when we know that we can't live up to the quality of service we are renowned for.
+              </p>
+              <p class="pnd_p_black">We may not be able to help if you are:</p>
+              <ul class="pnd_list">
+                <li>
+                  <div>
+                    <img src="https://conversionratestore.github.io/projects/hantergalloway/img/svg7.svg" alt="images" />
+                    <strong class="pnd_strong_black">Are looking at borrowing less than $300,000</strong>
+                  </div>
+                  <p>
+                    Unfortunately, we are unable to process these loans due to the costs involved. It takes us around 40 hours to complete a home loan application regardless of the
+                    size of the loan. If we took on loans of this size, we would quickly become unprofitable and go out of business.
+                  </p>
+                </li>
+                <li>
+                  <div>
+                    <img src="https://conversionratestore.github.io/projects/hantergalloway/img/svg8.svg" alt="images" />
+                    <strong class="pnd_strong_black">Have bad credit history</strong>
+                  </div>
+                  <p>
+                    Our lending panel includes lenders who are okay with telco or utility defaults under $500. If you have a default higher than this amount or have a default with
+                    a financial institution, you will need to apply through a specialist lender. These include Latrobe Financials, Pepper Money, or Liberty Financial.
+                  </p>
+                </li>
+                <li>
+                  <div>
+                    <img src="https://conversionratestore.github.io/projects/hantergalloway/img/svg9.svg" alt="images" />
+                    <strong class="pnd_strong_black">Doing a construction loan</strong>
+                  </div>
+                  <p>
+                    Due to the complex nature of construction home loans, we are only able to take on a limited number of these at any one time. We'll let you know upfront if we
+                    currently are running over capacity and aren't able to assist.
+                  </p>
+                </li>
+                <li>
+                  <div>
+                    <img src="https://conversionratestore.github.io/projects/hantergalloway/img/img10.jpg" alt="images" />
+                    <strong class="pnd_strong_black">Low doc, bridging loans, non-conforming</strong>
+                  </div>
+                  <p>
+                    We have made a conscious decision to focus on helping with home loans where we believe we can deliver the most value. For these types of loans, we feel that you
+                    are better served with brokers who specialise in these areas.
+                  </p>
+                </li>
+                <li>
+                  <div>
+                    <img src="https://conversionratestore.github.io/projects/hantergalloway/img/img11.jpg" alt="images" />
+                    <strong class="pnd_strong_black">Have less than 5% deposit</strong>
+                  </div>
+                  <p>
+                    Our lenders will allow you to apply for a home loan up to 95% of the home value, but you will need to also pay for stamp duty + costs. In some states this represents
+                    an additional cost that needs to be factored into your application, meaning you will need an 5-8% deposit as a minimum.
+                  </p>
+                </li>
+                <li>
+                  <div>
+                    <img src="https://conversionratestore.github.io/projects/hantergalloway/img/img12.jpg" alt="images" />
+                    <strong class="pnd_strong_black">Living overseas</strong>
+                  </div>
+                  <p>
+                    Unfortunately, we are only able to assist customers who are based in Australia due to limitations on our credit license. We cannot assist any borrower who is
+                    based outside of Australia. This includes anyone living or working in New Zealand, Singapore, or anywhere else abroad.
+                  </p>
+                </li>
+                <!-- <li>
+                  <div>
+                    <img src="https://conversionratestore.github.io/projects/hantergalloway/img/img13.jpg" alt="images" />
+                    <strong class="pnd_strong_black">Guarantor Home Loans</strong>
+                  </div>
+                  <p>As with construction home loans, we only have the capacity for a limited number of these due to their complexity.</p>
+                </li> -->
+              </ul>
+
+              <!--                     <br>
+                    <p>Due to the nature of the finance industry, our volume of home loan applications varies from week
+                        to week. During times of high volume, our team often reaches our maximum capacity.</p>
+                    <p>At those times, it would be irresponsible of us to take on your home loan. We would not be able
+                        to deliver you the quality of service that you deserve.</p>
+                    <p>We will never choose a commission check over providing you with the best experience possible. If
+                        that means turning away business when we are at our maximum capacity, then we accept that.</p>
+                    <p>Please know that if we have to turn you away, it's not because we don't want to help you - it's
+                        because we don't want to let you down.</p>
+                    <p>If we are unable to help you, we won't leave you high and dry. In cases of bad credit or low
+                        deposit, we will work with you to resolve these issues. In cases where we are not a good fit for
+                        you, we can refer you to a broker who is more suitable for your situation.</p> -->
+            </div>
+          </div>
+          <div id="wide_services" class="ourteam_block">
+            <div>
+              <h2>Australia-Wide services</h2>
+              <p>
+                We are based in Brisbane, but we can help anyone who is looking to buy or refinance property in Australia. If you're out of state, we can process your application
+                via a combination of phone, email and online video conferencing.
+              </p>
+              <img src="<?php echo get_template_directory_uri(); ?>/images/who_we_help_004.jpg" alt="Our vision" />
+            </div>
+          </div>
+        </div>
+        <!-- Navigation -->
+        <div class="sidebar-nav">
+          <a href="#first_home_buyers" class="sidebar-nav__item active">First Home Buyers</a>
+          <a href="#doctors_and_medical" class="sidebar-nav__item">Doctors</a>
+          <a href="#refinancers" class="sidebar-nav__item">Refinancers</a>
+          <a href="#investors" class="sidebar-nav__item">Investors</a>
+        </div>
+      </div>
+    </div>
+    <!-- #main-content -->
+
+<script>
+    var sidebarScroll = {};
+
+    function detectNavbarOffsets() {
+        Array.from(document.querySelectorAll('.sidebar-nav__item')).reverse().forEach(function (el) {
+            sidebarScroll[el.getAttribute('href')] = document.querySelector(el.getAttribute('href')).offsetTop + document.querySelector(el.getAttribute('href')).offsetHeight + 200;
+        });
+        console.log(sidebarScroll);
+    }
+
+    if (window.innerWidth > 1100) {
+        detectNavbarOffsets();
+        setTimeout(detectNavbarOffsets, 3000);
+        window.addEventListener('scroll', function () {
+            Object.keys(sidebarScroll).forEach(key => {
+                // console.log(key, sidebarScroll[key], window.pageYOffset);
+                if (sidebarScroll[key] > window.pageYOffset - document.querySelector('header').offsetHeight && !document.querySelector('.sidebar-nav__item[href="' + key + '"]').classList.contains('active')) {
+                    document.querySelector('.sidebar-nav__item.active').classList.remove('active');
+                    document.querySelector('.sidebar-nav__item[href="' + key + '"]').classList.add('active');
+                    return false;
+                }
+            });
+            //
+        });
+    }
+</script>
+
+<?php
+
+get_footer();

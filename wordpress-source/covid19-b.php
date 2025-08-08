@@ -1,0 +1,766 @@
+<?php
+/*
+
+Template name: Сovid19-b
+
+*/
+
+get_header();
+
+$show_default_title = get_post_meta( get_the_ID(), '_et_pb_show_title', true );
+
+$is_page_builder_used = et_pb_is_pagebuilder_used( get_the_ID() );
+
+?>
+<div id="main-content" class="covid_b-main-content">
+    <section class="hero_widget widget">
+        <div class="container">
+            <div class="inner_widget">
+                <h1 class="hero_title">Australian Property Market with COVID-19</h1>
+
+                <p class="hero_subtitle">The coronavirus pandemic has the potential to massively disrupt our economy. What does that mean for you and surviving your mortgage?</p>
+                <p class="hero_text">Find out what you can do to protect yourself</p>
+                <div class="btn_wrap">
+                    <a class="btn_yellow rc_open A-trigger" href="#">Get a Free Assessment</a>
+                </div>
+                <p class="hero_text bottom-text">We promise to get back to you within 4 business hours</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="text_widget text_width_widget widget pt-widget pb-widget">
+        <div class="container">
+            <div class="inner_widget">
+                <h2 class="inner_title">COVID-19 is like nothing we have ever seen before</h2>
+                <p>We are in uncharted territory. The global coronavirus pandemic is causing economic disruption on a massive scale. It is affecting every inch of our daily lives. The only thing that comes close is the 1918 influenza pandemic, but that was a very different time.</p>
+                <p><span class="text-bold">Australian consumer confidence is at an all-time low, the share market is down, and economists are predicting that unemploment in Australia could reach up to 10 per cent.</span></p>
+                <p>The world looks set to enter a recession, and things are going to be very different when it comes out the other side.</p>
+                <p> And if you feel like things are going to get worse before they get better, you’re not alone. 85% of Australians recently surveyed by Roy Morgan say “the worst is yet to come” in regards to the COVID-19 coronavirus pandemic.</p>
+                <p>In times like these, it’s normal to feel uncertain about your financial future. A lot has happened in the past few weeks, and it can be a lot to process.</p>
+                <p>Read on to learn about the potential effects of COVID-19 on your mortgage, and what you can do about it.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="right_img_widget widget">
+        <div class="container">
+            <div class="inner_widget">
+                <div class="text_holder">
+                    <h2 class="inner_title">House prices could plummet by up to 20 per cent in capital cities </h2>
+                    <div class="risk_holder">
+                        <p>Uncertainty is very high at the moment, and very few people are committing to a purchase. Real estate agents are reporting that buyer enquiry has fallen sharply.</p>
+                        <p>Social distancing rules have banned property open houses, and auctions have had to move online. Since this happened at least 400 of the nearly 1260 auctions originally scheduled for the last week of March shifted to non-auction listings. Auction clearance rates are falling to near record lows, and look set to continue to fall.</p>
+                        <p><span class="text-bold">Mortgage stress has increased, with over 200,000 households added to the stresed list. This figure is likely to rise as more businesses close and social distancing measures continue to ramp up.</span></p>
+                        <p>AMP Capital chief economist Shane Oliver has predicted that unemployment will likely shoot up to about 10 per cent and this could result in a 20 per cent drop in Melbourne and Sydney house prices.</p>
+                        <p>In the best-case scenario, capital cities are likely to see house price declines of about 5 per cent.</p>
+                    </div>
+                </div>
+
+                <div class="img_holder">
+                    <img src="<?php echo get_template_directory_uri(); ?>/images/red-brick-house.jpg" alt="red-brick-house">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="text_widget text_width_widget widget pt-widget pb2-widget">
+        <div class="container">
+            <div class="inner_widget">
+                <h2 class="inner_title">The impact of coronavirus on our economy could last a decade or more</h2>
+                <p><span class="text-bold">The success or failure of Australia’s coronavirus fight relies to a large degree on just one thing: whether individual Australians follow official advise and just stay home.</span></p>
+                <p>Coronavirus will continue to spread virtually unchecked unless at least 8 in 10 Australians stay home as much as possible. And the longer it takes to get the disease under control, the worse it will be for our economy.</p>
+                <p>As far as the toll on our economy goes, we could see an impact lasting a decade or more. Recessions caused by financial crises, such as the 2008-2009 global financial crisis, can depress interest rates and economic activity for up to 10 years.</p>
+                <p>And it could last even longer than that. Economists from the University of California researching the impact of historical pandemics found “significant macroeconomic after-effect” from pandemic that lasted for 40 years.</p>
+                <p>On the other hand, if we get the disease under control quickly and the government continues to support our economy, growth could rebound quickly.</p>
+                <p>The Australian government is doing what it can to minimise the long term impact of the pandemic,</p>
+                <p>On 30 March, the government announced the $130 billion JobKeeper Payment to help keep Australians in jobs, bringing the Government’s total support for the economy to $320 billion, representing 16.4 per cent of annual GDP.</p>
+                <p>Whether that will be enough is anyone’s guess.</p>
+                <p>Our advice is to follow this mantra by Maya Angelou: <span class="text-bold text-italic">“Hoping for the best, prepared for the worst, and unsurprised by anything in between.”</span></p>
+            </div>
+        </div>
+    </section>
+
+    <section class="why_do_widget why_do_warning_widget widget">
+        <div class="container">
+            <div class="inner_widget">
+                <h2 class="inner_title">What you can do to minimise the impact on your financial health</h2>
+                <p class="subtitle">Here’s what you should do to protect yourself</p>
+                <div class="why_do_holder">
+                    <div class="col_yellow">
+                        <div class="col_title">
+                            <p>If you’re not affected yet, look at refinancing your home loan</p>
+                        </div>
+                        <ul class="why_do_list">
+                            <li>The coronavirus pandemic is going to have an economic impact that could last for years. In these uncertain times, you need to do what you can to protect your financial health now and in the future.</li>
+                            <li>Refinancing your home loan can be a great way to reduce your monthly expenses and keep more money in your bank account.</li>
+                            <li>To learn about your options and whether refinancing your home loan is right for you, book a free assessment with one of our brokers here at Hunter Galloway. We will review your situation and give you advice on your best options moving forward.</li>
+                        </ul>
+                    </div>
+                    <div class="col_dark">
+                        <div class="col_title">
+                            <p>If you’re under financial distress, seek help from your lender</p>
+                        </div>
+                        <ul class="why_do_list">
+                            <li>If you’re struggling to afford your home loan repayments, you’re not alone. Many Australians have been affected by coronavirus and the banks have responded by offering specific coronavirus mortgage relief and hardship support policies to help borrowers.</li>
+                            <li>At the moment, most Australian lenders will allow you to pause or defer your mortgage repayments for between three and six months.</li>
+                            <li>Every lender has its own criteria to determine who is eligible or not, and you may have to prove that you’ve lost a job or income to qualify. Contact your lender to see what options are available to you.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="dark_holder_widget widget">
+        <div class="container">
+            <div class="inner_widget">
+                <h3 class="inner_title">Would you like to learn about your options?</h3>
+                <div class="btn_wrap">
+                    <a class="btn_yellow rc_open C-trigger" href="#">Get a Free Assessment</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="risk_widget right_img_widget widget">
+        <div class="container">
+            <div class="inner_widget">
+
+                <div class="text_holder">
+                    <h2 class="inner_title">How refinancing your home loan can help at this time</h2>
+                    <div class="risk_holder">
+                        <ul class="risk_list">
+                            <li class="list_risk_arrow">
+                                <p class="list_title">Reduce your home loan repayments</p>
+                                <p class="list_text">
+                                    You may be able to refinance your loan to get a lower interest rate or switch to an interest-only loan which will reduce your repayments even further.
+                                </p>
+                            </li>
+
+                            <li class="list_risk_puzzle">
+                                <p class="list_title">Consolidate your debt</p>
+                                <p class="list_text">Pay out your credit card and personal loans under your mortgage. Pay off all of your debt with one home loan repayment and a single, lower interest rate.</p>
+                            </li>
+
+                            <li class="list_risk_dollar">
+                                <p class="list_title">Increase your loan and take cash out</p>
+                                <p class="list_text">If you have built up some equity in your property, refinancing will allow you to release that equity so you will have some cash on standby. You may also qualify for a cashback of up to $4,000.</p>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="img_holder">
+                    <img src="<?php echo get_template_directory_uri(); ?>/images/mother-with-daughter.jpg" alt="mother-with-daughter">
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section class="time_essence_widget yellow_warning_widget widget">
+        <div class="container">
+            <div class="inner_widget">
+                <h2 class="inner_title">Why you need to act now</h2>
+                <p class="subtitle">The damage to your economy is already affecting the banks’ lending criteria. As this continues to progress, it will become more and more difficult to refinance your loan.</p>
+                <div class="time_holder">
+                    <div class="col_main">
+                        <ul class="why_do_list">
+                            <li>Bank valuers will likely be more conservative as the situation continues to develop. This will reduce the amount you can borrow.</li>
+
+                            <li>There may be delays due to lenders having their staff work from home.</li>
+
+                            <li>Bank valuers may refuse to visit properties, making it impossible to refinance with lenders who require a property valuation.</li>
+
+                            <li>There is a risk that some lenders may stop lending altogether if Australia goes into total lockdown.</li>
+
+                            <li>If your income drops during this period, you may not get approved.</li>
+
+                            <li>Some lenders require face to face meetings to finalise your application which may not be possible.</li>
+                        </ul>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="dark_btn_widget widget">
+        <div class="container">
+            <div class="inner_widget">
+                <div class="btn_wrap">
+                    <a class="btn_yellow rc_open G-trigger" href="#">Find out if refinancing is right for you </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="risk_widget widget">
+        <div class="container">
+            <div class="inner_widget">
+                <h2 class="inner_title">We’re here to help whenever you need us</h2>
+                <div class="risk_holder">
+                    <div class="risk_inner-left">
+                        <div>
+                            Our team is working around the clock to constantly monitor the lending situation and make sure that we avoid lenders who will be unable to approve loans during this time.
+                        </div>
+
+                        <ul class="risk_list">
+                            <li class="video-conference_ico">
+                                <p class="list_title">Available by phone or video conference</p>
+                                <p class="list_text">
+                                    We can sort out everything for you over the phone or via video conferencing, including all of your paperwork.
+                                </p>
+                                <p class="list_text">This means you can stay home and stay safe while we take care of your financial health.</p>
+                            </li>
+                            <li class="umbrella_ico">
+                                <p class="list_title">Reducing risk of rejection</p>
+                                <p class="list_text">We can do this through our own internal credit assessment process which we complete before applying with any lender. Our team has its own internal Credit Manager who reviews each application before being submitted to the lenders, meaning we won’t apply with a lender who won’t approve your loan.</p>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="risk_imgwrap">
+                        <img src="<?php echo get_template_directory_uri(); ?>/images/manager_new.png" alt="manager">
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section class="reputation_widget widget">
+        <div class="container">
+            <div class="inner_widget">
+                <h2 class="inner_title">Our reputation and achievements</h2>
+                <div class="market_wrapper">
+                    <div class="market_text">
+                        <span>Market average rejection rate is 40%, our rejection rate is <strong>3%</strong></span>
+                        <div class="market_dd">
+                            <div class="inner">
+                                Approximately 40% of home loan applications were rejected in December 2018 based on a survey of 52,000 households completed by <a href="https://www.mortgagebusiness.com.au/breaking-news/13042-home-loan-rejection-rate-hits-40" alt="">'DigitalFinance Analytics DFA'</a>. In 2017 to 2018 Hunter Galloway submitted 342 home loan applications and had 8 applications rejected, giving a 2.33% rejection rate.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="reputation_prize">
+                    <span>2019 Mortgage Broker of the Year</span>
+                </div>
+
+                <div class="front_popup_prize_image flex">
+                    <div class="slider_prize swiper-container">
+                        <!-- Swiper -->
+                        <div class="swiper-wrapper">
+                            <div class="slide_item swiper-slide">
+                                <img src="/wp-content/uploads/2019/07/best-mortgage-broker-2019.png" alt="">
+                            </div>
+                            <div class="slide_item swiper-slide">
+                                <img src="/wp-content/uploads/2019/12/2019_001.png" alt="">
+                            </div>
+                            <div class="slide_item swiper-slide">
+                                <img src="/wp-content/uploads/2019/12/2019_002.png" alt="">
+                            </div>
+                            <div class="slide_item swiper-slide">
+                                <img src="/wp-content/uploads/2018/11/finance-broker-of-the-year-2018.png" alt="">
+                            </div>
+                            <div class="slide_item swiper-slide">
+                                <img src="/wp-content/uploads/2018/11/30-under-20.png" alt="">
+                            </div>
+                            <div class="slide_item swiper-slide">
+                                <img src="/wp-content/uploads/2018/11/vow-award-mortgage-broker.png" alt="">
+                            </div>
+                        </div>
+                        <!-- Add Arrows -->
+                        <div class="slide-button-next"></div>
+                        <div class="slide-button-prev"></div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section id="why_choose" class="why_choose why_choose_widget widget">
+        <div class="container">
+            <div class="inner_widget">
+                <div class="why_choose_title">
+                    Why Choose Hunter Galloway As<br>Your Mortgage Broker?
+                </div>
+                <div class="why_choose_blocks">
+                    <div class="why_choose_blocks_inner flex">
+                        <div class="why_choose_item">
+                            <img src="<?php echo get_template_directory_uri(); ?>/images/why_choose_001.svg">
+                            <div class="why_choose_item_title">
+                                One of the lowest rejection rates
+                            </div>
+                            <div class="why_choose_item_text">
+                                across Mortgage Brokers  in Australia
+                            </div>
+                        </div>
+                        <div class="why_choose_item">
+                            <img src="<?php echo get_template_directory_uri(); ?>/images/why_choose_002.svg">
+                            <div class="why_choose_item_title">
+                                The highest rated and most reviewed
+                            </div>
+                            <div class="why_choose_item_text">
+                                Mortgage Broker in Brisbane  on Google
+                            </div>
+                        </div>
+                        <div class="why_choose_item">
+                            <img src="<?php echo get_template_directory_uri(); ?>/images/why_choose_003.svg">
+                            <div class="why_choose_item_title">
+                                We have direct access to 30+ banks and lenders
+                            </div>
+                            <div class="why_choose_item_text">
+                                across Australia
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="reviews_widget widget">
+        <div class="container">
+            <div class="inner_widget">
+                <div class="title_holder">
+                    <h2 class="inner_title">Google reviews of our customers</h2>
+                    <p>Hunter Galloway Mortgage Brokers have helped hundreds of home owners.</p>
+                    <p>We have built a brilliant reputation for being extremely well organised, helpful and making the home loan process as smooth as possible</p>
+                </div>
+                <div class="slider_holder swiper-container">
+                    <!-- Swiper -->
+                    <div class="swiper-wrapper">
+                        <div class="slide_item swiper-slide">
+                            <div class="img_holder">
+                                <img src="/wp-content/uploads/2018/03/mortgage-broker-brisbane-testimonial.png" alt="user">
+                            </div>
+                            <div class="rating_holder">
+                                <img src="/wp-content/themes/hunter-galloway/assets/img/star.svg" alt="star">
+                                <img src="/wp-content/themes/hunter-galloway/assets/img/star.svg" alt="star">
+                                <img src="/wp-content/themes/hunter-galloway/assets/img/star.svg" alt="star">
+                                <img src="/wp-content/themes/hunter-galloway/assets/img/star.svg" alt="star">
+                                <img src="/wp-content/themes/hunter-galloway/assets/img/star.svg" alt="star">
+                            </div>
+                            <div class="text_holder">
+                                <p>
+                                    My mortgage was not your typical simple loan; it required a lot of attention and out of the box thinking.
+                                    <span class="dots">...</span>
+                                    <span class="show_more_text">All of this was provided by the team.
+                                        Both Nathan and Josh worked tirelessly to get the result and outcome that I needed.
+                                        They are incredibly personable, professional and a joy to work with.</span>
+                                </p>
+                            </div>
+                            <div class="btn_holder">
+                                <a class="btn_show_more">
+                                    <span class="more">Show more</span>
+                                    <span class="less">Show less</span>
+                                </a>
+                            </div>
+                            <div>
+                                <p class="user_name">Reynold</p>
+                                <p class="reviews_date">3 weeks ago</p>
+                            </div>
+                        </div>
+
+                        <div class="slide_item swiper-slide">
+                            <div class="img_holder">
+                                <img src="/wp-content/uploads/2018/03/mortgage-broker-brisbane-testimonial-2.png" alt="user">
+                            </div>
+                            <div class="rating_holder">
+                                <img src="/wp-content/themes/hunter-galloway/assets/img/star.svg" alt="star">
+                                <img src="/wp-content/themes/hunter-galloway/assets/img/star.svg" alt="star">
+                                <img src="/wp-content/themes/hunter-galloway/assets/img/star.svg" alt="star">
+                                <img src="/wp-content/themes/hunter-galloway/assets/img/star.svg" alt="star">
+                                <img src="/wp-content/themes/hunter-galloway/assets/img/star.svg" alt="star">
+                            </div>
+                            <div class="text_holder">
+                                <p>These gentlemen came recommended and I was genuinely impressed;
+                                    the personalized service and
+                                    <span class="dots">...</span>
+                                    <span class="show_more_text">very rapid reply to queries and constant updates was impressive as well as the ease with which they performed all the necessary work. They are very thorough
+                                        and whilst collating paperwork is never much fun, they make it easy and explain why having all in place
+                                        first is the best method. Very impressed!</span>
+                                </p>
+                            </div>
+                            <div class="btn_holder">
+                                <a class="btn_show_more">
+                                    <span class="more">Show more</span>
+                                    <span class="less">Show less</span>
+                                </a>
+                            </div>
+                            <div>
+                                <p class="user_name">Charles Phillis</p>
+                                <p class="reviews_date">3 weeks ago</p>
+                            </div>
+                        </div>
+
+                        <div class="slide_item swiper-slide">
+                            <div class="img_holder">
+                                <img src="/wp-content/uploads/2018/03/mortgage-broker-brisbane-testimonial3.png" alt="user">
+                            </div>
+                            <div class="rating_holder">
+                                <img src="/wp-content/themes/hunter-galloway/assets/img/star.svg" alt="star">
+                                <img src="/wp-content/themes/hunter-galloway/assets/img/star.svg" alt="star">
+                                <img src="/wp-content/themes/hunter-galloway/assets/img/star.svg" alt="star">
+                                <img src="/wp-content/themes/hunter-galloway/assets/img/star.svg" alt="star">
+                                <img src="/wp-content/themes/hunter-galloway/assets/img/star.svg" alt="star">
+                            </div>
+                            <div class="text_holder">
+                                <p>Thank you so much to Nathan, Josh, Jared and the team for everything that they
+                                    did for us in the process of buying our
+                                    <span class="dots">...</span>
+                                    <span class="show_more_text">first house. They truly made it a seamless process. The team were always so on top of everything and kept us in the loop every step of the way. We will recommend Hunter Galloway to everyone we know! Thanks again boys!</span>
+                                </p>
+                            </div>
+                            <div class="btn_holder">
+                                <a class="btn_show_more">
+                                    <span class="more">Show more</span>
+                                    <span class="less">Show less</span>
+                                </a>
+                            </div>
+                            <div>
+                                <p class="user_name">Melissa Allison</p>
+                                <p class="reviews_date">3 weeks ago</p>
+                            </div>
+                        </div>
+
+                        <div class="slide_item swiper-slide">
+                            <div class="img_holder">
+                                <img src="/wp-content/uploads/2018/03/mortgage-broker-brisbane-testimonial4.png)" alt="user">
+                            </div>
+                            <div class="rating_holder">
+                                <img src="/wp-content/themes/hunter-galloway/assets/img/star.svg" alt="star">
+                                <img src="/wp-content/themes/hunter-galloway/assets/img/star.svg" alt="star">
+                                <img src="/wp-content/themes/hunter-galloway/assets/img/star.svg" alt="star">
+                                <img src="/wp-content/themes/hunter-galloway/assets/img/star.svg" alt="star">
+                                <img src="/wp-content/themes/hunter-galloway/assets/img/star.svg" alt="star">
+                            </div>
+                            <div class="text_holder">
+                                <p>
+                                    We had a really great experience with Nathan from Hunter Galloway. Would definitely recommend him
+                                    <span class="dots">...</span>
+                                    <span class="show_more_text"> to anyone who is looking for a finance broker.
+                                        He certainly knows his stuff, and his constant communication during the loan
+                                        approval process was incredible.</span>
+                                </p>
+                            </div>
+                            <div class="btn_holder">
+                                <a class="btn_show_more">
+                                    <span class="more">Show more</span>
+                                    <span class="less">Show less</span>
+                                </a>
+                            </div>
+                            <div>
+                                <p class="user_name">Bianca Smith</p>
+                                <p class="reviews_date">3 weeks ago</p>
+                            </div>
+                        </div>
+
+                        <div class="slide_item swiper-slide">
+                            <div class="img_holder">
+                                <img src="/wp-content/uploads/2018/03/mortgage-broker-brisbane-testimonial5.png)" alt="user">
+                            </div>
+                            <div class="rating_holder">
+                                <img src="/wp-content/themes/hunter-galloway/assets/img/star.svg" alt="star">
+                                <img src="/wp-content/themes/hunter-galloway/assets/img/star.svg" alt="star">
+                                <img src="/wp-content/themes/hunter-galloway/assets/img/star.svg" alt="star">
+                                <img src="/wp-content/themes/hunter-galloway/assets/img/star.svg" alt="star">
+                                <img src="/wp-content/themes/hunter-galloway/assets/img/star.svg" alt="star">
+                            </div>
+                            <div class="text_holder">
+                                <p>
+                                    I would recommend Nathan team to everyone. They are very professional
+                                    and efficient.I previously had unpleasant
+                                    <span class="dots">...</span>
+                                    <span class="show_more_text"> experience when dealt with bank directly. Lucky, found Nathan,
+                                        Josh and Jared just on time. Through them, bank even offered the loan more than I need.
+                                        I could not settle this investment without Nathan's help!</span>
+                                </p>
+                            </div>
+                            <div class="btn_holder">
+                                <a class="btn_show_more">
+                                    <span class="more">Show more</span>
+                                    <span class="less">Show less</span>
+                                </a>
+                            </div>
+                            <div>
+                                <p class="user_name">Jessie Zhang</p>
+                                <p class="reviews_date">3 weeks ago</p>
+                            </div>
+                        </div>
+
+                        <div class="slide_item swiper-slide">
+                            <div class="img_holder">
+                                <img src="/wp-content/uploads/2018/03/mortgage-broker-brisbane-4.png);" alt="user">
+                            </div>
+                            <div class="rating_holder">
+                                <img src="/wp-content/themes/hunter-galloway/assets/img/star.svg" alt="star">
+                                <img src="/wp-content/themes/hunter-galloway/assets/img/star.svg" alt="star">
+                                <img src="/wp-content/themes/hunter-galloway/assets/img/star.svg" alt="star">
+                                <img src="/wp-content/themes/hunter-galloway/assets/img/star.svg" alt="star">
+                                <img src="/wp-content/themes/hunter-galloway/assets/img/star.svg" alt="star">
+                            </div>
+                            <div class="text_holder">
+                                <p>
+                                    After being stuffed around for over two weeks by another broker -
+                                    got in touch with Nathan and
+                                    <span class="dots">...</span>
+                                    <span class="show_more_text">had a first-home loan approval within 48 hours of speaking with him. First-class customer service and demonstrated wealth of experience. Can't recommend Hunter Galloway enough.</span>
+                                </p>
+                            </div>
+                            <div class="btn_holder">
+                                <a class="btn_show_more">
+                                    <span class="more">Show more</span>
+                                    <span class="less">Show less</span>
+                                </a>
+                            </div>
+                            <div>
+                                <p class="user_name">Irene Diocares</p>
+                                <p class="reviews_date">3 weeks ago</p>
+                            </div>
+                        </div>
+
+                    </div>
+                    <!-- Add Arrows -->
+                    <div class="slide-button-next"></div>
+                    <div class="slide-button-prev"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="lenders_widget widget">
+        <div class="container">
+            <div class="inner_widget">
+                <h2 class="inner_title">Lenders on our panel</h2>
+
+                <div class="lenders_slider swiper-container">
+                    <!-- Swiper -->
+                    <div class="img_holder swiper-wrapper">
+                        <div class="slide_item swiper-slide image_wrap">
+                            <img src="/wp-content/uploads/2018/11/westpac_logo.jpg" alt="Westpac Bank" class="et-waypoint et_pb_animation_top et-animated">
+                        </div>
+                        <div class="slide_item swiper-slide image_wrap">
+                            <img src="/wp-content/uploads/2018/11/anz_logo.jpg" alt="ANZ Bank" class="et-waypoint et_pb_animation_top et-animated">
+                        </div>
+                        <div class="slide_item swiper-slide image_wrap">
+                            <img src="/wp-content/uploads/2018/11/nab_logo.jpg" alt="NAB" class="et-waypoint et_pb_animation_top et-animated">
+                        </div>
+                        <div class="slide_item swiper-slide image_wrap">
+                            <img src="/wp-content/uploads/2018/11/amp_logo.jpg" alt="AMP" class="et-waypoint et_pb_animation_top et-animated">
+                        </div>
+                        <div class="slide_item swiper-slide image_wrap">
+                            <img src="/wp-content/uploads/2018/11/adelaidebank_logo.jpg" alt="Adelaide Bank" class="et-waypoint et_pb_animation_top et-animated">
+                        </div>
+                        <div class="slide_item swiper-slide image_wrap">
+                            <img src="/wp-content/uploads/2018/11/firstmac_logo.jpg" alt="FirstMac" class="et-waypoint et_pb_animation_top et-animated">
+                        </div>
+                        <div class="slide_item swiper-slide image_wrap">
+                            <img src="/wp-content/uploads/2018/11/commbank_logo.jpg" alt="Commonwealth Bank (CBA)" class="et-waypoint et_pb_animation_top et-animated">
+                        </div>
+                        <div class="slide_item swiper-slide image_wrap">
+                            <img src="/wp-content/uploads/2018/11/stgeorge_logo.jpg" alt="St George Mortgage Brokers" class="et-waypoint et_pb_animation_top et-animated">
+                        </div>
+                        <div class="slide_item swiper-slide image_wrap">
+                            <img src="/wp-content/uploads/2018/11/ing_logo.jpg" alt="ING Direct" class="et-waypoint et_pb_animation_top et-animated">
+                        </div>
+                        <div class="slide_item swiper-slide image_wrap">
+                            <img src="/wp-content/uploads/2018/11/homeloans_logo.jpg" alt="Home Loans" class="et-waypoint et_pb_animation_top et-animated">
+                        </div>
+                        <div class="slide_item swiper-slide image_wrap">
+                            <img src="/wp-content/uploads/2018/11/macq_logo.jpg" alt="Macquarie Bank" class="et-waypoint et_pb_animation_top et-animated">
+                        </div>
+                        <div class="slide_item swiper-slide image_wrap">
+                            <img src="/wp-content/uploads/2018/11/suncorp_logo.jpg" alt="Suncorp Bank" class="et-waypoint et_pb_animation_top et-animated">
+                        </div>
+                        <div class="slide_item swiper-slide image_wrap">
+                            <img src="/wp-content/uploads/2018/11/pepper_logo.jpg" alt="Pepper Money" class="et-waypoint et_pb_animation_top et-animated">
+                        </div>
+                        <div class="slide_item swiper-slide image_wrap">
+                            <img src="/wp-content/uploads/2018/11/mebank_logo.jpg" alt="ME Bank" class="et-waypoint et_pb_animation_top et-animated">
+                        </div>
+                        <div class="slide_item swiper-slide image_wrap">
+                            <img src="/wp-content/uploads/2018/11/bankwest_logo.jpg" alt="Bankwest" class="et-waypoint et_pb_animation_top et-animated">
+                        </div>
+                    </div>
+                    <!-- Add Arrows -->
+                    <div class="slide-button-next"></div>
+                    <div class="slide-button-prev"></div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section class="img_btn_widget widget">
+        <div class="container">
+            <div class="inner_widget">
+                <div class="btn_wrap">
+                    <a class="btn_yellow rc_open E-trigger" href="#">Get your free home loan assessment</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="accordion_widget widget">
+        <div class="container">
+            <div class="inner_widget">
+                <h2 class="inner_title">Questions and Answers</h2>
+                <div class="accordion_holder">
+
+                    <div class="et_pb_module et_pb_toggle et_pb_toggle_close">
+                        <h5 class="et_pb_toggle_title">What is refinancing?</h5>
+                        <div class="et_pb_toggle_content clearfix">
+                            <p>
+                                Refinancing refers to the process of changing your existing home loan for a new one. You can refinance your loan with your current lender, or more commonly, you transfer your loan to a new bank.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="et_pb_module et_pb_toggle et_pb_toggle_close">
+                        <h5 class="et_pb_toggle_title">How does refinancing work?</h5>
+                        <div class="et_pb_toggle_content clearfix">
+                            <p>When you take you a new home loan, you will use some or all of the funds from the new loan to pay out your current loan. Once you have paid off your existing loan, your mortgage with your current bank will be closed and you will start making repayments to your new lender.</p>
+                            <p>In order to refinance your loan you will need to complete the following steps:</p>
+
+                            <ul class="inner_list inner_list_digit">
+                                <li> Shop around for a new loan (or save yourself the trouble and have one of our friendly mortgage brokers shop around for you). Once you find the right lender and the right home loan, you will start the application process.</li>
+                                <li> When you begin the application process, the lender will complete an initial assessment to make sure that you can afford the new loan. They will want to take a look at supporting documentation such as payslips and your current home loan statements. Once completed, assuming that you qualify, they will issue a conditional approval for your loan.</li>
+                                <li> Next, the bank may order a property valuation. This valuation will determine how much you can borrow and whether your property is an acceptable security for the loan.</li>
+                                <li> Once the valuation and any other conditions have been reviewed, the bank will unconditionally approve your loan and send contracts for you to sign and return. </li>
+                                <li> The bank will contact your previous lender to arrange a changeover of the loan once they receive your signed contracts. This changeover process is called settlement and occurs on a date mutually agreed upon by the banks. </li>
+                                <li> On settlement day, your old loan will be paid out and the title of the property will be handed over to your new lender.</li>
+                                <li> Once settlement is complete, you will start making repayments to your new bank. </li>
+                            </ul>
+
+                        </div>
+                    </div>
+
+                    <div class="et_pb_module et_pb_toggle et_pb_toggle_close">
+                        <h5 class="et_pb_toggle_title">What are the benefits of refinancing?</h5>
+                        <div class="et_pb_toggle_content clearfix">
+                            <p>Refinancing your home loan can open up a lot of different opportunities for you to better manage your finances, including:</p>
+                            <ul class="inner_list">
+                                <li>Consolidate your debt into one repayment (for example, personal loans or credit card debt)</li>
+                                <li>Get a better home loan product with more flexible features</li>
+                                <li>Reduce your loan repayments by securing a lower interest rate</li>
+                                <li>Invest in shares or property using the equity of your home</li>
+                                <li>Unlock some extra cash to renovate your home</li>
+                                <li>Repay your mortgage faster</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="et_pb_module et_pb_toggle et_pb_toggle_close">
+                        <h5 class="et_pb_toggle_title">How long does it take to refinance?</h5>
+                        <div class="et_pb_toggle_content clearfix">
+                            <p>The timeline for refinancing is generally 3-6 weeks, depending on a few variables.</p>
+                        </div>
+                    </div>
+
+                    <div class="et_pb_module et_pb_toggle et_pb_toggle_close">
+                        <h5 class="et_pb_toggle_title">When can I refinance my mortgage?</h5>
+                        <div class="et_pb_toggle_content clearfix">
+                            <p>It’s generally a good idea to review your mortgage every two years, depending on your circumstances.</p>
+                        </div>
+                    </div>
+
+                    <div class="et_pb_module et_pb_toggle et_pb_toggle_close">
+                        <h5 class="et_pb_toggle_title">Can I borrow more money when I refinance?</h5>
+                        <div class="et_pb_toggle_content clearfix">
+                            <p>Absolutely. Many borrowers refinance their loans at a higher loan amount. You can use this to fund other expenses, such as renovations, holidays, a new car, or debt consolidation. </p>
+                            <p>You can typically borrow up to 80% of the value of your property. For example, if your property is worth $650,000 and your loan amount is $450,000, you could borrow up to an additional $70,000 (bringing your new loan amount up to $520,000 which is 80% of your property’s value).</p>
+                        </div>
+                    </div>
+
+                    <div class="et_pb_module et_pb_toggle et_pb_toggle_close">
+                        <h5 class="et_pb_toggle_title">Can I refinance my mortgage if I have bad credit?</h5>
+                        <div class="et_pb_toggle_content clearfix">
+                            <p>It is possible to refinance your mortgage if you have bad credit, but it is a bit more difficult. It comes down to finding the right lender and demonstrating a promising outlook that you’re making a conscious effort to improve your credit rating.</p>
+                            <p>We will need to get a copy of your credit file, work on trimming your debt, and work closely with a specialist lender to refinance your loan. You will also need to borrow less than 80% of the value of your home.</p>
+                        </div>
+                    </div>
+
+                    <div class="et_pb_module et_pb_toggle et_pb_toggle_close">
+                        <h5 class="et_pb_toggle_title">How much will it cost me to refinance?</h5>
+                        <div class="et_pb_toggle_content clearfix">
+                            <p>Refinancing does come at a cost, so it’s important to be aware of the expenses involved. Often these costs are minor compared to the money you will save over the life of your loan. To give you an idea of what costs might be applied to your refinance:</p>
+                            <ul class="inner_list">
+                                <li><span class="text-bold">Loan Application Fee:</span> Applicable by the lender when applying for a new loan.</li>
+                                <li><span class="text-bold">Exit Fees/Break Costs:</span> Although earlier termination fees were abolished in 2011, lenders will charge an exit fee/break cost for fixed rate loans that are still in their fixed term. The fee is calculated by the lender on a daily basis – based on the fixed rate, the variable rate, loan balance and remaining term.</li>
+                                <li><span class="text-bold">Valuation Fee:</span>  Your lender may charge a fee to have your property valued.</li>
+                                <li><span class="text-bold">Settlement Fee:</span> Your lender may charge a fee to pay out your current mortgage.</li>
+                                <li><span class="text-bold">Discharge Fee:</span> Most lenders will charge $150 – $400 to discharge your loan</li>
+                                <li><span class="text-bold">Mortgage Registration (Government Fee):</span> The land titles office will charge a mortgage deregistration and registration fee. This is to register the mortgage on the title.</li>
+                                <li><span class="text-bold">Lenders Mortgage Insurance (LMI):</span> One-off fee only applicable if you have more than 80% of the purchase price owing on your home loan refinance.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="et_pb_module et_pb_toggle et_pb_toggle_close">
+                        <h5 class="et_pb_toggle_title">Do I need to change banks to refinance my home loan?</h5>
+                        <div class="et_pb_toggle_content clearfix">
+                            <p>You can refinance your home loan from any bank or lender you choose, including your existing bank. These days we find that banks do not typically reward loyalty. In most cases we find lenders offer better deals to new customers rather than rewarding existing ones.</p>
+                            <p>That being said, we are often able to negotiate a better rate for you even if you choose to stay with your existing bank.</p>
+                        </div>
+                    </div>
+
+                    <div class="et_pb_module et_pb_toggle et_pb_toggle_close">
+                        <h5 class="et_pb_toggle_title">What will my property be valued at?</h5>
+                        <div class="et_pb_toggle_content clearfix">
+                            <p>The banks will have a professional valuer complete a valuation report on your property as part of the refinance process. They give the property a value that the lender uses in their calculations as well as providing information about the property and the market conditions in the area. You won’t know all of this until the report is completed.</p>
+                            <p>You can get an idea about what your property is worth by doing your own research:</p>
+                            <ul class="inner_list">
+                                <li>Look at sales of similar properties in your suburb in the past 6 months</li>
+                                <li>Look at websites such as realestate.com.au or domain.com.au for recent sales history</li>
+                                <li>Speak to local real estate agents about activity in your area</li>
+                                <li>Compare your property with other similar properties. They should have similar construction, land size, number of bedrooms and improvements.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="et_pb_module et_pb_toggle et_pb_toggle_close">
+                        <h5 class="et_pb_toggle_title">Will I need to pay Lenders Mortgage Insurance (LMI)?</h5>
+                        <div class="et_pb_toggle_content clearfix">
+                            <p>If the outstanding balance of your loan is higher than 80% of your property’s value you may need to pay LMI with your new lender. LMI is not transferable between lenders, so if you refinance to another lender, if your loan is not below 80%, it will be payable again.</p>
+                            <p>If your loan amount is below 80% you will not need to pay LMI again.</p>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="btn_wrap">
+                    <a class="btn_yellow F-trigger" href="<?php echo esc_url( home_url( '/' ) ); ?>contact/">Contact us</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="text_widget widget pb3-widget pb3-widget-sm">
+        <div class="container">
+            <div class="inner_widget">
+                <h3 class="inner_title">FBAA & Credit and Investments Ombudsman Membership</h3>
+                <p>Award winning Mortgage Broker in Brisbane</p>
+                <p>As members of the Financial Brokers Association of Australia (FBAA) and the Credit and Investments Ombudsman (CIO) we must uphold the highest level of excellence when helping clients with their finances. The members of each organisation must meet a minimum standard in experience, education and ongoing training to maintain membership each year and as active members, we commit to upholding these standards, ensuring we maintain their high levels of compliance, integrity, and professionalism with all of our mortgage clients.</p>
+
+                <h3 class="inner_title">Valuation issues & credit scores</h3>
+                <p>One of the most common issues we see is with valuations and shortfalls which can ultimately stop your property journey before it even begins. We can order free upfront valuations with many of our lenders, meaning we can find out what your bank thinks your property is worth way before applying with them.</p>
+                <p> From experience, we know that ordering a valuation prior to applying for a home loan makes sure your credit file doesn’t get damaged from having multiple enquiries.</p>
+                <p>We can provide free valuations and also a copy of your credit file so you know where you stand way before applying for a loan with the banks!</p>
+
+                <h3 class="inner_title">Complex Credit Policy Pitfalls</h3>
+                <p>Each lender and bank in Australia has a unique credit policy, meaning while some will accept your full income, others may not allow it due to their policy.</p>
+                <p>Quite often bank policy can be set in stone, and due to the complexity bank staff quite honestly don’t know it nor do many mortgage broker Brisbane. They are not familiar with complex situations and how to correctly assess them. This can sometimes cause it to take quite a long time to process your application and even in some instances mean your loan will get declined for no good reason.</p>
+                <p>With banks making their policies more and more complex it becomes more important to correctly package, and assess your application before it is even lodged with the bank – showing the banks all of the strengths of your home loan application and making sure it fits all of their policies.</p>
+                <p>At Hunter Galloway we have our own in-house credit team and we make sure your application is going to fit with the bank each time.</p>
+            </div>
+        </div>
+    </section>
+
+</div>
+
+<?php
+
+get_footer();

@@ -1,0 +1,667 @@
+---
+/**
+ * Header Component - Hunter Galloway WordPress-exact header
+ * Rebuilt to match WordPress structure, navigation, and styling exactly
+ * Features: Sticky navigation, complex dropdowns, mobile menu, WordPress animations
+ */
+
+import Container from '../atoms/Container/Container.astro';
+import Logo from '../atoms/Logo/Logo.astro';
+import Button from '../atoms/Button/Button.astro';
+import Icon from '../atoms/Icon/Icon.astro';
+import PhoneLink from '../molecules/PhoneLink/PhoneLink.astro';
+import NavDropdown from '../molecules/NavDropdown/NavDropdown.astro';
+import { semantic } from '../../tokens/semantic';
+
+// WordPress menu structure replicated with Astro components
+const menuItems = [
+  {
+    label: 'Home Loans',
+    href: '/home-loans',
+    hasDropdown: true,
+    columns: [
+      {
+        title: 'Buy',
+        links: [
+          { label: 'First Home Buyer Loans', href: '/first-home-buyer-loans' },
+          { label: 'Upgrade My Home', href: '/upgrade-my-home' },
+        ],
+      },
+      {
+        title: 'Refinance',
+        links: [
+          { label: 'Refinance Home Loan', href: '/refinance-home-loan' },
+          { label: 'Lower Your Rate', href: '/lower-your-rate' },
+        ],
+      },
+      {
+        title: 'Invest',
+        links: [
+          { label: 'Property Investor Portfolio', href: '/property-investor-portfolio' },
+          { label: 'Your Property Investment Journey', href: '/your-property-investment-journey' },
+        ],
+      },
+    ],
+  },
+  {
+    label: 'Calculators',
+    href: '/calculators',
+    hasDropdown: true,
+    dropdownVariant: 'calc',
+    columns: [
+      {
+        title: 'Calculators',
+        links: [
+          { label: 'Mortgage Calculator', href: '/mortgage-calculator' },
+          { label: 'Mortgage vs Rent Calculator', href: '/mortgage-vs-rent-calculator' },
+        ],
+      },
+      {
+        title: 'Reports',
+        links: [
+          { label: 'Mortgage Report', href: '/mortgage-report' },
+        ],
+      },
+    ],
+    report: {
+      title: 'Free Property Report',
+      descr: 'See how much your property is worth.',
+      link: { label: 'Get Report', href: '/mortgage-report' },
+    },
+  },
+  {
+    label: 'Resources',
+    href: '/resources',
+    hasDropdown: true,
+    columns: [
+      {
+        title: 'Guides',
+        links: [
+          { label: 'What We Do', href: '/whatwedo' },
+          { label: 'Who We Help', href: '/whowehelp' },
+        ],
+      },
+      {
+        title: 'Team',
+        links: [
+          { label: 'Our Team', href: '/ourteam' },
+          { label: 'Contact', href: '/contact' },
+        ],
+      },
+      {
+        title: 'Blog',
+        links: [
+          { label: 'Mortgage Broker Brisbane Blog', href: '/blog' },
+        ],
+      },
+    ],
+  },
+  {
+    label: 'Brisbane',
+    href: '/brisbane',
+  },
+  {
+    label: 'About',
+    href: '/about',
+    hasDropdown: true,
+    columns: [
+      {
+        title: 'About Us',
+        links: [
+          { label: 'Our Team', href: '/ourteam' },
+          { label: 'Contact', href: '/contact' },
+        ],
+      },
+    ],
+  },
+];
+---
+
+<header class="hg-header" id="header">
+  <Container>
+    <nav class="hg-nav">
+      <!-- Logo -->
+      <Logo size="header" />
+      
+      <!-- Desktop Navigation -->
+      <ul class="hg-nav-menu">
+        {menuItems.map((item) => (
+          <li class="hg-nav-item">
+            <a href={item.href} class="hg-nav-link" data-dropdown={item.hasDropdown}>
+              {item.label}
+              {item.hasDropdown && (
+                <Icon name="chevron-down" size="sm" color="inherit" inline />
+              )}
+            </a>
+            
+            {item.hasDropdown && (
+              <NavDropdown
+                columns={item.columns}
+                variant={item.dropdownVariant}
+                report={item.report}
+              />
+            )}
+          </li>
+        ))}
+      </ul>
+      
+      <!-- Header Actions -->
+      <div class="hg-nav-actions">
+        <!-- Search Toggle -->
+        <button class="hg-search-toggle" aria-label="Search">
+          <Icon name="search" size="sm" color="inherit" />
+        </button>
+        
+        <!-- Phone Link -->
+        <PhoneLink />
+        
+        <!-- CTA Button -->
+        <Button variant="primary" size="md" class="hg-header-cta">
+          Get Free Assessment
+        </Button>
+        
+        <!-- Mobile Menu Toggle -->
+        <button id="mobile-menu-toggle" class="hg-mobile-toggle" aria-label="Menu">
+          <Icon name="menu" size="md" color="inherit" />
+        </button>
+      </div>
+    </nav>
+  </Container>
+  
+  <!-- Search Form -->
+  <div class="hg-search-form" id="search-form">
+    <Container>
+      <form class="hg-search-form__inner">
+        <input type="search" placeholder="Search..." class="hg-search-input" />
+        <button type="button" class="hg-search-close" aria-label="Close search">
+          <Icon name="close" size="sm" color="inherit" />
+        </button>
+      </form>
+    </Container>
+  </div>
+  
+  <!-- Mobile Menu -->
+  <div id="mobile-menu" class="hg-mobile-menu">
+    <div class="hg-mobile-menu__header">
+      <button class="hg-mobile-back" style="display: none;">
+        <Icon name="arrow-left" size="sm" color="inherit" />
+        <span>Back</span>
+      </button>
+      <span class="hg-mobile-title">Menu</span>
+      <button class="hg-mobile-close">
+        <Icon name="close" size="md" color="inherit" />
+      </button>
+    </div>
+    
+    <div class="hg-mobile-menu__content">
+      <ul class="hg-mobile-menu-list">
+        {menuItems.map((item) => (
+          <li class="hg-mobile-menu-item">
+            <a href={item.href} class="hg-mobile-menu-link">
+              {item.label}
+              {item.hasDropdown && (
+                <Icon name="chevron-right" size="sm" color="inherit" inline />
+              )}
+            </a>
+          </li>
+        ))}
+      </ul>
+      
+      <!-- Mobile CTA -->
+      <div class="hg-mobile-cta">
+        <Button variant="primary" size="md" class="hg-mobile-cta-button">
+          Get a Free Assessment
+        </Button>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Mobile Menu Backdrop -->
+  <div class="hg-mobile-backdrop" id="mobile-backdrop"></div>
+</header>
+
+<style define:vars={{
+  brandPrimary: semantic.color.brand.primary,
+  textPrimary: semantic.color.text.primary,
+  surfaceWhite: semantic.color.surface.white,
+  surfaceSecondary: semantic.color.surface.secondary,
+  borderPrimary: semantic.color.border.primary,
+  shadowSubtle: semantic.shadow.subtle,
+  durationNormal: semantic.duration.normal,
+  fontSizeMd: semantic.typography.size.md,
+  fontWeightEmphasis: semantic.typography.weight.emphasis,
+}}>
+/* Header - WordPress exact styling */
+.hg-header {
+  background-color: var(--surfaceWhite);
+  box-shadow: 0px 6px 12px rgba(43, 43, 43, 0.06); /* WordPress exact shadow */
+  position: sticky;
+  top: 0;
+  z-index: 1000; /* WordPress z-index */
+  transition: all var(--durationNormal) ease;
+}
+
+/* Fixed header state - added via JavaScript on scroll */
+.hg-header.fixed {
+  box-shadow: 0px 6px 18px rgba(43, 43, 43, 0.12);
+}
+
+.hg-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 30px 0; /* WordPress exact padding */
+  min-height: 80px; /* WordPress header height */
+}
+
+/* Desktop Navigation */
+.hg-nav-menu {
+  display: none;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  align-items: center;
+  gap: 40px; /* WordPress nav spacing */
+}
+
+.hg-nav-item {
+  position: relative;
+}
+
+.hg-nav-link {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--textPrimary);
+  font-weight: 600; /* WordPress font weight */
+  font-size: 15px; /* WordPress exact size */
+  text-decoration: none;
+  letter-spacing: -0.04em; /* WordPress letter spacing */
+  transition: color 0.35s ease; /* WordPress transition duration */
+  padding: 10px 0; /* WordPress link padding */
+}
+
+.hg-nav-link:hover {
+  color: var(--brandPrimary);
+}
+
+/* Dropdown Menus handled via NavDropdown component and JS */
+
+/* Navigation Actions */
+.hg-nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 16px; /* WordPress spacing */
+}
+
+.hg-search-toggle {
+  background: none;
+  border: none;
+  color: var(--textPrimary);
+  cursor: pointer;
+  padding: 8px;
+  border-radius: 50%;
+  transition: background-color var(--durationNormal) ease;
+}
+
+.hg-search-toggle:hover {
+  background-color: var(--surfaceSecondary);
+}
+
+.hg-header-cta {
+  display: none; /* Hidden on smaller screens */
+}
+
+.hg-mobile-toggle {
+  display: none; /* Show on mobile only */
+  background: none;
+  border: none;
+  color: var(--textPrimary);
+  cursor: pointer;
+  padding: 8px;
+  font-weight: 600;
+  font-size: 15px;
+}
+
+/* Search Form */
+.hg-search-form {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: var(--surfaceSecondary); /* WordPress search background */
+  padding: 20px 0;
+  transform: translateY(-100%);
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.5s ease; /* WordPress animation duration */
+  z-index: 999;
+}
+
+.hg-search-form.visible {
+  transform: translateY(0);
+  opacity: 1;
+  visibility: visible;
+}
+
+.hg-search-form__inner {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.hg-search-input {
+  flex: 1;
+  padding: 12px 20px;
+  border: 1px solid var(--borderPrimary);
+  border-radius: 25px;
+  font-size: 15px;
+  outline: none;
+}
+
+.hg-search-close {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 8px;
+  color: var(--textPrimary);
+}
+
+/* Mobile Menu */
+.hg-mobile-menu {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 100%;
+  max-width: 400px;
+  height: 100vh;
+  background: var(--surfaceWhite);
+  transform: translateX(100%);
+  transition: transform 0.35s ease;
+  z-index: 1001;
+  overflow-y: auto;
+}
+
+.hg-mobile-menu.visible {
+  transform: translateX(0);
+}
+
+.hg-mobile-menu__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 24px;
+  border-bottom: 1px solid var(--borderPrimary);
+  min-height: 70px;
+}
+
+.hg-mobile-title {
+  font-weight: 600;
+  font-size: 18px;
+  color: var(--textPrimary);
+}
+
+.hg-mobile-back,
+.hg-mobile-close {
+  background: none;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 15px;
+  color: var(--textPrimary);
+  padding: 8px;
+}
+
+.hg-mobile-menu__content {
+  padding: 24px;
+}
+
+.hg-mobile-menu-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.hg-mobile-menu-item {
+  border-bottom: 1px solid var(--borderPrimary);
+}
+
+.hg-mobile-menu-item:last-child {
+  border-bottom: none;
+}
+
+.hg-mobile-menu-link {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 0;
+  color: var(--textPrimary);
+  font-weight: 600;
+  font-size: 15px;
+  text-decoration: none;
+  transition: color var(--durationNormal) ease;
+}
+
+.hg-mobile-menu-link:hover {
+  color: var(--brandPrimary);
+}
+
+.hg-mobile-cta {
+  margin-top: 30px;
+  padding-top: 30px;
+  border-top: 1px solid var(--borderPrimary);
+}
+
+.hg-mobile-cta-button {
+  width: 100%;
+  justify-content: center;
+}
+
+/* Mobile Backdrop */
+.hg-mobile-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  opacity: 0;
+  visibility: hidden;
+  transition: all var(--durationNormal) ease;
+  z-index: 1000;
+}
+
+.hg-mobile-backdrop.visible {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Responsive Breakpoints - WordPress exact */
+@media (min-width: 992px) {
+  .hg-nav-menu {
+    display: flex;
+  }
+  
+  .hg-mobile-toggle {
+    display: none;
+  }
+  
+  .hg-nav {
+    padding: 30px 0; /* WordPress desktop padding */
+  }
+}
+
+@media (max-width: 992px) {
+  .hg-mobile-toggle {
+    display: block;
+  }
+  
+  .hg-nav {
+    padding: 13px 0; /* WordPress mobile padding */
+    min-height: 57px; /* WordPress mobile height */
+  }
+  
+  .hg-header {
+    position: fixed; /* WordPress mobile fixed header */
+  }
+}
+
+@media (min-width: 1200px) {
+  .hg-header-cta {
+    display: block;
+  }
+}
+
+@media (max-width: 1250px) {
+  .hg-nav-actions {
+    gap: 12px; /* Tighter spacing on smaller screens */
+  }
+}
+
+/* Admin bar adjustments (WordPress specific) */
+@media (max-width: 782px) {
+  .admin-bar .hg-header.fixed {
+    top: 46px;
+  }
+}
+
+@media (min-width: 783px) {
+  .admin-bar .hg-header.fixed {
+    top: 32px;
+  }
+}
+</style>
+
+<script>
+/**
+ * Header JavaScript - WordPress-exact functionality
+ * Features: Fixed header on scroll, mobile menu, search toggle, dropdown delays
+ */
+
+// DOM Elements
+const header = document.getElementById('header');
+const mobileToggle = document.getElementById('mobile-menu-toggle');
+const mobileMenu = document.getElementById('mobile-menu');
+const mobileBackdrop = document.getElementById('mobile-backdrop');
+const searchToggle = document.querySelector('.hg-search-toggle');
+const searchForm = document.getElementById('search-form');
+const searchClose = document.querySelector('.hg-search-close');
+const mobileClose = document.querySelector('.hg-mobile-close');
+
+// Fixed header on scroll - WordPress behavior
+let lastScrollY = window.scrollY;
+let ticking = false;
+
+function updateHeader() {
+  const scrollY = window.scrollY;
+  
+  if (scrollY > 20) {
+    header?.classList.add('fixed');
+  } else {
+    header?.classList.remove('fixed');
+  }
+  
+  lastScrollY = scrollY;
+  ticking = false;
+}
+
+function requestTick() {
+  if (!ticking) {
+    requestAnimationFrame(updateHeader);
+    ticking = true;
+  }
+}
+
+window.addEventListener('scroll', requestTick);
+
+// Mobile menu functionality
+function openMobileMenu() {
+  mobileMenu?.classList.add('visible');
+  mobileBackdrop?.classList.add('visible');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeMobileMenu() {
+  mobileMenu?.classList.remove('visible');
+  mobileBackdrop?.classList.remove('visible');
+  document.body.style.overflow = '';
+}
+
+mobileToggle?.addEventListener('click', openMobileMenu);
+mobileClose?.addEventListener('click', closeMobileMenu);
+mobileBackdrop?.addEventListener('click', closeMobileMenu);
+
+// Search form functionality
+function toggleSearch() {
+  const isVisible = searchForm?.classList.contains('visible');
+  
+  if (isVisible) {
+    searchForm?.classList.remove('visible');
+  } else {
+    searchForm?.classList.add('visible');
+    // Focus on search input after animation
+    setTimeout(() => {
+      const searchInput = document.querySelector('.hg-search-input');
+      searchInput?.focus();
+    }, 500);
+  }
+}
+
+searchToggle?.addEventListener('click', toggleSearch);
+searchClose?.addEventListener('click', toggleSearch);
+
+// Close search on escape key
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') {
+    if (searchForm?.classList.contains('visible')) {
+      toggleSearch();
+    }
+    if (mobileMenu?.classList.contains('visible')) {
+      closeMobileMenu();
+    }
+  }
+});
+
+// Dropdown hover delays (WordPress behavior)
+let dropdownTimeout;
+const navItems = document.querySelectorAll('.hg-nav-item');
+
+navItems.forEach(item => {
+  const dropdown = item.querySelector('.hg-dropdown');
+  
+  if (dropdown) {
+    item.addEventListener('mouseenter', () => {
+      clearTimeout(dropdownTimeout);
+      dropdown.style.display = 'block';
+      // Force reflow for animation
+      dropdown.offsetHeight;
+      dropdown.style.opacity = '1';
+      dropdown.style.transform = 'translateX(-50%) translateY(0)';
+    });
+    
+    item.addEventListener('mouseleave', () => {
+      dropdownTimeout = setTimeout(() => {
+        dropdown.style.opacity = '0';
+        dropdown.style.transform = 'translateX(-50%) translateY(-10px)';
+        setTimeout(() => {
+          dropdown.style.display = 'none';
+        }, 300);
+      }, 900); // WordPress 900ms delay
+    });
+  }
+});
+
+// Prevent body scroll when mobile menu is open
+document.addEventListener('touchmove', (e) => {
+  if (mobileMenu?.classList.contains('visible')) {
+    // Allow scrolling within the mobile menu
+    if (!e.target?.closest('.hg-mobile-menu')) {
+      e.preventDefault();
+    }
+  }
+}, { passive: false });
+</script>

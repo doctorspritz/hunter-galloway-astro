@@ -1,0 +1,207 @@
+---
+/**
+ * NavDropdown Molecule
+ * WordPress reference: /wordpress-source/assets/css/header.css
+ * Desktop styles: 66-111
+ * Mobile styles: 700-742
+ */
+
+import { semantic } from '../../../tokens/semantic';
+import { component } from '../../../tokens/component';
+
+export interface NavDropdownColumn {
+  title: string;
+  links: Array<{ label: string; href: string }>;
+}
+
+export interface NavDropdownProps {
+  columns: NavDropdownColumn[];
+  variant?: 'default' | 'calc';
+  report?: {
+    title: string;
+    descr: string;
+    link: { label: string; href: string };
+  };
+}
+
+const {
+  columns = [],
+  variant = 'default',
+  report,
+} = Astro.props as NavDropdownProps;
+---
+<div class={`hg-dropdown ${variant === 'calc' ? 'hg-dropdown--calc' : ''}`}>
+  <div class="hg-dropdown__columns">
+    {columns.map((column) => (
+      <div class="hg-dropdown__column">
+        <div class="hg-dropdown__title">{column.title}</div>
+        <ul class="hg-dropdown__list">
+          {column.links.map((link) => (
+            <li class="hg-dropdown__item">
+              <a href={link.href} class="hg-dropdown__link">{link.label}</a>
+            </li>
+          ))}
+        </ul>
+      </div>
+    ))}
+  </div>
+  {variant === 'calc' && report && (
+    <div class="hg-dropdown__report">
+      <div class="hg-dropdown__report-title">{report.title}</div>
+      <div class="hg-dropdown__report-descr">{report.descr}</div>
+      <a href={report.link.href} class="hg-dropdown__report-btn">{report.link.label}</a>
+    </div>
+  )}
+</div>
+<style is:global define:vars={{
+  brandPrimary: semantic.color.brand.primary,
+  textPrimary: semantic.color.text.primary,
+  spaceXs: semantic.space.xs,
+  spaceSm: semantic.space.sm,
+  spaceMd: semantic.space.md,
+  spaceLg: semantic.space.lg,
+  fontSizeSm: semantic.typography.size.sm,
+  fontSizeMd: semantic.typography.size.md,
+  fontWeightBold: semantic.typography.weight.bold,
+  radiusSm: semantic.radius.sm,
+  durationNormal: semantic.duration.normal,
+  dropdownBg: component.navigation.dropdown.background,
+  dropdownRadius: component.navigation.dropdown.borderRadius,
+  dropdownShadow: component.navigation.dropdown.shadow,
+  dropdownPadding: component.navigation.dropdown.padding,
+  dropdownWidth: component.navigation.dropdown.width,
+  dropdownWidthCalc: component.navigation.dropdown.widthCalc,
+  columnGap: component.navigation.dropdown.gap,
+  columnMinWidth: component.navigation.dropdown.columnMinWidth,
+  reportMaxWidth: component.navigation.dropdown.report.maxWidth,
+  reportPaddingLeft: component.navigation.dropdown.report.paddingLeft,
+  reportBorderLeft: component.navigation.dropdown.report.borderLeft,
+  mobileTop: component.navigation.dropdown.mobile.top,
+  mobilePadding: component.navigation.dropdown.mobile.padding,
+}}>
+.hg-dropdown {
+  background: var(--dropdownBg);
+  border-radius: var(--dropdownRadius);
+  box-shadow: var(--dropdownShadow);
+  padding: var(--dropdownPadding);
+  width: var(--dropdownWidth);
+  display: none;
+  opacity: 0;
+  transform: translateX(-50%) translateY(-10px);
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transition: all var(--durationNormal) ease;
+  z-index: 1000;
+}
+
+.hg-dropdown--calc {
+  width: var(--dropdownWidthCalc);
+  display: flex;
+  gap: var(--columnGap);
+}
+
+.hg-dropdown__columns {
+  display: flex;
+  gap: var(--columnGap);
+}
+
+.hg-dropdown__column {
+  min-width: var(--columnMinWidth);
+}
+
+.hg-dropdown__title {
+  font-weight: var(--fontWeightBold);
+  font-size: var(--fontSizeMd);
+  margin-bottom: var(--spaceMd);
+}
+
+.hg-dropdown__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+ .hg-dropdown__item + .hg-dropdown__item {
+  margin-top: var(--spaceMd);
+ }
+
+.hg-dropdown__link {
+  text-decoration: none;
+  color: var(--textPrimary);
+  font-size: var(--fontSizeSm);
+  transition: color var(--durationNormal) ease;
+}
+
+.hg-dropdown__link:hover {
+  color: var(--brandPrimary);
+}
+
+.hg-dropdown__report {
+  border-left: 1px solid var(--reportBorderLeft);
+  padding-left: var(--reportPaddingLeft);
+  max-width: var(--reportMaxWidth);
+}
+
+.hg-dropdown__report-title {
+  font-weight: var(--fontWeightBold);
+  font-size: var(--fontSizeMd);
+  margin-bottom: var(--spaceMd);
+}
+
+.hg-dropdown__report-descr {
+  font-size: var(--fontSizeSm);
+  margin-bottom: var(--spaceMd);
+}
+
+.hg-dropdown__report-btn {
+  display: inline-block;
+  background: var(--brandPrimary);
+  color: var(--dropdownBg);
+  padding: var(--spaceXs) var(--spaceSm);
+  border-radius: var(--radiusSm);
+  font-size: var(--fontSizeSm);
+  text-decoration: none;
+  transition: opacity var(--durationNormal) ease;
+}
+
+.hg-dropdown__report-btn:hover {
+  opacity: 0.85;
+}
+
+@media (max-width: 991px) {
+  .hg-dropdown {
+    position: fixed;
+    display: block !important;
+    width: auto;
+    transform: none;
+    top: var(--mobileTop);
+    bottom: 0;
+    overflow: auto;
+    padding: var(--mobilePadding);
+    box-shadow: none;
+    left: 100%;
+    right: -100%;
+  }
+
+  .hg-dropdown.active {
+    left: 0;
+    right: 0;
+  }
+
+  .hg-dropdown__columns {
+    display: block;
+  }
+
+  .hg-dropdown__column + .hg-dropdown__column {
+    margin-top: var(--spaceLg);
+  }
+
+  .hg-dropdown__report {
+    border-left: none;
+    padding-left: 0;
+    max-width: 100%;
+    margin-top: var(--spaceLg);
+  }
+}
+</style>
