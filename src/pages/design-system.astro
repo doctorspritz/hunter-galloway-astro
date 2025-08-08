@@ -24,7 +24,7 @@ import Awards from '../components/organisms/Awards.astro';
 import BankLogos from '../components/organisms/BankLogos.astro';
 import Footer from '../components/organisms/Footer.astro';
 import Header from '../components/organisms/Header.astro';
-import HeroSection from '../components/organisms/HeroSection.astro';
+import HeroWidget from '../components/organisms/HeroWidget/HeroWidget.astro';
 import LoanPurpose from '../components/organisms/LoanPurpose.astro';
 import MortgageRentCalculator from '../components/organisms/MortgageRentCalculator/MortgageRentCalculator.astro';
 import PropertyMap from '../components/organisms/PropertyMap.astro';
@@ -182,7 +182,77 @@ const riskWidgetDemo = {
     <Typography element="h2" size="2xl" weight="heading">Organisms</Typography>
     <div class="organism-stack">
       <div class="organism-block"><Header /></div>
-      <div class="organism-block"><HeroSection /></div>
+      <div class="organism-block">
+        <HeroWidget
+          titleHtml={'<b>Get a home loan </b>with full <span class="text-nowrap">guidance and</span> expert assistance'}
+          benefits={[
+            {
+              text: 'Market-leading loan approval rate in Australia of 97%',
+              tooltip:
+                "Approximately 40% of home loan applications were rejected in December 2018 based on a survey of 52,000 households completed by 'DigitalFinance Analytics DFA'. In 2017 to 2018 Hunter Galloway submitted 342 home loan applications and had 8 applications rejected, giving a 2.33% rejection rate.",
+            },
+            { text: 'Variety of options due to direct access to 30+ Australian banks & lenders' },
+            {
+              text: '#1 rated Mortgage Broker in Brisbane',
+              tooltip:
+                'The highest rated and most reviewed Mortgage Broker in Brisbane: 5-star rating based on 2000+ reviews on Google',
+            },
+          ]}
+          cta={{ text: 'Calculate my borrowing capacity', href: '/mortgage-calculator/' }}
+          image={{
+            desktop:
+              '/images/what-you-see-when-you-look-up-full-length-shot-affectionate-family-four-holding-cardboard-roof-their-heads-while-sitting-living-room-home.jpg',
+            mobile:
+              '/images/what-you-see-when-you-look-up-full-length-shot-affectionate-family-four-holding-cardboard-roof-their-heads-while-sitting-living-room-home.png',
+            alt: 'Family holding cardboard house',
+          }}
+          yearsExperience={'14'}
+          reviews={{ logoSrc: '/images/google.svg', text: 'Based on<br class="d-lg-block d-none"> 2000+ reviews' }}
+          variant={'general'}
+          mediaPosition={'right'}
+        />
+      </div>
+      
+      <!-- Variant demos -->
+      <div class="organism-block">
+        <HeroWidget
+          titleHtml={'For medical professionals: <b>Specialist lending</b> with premium policy access'}
+          benefits={[
+            { text: 'Doctor, Dentist, Vet and Allied Health policy expertise' },
+            { text: 'LMI waivers up to 90–95% with select lenders' },
+            { text: 'Dedicated case management to move fast' },
+          ]}
+          cta={{ text: 'Talk to a specialist', href: '/contact/' }}
+          image={{
+            desktop: '/images/upgrade.webp',
+            mobile: '/images/upgrade.webp',
+            alt: 'Professional client profile',
+          }}
+          yearsExperience={'14'}
+          reviews={{ text: 'Based on 2,000+ reviews' }}
+          variant={'professional'}
+          mediaPosition={'left'}
+        />
+      </div>
+      
+      <div class="organism-block">
+        <HeroWidget
+          titleHtml={'Check your <b>borrowing power</b> in minutes'}
+          benefits={[
+            { text: 'Takes 2 minutes — no credit check' },
+            { text: 'See repayments and lenders instantly' },
+          ]}
+          cta={{ text: 'Open calculator', href: '/mortgage-calculator/' }}
+          image={{
+            desktop: '/images/upgrade.webp',
+            mobile: '/images/upgrade.webp',
+            alt: 'Calculator preview',
+          }}
+          reviews={{ text: 'Trusted by 2,000+ customers' }}
+          variant={'calculator'}
+          mediaPosition={'right'}
+        />
+      </div>
       <div class="organism-block"><LoanPurpose /></div>
       <div class="organism-block"><Awards /></div>
       <div class="organism-block"><BankLogos /></div>

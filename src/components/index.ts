@@ -47,8 +47,8 @@ export const designSystem = {
       list: ['StatCard', 'PurposeCard', 'AwardItem', 'Tooltip', 'RiskCard', 'FooterStatCard', 'PhoneLink', 'ReviewCard', 'SocialLinks', 'CalculatorResult', 'FooterNavigation'],
     },
     organisms: {
-      count: 10,
-      list: ['Header', 'Footer', 'HeroSection', 'Awards', 'BankLogos', 'LoanPurpose', 'PropertyMap', 'Reviews', 'Statistics', 'MortgageRentCalculator'],
+      count: 11,
+      list: ['Header', 'Footer', 'HeroSection', 'HeroWidget', 'Awards', 'BankLogos', 'LoanPurpose', 'PropertyMap', 'Reviews', 'Statistics', 'MortgageRentCalculator'],
     },
   },
   
