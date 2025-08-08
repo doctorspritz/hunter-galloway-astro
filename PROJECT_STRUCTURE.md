@@ -2,7 +2,7 @@
 ## Project Structure Overview
 
 **Last Updated**: January 8, 2025  
-**Status**: ✅ ORGANIZED & READY FOR DEVELOPMENT
+**Status**: ✅ ORGANIZED & READY FOR DEVELOPMENT (Consolidated)
 
 ---
 
@@ -14,11 +14,10 @@ hunter-galloway/
 │   └── hunter-galloway-astro-with-CI/     # Main Astro project with CI/CD
 │       ├── hunter-galloway-astro/         # Astro site source code
 │       ├── .github/                       # GitHub Actions CI
-│       ├── .storybook/                    # Component documentation
 │       └── tests/                         # Visual & accessibility tests
 │
 ├── 📚 WORDPRESS REFERENCE
-│   └── WP-FILES/                          # Complete WordPress theme files
+│   └── WP-FILES/                          # Complete WordPress theme files (single source)
 │       ├── assets/                        # CSS, JS, fonts, images
 │       ├── *.php                         # All PHP template files
 │       └── style.css                     # Main WordPress CSS (174KB)
@@ -52,7 +51,7 @@ hunter-galloway/
 - **Development Server**: `npm run dev` → http://localhost:4321
 - **Build System**: `npm run build` → Static site generation
 - **Components**: Complete atomic design system (atoms → molecules → organisms)
-- **Design Tokens**: 3-tier token system with semantic CSS variables
+- **Design Tokens**: 3-tier token system with semantic CSS variables (single source under `src/tokens`)
 
 ### Directory Structure:
 ```
@@ -66,7 +65,7 @@ hunter-galloway-astro/
 │   ├── pages/              # Route pages
 │   ├── tokens/             # Design system tokens
 │   └── styles/             # Global styles
-├── public/                 # Static assets
+├── public/                 # Static assets (single source)
 ├── astro.config.mjs        # Astro configuration
 └── package.json            # Dependencies & scripts
 ```
@@ -75,7 +74,7 @@ hunter-galloway-astro/
 
 ## 📚 WordPress Reference Files
 
-**Location**: `WP-FILES/` (Complete WordPress theme)
+**Location**: `WP-FILES/` (Complete WordPress theme; remove/ignore any `wordpress-source/` duplicates)
 
 ### Essential Files:
 - **`style.css`** (174KB) - Complete WordPress CSS with exact measurements
@@ -192,4 +191,11 @@ npm run preview
 
 ---
 
-**The project is now perfectly organized and ready for systematic page conversion following the established roadmap and workflow.**
+**Single-source rules**
+
+- Storybook: Only root `/.storybook` is authoritative; nested configs are disallowed.
+- WordPress reference: Only `WP-FILES/` is authoritative; `wordpress-source/` paths are ignored.
+- Tokens: Only `src/tokens/` is authoritative; delete/avoid duplicates elsewhere.
+- Public assets: Only root `/public` is authoritative; do not duplicate under nested apps.
+
+**The project is now consolidated to single sources to prevent redundancy and is ready for systematic page conversion following the established roadmap and workflow.**

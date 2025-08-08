@@ -14,6 +14,7 @@ export const semantic = {
       primary: primitive.color.yellow[400],
       primaryHover: primitive.color.yellow[500],
       primaryAlt: primitive.color.yellow[600],
+      legacyAccent: primitive.color.yellow[450],
     },
 
     // Text colors by role
@@ -33,6 +34,9 @@ export const semantic = {
       accent: primitive.color.blue[50],           // Light blue cards
       highlight: primitive.color.peach[50],       // Peach highlight
       propertyMap: primitive.color.gray[150],     // WordPress PropertyMap background (#eeeeee)
+      footer: primitive.color.gray[850],          // Footer dark background
+      footerNav: '#333333',                        // Footer nav bar background
+      footerBottom: '#1a1a1a',                     // Footer bottom background
     },
 
     // Border colors by role  
@@ -40,6 +44,7 @@ export const semantic = {
       primary: primitive.color.gray[200],         // Default borders
       secondary: primitive.color.gray[300],       // Stronger borders
       focus: primitive.color.yellow[400],         // Focus rings
+      subtleOnDark: 'rgba(255,255,255,0.1)',      // Footer separators
     },
 
     // Interactive state colors
@@ -136,6 +141,8 @@ export const semantic = {
     card: primitive.shadow.md,            // Card elevation
     prominent: primitive.shadow.lg,       // Prominent elevation
     dropdown: primitive.shadow.dropdown,  // WordPress dropdowns
+    header: '0px 6px 12px rgba(43,43,43,.06)',
+    headerFixed: '0px 6px 18px rgba(43,43,43,.12)'
   },
 
   // Animation timing by role

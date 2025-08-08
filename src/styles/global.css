@@ -1,5 +1,5 @@
-@import "tailwindcss";
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,600;0,700;0,800;1,400&display=swap');
+@import "tailwindcss";
 
 /* Hunter Galloway Design System - CSS Variables */
 :root {
@@ -44,6 +44,9 @@
   --hg-transition-normal: 0.3s;
   --hg-transform-hover: translateY(-4px);
   --hg-z-tooltip: 1000;
+  /* App theme */
+  --app-bg: #ffffff;
+  --app-text: #1f2937;
   
   /* Legacy variables for backward compatibility */
   --yellow-primary: var(--hg-yellow-primary);
@@ -57,6 +60,8 @@
 body {
   font-family: 'Open Sans', system-ui, sans-serif;
   padding: 0 !important;
+  background: var(--app-bg);
+  color: var(--app-text);
 }
 
 #main-content * {
@@ -174,4 +179,17 @@ ul.list li {
 /* Smooth scroll behavior */
 html {
   scroll-behavior: smooth;
+}
+
+/* Dark mode */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --app-bg: #0b0d0f;
+    --app-text: #e5e7eb;
+  }
+}
+
+html[data-theme="dark"] {
+  --app-bg: #0b0d0f;
+  --app-text: #e5e7eb;
 }

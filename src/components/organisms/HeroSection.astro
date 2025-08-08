@@ -1,0 +1,210 @@
+---
+/**
+ * Hero Section Organism
+ * Hunter Galloway Design System - Organism Component
+ * 
+ * Main hero section for the homepage with benefits list and trust indicators.
+ * Uses atomic components and design tokens for consistent styling.
+ */
+
+import Container from '../atoms/Container/Container.astro';
+import Typography from '../atoms/Typography/Typography.astro';
+import Button from '../atoms/Button/Button.astro';
+import Icon from '../atoms/Icon/Icon.astro';
+import Tooltip from '../molecules/Tooltip/Tooltip.astro';
+import { semantic } from '../../tokens/semantic';
+---
+
+<section class="home_offer">
+  <Container>
+    <div class="flex home_offer_inner">
+      <div class="home_offer_left">
+        <h1><b>Get a home loan </b>with full <span class="text-nowrap">guidance and</span> expert assistance</h1>
+        <ul class="list">
+          <li class="flex">
+            <img src="/images/24_checkmark.svg" alt="checkmark">
+            <p>
+              <span class="item_hover">Market-leading
+                <span class="item_tooltip hidden">
+                  Approximately 40% of home loan applications were rejected in December 2018 based
+                  on a survey of 52,000 households completed by 'DigitalFinance Analytics DFA'. In
+                  2017 to 2018 Hunter Galloway submitted 342 home loan applications and had 8
+                  applications rejected, giving a 2.33% rejection rate.
+                </span>
+              </span> loan approval rate in Australia of 97%
+            </p>
+          </li>
+          <li class="flex">
+            <img src="/images/24_checkmark.svg" alt="checkmark">
+            <span>Variety of options due to direct access to 30+ Australian banks & lenders</span>
+          </li>
+          <li class="flex">
+            <img src="/images/24_checkmark.svg" alt="checkmark">
+            <p>
+              <span class="item_hover">#1 rated
+                <span class="item_tooltip hidden">
+                  The highest rated and most reviewed Mortgage Broker in Brisbane: 5-star rating
+                  based on 2000+ reviews on Google
+                </span>
+              </span> Mortgage Broker in Brisbane
+            </p>
+          </li>
+        </ul>
+        <a href="/mortgage-calculator/" class="btn_yellow">
+          Calculate my borrowing capacity
+          <img class="d-lg-none ml-2" src="/images/16_arrow_r_black.svg" alt="arrow image">
+        </a>
+        
+        <div class="flex home-offer-features mt-8">
+          <div class="items-center year-experiences">
+            <div class="home_count">
+              <p class="d-lg-block d-none text-4xl font-bold" style="color: var(--brandPrimary);">14</p>
+              <svg class="d-lg-none" xmlns="http://www.w3.org/2000/svg" width="56" height="37" viewBox="0 0 56 37" fill="none">
+                <path d="M22.8952 32H15.7V18.6477C15.7 18.4015 15.7 17.9521 15.7 17.2996C15.7 16.6347 15.706 15.9022 15.7179 15.1019C15.7419 14.3016 15.7718 13.5814 15.8077 12.9412C15.4966 13.3228 15.2036 13.6491 14.9284 13.92C14.6653 14.1908 14.4081 14.4432 14.1569 14.6772L11.1783 17.2072L7.5 12.5534L16.5074 5H22.8952V32Z" fill="#EC9B16" />
+                <path d="M48.5 26.7736H45.6112V32H38.6133V26.7736H28.1525V21.4179L39.0619 5H45.6112V21.3256H48.5V26.7736ZM38.6133 21.3256V18.186C38.6133 17.9029 38.6193 17.5458 38.6313 17.1149C38.6433 16.684 38.6552 16.2531 38.6672 15.8222C38.6911 15.3789 38.709 15.0096 38.721 14.7141C38.7449 14.4063 38.7629 14.2401 38.7748 14.2155H38.5775C38.3502 14.7695 38.1408 15.2312 37.9495 15.6005C37.7581 15.9576 37.5069 16.3824 37.1958 16.8748L34.2891 21.3256H38.6133Z" fill="#EC9B16" />
+              </svg>
+            </div>
+            <p>Years<br class="d-lg-block d-none"> of experience</p>
+          </div>
+          <div class="items-center based-reviews">
+            <img src="/images/google.svg" alt="google icon">
+            <p>Based on<br class="d-lg-block d-none"> 2000+ reviews</p>
+          </div>
+        </div>
+      </div>
+      
+      <img class="home_offer_right d-lg-block d-none"
+        src="/images/what-you-see-when-you-look-up-full-length-shot-affectionate-family-four-holding-cardboard-roof-their-heads-while-sitting-living-room-home.jpg"
+        alt="Family holding cardboard house">
+      <img class="home_offer_right d-lg-none"
+        src="/images/what-you-see-when-you-look-up-full-length-shot-affectionate-family-four-holding-cardboard-roof-their-heads-while-sitting-living-room-home.png"
+        alt="Family holding cardboard house">
+    </div>
+  </Container>
+</section>
+
+<style define:vars={{
+  spaceMd: semantic.space.md,
+  spaceLg: semantic.space.lg,
+  spaceXl: semantic.space.xl,
+  spaceXxl: semantic.space.xxl,
+  radiusMd: semantic.radius.md,
+  brandSecondary: '#EC9B16', // WordPress orange color for trust indicators
+  surfacePrimary: semantic.color.surface.primary,
+  textPrimary: semantic.color.text.primary,
+  shadowSubtle: semantic.shadow.subtle,
+  durationNormal: semantic.duration.normal,
+}}>
+/* Hero Section Styles - Using Design Tokens */
+.home_offer {
+  padding: var(--spaceMd) 0 var(--spaceXxl) 0;
+}
+
+.home_offer_inner {
+  align-items: flex-start;
+  gap: var(--spaceXl);
+}
+
+.home_offer_left {
+  max-width: 680px;
+  width: 100%;
+}
+
+.home_offer_right {
+  max-width: 500px;
+  width: 100%;
+  border-radius: var(--radiusMd);
+}
+
+/* Benefits list styling */
+ul.list {
+  padding: var(--spaceLg) 0;
+}
+
+ul.list li {
+  align-items: flex-start;
+  gap: var(--spaceMd);
+  margin-bottom: var(--spaceMd);
+}
+
+ul.list li img {
+  width: 24px;
+  height: 24px;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+/* Tooltip styling - Now using the Tooltip molecule component */
+.item_hover {
+  position: relative;
+  cursor: help;
+  text-decoration: underline;
+}
+
+.item_hover:hover .item_tooltip {
+  display: block !important;
+  position: absolute;
+  background: var(--surfacePrimary);
+  color: var(--textPrimary);
+  padding: var(--spaceMd);
+  border-radius: var(--radiusMd);
+  width: 300px;
+  top: 100%;
+  left: 0;
+  z-index: 1000;
+  font-size: 14px;
+  line-height: 1.4;
+  box-shadow: var(--shadowSubtle);
+}
+
+/* Trust indicators */
+.home-offer-features {
+  gap: var(--spaceXl);
+  margin-top: var(--spaceXl);
+}
+
+.year-experiences,
+.based-reviews {
+  display: flex;
+  align-items: center;
+  gap: var(--spaceMd);
+}
+
+.home_count p {
+  font-size: 3rem;
+  font-weight: 800;
+  color: var(--brandSecondary);
+  margin: 0;
+}
+
+/* Responsive display classes - WordPress pattern */
+.d-lg-none {
+  display: none;
+}
+
+.d-lg-block {
+  display: block;
+}
+
+@media (max-width: 1024px) {
+  .d-lg-none {
+    display: block;
+  }
+  
+  .d-lg-block {
+    display: none;
+  }
+  
+  .home_offer_inner {
+    flex-direction: column;
+  }
+  
+  .home_offer_right {
+    max-width: 100%;
+  }
+  
+  .home-offer-features {
+    justify-content: space-between;
+  }
+}
+</style>

@@ -11,8 +11,10 @@ export const primitive = {
       400: '#FDB948',
       500: '#E5A43F', 
       600: '#EC9B16',
+      450: '#F9A825',
     },
     gray: {
+      25: '#FAFAFA',
       50: '#f8f9fa',
       100: '#f4f4f4',
       150: '#eeeeee',  // WordPress PropertyMap background - exact match
@@ -23,7 +25,9 @@ export const primitive = {
       600: '#4b5563',
       700: '#374151',
       800: '#1f2937',
+      850: '#262626',
       900: '#111827',
+      950: '#0b0f14',
     },
     neutral: {
       white: '#ffffff',

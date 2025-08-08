@@ -107,9 +107,14 @@ bower_components
 
 # Storybook build outputs
 storybook-static/
+**/storybook-static/
 
-# WordPress source files - TRACKED for development reference
-# These are essential for the migration workflow
+# WordPress reference (single source of truth)
+# Keep only WP-FILES/ as the reference; ignore any other duplicates
+wordpress-source/
+**/wordpress-source/
+hunter-galloway-astro-with-CI/hunter-galloway-astro/src/components/navigation/
+hunter-galloway-astro-with-CI/hunter-galloway-astro/src/components/sections/
 
 # Development screenshots (for WordPress comparison)
 # Keep these local for development reference
@@ -147,6 +152,10 @@ secrets.*
 # === PROJECT SPECIFIC ===
 # Ignore entire archived folders (they have their own git history)
 hunter-galloway-astro-ARCHIVED-*/
+
+# Ignore nested Storybook configs to prevent duplication
+**/.storybook/
+!/.storybook/
 
 # Ignore large WordPress assets that can be regenerated
 WP-FILES/assets/img/*.jpg
@@ -208,3 +217,4 @@ playwright-report/
 !wp_page_map.json
 !manage_conversion.py
 !generate_wp_page_map.py
+*storybook.log

@@ -1,207 +1,374 @@
 ---
 /**
- * NavDropdown Molecule
- * WordPress reference: /wordpress-source/assets/css/header.css
- * Desktop styles: 66-111
- * Mobile styles: 700-742
+ * NavDropdown Molecule - Hunter Galloway Mega Menu (legacy-correct)
  */
 
 import { semantic } from '../../../tokens/semantic';
-import { component } from '../../../tokens/component';
+
+export interface NavDropdownLink {
+  label: string;
+  url: string;
+  badge?: string;
+}
 
 export interface NavDropdownColumn {
+  heading: string;
+  links: NavDropdownLink[];
+  readMore?: { label: string; url: string };
+}
+
+export interface NavDropdownPromo {
   title: string;
-  links: Array<{ label: string; href: string }>;
+  description: string;
+  cta: { label: string; url: string };
+}
+
+export interface NavDropdownPromoImage {
+  imageUrl: string;
+  title: string;
+  url: string;
 }
 
 export interface NavDropdownProps {
   columns: NavDropdownColumn[];
-  variant?: 'default' | 'calc';
-  report?: {
-    title: string;
-    descr: string;
-    link: { label: string; href: string };
-  };
+  promo?: NavDropdownPromo;
+  promoImage?: NavDropdownPromoImage;
 }
 
 const {
   columns = [],
-  variant = 'default',
-  report,
+  promo,
+  promoImage,
 } = Astro.props as NavDropdownProps;
+
+// Determine layout class based on content
+const layoutClass = promoImage ? 'hg-dropdown--with-image' : 
+                   promo ? 'hg-dropdown--with-promo' : 
+                   'hg-dropdown--standard';
 ---
-<div class={`hg-dropdown ${variant === 'calc' ? 'hg-dropdown--calc' : ''}`}>
-  <div class="hg-dropdown__columns">
-    {columns.map((column) => (
-      <div class="hg-dropdown__column">
-        <div class="hg-dropdown__title">{column.title}</div>
-        <ul class="hg-dropdown__list">
-          {column.links.map((link) => (
-            <li class="hg-dropdown__item">
-              <a href={link.href} class="hg-dropdown__link">{link.label}</a>
-            </li>
-          ))}
-        </ul>
-      </div>
-    ))}
-  </div>
-  {variant === 'calc' && report && (
-    <div class="hg-dropdown__report">
-      <div class="hg-dropdown__report-title">{report.title}</div>
-      <div class="hg-dropdown__report-descr">{report.descr}</div>
-      <a href={report.link.href} class="hg-dropdown__report-btn">{report.link.label}</a>
+
+<div class={`hg-dropdown ${layoutClass}`}>
+  <div class="hg-dropdown__container">
+    <!-- Main columns -->
+    <div class="hg-dropdown__columns">
+      {columns.map((column) => (
+        <div class="hg-dropdown__column">
+          {column.heading && (
+            <h3 class="hg-dropdown__heading">{column.heading}</h3>
+          )}
+          <ul class="hg-dropdown__list">
+            {column.links.map((link) => (
+              <li class="hg-dropdown__item">
+                <a href={link.url} class="hg-dropdown__link">
+                  {link.label}
+                  {link.badge && (
+                    <span class="hg-dropdown__badge">{link.badge}</span>
+                  )}
+                </a>
+              </li>
+            ))}
+          </ul>
+          {column.readMore && (
+            <a href={column.readMore.url} class="hg-dropdown__read-more">
+              {column.readMore.label} →
+            </a>
+          )}
+        </div>
+      ))}
     </div>
-  )}
+    
+    <!-- Promo Card -->
+    {promo && (
+      <div class="hg-dropdown__promo">
+        <h3 class="hg-dropdown__promo-title">{promo.title}</h3>
+        <p class="hg-dropdown__promo-description">{promo.description}</p>
+        <a href={promo.cta.url} class="hg-dropdown__promo-cta">
+          {promo.cta.label}
+        </a>
+      </div>
+    )}
+    
+    <!-- Promo Image Card -->
+    {promoImage && (
+      <a href={promoImage.url} class="hg-dropdown__image-card">
+        <img 
+          src={promoImage.imageUrl} 
+          alt={promoImage.title}
+          class="hg-dropdown__image"
+        />
+        <div class="hg-dropdown__image-overlay">
+          <h4 class="hg-dropdown__image-title">{promoImage.title}</h4>
+        </div>
+      </a>
+    )}
+  </div>
 </div>
-<style is:global define:vars={{
+
+<style define:vars={{
   brandPrimary: semantic.color.brand.primary,
+  brandAccent: semantic.color.brand.legacyAccent,
   textPrimary: semantic.color.text.primary,
-  spaceXs: semantic.space.xs,
-  spaceSm: semantic.space.sm,
-  spaceMd: semantic.space.md,
-  spaceLg: semantic.space.lg,
-  fontSizeSm: semantic.typography.size.sm,
-  fontSizeMd: semantic.typography.size.md,
-  fontWeightBold: semantic.typography.weight.bold,
-  radiusSm: semantic.radius.sm,
-  durationNormal: semantic.duration.normal,
-  dropdownBg: component.navigation.dropdown.background,
-  dropdownRadius: component.navigation.dropdown.borderRadius,
-  dropdownShadow: component.navigation.dropdown.shadow,
-  dropdownPadding: component.navigation.dropdown.padding,
-  dropdownWidth: component.navigation.dropdown.width,
-  dropdownWidthCalc: component.navigation.dropdown.widthCalc,
-  columnGap: component.navigation.dropdown.gap,
-  columnMinWidth: component.navigation.dropdown.columnMinWidth,
-  reportMaxWidth: component.navigation.dropdown.report.maxWidth,
-  reportPaddingLeft: component.navigation.dropdown.report.paddingLeft,
-  reportBorderLeft: component.navigation.dropdown.report.borderLeft,
-  mobileTop: component.navigation.dropdown.mobile.top,
-  mobilePadding: component.navigation.dropdown.mobile.padding,
+  surfaceWhite: semantic.color.surface.white,
+  surfaceLight: semantic.color.surface.secondary,
+  shadowDropdown: semantic.shadow.dropdown,
 }}>
+/* Base dropdown styles */
 .hg-dropdown {
-  background: var(--dropdownBg);
-  border-radius: var(--dropdownRadius);
-  box-shadow: var(--dropdownShadow);
-  padding: var(--dropdownPadding);
-  width: var(--dropdownWidth);
-  display: none;
-  opacity: 0;
-  transform: translateX(-50%) translateY(-10px);
   position: absolute;
-  top: 100%;
+  top: calc(100% + 10px);
   left: 50%;
-  transition: all var(--durationNormal) ease;
+  transform: translateX(-50%) translateY(-10px);
+  background: var(--surfaceWhite);
+  border-radius: 8px;
+  box-shadow: var(--shadowDropdown);
+  padding: 2rem;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: all 0.3s ease;
   z-index: 1000;
+  min-width: 600px;
 }
 
-.hg-dropdown--calc {
-  width: var(--dropdownWidthCalc);
+.hg-dropdown.visible,
+.hg-nav-item:hover .hg-dropdown {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transform: translateX(-50%) translateY(0);
+}
+
+/* Layout variants */
+.hg-dropdown--standard {
+  width: 735px;
+}
+
+.hg-dropdown--with-promo {
+  width: 820px;
+}
+
+.hg-dropdown--with-image {
+  width: 900px;
+}
+
+.hg-dropdown__container {
   display: flex;
-  gap: var(--columnGap);
+  gap: 2rem;
 }
 
+/* Columns */
 .hg-dropdown__columns {
   display: flex;
-  gap: var(--columnGap);
+  gap: 3rem;
+  flex: 1;
 }
 
 .hg-dropdown__column {
-  min-width: var(--columnMinWidth);
+  min-width: 180px;
+  flex: 1;
 }
 
-.hg-dropdown__title {
-  font-weight: var(--fontWeightBold);
-  font-size: var(--fontSizeMd);
-  margin-bottom: var(--spaceMd);
+/* Headings */
+.hg-dropdown__heading {
+  font-size: 0.85rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--textPrimary);
+  margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid var(--brandAccent);
+  display: inline-block;
 }
 
+/* Links */
 .hg-dropdown__list {
   list-style: none;
   margin: 0;
   padding: 0;
 }
 
- .hg-dropdown__item + .hg-dropdown__item {
-  margin-top: var(--spaceMd);
- }
+.hg-dropdown__item {
+  margin-bottom: 0.75rem;
+}
 
 .hg-dropdown__link {
-  text-decoration: none;
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
   color: var(--textPrimary);
-  font-size: var(--fontSizeSm);
-  transition: color var(--durationNormal) ease;
+  font-size: 0.95rem;
+  font-weight: 600;
+  text-decoration: none;
+  padding-left: 1rem;
+  transition: color 0.2s ease;
+}
+
+.hg-dropdown__link:before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 6px;
+  height: 6px;
+  background: var(--brandAccent);
+  border-radius: 50%;
 }
 
 .hg-dropdown__link:hover {
   color: var(--brandPrimary);
 }
 
-.hg-dropdown__report {
-  border-left: 1px solid var(--reportBorderLeft);
-  padding-left: var(--reportPaddingLeft);
-  max-width: var(--reportMaxWidth);
-}
-
-.hg-dropdown__report-title {
-  font-weight: var(--fontWeightBold);
-  font-size: var(--fontSizeMd);
-  margin-bottom: var(--spaceMd);
-}
-
-.hg-dropdown__report-descr {
-  font-size: var(--fontSizeSm);
-  margin-bottom: var(--spaceMd);
-}
-
-.hg-dropdown__report-btn {
+/* Badge */
+.hg-dropdown__badge {
   display: inline-block;
+  padding: 0.125rem 0.375rem;
   background: var(--brandPrimary);
-  color: var(--dropdownBg);
-  padding: var(--spaceXs) var(--spaceSm);
-  border-radius: var(--radiusSm);
-  font-size: var(--fontSizeSm);
+  color: var(--surfaceWhite);
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  border-radius: 3px;
+}
+
+/* Read More Link */
+.hg-dropdown__read-more {
+  display: inline-block;
+  margin-top: 1rem;
+  color: var(--brandPrimary);
+  font-size: 0.9rem;
+  font-weight: 600;
   text-decoration: none;
-  transition: opacity var(--durationNormal) ease;
+  transition: transform 0.2s ease;
 }
 
-.hg-dropdown__report-btn:hover {
-  opacity: 0.85;
+.hg-dropdown__read-more:hover {
+  transform: translateX(3px);
 }
 
+/* Promo Card */
+.hg-dropdown__promo {
+  flex-shrink: 0;
+  width: 280px;
+  padding: 1.5rem;
+  background: var(--surfaceLight);
+  border-radius: 8px;
+}
+
+.hg-dropdown__promo-title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--textPrimary);
+  margin-bottom: 0.75rem;
+  line-height: 1.3;
+}
+
+.hg-dropdown__promo-description {
+  font-size: 0.9rem;
+  color: var(--textPrimary);
+  margin-bottom: 1.25rem;
+  line-height: 1.5;
+}
+
+.hg-dropdown__promo-cta {
+  display: inline-block;
+  padding: 0.75rem 1.5rem;
+  background: var(--brandPrimary);
+  color: var(--surfaceWhite);
+  font-size: 0.95rem;
+  font-weight: 700;
+  text-decoration: none;
+  border-radius: 25px;
+  transition: all 0.3s ease;
+}
+
+.hg-dropdown__promo-cta:hover {
+  background: var(--brandAccent);
+  transform: translateY(-2px);
+  box-shadow: var(--shadowDropdown);
+}
+
+/* Image Card */
+.hg-dropdown__image-card {
+  flex-shrink: 0;
+  width: 240px;
+  height: 160px;
+  position: relative;
+  overflow: hidden;
+  border-radius: 8px;
+  text-decoration: none;
+  transition: transform 0.3s ease;
+}
+
+.hg-dropdown__image-card:hover {
+  transform: scale(1.02);
+}
+
+.hg-dropdown__image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.hg-dropdown__image-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 1rem;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+}
+
+.hg-dropdown__image-title {
+  color: var(--surfaceWhite);
+  font-size: 0.9rem;
+  font-weight: 600;
+  line-height: 1.3;
+  margin: 0;
+}
+
+/* Mobile styles */
 @media (max-width: 991px) {
   .hg-dropdown {
     position: fixed;
-    display: block !important;
-    width: auto;
-    transform: none;
-    top: var(--mobileTop);
-    bottom: 0;
-    overflow: auto;
-    padding: var(--mobilePadding);
-    box-shadow: none;
+    top: 0;
     left: 100%;
     right: -100%;
+    bottom: 0;
+    transform: none;
+    width: 100%;
+    max-width: none;
+    min-width: auto;
+    border-radius: 0;
+    padding: 1.5rem;
+    overflow-y: auto;
   }
-
-  .hg-dropdown.active {
+  
+  .hg-dropdown.visible {
     left: 0;
     right: 0;
+    opacity: 1;
   }
-
+  
+  .hg-dropdown__container {
+    flex-direction: column;
+  }
+  
   .hg-dropdown__columns {
-    display: block;
+    flex-direction: column;
+    gap: 2rem;
   }
-
-  .hg-dropdown__column + .hg-dropdown__column {
-    margin-top: var(--spaceLg);
+  
+  .hg-dropdown__promo,
+  .hg-dropdown__image-card {
+    width: 100%;
   }
-
-  .hg-dropdown__report {
-    border-left: none;
-    padding-left: 0;
-    max-width: 100%;
-    margin-top: var(--spaceLg);
+  
+  .hg-dropdown__image-card {
+    height: 200px;
   }
 }
 </style>

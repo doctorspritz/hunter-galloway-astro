@@ -1,0 +1,169 @@
+---
+/**
+ * RiskWidget Test Page
+ * Demonstrates the RiskWidget component with WordPress content
+ */
+
+import Layout from '../layouts/Layout.astro';
+import { RiskWidget } from '../components';
+
+// WordPress content for default risk widget
+const defaultRiskData = {
+  title: `Don't risk having your <br />home loan declined`,
+  description: `Did you know that over {40%} of home loan applications that get submitted <br />never make it to settlement? Don't take that risk.`,
+  marketStatistic: {
+    value: '40%',
+    tooltip: {
+      content: `Approximately 40% of home loan applications were rejected in December 2018 based on a survey of 52,000 households completed by`,
+      link: {
+        url: 'https://www.mortgagebusiness.com.au/breaking-news/13042-home-loan-rejection-rate-hits-40',
+        text: 'DigitalFinance Analytics DFA'
+      }
+    }
+  },
+  riskItems: [
+    {
+      id: 'know-banks',
+      title: 'We know the banks inside out',
+      icon: 'scheme' as const,
+      content: [
+        `Our brokers have over 35 years of combined experience in the finance industry, including decades of banking experience, and have processed thousands of home loan applications.`,
+        `We have a wide range of lenders on our panel and we intimately understand their credit policies. This means we know the problems you may face on your loan application and how to mitigate them when applying with any specific bank or lender.`
+      ]
+    },
+    {
+      id: 'reduce-risk',
+      title: 'Reducing risk of rejection',
+      icon: 'umbrella' as const,
+      content: [
+        `Unlike other brokers, Hunter Galloway completes our own internal credit assessment process before applying with any lender.`,
+        `Your application will be assigned its own Credit Manager who reviews each application thoroughly before it is submitted to the lenders, meaning we won't apply with a lender who won't approve your loan.`
+      ]
+    }
+  ]
+};
+
+// Refinance variant content
+const refinanceRiskData = {
+  title: 'Refinancing your home loan can help',
+  description: 'Lower your monthly repayments and improve your financial position.',
+  riskItems: [
+    {
+      id: 'lower-rates',
+      title: 'Access to lower interest rates',
+      icon: 'arrow' as const,
+      content: [
+        `We can help you access competitive interest rates that may be lower than your current rate.`,
+        `Even a small reduction in your interest rate can save thousands over the life of your loan.`
+      ]
+    },
+    {
+      id: 'better-features',
+      title: 'Better loan features',
+      icon: 'puzzle' as const,
+      content: [
+        `Modern home loans come with features like offset accounts and redraw facilities.`,
+        `These features can help you pay off your loan faster and save on interest.`
+      ]
+    }
+  ]
+};
+---
+
+<Layout title="RiskWidget Test - Hunter Galloway">
+  <main class="risk-widget-test-page">
+    <div style="padding: 40px 0;">
+      
+      <section style="margin-bottom: 80px;">
+        <div class="container">
+          <h2 style="text-align: center; margin-bottom: 40px;">Default RiskWidget</h2>
+          <RiskWidget
+            title={defaultRiskData.title}
+            description={defaultRiskData.description}
+            marketStatistic={defaultRiskData.marketStatistic}
+            riskItems={defaultRiskData.riskItems}
+            backgroundImage="/images/manager_new.png"
+            backgroundImageAlt="Credit manager"
+            variant="default"
+          />
+        </div>
+      </section>
+
+      <section style="margin-bottom: 80px;">
+        <div class="container">
+          <h2 style="text-align: center; margin-bottom: 40px;">Light Variant</h2>
+          <RiskWidget
+            title="We're here to help whenever you need us"
+            riskItems={[
+              {
+                id: 'support',
+                title: 'Ongoing support',
+                icon: 'video-conference' as const,
+                content: [
+                  'Our team is available to help you throughout your home loan journey.',
+                  'From application to settlement and beyond, we\'re here for you.'
+                ]
+              }
+            ]}
+            variant="light"
+          />
+        </div>
+      </section>
+
+      <section style="margin-bottom: 80px;">
+        <div class="container">
+          <h2 style="text-align: center; margin-bottom: 40px;">Refinance Variant</h2>
+          <RiskWidget
+            title={refinanceRiskData.title}
+            description={refinanceRiskData.description}
+            riskItems={refinanceRiskData.riskItems}
+            variant="refinance"
+            class="refinance_risk_widget"
+          />
+        </div>
+      </section>
+
+      <section style="margin-bottom: 80px;">
+        <div class="container">
+          <h2 style="text-align: center; margin-bottom: 40px;">Reversed Layout</h2>
+          <RiskWidget
+            title="Alternative Layout Example"
+            description="This shows the reversed layout variant with image on the left."
+            riskItems={[
+              {
+                id: 'flexible',
+                title: 'Flexible layouts',
+                icon: 'puzzle' as const,
+                content: [
+                  'The RiskWidget component supports multiple layout variants.',
+                  'This allows for varied page designs while maintaining consistency.'
+                ]
+              }
+            ]}
+            variant="reversed"
+          />
+        </div>
+      </section>
+
+    </div>
+  </main>
+</Layout>
+
+<style>
+.risk-widget-test-page {
+  min-height: 100vh;
+  background: #f8f8f8;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+h2 {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: bold;
+  color: #2b2b2b;
+}
+</style>

@@ -1,17 +1,16 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import Header from '../components/navigation/Header.astro';
-import HeroSection from '../components/sections/HeroSection.astro';
-import Awards from '../components/sections/Awards.astro';
-import LoanPurpose from '../components/sections/LoanPurpose.astro';
-import BankLogos from '../components/sections/BankLogos.astro';
-import MortgageRentCalculator from '../components/calculators/MortgageRentCalculator.tsx';
-import PropertyMap from '../components/sections/PropertyMap.astro';
-import Statistics from '../components/sections/Statistics.astro';
-import Reviews from '../components/sections/Reviews.astro';
-import Footer from '../components/sections/Footer.astro';
+import Header from '../components/organisms/Header.astro';
+import HeroSection from '../components/organisms/HeroSection.astro';
+import Awards from '../components/organisms/Awards.astro';
+import LoanPurpose from '../components/organisms/LoanPurpose.astro';
+import BankLogos from '../components/organisms/BankLogos.astro';
+import MortgageRentCalculator from '../components/organisms/MortgageRentCalculator/MortgageRentCalculator.astro';
+import PropertyMap from '../components/organisms/PropertyMap.astro';
+import Statistics from '../components/organisms/Statistics.astro';
+import Reviews from '../components/organisms/Reviews.astro';
+import Footer from '../components/organisms/Footer.astro';
 import Container from '../components/atoms/Container/Container.astro';
-import '../components/calculators/MortgageRentCalculator.css';
 ---
 
 <Layout title="Hunter Galloway - Award-Winning Mortgage Brokers Brisbane" 
@@ -32,18 +31,16 @@ import '../components/calculators/MortgageRentCalculator.css';
     <BankLogos />
 
     <!-- Mortgage vs Rent Calculator Section -->
-    <Container>
-      <MortgageRentCalculator client:load />
+    <MortgageRentCalculator />
       
-      <!-- Property Map Section -->
-      <PropertyMap />
+    <!-- Property Map Section -->
+    <PropertyMap />
 
-      <!-- Borrowing Capacity Calculator Placeholder -->
-      <!-- This would be the calculate-capacity component from WordPress -->
+    <!-- Borrowing Capacity Calculator Placeholder -->
+    <!-- This would be the calculate-capacity component from WordPress -->
       
-      <!-- Statistics Section -->  
-      <Statistics />
-    </Container>
+    <!-- Statistics Section -->  
+    <Statistics />
 
     <!-- Reviews Section -->
     <Reviews />

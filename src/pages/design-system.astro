@@ -1,4 +1,205 @@
 ---
-// Redirect to static HTML version to avoid component reference issues
-return Astro.redirect('/design-system.html');
+import Layout from '../layouts/Layout.astro';
+import Badge from '../components/atoms/Badge/Badge.astro';
+import Button from '../components/atoms/Button/Button.astro';
+import Container from '../components/atoms/Container/Container.astro';
+import Icon from '../components/atoms/Icon/Icon.astro';
+import Input from '../components/atoms/Input/Input.astro';
+import Logo from '../components/atoms/Logo/Logo.astro';
+import Slider from '../components/atoms/Slider/Slider.astro';
+import Typography from '../components/atoms/Typography/Typography.astro';
+import AwardItem from '../components/molecules/AwardItem/AwardItem.astro';
+import CalculatorResult from '../components/molecules/CalculatorResult/CalculatorResult.astro';
+import FooterNavigation from '../components/molecules/FooterNavigation/FooterNavigation.astro';
+import FooterStatCard from '../components/molecules/FooterStatCard/FooterStatCard.astro';
+import NavDropdown from '../components/molecules/NavDropdown/NavDropdown.astro';
+import PhoneLink from '../components/molecules/PhoneLink/PhoneLink.astro';
+import PurposeCard from '../components/molecules/PurposeCard/PurposeCard.astro';
+import ReviewCard from '../components/molecules/ReviewCard/ReviewCard.astro';
+import RiskCard from '../components/molecules/RiskCard/RiskCard.astro';
+import SocialLinks from '../components/molecules/SocialLinks/SocialLinks.astro';
+import StatCard from '../components/molecules/StatCard/StatCard.astro';
+import Tooltip from '../components/molecules/Tooltip/Tooltip.astro';
+import Awards from '../components/organisms/Awards.astro';
+import BankLogos from '../components/organisms/BankLogos.astro';
+import Footer from '../components/organisms/Footer.astro';
+import Header from '../components/organisms/Header.astro';
+import HeroSection from '../components/organisms/HeroSection.astro';
+import LoanPurpose from '../components/organisms/LoanPurpose.astro';
+import MortgageRentCalculator from '../components/organisms/MortgageRentCalculator/MortgageRentCalculator.astro';
+import PropertyMap from '../components/organisms/PropertyMap.astro';
+import Reviews from '../components/organisms/Reviews.astro';
+import RiskWidget from '../components/organisms/RiskWidget/RiskWidget.astro';
+import Statistics from '../components/organisms/Statistics.astro';
+import { semantic } from '../tokens/semantic';
+// Demo data for organisms that require props
+const riskWidgetDemo = {
+  title: 'How we reduce your risk when applying for a home loan',
+  description:
+    'Lenders are declining over {40%} of home loan applications. Here’s how we protect your application.',
+  marketStatistic: {
+    value: '40%',
+    tooltip: {
+      content: 'Source: Industry data across major lenders over the past 12 months.',
+    },
+  },
+  riskItems: [
+    {
+      id: 'plan',
+      title: 'Strategic Loan Plan',
+      content: [
+        'We build a tailored plan that matches your profile to the right lenders and policies.',
+      ],
+      icon: 'scheme',
+    },
+    {
+      id: 'docs',
+      title: 'Document Pre‑Check',
+      content: [
+        'We pre‑validate your documents to reduce back‑and‑forth and avoid unnecessary delays.',
+      ],
+      icon: 'puzzle',
+    },
+    {
+      id: 'present',
+      title: 'Application Presentation',
+      content: [
+        'Your file is packaged to policy, highlighting strengths and mitigating any potential red flags.',
+      ],
+      icon: 'umbrella',
+    },
+  ],
+};
 ---
+
+<Layout title="Design System">
+  <style>
+    .section { margin-bottom: 4rem; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.5rem; }
+    .swatch { border: 1px solid #eee; border-radius: 8px; padding: 1rem; }
+    .swatch-box { height: 64px; border-radius: 6px; margin-bottom: .75rem; }
+    /* Organisms are full-width sections; stack them, don't grid them */
+    .organism-stack { display: flex; flex-direction: column; gap: 3rem; }
+    .organism-block { width: 100%; position: relative; overflow: visible; }
+    .organism-block > * { display: block; width: 100%; }
+  </style>
+
+  <section class="section">
+    <Typography element="h1" size="3xl" weight="display">Design System</Typography>
+    <Typography>Atomic components rendered directly in Astro.</Typography>
+  </section>
+
+  <section class="section">
+    <Typography element="h2" size="2xl" weight="heading">Tokens · Colors</Typography>
+    <div class="grid">
+      <div class="swatch">
+        <div class="swatch-box" style={`background:${semantic.color.brand.primary}`}></div>
+        <Typography size="sm">brand.primary</Typography>
+      </div>
+      <div class="swatch">
+        <div class="swatch-box" style={`background:${semantic.color.surface.secondary}`}></div>
+        <Typography size="sm">surface.secondary</Typography>
+      </div>
+      <div class="swatch">
+        <div class="swatch-box" style={`background:${semantic.color.surface.highlight}`}></div>
+        <Typography size="sm">surface.highlight</Typography>
+      </div>
+    </div>
+  </section>
+
+  <!-- Atoms -->
+  <section class="section">
+    <Typography element="h2" size="2xl" weight="heading">Atoms</Typography>
+    <Typography element="h3" size="xl" weight="heading">Typography</Typography>
+    <div class="grid">
+      <Typography element="h1">Heading 1</Typography>
+      <Typography element="h2">Heading 2</Typography>
+      <Typography element="p">Body text example</Typography>
+    </div>
+
+    <Typography element="h3" size="xl" weight="heading">Buttons</Typography>
+    <div style="display:flex;gap:12px;flex-wrap:wrap">
+      <Button variant="primary" size="md">Primary</Button>
+      <Button variant="secondary" size="md">Secondary</Button>
+      <Button variant="ghost" size="md">Ghost</Button>
+      <Button variant="outline" size="md">Outline</Button>
+      <Button variant="primary" size="lg">Large</Button>
+      <Button variant="primary" size="sm">Small</Button>
+    </div>
+
+    <Typography element="h3" size="xl" weight="heading">Inputs</Typography>
+    <div class="grid">
+      <Input label="Name" name="name" placeholder="Your name" />
+      <Input label="Email" name="email" type="email" placeholder="you@example.com" />
+    </div>
+
+    <Typography element="h3" size="xl" weight="heading">Badges, Icons, Logo, Slider</Typography>
+    <div class="grid">
+      <Badge>Most Popular</Badge>
+      <Icon name="phone" />
+      <Logo />
+      <Slider min={0} max={100} value={50} step={5} />
+    </div>
+
+    <Typography element="h3" size="xl" weight="heading">Layout · Container</Typography>
+    <Container>
+      <Typography>Container provides max-width and responsive padding.</Typography>
+    </Container>
+  </section>
+
+  <section class="section">
+    <Typography element="h2" size="2xl" weight="heading">Molecules · Stat Cards</Typography>
+    <div class="grid">
+      <StatCard value="97%" label="Loan approval rate" />
+      <StatCard value="14" label="Years of experience" />
+      <StatCard value="2,000+" label="Happy customers" />
+    </div>
+  </section>
+
+  <section class="section">
+    <Typography element="h2" size="2xl" weight="heading">Molecules · Purpose Cards</Typography>
+    <div class="grid">
+      <PurposeCard title="Buy My First Home" description="Navigate your first home purchase confidently and stress-free with full guidance on each step." icon="home-icon" image="/images/upgrade.webp" href="#" badge="Most Popular" variant="peach" />
+      <PurposeCard title="Refinance My Loan" description="Reduce your home loan repayments and achieve financial flexibility." icon="upgrade-icon" image="/images/upgrade.webp" href="#" variant="default" />
+    </div>
+  </section>
+
+  <section class="section">
+    <Typography element="h2" size="2xl" weight="heading">Molecules · Other</Typography>
+    <div class="grid">
+      <FooterStatCard number="97%" description="Loan approval rate" />
+      <PhoneLink phone="1300 088 065" />
+      <Tooltip text="Helpful tip">Hover me</Tooltip>
+      <SocialLinks />
+    </div>
+    <div class="grid">
+      <CalculatorResult label="Borrowing Power" value="$650,000" />
+      <AwardItem title="Mortgage Broker of the Year 2024" image="/images/awards/Mortgage-Broker-Brisbane-Hunter-Galloway-Award-2024.webp" />
+    </div>
+  </section>
+
+  <section class="section">
+    <Typography element="h2" size="2xl" weight="heading">Organisms</Typography>
+    <div class="organism-stack">
+      <div class="organism-block"><Header /></div>
+      <div class="organism-block"><HeroSection /></div>
+      <div class="organism-block"><LoanPurpose /></div>
+      <div class="organism-block"><Awards /></div>
+      <div class="organism-block"><BankLogos /></div>
+      <div class="organism-block"><Statistics /></div>
+      <div class="organism-block"><Reviews /></div>
+      <div class="organism-block">
+        <RiskWidget 
+          title={riskWidgetDemo.title}
+          description={riskWidgetDemo.description}
+          marketStatistic={riskWidgetDemo.marketStatistic}
+          riskItems={riskWidgetDemo.riskItems}
+          variant="default"
+        />
+      </div>
+      <div class="organism-block"><PropertyMap /></div>
+      <div class="organism-block"><MortgageRentCalculator /></div>
+      <div class="organism-block"><Footer /></div>
+    </div>
+  </section>
+</Layout>
