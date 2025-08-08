@@ -1,0 +1,255 @@
+<?php
+
+get_header();
+
+$is_page_builder_used = et_pb_is_pagebuilder_used(get_the_ID());
+
+$assets = '/wp-content/themes/hunter-galloway/assets/img/img_new/';
+?>
+
+
+
+<div id="main-content">
+	<section class="home_offer">
+		<div class="container">
+			<div class="flex home_offer_inner">
+				<div class="home_offer_left">
+					<h1><b>Get a home loan </b>with full <span class="text-nowrap">guidance and</span> expert assistance</h1>
+					<ul class="list">
+						<li class="flex">
+							<img src="<?php echo $assets; ?>24_checkmark.svg" alt="checkmark">
+							<p>
+								<span class="item_hover">Market-leading<span class="item_tooltip">
+										Approximately 40% of home loan applications were rejected in December 2018 based
+										on a survey of 52,000 households completed by 'DigitalFinance Analytics DFA'. In
+										2017 to 2018 Hunter Galloway submitted 342 home loan applications and had 8
+										applications rejected, giving a 2.33% rejection rate.</span></span> loan
+								approval rate in Australia of 97%
+							</p>
+
+						</li>
+						<li class="flex">
+							<img src="<?php echo $assets; ?>24_checkmark.svg" alt="checkmark">
+							<span>Variety of options due to direct access to 30+ Australian banks & lenders</span>
+						</li>
+						<li class="flex">
+							<img src="<?php echo $assets; ?>24_checkmark.svg" alt="checkmark">
+							<p>
+								<span class="item_hover">#1 rated<span class="item_tooltip">
+										The highest rated and most reviewed Mortgage Broker in Brisbane: 5-star rating
+										based on 2000+ reviews on Google</span></span> Mortgage Broker in Brisbane
+							</p>
+						</li>
+					</ul>
+					<a href="/mortgage-calculator/" class="btn_yellow">
+						Calculate my borrowing capacity
+						<img class="d-lg-none" src="<?php echo $assets; ?>16_arrow_r_black.svg" alt="arrow image">
+					</a>
+					<!-- <div class="specific">
+					<h4>Looking for a specific home loan?</h4>
+					<a data-href="#loan-purpose" class="link_light" data-index="0" onclick="scrollToSection(event)">Buying My First Home<img
+							class="ml-auto" src="<?php echo $assets; ?>16_arrow_r.svg" alt="checkmark"></a>
+					<a data-href="#loan-purpose" class="link_light" data-index="1" onclick="scrollToSection(event)">Refinancing My Loan<img
+							class="ml-auto" src="<?php echo $assets; ?>16_arrow_r.svg" alt="checkmark"></a>
+					<a data-href="#loan-purpose" class="link_light" data-index="2" onclick="scrollToSection(event)">Upgrading My Home<img class="ml-auto"
+							src="<?php echo $assets; ?>16_arrow_r.svg" alt="checkmark"></a>
+				</div> -->
+
+					<div class="flex home-offer-features">
+						<div class="items-center year-experiences">
+							<div class="home_count">
+								<p class="d-lg-block d-none">14</p>
+								<svg class="d-lg-none" xmlns="http://www.w3.org/2000/svg" width="56" height="37"
+									viewBox="0 0 56 37" fill="none">
+									<path
+										d="M22.8952 32H15.7V18.6477C15.7 18.4015 15.7 17.9521 15.7 17.2996C15.7 16.6347 15.706 15.9022 15.7179 15.1019C15.7419 14.3016 15.7718 13.5814 15.8077 12.9412C15.4966 13.3228 15.2036 13.6491 14.9284 13.92C14.6653 14.1908 14.4081 14.4432 14.1569 14.6772L11.1783 17.2072L7.5 12.5534L16.5074 5H22.8952V32Z"
+										fill="#EC9B16" />
+									<path
+										d="M48.5 26.7736H45.6112V32H38.6133V26.7736H28.1525V21.4179L39.0619 5H45.6112V21.3256H48.5V26.7736ZM38.6133 21.3256V18.186C38.6133 17.9029 38.6193 17.5458 38.6313 17.1149C38.6433 16.684 38.6552 16.2531 38.6672 15.8222C38.6911 15.3789 38.709 15.0096 38.721 14.7141C38.7449 14.4063 38.7629 14.2401 38.7748 14.2155H38.5775C38.3502 14.7695 38.1408 15.2312 37.9495 15.6005C37.7581 15.9576 37.5069 16.3824 37.1958 16.8748L34.2891 21.3256H38.6133Z"
+										fill="#EC9B16" />
+								</svg>
+							</div>
+							<p>Years<br class="d-lg-block d-none"> of experience</p>
+						</div>
+						<div class="items-center based-reviews">
+							<img src="<?php echo $assets; ?>google.svg" alt="google icon">
+							<p>Based on<br class="d-lg-block d-none"> 2000+ reviews</p>
+						</div>
+					</div>
+				</div>
+				<img class="home_offer_right d-lg-block d-none"
+					src="<?php echo $assets; ?>what-you-see-when-you-look-up-full-length-shot-affectionate-family-four-holding-cardboard-roof-their-heads-while-sitting-living-room-home.jpg"
+					alt="image">
+				<img class="home_offer_right d-lg-none"
+					src="<?php echo $assets; ?>what-you-see-when-you-look-up-full-length-shot-affectionate-family-four-holding-cardboard-roof-their-heads-while-sitting-living-room-home.png"
+					alt="image">
+
+
+			</div>
+		</div>
+	</section>
+	<section class="home_offer_awards">
+		<div class="container">
+			<?php get_template_part('template-parts/blocks/awards') ?>
+		</div>
+	</section>
+	<section class="loan-purpose" id="loan-purpose">
+		<div class="container">
+			<h2 class="text-center">What do you need <span class="text-nowrap">a loan for?</span> </h2>
+			<div class="loan-purpose__blocks">
+				<a href="/get-a-stress-free-first-home-loan/" class="load-purpose__block purpose-block" data-purpose="first">
+					<div class="purpose-block__badge">Most Popular</div>
+					<div class="purpose-block__content">
+						<div class="purpose-block__title">Buy My First Home</div>
+						<div class="purpose-block__description">Navigate your first home purchase confidently and stress-free with full guidance on each step.</div>
+						<div class="purpose-block__action">
+							<button>Learn More</button>
+						</div>
+					</div>
+					<div class="purpose-block__img"><img src="/wp-content/themes/hunter-galloway/assets/img/pages/front/first-home.webp" alt="" width="100%" height="100%" loading="lazy"></div>
+				</a>
+				<a href="/lower-your-rate" class="load-purpose__block purpose-block" data-purpose="refinance">
+					<div class="purpose-block__content">
+						<div class="purpose-block__title">Refinance My Loan</div>
+						<div class="purpose-block__description">Reduce your home loan repayments and achieve financial flexibility.</div>
+						<div class="purpose-block__action">
+							<button>Learn More</button>
+						</div>
+					</div>
+					<div class="purpose-block__img"><img src="/wp-content/themes/hunter-galloway/assets/img/pages/front/refinance.webp" alt="" width="100%" height="100%" loading="lazy"></div>
+				</a>
+				<a href="/ready-to-upgrade/" class="load-purpose__block purpose-block" data-purpose="upgrade">
+					<div class="purpose-block__content">
+						<div class="purpose-block__title">Upgrade My Home</div>
+						<div class="purpose-block__description">Transition smoothly from the sale of your current home to securing financing for your new home</div>
+						<div class="purpose-block__action">
+							<button>Learn More</button>
+						</div>
+					</div>
+					<div class="purpose-block__img"><img src="/wp-content/themes/hunter-galloway/assets/img/pages/front/upgrade.webp" alt="" width="100%" height="100%" loading="lazy"></div>
+				</a>
+				<a href="/your-property-investment-journey/" class="load-purpose__block purpose-block" data-purpose="buy-luxury">
+					<div class="purpose-block__content">
+						<div class="purpose-block__title">Invest in Property</div>
+						<div class="purpose-block__description">Get expert mortgage solutions with personalized service and exclusive options.</div>
+						<div class="purpose-block__action">
+							<button>Learn More</button>
+						</div>
+					</div>
+					<div class="purpose-block__img"><img src="/wp-content/themes/hunter-galloway/assets/img/pages/front/buy-luxury.webp" alt="" width="100%" height="100%" loading="lazy"></div>
+
+				</a>
+			</div>
+		</div>
+	</section>
+
+	<section class="banks">
+		<div class="container">
+			<h3 class="text-center">We offer flexibility and best rates due to the variety of banks & <span class="text-nowrap">lender networks</span> we
+				work with
+			</h3>
+			<div class="flex flex-wrap banks_row">
+				<img src="<?php echo $assets; ?>logos/fm.svg" alt="fm">
+				<img src="<?php echo $assets; ?>logos/bw.svg" alt="bw">
+				<!-- <img src="<?php echo $assets; ?>logos/adb.svg" alt="adb"> -->
+				<img src="<?php echo $assets; ?>logos/teachers-mutual-bank.png" alt="Teachers mutual">
+				<img src="<?php echo $assets; ?>logos/westpac_logo.svg" alt="westpac_logo">
+				<img src="<?php echo $assets; ?>logos/george.svg" alt="george">
+				<img src="<?php echo $assets; ?>logos/macq_logo.png" alt="macq_logo" class="icon_macq_logo">
+				<!-- <img src="<?php echo $assets; ?>logos/homeloans.svg" alt="homeloans"> -->
+				<img src="<?php echo $assets; ?>logos/mebank.jpg" alt="mebank_logo">
+				<img src="<?php echo $assets; ?>logos/nab.svg" alt="nab">
+				<img src="<?php echo $assets; ?>logos/ing.svg" alt="ing">
+				<img src="<?php echo $assets; ?>logos/suncorp.svg" alt="suncorp">
+				<img src="<?php echo $assets; ?>logos/anz.svg" alt="anz">
+				<img src="https://assets-global.website-files.com/6136b19c6ce8df83584ee2cf/6147e7a162f7c8729cdffb97_bank-of-queensland-limited-boq-vector-logo%20copy-2.png" alt="Bank of queensland">
+				<!-- <img src="<?php echo $assets; ?>logos/pm.svg" alt="pm"> -->
+				<img src="<?php echo $assets; ?>logos/cb.svg" alt="cb">
+				<img src="https://www.auswidebank.com.au/Client_Theme/imgs/auswide-bank-logo.png" alt="Auswide Bank">
+				<!-- <img src="<?php echo $assets; ?>logos/amp.svg" alt="amp"> -->
+			</div>
+		</div>
+	</section>
+	<div class="container">
+		<section class="mortagevsrent text-lg-center" id="mortagevsrent">
+			<h2>Compare your current rent with your mortgage payment</h2>
+			<p>Your mortgage payment could be lower than your current rent.</p>
+			<div class="mortagevsrent_calc">
+				<h4>What is your weekly rent?</h4>
+				<p>The rent you are currently paying for the property you live in.</p>
+
+				<div class="calc__slider">
+					<input type="range" min="100" max="2500" value="100" step="50" class="calc__slider-input" />
+					<div class="calc__slider-line"></div>
+					<div class="calc__slider-caption">$100</div>
+					<div class="calc__slider-sides">
+						<div class="calc__slider-min calc__slider-side">$100</div>
+						<div class="calc__slider-max calc__slider-side">$2500</div>
+					</div>
+				</div>
+
+				<div class="calc__btn-wrap">
+					<button class="calc__btn btn_yellow">
+						Calculate
+						<img class="d-lg-none" src="<?php echo $assets; ?>16_arrow_r_black.svg" alt="arrow image">
+					</button>
+				</div>
+			</div>
+		</section>
+
+		<!-- To map **Start** -->
+		<section class="to-map">
+			<div class="to-map__info">
+				<h2>Looking for property in Brisbane?</h2>
+				<p>Compare where to live, invest and buy in 2024 on our interactive map</p>
+				<ul>
+					<li>Housing prices in the area</li>
+					<li>Distance to the nearest public transport</li>
+					<li>Overview of schools</li>
+					<li>Availability of green zones and cafes/bars</li>
+				</ul>
+				<img class="d-lg-none" src="<?php echo $assets; ?>to-map.svg" alt="map image">
+				<a href='/suburbs-map/' target="_blank" class="to-map__button btn_yellow">
+					Explore map
+					<img class="d-lg-none" src="<?php echo $assets; ?>16_arrow_r_black.svg" alt="arrow image">
+				</a>
+			</div>
+		</section>
+
+		<?php get_template_part('template-parts/calculators/calculate-capacity'); ?>
+
+		<section id="why_choose" class="why_choose">
+			<h2 class="text-lg-center">Why Hunter Galloway is the ultimate choice</h2>
+			<div class="flex flex-wrap">
+				<div class="why_choose-item">
+					<p>97%</p>
+					<p>Loan approval rate</p>
+				</div>
+				<div class="why_choose-item">
+					<p>14</p>
+					<p>years of experience</p>
+				</div>
+				<div class="why_choose-item">
+					<p>2,000+</p>
+					<p>Happy customers</p>
+				</div>
+				<div class="why_choose-item">
+					<p>30+</p>
+					<p>Banks and lenders we have direct access to</p>
+				</div>
+			</div>
+		</section>
+		<!-- To map **End** -->
+	</div>
+	<?php include('reviews.php'); ?>
+</div>
+
+
+<script>
+	
+</script>
+
+
+<?php
+
+get_footer();

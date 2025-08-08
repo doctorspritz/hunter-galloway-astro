@@ -1,0 +1,385 @@
+{
+  "home-loans-for-doctors": {
+    "php": [
+      "home-loans-for-doctors.php",
+      "home-loans-for-doctors-1.php"
+    ],
+    "css": [
+      "style-1.css",
+      "style.css",
+      "assets/css/calculator-page.css",
+      "assets/css/templates/single.css",
+      "assets/css/templates/blog.css",
+      "assets/css/pages/stamp-duty-calculator-page.css",
+      "assets/css/pages/stamp-duty-calculator-page-new-post.css",
+      "assets/css/pages/front-page.css",
+      "assets/css/pages/lp.css",
+      "assets/css/pages/lp-fhl.css"
+    ],
+    "sections": [
+      "hero_widget",
+      "widget",
+      "why_choose",
+      "why_choose_widget",
+      "risk_widget",
+      "doctor_right_risk_widget",
+      "doctor_left_risk_widget",
+      "how_much_widget",
+      "doctors_how_much_widget",
+      "why_do_widget",
+      "box_list",
+      "reputation_widget",
+      "dark_holder_widget",
+      "how_difficult_widget",
+      "dark_btn_widget",
+      "reviews_widget",
+      "accordion_widget",
+      "img_btn_widget",
+      "lenders_widget",
+      "text_widget",
+      "blog_text_widget"
+    ]
+  },
+  "nurse-home-loan": {
+    "php": [
+      "nurse-home-loan.php"
+    ],
+    "css": [
+      "style-1.css",
+      "style.css",
+      "assets/css/calculator-page.css",
+      "assets/css/templates/single.css",
+      "assets/css/templates/blog.css",
+      "assets/css/pages/stamp-duty-calculator-page.css",
+      "assets/css/pages/stamp-duty-calculator-page-new-post.css",
+      "assets/css/pages/front-page.css",
+      "assets/css/pages/lp.css",
+      "assets/css/pages/lp-fhl.css"
+    ],
+    "sections": [
+      "hero_widget",
+      "widget",
+      "reputation_widget",
+      "risk_widget",
+      "why_choose",
+      "why_choose_widget",
+      "refinance_risk_widget",
+      "why_do_widget",
+      "how_much_widget",
+      "doctors_how_much_widget",
+      "dark_holder_widget",
+      "refinance_study_risk_widget",
+      "dark_btn_widget",
+      "reviews_widget",
+      "lenders_widget",
+      "img_btn_widget",
+      "accordion_widget",
+      "text_widget"
+    ]
+  },
+  "page-distric": {
+    "php": [
+      "page-district.php"
+    ],
+    "css": [],
+    "sections": []
+  },
+  "contact": {
+    "php": [
+      "page-contact.php"
+    ],
+    "css": [],
+    "sections": []
+  },
+  "post-new-design": {
+    "php": [
+      "single-crs.php"
+    ],
+    "css": [],
+    "sections": []
+  },
+  "suburb-mortgage-broker-page": {
+    "php": [
+      "suburb-template.php"
+    ],
+    "css": [
+      "style-1.css",
+      "style.css",
+      "assets/css/calculator-page.css",
+      "assets/css/templates/single.css",
+      "assets/css/templates/blog.css",
+      "assets/css/pages/stamp-duty-calculator-page.css",
+      "assets/css/pages/stamp-duty-calculator-page-new-post.css",
+      "assets/css/pages/front-page.css",
+      "assets/css/pages/lp.css",
+      "assets/css/pages/lp-fhl.css"
+    ],
+    "sections": [
+      "hero_widget",
+      "widget",
+      "mobile_text_from_hero",
+      "reputation_widget",
+      "box_list",
+      "risk_widget",
+      "why_choose",
+      "why_choose_widget",
+      "text_widget",
+      "dark_holder_widget",
+      "lenders_widget",
+      "accordion_widget"
+    ]
+  },
+  "post-single": {
+    "php": [
+      "post-single-1.php",
+      "post-single.php"
+    ],
+    "css": [
+      "style-1.css",
+      "style.css",
+      "assets/css/calculator-page.css",
+      "assets/css/templates/single.css",
+      "assets/css/templates/blog.css",
+      "assets/css/pages/stamp-duty-calculator-page.css",
+      "assets/css/pages/stamp-duty-calculator-page-new-post.css",
+      "assets/css/pages/front-page.css",
+      "assets/css/pages/lp.css",
+      "assets/css/pages/lp-fhl.css"
+    ],
+    "sections": [
+      "hero_widget",
+      "widget",
+      "reputation_widget",
+      "risk_widget",
+      "why_choose",
+      "why_choose_widget",
+      "why_do_widget",
+      "how_much_widget",
+      "dark_holder_widget",
+      "dark_btn_widget",
+      "reviews_widget",
+      "lenders_widget",
+      "img_btn_widget",
+      "accordion_widget",
+      "text_widget",
+      "video_widget",
+      "mobile_text_from_hero",
+      "box_list",
+      "first_wrap_btn",
+      "second_wrap_btn",
+      "third_wrap_btn",
+      "fourth_wrap_btn",
+      "five_wrap",
+      "six_wrap"
+    ]
+  },
+  "custom-post": {
+    "php": [
+      "single-new.php"
+    ],
+    "css": [],
+    "sections": []
+  },
+  "post-stamp-duty-calculator-template": {
+    "php": [
+      "post-stamp-duty-calculator.php",
+      "template-parts/calculators/calculate-stamp-duty.php"
+    ],
+    "css": [],
+    "sections": []
+  },
+  "\u0441ovid19-b": {
+    "php": [
+      "covid19-b.php"
+    ],
+    "css": [
+      "style-1.css",
+      "style.css",
+      "assets/css/calculator-page.css",
+      "assets/css/templates/single.css",
+      "assets/css/templates/blog.css",
+      "assets/css/pages/stamp-duty-calculator-page.css",
+      "assets/css/pages/stamp-duty-calculator-page-new-post.css",
+      "assets/css/pages/front-page.css",
+      "assets/css/pages/lp.css",
+      "assets/css/pages/lp-fhl.css"
+    ],
+    "sections": [
+      "hero_widget",
+      "widget",
+      "text_widget",
+      "text_width_widget",
+      "pt-widget",
+      "pb-widget",
+      "right_img_widget",
+      "pb2-widget",
+      "why_do_widget",
+      "why_do_warning_widget",
+      "dark_holder_widget",
+      "risk_widget",
+      "time_essence_widget",
+      "yellow_warning_widget",
+      "dark_btn_widget",
+      "reputation_widget",
+      "why_choose",
+      "why_choose_widget",
+      "reviews_widget",
+      "lenders_widget",
+      "img_btn_widget",
+      "accordion_widget",
+      "pb3-widget",
+      "pb3-widget-sm"
+    ]
+  },
+  "our-team": {
+    "php": [
+      "page-ourteam.php"
+    ],
+    "css": [],
+    "sections": []
+  },
+  "\u0441ovid19-a": {
+    "php": [
+      "covid19-a.php"
+    ],
+    "css": [
+      "style-1.css",
+      "style.css",
+      "assets/css/calculator-page.css",
+      "assets/css/templates/single.css",
+      "assets/css/templates/blog.css",
+      "assets/css/pages/stamp-duty-calculator-page.css",
+      "assets/css/pages/stamp-duty-calculator-page-new-post.css",
+      "assets/css/pages/front-page.css",
+      "assets/css/pages/lp.css",
+      "assets/css/pages/lp-fhl.css"
+    ],
+    "sections": [
+      "hero_widget",
+      "widget",
+      "text_widget",
+      "text_width_widget",
+      "pt-widget",
+      "pb-widget",
+      "risk_widget",
+      "refinance_risk_widget",
+      "pb2-widget",
+      "time_essence_widget",
+      "dark_holder_widget",
+      "reputation_widget",
+      "dark_btn_widget",
+      "why_choose",
+      "why_choose_widget",
+      "reviews_widget",
+      "lenders_widget",
+      "img_btn_widget",
+      "accordion_widget",
+      "pb3-widget",
+      "pb3-widget-sm"
+    ]
+  },
+  "what-we-do": {
+    "php": [
+      "page-whatwedo.php"
+    ],
+    "css": [],
+    "sections": []
+  },
+  "map-page": {
+    "php": [
+      "page-mappage.php"
+    ],
+    "css": [
+      "style.css",
+      "style-1.css",
+      "assets/css/_app.css",
+      "assets/css/calculator-page.css",
+      "assets/css/sections/awards.css",
+      "assets/css/templates/single.css",
+      "assets/css/templates/blog.css",
+      "assets/css/pages/stamp-duty-calculator-page.css",
+      "assets/css/pages/stamp-duty-calculator-page-new-post.css",
+      "assets/css/pages/lp.css",
+      "assets/css/pages/front-page.css",
+      "assets/css/pages/lp-fhl.css"
+    ],
+    "sections": [
+      "map-wrapper",
+      "suburb-loan",
+      "container"
+    ]
+  },
+  "who-we-help": {
+    "php": [
+      "page-whowehelp.php"
+    ],
+    "css": [],
+    "sections": []
+  },
+  "refinance-home-loan": {
+    "php": [
+      "refinance-home-loan.php"
+    ],
+    "css": [
+      "style-1.css",
+      "style.css",
+      "assets/css/calculator-page.css",
+      "assets/css/templates/single.css",
+      "assets/css/templates/blog.css",
+      "assets/css/pages/stamp-duty-calculator-page.css",
+      "assets/css/pages/stamp-duty-calculator-page-new-post.css",
+      "assets/css/pages/front-page.css",
+      "assets/css/pages/lp.css",
+      "assets/css/pages/lp-fhl.css"
+    ],
+    "sections": [
+      "hero_widget",
+      "widget",
+      "refinance_widget",
+      "risk_widget",
+      "refinance_risk_widget",
+      "why_choose",
+      "why_choose_widget",
+      "why_do_widget",
+      "how_much_widget",
+      "dark_holder_widget",
+      "reputation_widget",
+      "refinance_study_risk_widget",
+      "dark_btn_widget",
+      "reviews_widget",
+      "lenders_widget",
+      "img_btn_widget",
+      "accordion_widget",
+      "text_widget"
+    ]
+  },
+  "blog-template": {
+    "php": [
+      "blog.php"
+    ],
+    "css": [],
+    "sections": []
+  },
+  "deposit-calculator-template": {
+    "php": [
+      "post-deposit-calculator.php"
+    ],
+    "css": [],
+    "sections": []
+  },
+  "get-free-assessment-template": {
+    "php": [
+      "get-free-assessment.php"
+    ],
+    "css": [],
+    "sections": []
+  },
+  "post-stamp-duty-calculator-template-(new-post-design)": {
+    "php": [
+      "post-stamp-duty-calculator-new-post-design.php",
+      "template-parts/calculators/calculate-stamp-duty.php"
+    ],
+    "css": [],
+    "sections": []
+  }
+}

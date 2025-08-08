@@ -1,0 +1,3110 @@
+<?php
+/**
+ * Template Name: Suburb Mortgage Broker Page
+ * Description: Custom template for suburb-specific mortgage broker pages
+ * 
+ * ACF FIELDS REQUIRED:
+ * - suburb_hero_image: Image field, used for the hero background (recommended: 1920x1080px)
+ *   This allows each suburb page to have a unique background image relevant to that suburb.
+ *   If not provided, a default image will be used.
+ */
+
+get_header(); 
+
+// Add Font Awesome for icons
+echo '<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">';
+
+// Basic suburb information
+$suburb = get_field('suburb_name');
+$suburb_slug = get_field('suburb_slug');
+$postcode = get_field('postcode');
+$coordinates = get_field('coordinates');
+// Get the separate latitude and longitude fields
+$latitude = get_field('latitude');
+$longitude = get_field('longitude');
+
+// If the separate fields don't exist yet, try to get them from the coordinates object
+if (empty($latitude) && !empty($coordinates['lat'])) {
+    $latitude = $coordinates['lat'];
+}
+if (empty($longitude) && !empty($coordinates['lng'])) {
+    $longitude = $coordinates['lng'];
+}
+
+// Fallback to default Brisbane coordinates if still empty
+if (empty($latitude)) {
+    $latitude = -27.4698;
+}
+if (empty($longitude)) {
+    $longitude = 153.0251;
+}
+
+// Hero background image for this suburb page
+// Recommended size: 1920x1080px, optimized for web (< 300KB)
+$suburb_hero_image = get_field('suburb_hero_image');
+
+// Description fields
+$suburb_description = get_field('suburb_description');
+$education = get_field('education');
+$parks_recreation = get_field('parks_recreation');
+$shopping_dining = get_field('shopping_dining');
+
+// Lifestyle and transportation
+$walkability = get_field('walkability');
+$walkability_description = get_field('walkability_description');
+
+// Housing market data
+$property_description = get_field('property_description');
+$bedrooms_description = get_field('bedrooms_description');
+$market_houses = get_field('market_houses');
+$market_units = get_field('market_units');
+$days_on_market_houses = get_field('days_on_market_houses');
+$days_on_market_units = get_field('days_on_market_units');
+
+// Demographics
+$demographics_population = get_field('demographics_population');
+$demographics_median_age = get_field('demographics_median_age');
+$demographics_families = get_field('demographics_families');
+$demographics_weekly_rent = get_field('demographics_weekly_rent');
+$demographics_weekly_income = get_field('demographics_weekly_income');
+$demographics_crime_score = get_field('demographics_crime_score');
+$crime_descriptions = get_field('crime_descriptions');
+
+// Nearby suburbs
+$closest_suburb_1 = get_field('closest_suburb_1');
+$closest_suburb_2 = get_field('closest_suburb_2');
+$closest_suburb_3 = get_field('closest_suburb_3');
+$closest_suburb_4 = get_field('closest_suburb_4');
+$closest_suburb_5 = get_field('closest_suburb_5');
+
+// Our initial variables - used in multiple places
+$dwellings_houses = 0;
+$dwellings_apartments = 0;
+$dwellings_townhouses = 0;
+$bedrooms_1 = 0;
+$bedrooms_2 = 0;
+$bedrooms_3 = 0;
+$bedrooms_4plus = 0;
+$housing_market_description = "";
+$population = $demographics_population;
+$median_house_price = $market_houses; 
+$median_unit_price = $market_units;
+$transportation_options = $walkability_description;
+
+// Fallback in case Custom Fields are not set
+if (empty($suburb)) {
+    $suburb = get_the_title();
+    $suburb_slug = sanitize_title($suburb);
+}
+
+$check_img = '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+<path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" fill="#FFB027"/>
+<path d="M7 12.3403L10.6527 16L17.6666 8.99304L16.6597 8L10.6527 14L7.99301 11.3403L7 12.3403Z" fill="black"/>
+</svg>';
+$check_green_img = '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+<path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" fill="#77B255"/>
+<path d="M7 12.3403L10.6527 16L17.6666 8.99304L16.6597 8L10.6527 14L7.99301 11.3403L7 12.3403Z" fill="white"/>
+</svg>';
+$elipsis_svg = '<svg xmlns="http://www.w3.org/2000/svg" width="116" height="54" viewBox="0 0 116 54" fill="none">
+<g filter="url(#filter0_f_78_1408)">
+<ellipse cx="58" cy="27" rx="46" ry="15" fill="#00838A"/>
+</g>
+<defs>
+<filter id="filter0_f_78_1408" x="0" y="0" width="116" height="54" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+<feFlood flood-opacity="0" result="BackgroundImageFix"/>
+<feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape"/>
+<feGaussianBlur stdDeviation="6" result="effect1_foregroundBlur_78_1408"/>
+</filter>
+</defs>
+</svg>';
+?>
+
+<!-- Schema.org markup for local business -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ProfessionalService",
+  "name": "Hunter Galloway Mortgage Brokers - <?php echo esc_attr($suburb); ?>",
+  "description": "Professional mortgage brokers serving <?php echo esc_attr($suburb); ?> and surrounding areas in Brisbane",
+  "url": "<?php echo esc_url(get_permalink()); ?>",
+  "telephone": "+61733766400",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Level 34, 1 Eagle St",
+    "addressLocality": "Brisbane",
+    "addressRegion": "QLD",
+    "postalCode": "4000",
+    "addressCountry": "AU"
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": "<?php echo esc_attr($latitude); ?>",
+    "longitude": "<?php echo esc_attr($longitude); ?>"
+  },
+  "areaServed": {
+    "@type": "City",
+    "name": "<?php echo esc_attr($suburb); ?>"
+  },
+  "priceRange": "$$",
+  "openingHours": ["Mo-Fr 7:00-21:00", "Sa 8:00-17:30"],
+  "sameAs": ["https://www.facebook.com/MortgageBrokerBrisbane/", "https://www.huntergalloway.com.au/"]
+}
+</script>
+
+<style>
+    .home__nav-wrap {
+        display: flex;
+        align-items: flex-start;
+        justify-content: center;
+        margin: 0;
+        padding: 0 10px;
+    }
+    .home__nav-body {
+        /*padding: 0 10px;*/
+        padding: 0;
+        min-width: 0;
+    }
+    .sidebar-nav {
+        /*padding: 0 10px;*/
+        position: sticky;
+        width: 290px;
+        flex-shrink: 0;
+        top: 40px;
+        padding-top: 20px;
+        padding-left: 10px;
+        padding-bottom: 20px;
+    }
+
+    @keyframes bounce {
+      0%, 100% {
+        transform: translateY(0);
+    }
+    35% {
+        transform: translateY(-6px);
+    }
+    65% {
+        transform: translateY(6px);
+    }
+}
+
+
+.sidebar-nav:after {
+    content: none;
+    position: absolute;
+    bottom: -10px;
+    left: 8px;
+    width: 16px;
+    height: 16px;
+    background: url('<?php echo get_template_directory_uri(); ?>/images/sidebar-nav-arrows.svg');
+    background-size: contain;
+    animation: bounce 1s infinite;
+}
+
+.sidebar-nav__item {
+    position: relative;
+    display: block;
+    font-size: 16px;
+    line-height: 1.1;
+    letter-spacing: -0.01em;
+    color: #000;
+    transition: color 0.35s;
+    opacity: 0.5;
+    padding-left: 15px;
+}
+.sidebar-nav__item:hover {
+    opacity: 0.8;
+    transition: color 0.35s;
+}
+.sidebar-nav__item:before {
+    content: '';
+    position: absolute;
+    left: 2px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: #FFBA3A;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    transition: 0.35s;
+}
+.sidebar-nav__item + .sidebar-nav__item  {
+    margin-top: 10px;
+}
+
+.sidebar-nav__item.active {
+    opacity: 1;
+    font-weight: 700;
+}
+
+.sidebar-nav__item.active:before {
+    width: 9px;
+    height: 9px;
+    left: 0;
+}
+@media (max-width:1100px) {
+    .home__nav-wrap {
+        display: block;
+    }
+    .sidebar-nav {
+        display: none;
+    }
+}
+	
+	/* 	common */
+	.box_list{
+		margin: 0 0 110px;
+	}
+	
+	
+	#main-content .inner_widget p{
+		font-weight: 400;
+		font-size: 14px;
+		line-height: 143%;
+	}
+	
+	#main-content .inner_title{
+		font-weight: 700;
+		font-size: 40px;
+		line-height: 54px;
+		text-align: center;
+		text-transform: capitalize;
+		margin: 0 0 32px;
+		padding: 0;
+	}
+	
+	.hero_widget {
+		background: url(https://conversionratestore.github.io/projects/hantergalloway/img/banner_new.png) no-repeat center right;
+    	background-size: cover;
+		padding: 90px 0 90px 121px;
+	}
+	
+	.hero_widget:after{
+		content: unset;
+	}
+	
+	.hero_widget .container{
+		padding: 0 !important;
+	}
+	
+	.hero_widget .inner_widget{
+		text-align: start;
+		padding: 0;
+    width: fit-content;
+	}
+	
+	.hero_widget .hero_title{
+		margin-bottom: 12px;
+		padding: 0;
+		font-weight: 700;
+		font-size: 60px;
+		line-height: 107%;
+		text-transform: capitalize;
+	}
+	
+	.hero_widget .hero_subtitle{
+		padding: 0;
+		font-weight: 400;
+		font-size: 16px !important;
+		line-height: 28px !important;	
+		margin: 0 0 32px 0;
+	}
+	
+	.hero_widget .hero_text{
+		padding: 0;
+		margin-bottom: 12px;
+		font-weight: 600;
+		font-size: 16px;
+		line-height: 1.38;
+		color: #FFB027;	
+	}
+	
+	.hero_widget .btn_wrap{
+		padding: 0;
+		margin: 0 0 8px 0;
+		width: 305px;
+	}
+	
+	.widget .btn_yellow{
+		min-height: 42px;
+		font-weight: 600;
+		font-size: 15px;
+		line-height: 173%;
+		background: #FFB027;
+		box-shadow: 0px 3px 1px -2px rgba(0, 0, 0, 0.2), 0px 2px 2px rgba(0, 0, 0, 0.14), 0px 1px 5px rgba(0, 0, 0, 0.12);
+		border-radius: 20px;
+		text-transform: capitalize;
+		padding: 5px;
+	}
+	
+	.hero_widget .hero_text.bottom-text{
+		margin: 0;
+		font-weight: 400;
+		font-size: 12px;
+		line-height: 16px;
+		color: #FFFFFF;
+	}
+	
+	.risk_widget .inner_widget{
+		background: #F2F2F2;
+		border-radius: unset;
+		padding: 64px 0 48px 48px;
+	}
+	
+	.risk_widget .risk_holder{
+		display: block;
+	}
+	
+	.risk_widget .risk_inner-left{
+		width: unset;
+		z-index: 1;
+	}
+	
+	.risk_widget .risk_inner-left > div{
+		text-align: center;
+		font-weight: 400;
+		font-size: 14px;
+		line-height: 1.43;
+	}
+	
+	.risk_widget .risk_list{
+		padding: 0;
+		margin-top: 32px;
+	}
+	
+	.risk_list li{
+		padding: 24px;
+		width: 40%;
+		background: #FFFFFF;
+		border-radius: 10px;
+	}
+	
+	.risk_list li:not(:last-child){
+		margin-bottom: 32px;
+	}
+	
+	#risk_widget .risk_list .list_title{
+		margin-bottom: 15px;
+		padding: 0 0 0 40px;
+		position: relative;
+		font-weight: 700;
+	}
+	
+	.risk_list .list_text{
+		font-weight: 400;
+		font-size: 14px;
+		line-height: 1.43;
+		padding: 0;
+	}
+	
+	.risk_list .list_text:nth-child(2){
+		margin-bottom: 10px;
+	}
+	
+	.risk_widget .risk_imgwrap{
+		width: unset;
+	}
+	
+	#main-content{
+		padding: 0;
+	}
+	
+	.home__nav-wrap{
+		padding: 0;		
+		width: 90%;
+		max-width: 1200px;
+		margin: 0 auto;
+	}
+	
+	.sidebar-nav{
+		margin-left: 35px;
+		padding-left: 0;
+		padding-top: 0;
+		margin-top: 75px;
+	}
+	
+	.risk_list .scheme_ico:before, .risk_list .umbrella_ico:before{
+		content: unset;
+	}
+	
+	
+	.risk_list .list_title:before{
+		position: absolute;
+		content: "";
+		width: 24px;
+		height: 24px;
+		left: 0;
+        top: 50%;
+        transform: translateY(-50%);
+		background: url(https://conversionratestore.github.io/projects/hantergalloway/img/bi_umbrella.svg) center center no-repeat;
+		background-size: contain;
+	}
+	
+	.risk_list li.scheme_ico .list_title:before{
+		background: url(https://conversionratestore.github.io/projects/hantergalloway/img/cil_bank.svg) center center no-repeat;
+	}
+	
+		/* #why_choose	 */
+	
+	.why_choose_prize{
+		margin-bottom: 8px;
+	}
+	
+	.why_choose_prize > span{
+		font-weight: 400;
+		font-size: 24px;
+		line-height: 140%;
+	}
+	
+	.why_choose_widget .why_choose_title{
+		margin-bottom: 40px;
+		font-weight: 700;
+		font-size: 40px;
+		line-height: 1.35;
+	}
+	.why_choose_widget .why_choose_blocks{
+		margin-bottom: 110px;
+	}
+	
+	.why_choose_widget .why_choose_blocks .why_choose_item{
+		padding: 32px;
+		width: 31%;
+		background: linear-gradient(0deg, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.9)), #5BD5FA;
+		border-radius: 10px;
+	}
+	
+	.why_choose_item img {
+		margin-bottom: 27px;
+		width: 60px;
+		height: 60px;
+	}
+	
+	.why_choose_widget .why_choose_item_title{
+		margin-bottom: 8px;
+		font-weight: 700;
+		font-size: 20px;
+		line-height: 1.25;
+	}
+	
+	.why_choose_item_text{
+		font-weight: 400;
+		font-size: 14px;
+		line-height: 1.43;
+		color: #000000;
+	}
+	
+	.why_choose_item_text > a{
+		color: #000000;
+	}
+	
+	div.et_pb_section.et_pb_section_1{
+		background: #FFFFFF !important;
+	}
+	
+	.wpb_wrapper .h1{
+		margin-bottom: 12px;
+	}
+	
+	.wpb_wrapper .h1 strong{
+		font-size: 40px;
+		line-height: 1.35;
+		color: #000000;
+		text-transform: capitalize;
+	}
+	
+	.wpb_wrapper > p{
+		font-weight: 400;
+		font-size: 24px;
+		line-height: 140%;
+		color: #000000;
+	} 
+	
+	.why_choose_widget .btn_wrap, .dark_holder_widget{
+		background: #262626;
+		border-radius: 10px;
+		padding: 28px 32px;
+		width: 100%;
+	}
+	
+	.why_choose_widget .btn_wrap > p{
+		font-weight: 700;
+		font-size: 32px;
+		line-height: 1.38;
+		color: #FFFFFF;
+		max-width: 393px;
+	}
+	
+	.why_choose_widget .btn_wrap a.btn_yellow{
+		width: 343px;
+	}
+	
+	.why_choose{
+		margin-bottom: 0;
+	}
+	
+	.why_do_widget{
+		background: unset;
+		padding: 0;
+	}
+	
+	
+	.why_do_widget .subtitle{
+		font-weight: 400;
+		font-size: 14px;
+		line-height: 1.43;
+	}
+	
+	.why_do_widget .why_do_holder{
+		background: #FFF7E9;
+		border-radius: 10px;
+		padding: 40px 48px;
+		margin: 40px 0 0;
+		color: #000000;
+		justify-content: space-between;
+	}
+	
+	.why_do_widget .col_yellow, .why_do_widget .col_dark{
+		background: unset;
+		padding: 0;
+		color: inherit;
+	}
+	
+	.why_do_widget .col_yellow{
+		margin-right: 40px;
+	}
+	
+	.why_do_widget .col_yellow > div > img, .why_do_widget .col_dark > div > img{
+		height: 34px;
+	}
+	
+	.why_do_holder .col_title{
+		padding: 0;
+		margin-bottom: 24px;
+	}
+	
+	.why_do_holder .col_dark .col_title{
+		padding: 0;
+	}
+	
+	#why_do_widget .why_do_holder .col_title > p{
+		font-weight: 800;
+		font-size: 20px;
+		line-height: 160%;		
+	}
+	
+	.why_do_holder li{
+		font-weight: 400;
+		font-size: 14px;
+		line-height: 157%;
+		position: relative;
+	}
+	
+	.why_do_widget .col_yellow li{
+		font-weight: 600;
+	}
+	
+	.why_do_widget .col_dark li:before, .why_do_widget .col_yellow li:before{
+		top: 0;
+		left: 0;
+		z-index: 2;
+	}
+	
+	.why_do_widget .col_dark li:before{
+		background: #D0D0D0 url("https://conversionratestore.github.io/projects/hantergalloway/img/stop_icon.svg") center center no-repeat;
+		border-radius: 50%;
+	}
+	
+	.why_do_widget .col_yellow li:before{
+		background: #FFB027 url("https://conversionratestore.github.io/projects/hantergalloway/img/akar_icons_check.svg") center center no-repeat;
+		border-radius: 50%;
+		width: 32px;
+    	height: 32px;
+	}
+	
+	.why_do_widget .col_dark li:not(:last-child):after, .why_do_widget .col_yellow li:not(:last-child):after{
+		content: "";
+		top: 0;
+		left: 16px;
+		border-left: 1px solid #D0D0D0;
+		width: 1px;
+		height: calc(100% + 42px);
+		position: absolute;
+	}
+	
+	.why_do_widget .col_yellow li:not(:last-child):after{
+		border-left: 1px solid #FFB027;
+	}
+	
+	.why_do_holder li{
+		padding: 0 0 0 50px;
+	}
+	
+	.why_do_holder li:not(:last-child){
+		margin-bottom: 40px;
+	}
+	
+	.how_much_widget{
+		padding: 0;
+		margin: 110px 0;
+	}
+	
+	.how_much_widget .how_much_holder{
+		display: block;
+		text-align: center;
+		background: #F2F2F2;
+		border-radius: 10px;
+		padding: 40px 42px;
+	}
+	
+	.how_much_widget .col_img, 
+	.how_much_widget .col_text{
+		width: unset;
+		padding: 0;
+	}
+	
+	.how_much_widget .col_text{
+		margin-top: 32px;
+	}
+
+	
+	#main-content .how_much_widget .col_text p{
+		font-weight: 400;
+		font-size: 15px;
+		line-height: 173%;
+		padding: 0;
+	}
+	
+	.how_much_widget .col_text p:nth-child(2){
+		margin-bottom: 30px;
+	}
+	
+	.dark_holder_widget .inner_widget{
+		justify-content: space-between;
+		flex-wrap: unset;
+	}
+	
+	.dark_holder_widget .btn_wrap{
+		min-width: 287px;
+	}
+	
+	#roadmap_widget .dark_holder_widget .btn_wrap{
+		min-width: 277px;
+	}
+	
+	#main-content .dark_holder_widget.widget .inner_title{
+		font-weight: 700;
+		font-size: 32px;
+		line-height: 1.38;
+		text-transform: unset;
+		margin: 0;
+		text-align: left;
+	}
+	
+
+	
+	.difficult_holder .col_text{
+		width: unset;
+	}
+	
+	/* 	 */
+	.broker_question ul li{
+		margin-bottom: 1em;
+	}
+	
+	.broker_question ul li  > span > span{
+		margin-left: 10px;
+	}
+	
+	.text_widget p + .inner_title{
+		padding: 0;
+	}
+
+	
+	.fluid-width-video-wrapper iframe{
+		border-radius: 20px;
+	}
+	
+	.btn_contact_us{
+		padding-top: 110px;
+	}
+	
+	/* 	.accordion_widget */
+	.accordion_widget .et_pb_toggle{
+		background: unset;
+		margin: 0;
+		border-top: 1px solid #000000;
+		border-bottom: 1px solid #000000;
+	}
+	
+	.accordion_widget .et_pb_toggle:first-child{
+		border-top: unset;
+	}
+	.accordion_widget .et_pb_toggle_content{
+		border-top: 1px solid #000000;
+		padding: 24px 0;
+	}
+	
+	.accordion_widget h5.et_pb_toggle_title{
+		padding: 24px 0 24px 56px;
+	}
+	
+	.accordion_widget .et_pb_toggle_title:before, .accordion_widget .et_pb_toggle_title:after{
+		left: 0;
+		right: unset;
+		width: 30px;
+		height: 30px;
+		background: url(https://conversionratestore.github.io/projects/hantergalloway/img/what_we_do/plus.svg) center no-repeat;
+		border: 1px solid #000000;
+		border-radius: 4px;
+		top: 30%;
+	}
+	
+	.accordion_widget .et_pb_toggle_title:after{
+		content: unset;
+	}
+	
+	.accordion_widget .et_pb_toggle_open .et_pb_toggle_title:before{
+		width: 32px;
+		height: 32px;
+		background: #FFBA3A url(https://conversionratestore.github.io/projects/hantergalloway/img/what_we_do/minus.svg) center no-repeat;
+		border-radius: 4px;
+		border: none;
+		top: 30%;
+	}
+	
+	/* reviews_widget	 */
+	#reviews_widget{
+		background: unset;
+	}
+	
+	.photo_team,  .fluid-width-video-wrapper{
+		margin-top: 110px;
+	}
+	
+	.complex_credit{
+		background: linear-gradient(0deg, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.9)), #5BD5FA;
+		border-radius: 20px;
+		padding: 48px;
+	}
+	
+	.complex_credit .fluid-width-video-wrapper{
+		margin-top: 32px;
+	}
+	
+	.credit_scores{
+		background: #F2F2F2;
+		border-radius: 20px;
+		padding: 48px;
+	}
+	
+	.dark_holder_widget.widget.box_list.six_wrap .btn_wrap{
+		min-width: 382px;		
+	}
+	
+	.dark_holder_widget.widget.box_list.five_wrap .btn_wrap{
+		min-width: 285px;		
+	}
+	
+	.dark_holder_widget.widget.box_list.fourth_wrap_btn  .btn_wrap{
+		min-width: 348px;		
+	}
+	
+	.dark_holder_widget.widget.box_list.third_wrap_btn  .btn_wrap{
+		min-width: 277px;		
+	}
+	
+	.dark_holder_widget.widget.box_list.second_wrap_btn  .btn_wrap{
+		min-width: 287px;		
+	}
+	
+	.dark_holder_widget.widget.box_list.first_wrap_btn .btn_wrap{
+		min-width: 343px;		
+	}
+	
+	#lenders_widget{
+		background: #F6F6F6;
+		padding: 40px 20px;
+	}
+	
+	.lenders_widget .inner_widget{
+		padding: 0;
+	}
+	
+	#lenders_widget .inner_title{
+		font-size: 40px;
+    	font-weight: 900;
+		margin-bottom: 40px;
+		text-transform: unset;
+		line-height: 1em;
+	}
+	
+	.lenders_widget_box ul{
+		display: flex;
+    	flex-wrap: wrap;
+		align-items: center;
+    	justify-content: space-between;
+		margin: 0 0 -20px;
+	}
+	
+	.lenders_widget_box ul li{
+		width: 17%;
+		margin-bottom: 20px;
+	}
+	
+	.lenders_widget, .lenders_widget .img_holder{
+		padding: 0;
+	}
+	
+	#main-content .reviews_widget .slide_item .user_name{
+		font-size: 17px;
+		font-weight: 900;
+		padding: 0 0 7px;
+	}
+	
+	.reviews_widget{
+		padding: 0;
+	}
+	
+	.reputation_widget{
+		padding: 0;
+		margin-top: 75px;
+	}
+	
+	#reputation_widget .inner_title{
+		text-transform: unset;
+	}
+	#risk_widget .inner_title{
+		margin-bottom: 16px;
+		line-height: 46px;
+	}
+	
+	#why_do_widget .inner_title, #how_difficult_widget .inner_title{
+		margin-bottom: 16px;
+	}
+	
+	#how_difficult_widget.inner_widget{
+		background: #F2F2F2;
+		border-radius: 20px;
+		padding: 48px;
+	}
+	
+	#how_difficult_widget.inner_widget p.subtitle{
+		font-weight: 400;
+		font-size: 14px;
+		line-height: 1.38;
+		text-transform: capitalize;
+		margin-bottom: 42px;
+		text-align: center;
+		padding: 0;
+	}
+	
+	#how_difficult_widget.inner_widget > p:nth-child(3){
+		font-weight: 700;
+		font-size: 14px;
+		line-height: 1.38;
+		text-align: center;
+		padding: 0;
+	}
+	
+	#how_much_widget .inner_title{
+		margin-bottom: 16px;
+		font-size: 29px;
+		line-height: 39px;
+		text-transform: unset;
+	}
+	
+	#how_difficult_widget ul{
+		margin-top: 42px;
+		padding-left: 70px;
+		position: relative;
+	}
+	
+	#how_difficult_widget ul:before {
+		background: #FFBA3A;
+		content: "";
+		position: absolute;
+		width: 1px;
+		height: 100%;
+		top: 0;
+		left: 25px;
+	}
+	
+	#how_difficult_widget ul:after {
+		background: #FFBA3A;
+		content: "";
+		position: absolute;
+		width: 9px;
+		height: 9px;
+		bottom: 0;
+		border-radius: 50%;
+		left: 21px;
+	}
+	
+	#how_difficult_widget ul li:not(:last-child) {
+		margin-bottom: 48px;
+	}
+	
+	#how_difficult_widget ul li:before {
+		content: "";
+		position: absolute;
+		width: 32px;
+		height: 32px;
+		background: #FFBA3A url(https://conversionratestore.github.io/projects/hantergalloway/img/what_we_do/svg14.svg) center no-repeat;
+		border-radius: 40px;
+		left: 0;
+		padding: 11px;
+	}
+	
+	#how_difficult_widget ul li:nth-child(2):before{
+		background: #FFBA3A url(https://conversionratestore.github.io/projects/hantergalloway/img/what_we_do/svg1.svg) center no-repeat;
+	}
+	
+	#how_difficult_widget ul li:nth-child(3):before{
+		background: #FFBA3A url(https://conversionratestore.github.io/projects/hantergalloway/img/what_we_do/svg_3_page2.svg) center no-repeat;
+	}
+	
+	#how_difficult_widget ul li:nth-child(4):before{
+		background: #FFBA3A url(https://conversionratestore.github.io/projects/hantergalloway/img/what_we_do/svg_4_page2.svg) center no-repeat;
+	}
+	
+	#how_difficult_widget ul li span {
+		font-weight: 400;
+		font-size: 14px;
+		line-height: 229%;
+		color: #000000;
+		margin-bottom: 8px;
+	}
+	
+	#how_difficult_widget ul li h3 {
+		font-weight: 800;
+		font-size: 20px;
+		line-height: 160%;
+		color: #000000;
+		text-align: left;
+		padding: 0;
+		margin-bottom: 12px;
+	}
+	
+	#how_difficult_widget ul li div{
+		background: #FFFFFF;
+		border-radius: 10px;
+		padding: 24px;
+	}
+	
+	.mobile_text_from_hero, .link_pages, .new_mobile_header{
+		display: none;
+	}
+	
+	/* 	mobile */
+	
+	/* hero	 */
+	@media (max-width: 768px) {
+		body .mobilehead{
+			display: none;
+		}
+		
+		.mobilehead, #et-main-area{
+			margin: 0;
+		}
+		
+		.new_mobile_header{
+			display: flex;
+			justify-content: space-between;
+			padding: 20px 0;
+			width: 90%;
+			max-width: 1200px;
+			margin: 0 auto;
+		}
+		
+		.new_mobile_header .mobilehead_logo{
+			width: 35%;
+		}
+		
+		.new_mobile_header >div:last-child{
+			width: 60%;
+		}
+		
+		.mobilehead_logo img{
+			height: 42px;
+    		width: 118px;
+		}
+		
+		.new_mobile_header ul{
+			display: flex;
+			justify-content: space-between;
+			margin-top: 15px;
+		}
+		
+		.new_mobile_header ul a.mobilehead_phone_tel{
+			font-weight: 700;
+			font-size: 16px;
+			line-height: 135%;
+			color: #000000;
+		}
+		
+		.new_mobile_header a.mobilehead_phone_link{
+			font-weight: 400;
+			font-size: 15px;
+			line-height: 130%;
+			color: #000000;
+			border-bottom: 1px dashed #000000;
+			text-decoration: unset;
+		}
+		
+		.new_mobile_header .header_button_flex a{
+			font-weight: 600;
+			font-size: 15px;
+			line-height: 173%;
+			height: 42px;
+			background: #FFB027;
+			box-shadow: 0px 3px 1px -2px rgba(0, 0, 0, 0.2), 0px 2px 2px rgba(0, 0, 0, 0.14), 0px 1px 5px rgba(0, 0, 0, 0.12);
+			border-radius: 20px;
+		}
+		
+		.link_pages{
+			background: #F2F2F2;
+			padding: 18px 14px;
+			display: block;
+		}
+		
+		.link_pages ul{
+			display: flex;
+			justify-content: space-between;
+    		align-items: center;
+		}
+		
+		.link_pages ul li{
+			padding: 5px 0;
+			width: 30%;
+		}
+		
+		.link_pages ul li a{
+			font-weight: 400;
+			font-size: 15px;
+			line-height: 130%;
+			border-bottom: 1px dashed #000000;
+			color: #000000;
+		}
+		
+		.link_pages ul li:not(:last-child){
+			border-right: 1px solid #DCDCDC;
+		}
+		
+		.hero_widget{
+			padding: 34px 0 34px 31px;
+		}
+
+		.hero_text, .hero_subtitle, .hero_widget .btn_wrap, .hero_text.bottom-text{
+			display: none;
+		}
+
+		.hero_widget .hero_title{
+			font-size: 20px;
+			line-height: 27px;
+			margin: 0;
+			max-width: 205px;
+		}
+		
+		.mobile_text_from_hero{
+			display: block;
+			margin-top: 29px;
+		}
+		.mobile_text_from_hero .hero_subtitle{
+			display: block;
+			font-weight: 600;
+			font-size: 14px;
+			line-height: 19px;
+			text-align: center;
+			text-transform: capitalize;
+			color: #000000;
+			margin-bottom: 18px;
+			padding: 0;
+		}
+		
+		.mobile_text_from_hero .hero_text.bottom-text{
+			display: block;
+			font-weight: 400;
+			font-size: 12px;
+			line-height: 16px;
+			text-align: center;
+		}
+		
+		.mobile_text_from_hero .btn_wrap{
+			width: 305px;
+			margin: 0 auto 8px;
+		}
+		
+		.mobile_text_from_hero .btn_wrap .btn_yellow{
+			background: #FFB027;
+			box-shadow: 0px 3px 1px -2px rgba(0, 0, 0, 0.2), 0px 2px 2px rgba(0, 0, 0, 0.14), 0px 1px 5px rgba(0, 0, 0, 0.12);
+			border-radius: 20px;
+			font-weight: 600;
+			font-size: 15px;
+			line-height: 173%;
+			height: 42px;
+		}
+
+		/* common	 */
+		#main-content .inner_title{
+			margin-bottom: 24px;
+			font-size: 30px;
+			line-height: 100%;
+			letter-spacing: -0.01em;
+			text-transform: unset;
+		}
+		
+		.box_list{
+			margin-bottom: 50px; 
+		}
+		
+		.text_widget{
+			padding: 0;
+		}
+		
+		.dark_holder_widget{
+			padding: 32px 16px;
+			margin: 0 -6% 50px;
+			max-width: 113%;
+			width: 113%;
+			border-radius: unset;
+		}
+		
+		.dark_holder_widget .inner_widget{
+			flex-wrap: wrap;
+		}
+		
+		#lenders_widget{
+		margin: 0 -6%;
+		max-width: 113%;
+		width: 113%;
+		background: #F6F6F6;
+		padding: 40px 30px;
+	}
+	
+	.lenders_widget .inner_widget{
+		padding: 0;
+	}
+	
+	#lenders_widget .inner_title{
+		max-width: 306px;
+		margin: 0 auto 30px;
+	}
+	
+	.lenders_widget_box ul{
+		display: flex;
+    	flex-wrap: wrap;
+		align-items: center;
+    	justify-content: space-between;
+		margin: 0 0 -20px;
+	}
+	
+	.lenders_widget_box ul li{
+		width: 45%;
+		margin-bottom: 20px;
+	}
+	
+	.lenders_widget, .lenders_widget .img_holder{
+		padding: 0;
+	}
+		
+		#main-content .dark_holder_widget.widget .inner_title{
+			font-weight: 800;
+			font-size: 20px;
+			line-height: 160%;
+			text-align: center;
+			text-transform: capitalize;
+			margin-bottom: 24px;
+		}
+		
+		.dark_holder_widget.widget.box_list .btn_wrap{
+			padding: 0;
+			width: 100%;
+			min-width: unset !important;
+		}
+		
+		.dark_holder_widget.widget.box_list.six_wrap .btn_wrap{
+			min-width: unset;
+		}
+		
+		.dark_holder_widget.widget.box_list.second_wrap_btn{
+			margin-bottom: 0;
+		}
+		
+		.dark_holder_widget.widget.box_list.second_wrap_btn .btn_wrap{
+			width: 194px !important;
+			margin: 0 auto;
+		}
+		
+		.dark_holder_widget.widget.box_list.third_wrap_btn .btn_wrap{
+			width: 228px !important;
+			margin: 0 auto;
+		}
+		
+		.dark_holder_widget.widget.box_list.five_wrap .btn_wrap{
+			width: 301px !important;
+			margin: 0 auto;
+		}
+		
+		.dark_holder_widget .btn_wrap .btn_yellow{
+			padding: 5px;
+		}
+		/* 	risk_widget	 */
+		
+		.reputation_widget{
+			margin-top: 50px;
+		}
+		
+		.risk_widget{
+			margin: 0 -6% 50px;
+			width: 113%;
+			max-width: 113%;
+		}
+		
+		.risk_widget .inner_widget{
+			padding: 48px 16px 0;	
+		}
+		
+		#risk_widget .inner_title{
+			margin-bottom: 12px;
+		}
+		
+		.risk_widget .risk_inner-left > div{
+			text-transform: capitalize;
+		}
+		
+
+		
+		.inner_widget .market_text span{
+			border-bottom: unset;
+		}
+		
+		.risk_widget .risk_list{
+			margin-top: 24px;
+		}
+		
+		.risk_list li{
+			padding: 16px;
+			width: 100%;
+		}
+		
+		#risk_widget .risk_list .list_title{
+			margin-bottom: 12px;
+		}
+		
+		.risk_widget .risk_imgwrap{
+			margin-top: 30px;
+		}
+		
+		.risk_list li:not(:last-child){
+			margin-bottom: 24px;
+		}
+		
+		.risk_list .list_text{
+			margin: 0;
+		}
+	
+	
+	/* 	 */
+		.why_choose_widget{
+			padding: 0;
+		}
+		
+		.why_choose_prize > span{
+			font-weight: 400;
+			font-size: 18px;
+			line-height: 110%;
+		}
+		
+		.why_choose_prize{
+			margin-bottom: 35px;
+			max-width: 209px;
+		}
+		
+		.why_choose_widget .why_choose_title{
+			font-weight: 700;
+			font-size: 30px;
+			line-height: 100%;
+			letter-spacing: -0.01em;
+			margin-bottom: 50px;
+		}
+		
+		.why_choose_widget .why_choose_blocks .why_choose_item{
+			width: 100%;
+			padding: 32px 37px;
+			margin: 0;
+		}
+		
+		.why_choose_widget .why_choose_blocks .why_choose_item:not(:last-child){
+			margin-bottom: 34px;
+		}
+		
+		.why_choose_widget .why_choose_blocks{
+			margin-bottom: 50px;
+		}
+		
+		#why_do_widget{
+			margin-bottom: 0;
+		}
+		
+		#why_do_widget .inner_title{
+			margin-bottom: 12px;
+		}
+		
+		#why_do_widget .inner_widget p.subtitle{
+			text-transform: capitalize;
+		}
+		
+		.why_do_widget .why_do_holder{
+			margin: 30px -6% 0;
+			max-width: 113%;
+			width: 113%;
+			padding: 31px 20px 33px;
+		}
+		
+		.why_do_widget .col_yellow{
+			margin: 0;
+		}
+		
+		.why_do_holder .col_title{
+			margin-bottom: 18px;
+		}
+		
+		.why_do_holder .col_title p{
+			font-weight: 800;
+			font-size: 18px;
+			line-height: 178%;
+		}
+		
+		.why_do_holder li:not(:last-child){
+			margin-bottom: 35px;
+		}
+		
+		.why_do_holder li{
+			font-weight: 500;
+			font-size: 14px;
+			line-height: 157%;
+		}
+		
+		.why_do_widget .col_dark{
+			margin-top: 23px;
+		}
+		
+		#how_much_widget {
+			margin: 0 -6%;
+			max-width: 113%;
+			width: 113%;
+		}
+		
+		#how_much_widget.how_much_widget .how_much_holder{
+			padding: 40px 20px;
+			border-radius: unset;
+		}
+		
+		#main-content #how_much_widget .inner_title{
+			margin-bottom: 16px;
+		}
+		
+		#how_difficult_widget.inner_widget{
+			padding: 40px 26px;
+			margin: 0 -6%;
+			max-width: 113%;
+			width: 113%;
+			border-radius: unset;
+		}
+		
+		#how_difficult_widget.inner_widget p.subtitle{
+			font-weight: 400;
+			font-size: 14px;
+			line-height: 143%;
+			margin-bottom: 26px;
+		}
+		
+		#how_difficult_widget.inner_widget > p:nth-child(3){
+			line-height: 186%;
+		}
+		
+		#how_difficult_widget ul{
+			margin-top: 26px;
+		}
+		
+		#how_difficult_widget ul li:not(:last-child){
+			margin-bottom: 32px;
+		}
+		
+		#how_difficult_widget ul li div{
+			padding: 16px;
+		}
+		
+		#how_difficult_widget ul li h3{
+			line-height: 1.35;
+		}
+		
+		#reviews_widget.reviews_widget .title_holder{
+			margin: 0 0 20px;
+		}
+	
+		#reviews_widget .inner_title, #how_difficult_widget .inner_title{
+			margin-bottom: 12px;
+		}
+		
+		#reviews_widget > p{
+			font-weight: 400;
+			font-size: 15px;
+			line-height: 100%;
+		}
+		
+		
+	.accordion_widget .accordion_holder{
+		margin: 0;
+	}
+	
+	.accordion_widget{
+		padding: 40px 0;
+	}
+	
+	#accordion_widget .inner_title{
+		margin-bottom: 16px;
+	}
+	
+	.accordion_widget h5.et_pb_toggle_title{
+		font-weight: 700;
+		font-size: 20px;
+		line-height: 27px;
+		text-transform: capitalize;
+	}
+	
+	.membership_box{
+		padding: 40px 0;
+	}
+	
+	.credit_scores{
+		padding: 24px 16px;
+	}
+	
+	#main-content .credit_scores .inner_title{
+		margin-bottom: 32px;
+	}
+	
+	.complex_credit{
+		padding: 40px 16px;
+		margin: 0 -6% 50px;
+		width: 113%;
+		max-width: 113%;
+	}
+	
+	.complex_credit .fluid-width-video-wrapper{
+		margin-top: 24px;
+	}
+	.accent_block_var a, .accent_block_var strong{
+		color: #000000;
+		font-weight: 400;
+	}
+	
+	/* 	last block */
+	.photo_team, .fluid-width-video-wrapper {
+		margin-top: 50px;
+	}
+	.btn_contact_us {
+		padding-top: 50px;
+	}
+	
+	.photo_team{
+		width: 113%;
+		max-width: 113% !important;
+		margin: 50px -6% 0;
+	}
+		
+				#footer-info{
+			text-align: left;
+			font-weight: 400;
+			font-size: 13px;
+			line-height: 140%;
+			padding: 0 0 70px;
+		}
+		
+		#main-footer #footer-widgets.clearfix{
+			margin: 0;
+			padding: 0 !important;
+		}
+		
+		#main-footer #footer-widgets .footer-widget{
+			padding: 0;
+			margin-bottom: 30px;
+		}
+		
+		#custom_html-5{
+			margin-top: 30px;
+		}
+		
+		#footer-widgets .footer-widget li{
+			padding: 0;
+		}
+		
+		#footer-widgets .footer-widget li:before{
+			content: unset;
+		}
+		
+		#footer-widgets .footer-widget li a{
+			color: #FDB948;
+		}
+		
+		.footer_adv_bottom.flex > p{
+			font-weight: 700;
+			font-size: 30px;
+			line-height: 130%;
+			letter-spacing: -0.01em;
+			color: #FDB948;
+		}
+		
+		.hg_adv.flex li div:first-child{
+			font-weight: 900;
+			font-size: 44px;
+			line-height: 100%;
+		}
+		
+		.hg_adv.flex li div:last-child{
+			font-weight: 400;
+			font-size: 13px;
+			line-height: 135%;
+			letter-spacing: 0.04em;
+			text-transform: uppercase;
+			color: #FFFFFF;
+			margin-top: 10px;
+		}
+		
+		.footer_adv_bottom a{
+			height: 59px;
+			background: #FDB948;
+			box-shadow: 0px 6px 12px rgba(43, 43, 43, 0.15);
+			border-radius: 33px;
+			font-weight: 700;
+			font-size: 23px;
+			line-height: 135%;
+		}
+		
+		.footer_video_text{
+			font-weight: 400;
+			font-size: 13px;
+			line-height: 140%;
+		}
+		
+		.footer_adv{
+			padding-top: 45px !important;
+			margin-bottom: -2px;
+		}
+		
+		#main-footer .container, .footer_adv .container{
+			width: unset;
+			padding: 0;
+		}
+		
+		#main-footer, .footer_adv{
+			padding: 0 14px;
+		}
+		
+		body .footer_logo img {
+			display: none;
+		}
+		
+		#footer-widgets .footer-widget .footer_logo a:nth-child(2){
+			margin-left: 0;
+		}
+		
+		#footer-widgets .footer-widget .footer_logo a{
+			text-decoration-line: underline;
+		}
+		
+		.footer_contact.flex span{
+			font-weight: 400;
+			font-size: 13px;
+			line-height: 140%;
+		}
+		
+		#et-footer-nav{
+			display: none;
+		}
+		
+		#main-footer #footer-bottom{
+			padding: 0 !important;
+		}
+		
+		.reviews_widget .slide_item{
+			margin-bottom: 50px;
+		}
+		
+		.swiper-pagination-bullet{
+			width: 12px;
+			height: 12px;
+		}
+		
+		.swiper-pagination-bullet-active{
+			background: #FDAD2D;
+		}
+		
+		.slide-button-prev, .dots, .btn_holder{
+			display: none;
+		}
+		
+		.reviews_widget .show_more_text{
+			display: block;
+		}
+	}
+	
+	
+	@media (max-width: 320px) {
+		.mobile_text_from_hero .btn_wrap{
+		width: 290px;
+	}
+		
+		.widget .btn_yellow{
+		font-size: 13px;
+		}
+		
+		.link_pages ul li a{
+			font-size: 13px;
+		}
+		
+		.new_mobile_header .header_button_flex a{
+			font-size: 12px;
+		}
+		
+		.new_mobile_header ul a.mobilehead_phone_tel, .new_mobile_header a.mobilehead_phone_link{
+			font-size: 13px;
+		}
+		
+		.footer_adv_bottom a{
+				width: 290px;
+			}
+	}
+	
+	@media (min-width: 769px) {
+		.swiper-pagination.swiper-pagination-clickable.swiper-pagination-bullets{
+			display: none;
+		}
+	}
+	
+	.inner_widget .hero_text:first-of-type {
+    padding: 4px 16px;
+    text-shadow: 0px 1px 0px rgba(0, 119, 128, 0.50);
+    border-bottom: 1px solid #309398;
+    background: linear-gradient(90deg, #309398 0%, #34A0A6 30%, #34A0A6 70%, rgba(64, 152, 156, 0.00) 100% 100%);
+    font-size: 16px !important;
+    line-height: 1.4 !important;
+    width: fit-content;
+    font-weight: 600;
+    position: relative;
+    color: #FEC464;
+  }
+
+  .inner_widget .hero_text:first-of-type::before,
+  .inner_widget .hero_text:first-of-type::after {
+    content: '';
+    height: 1px;
+    width: 100%;
+    position: absolute;
+    left: 0;
+    background: linear-gradient(90deg, #309398 0%, #86CED2 50%, #40989C 100%);
+    top: 0;
+  }
+
+  .inner_widget .hero_text:first-of-type::after {
+    top: auto;
+    bottom: 0;
+  }
+
+  .inner_widget .hero_text:first-of-type svg {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: -1;
+  }
+
+  .hero_points {
+    display: flex;
+    flex-direction: column;
+    padding-top: 32px;
+    border-top: 1px dashed #86CED2;
+    gap: 8px;
+    margin-bottom: 32px;
+  }
+
+  .hero_points li {
+    display: flex;
+    gap: 8px;
+    align-items: flex-start;
+    font-size: 14px;
+    line-height: 24px;
+    color: #fff;
+  }
+  .hero_points li svg {
+    flex-shrink: 0;
+  }
+
+  .hero_points li span {
+    font-weight: 600;
+    text-decoration: underline;
+    cursor: pointer;
+    position: relative;
+  }
+
+  .hero_points li span .tooltip {
+    display: none;
+    position: absolute;
+    top: calc(100% + 6px);
+    left: 0;
+    background: #fff;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.12);
+    padding: 10px;
+    color: #000;
+    width: 95vw;
+    max-width: 300px;
+    z-index: 1;
+  }
+
+  .hero_points li span .tooltip::after {
+    content: '';
+    position: absolute;
+    top: -8px;
+    left: 10%;
+    transform: translateX(-50%);
+    border: 5px solid transparent;
+    border-bottom-color: #fff;
+  }
+
+  .hero_points li span:hover .tooltip {
+    display: block;
+  }
+
+  .hero_img_mob {
+    display: none;
+  }
+
+  .sidebar-nav > a {
+    display: none;
+  }
+
+  .new_banner {
+    border-radius: 24px;
+    border: 1px solid #FDB948;
+  }
+
+  .new_banner .banner_head {
+    padding: 16px 12px;
+    background: #FFC156;
+    border-radius: 24px 24px 0px 0px;
+  }
+
+  .new_banner .banner_head img {
+    width: 105px;
+    margin-bottom: 12px;
+  }
+
+  .new_banner .banner_head p {
+    font-size: 22px;
+    line-height: 1.4;
+  }
+
+  .new_banner .banner_body {
+    padding: 16px 12px;
+    background: #FFEDCC;
+    border-radius: 0px 0px 24px 24px;
+  }
+
+  .new_banner .banner_body .hero_points {
+    padding-top: 0;
+    border-top: none;
+  }
+
+  .new_banner .banner_body li {
+    color: #000;
+  }
+
+  .new_banner .banner_body a {
+    margin-bottom: 12px;
+  }
+
+  .new_banner .banner_body > p {
+    font-size: 12px;
+    text-align: center;
+    line-height: 1.5;
+  }
+
+  .header__assessment-control.active .btn_yellow {
+    display: none !important;
+  }
+
+  .new_banner .banner_body .tooltip {
+    font-weight: 400;
+  }
+
+  .hero_widget.widget {
+    background: linear-gradient(270deg, rgba(48, 147, 152, 0.00) 40%, rgba(48, 147, 152, 0.70) 60%, #309398 70%), 
+    url('<?php echo !empty($suburb_hero_image) ? esc_url($suburb_hero_image) : "https://conversionratestore.github.io/projects/hantergalloway/img/bg_banner_new.jpg"; ?>') center right no-repeat;
+    background-size: cover;
+    padding: 44px 0 44px 121px;
+    position: relative;
+    z-index: 1;
+  }
+  
+  /* Add a pseudo-element for additional overlay control if needed */
+  .hero_widget.widget:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(270deg, rgba(48, 147, 152, 0.00) 40%, rgba(48, 147, 152, 0.20) 100%);
+    z-index: -1;
+    opacity: <?php echo !empty($suburb_hero_image) ? "1" : "0"; ?>; /* Only apply extra overlay if using custom image */
+  }
+
+  @media (max-width: 768px) {
+	  #keradan-popup-checklist div.common-bottom-black-logo {
+		padding-top: 8px;
+	  }
+    .hero_widget.widget {
+      background: <?php echo !empty($suburb_hero_image) ? 
+        "linear-gradient(rgba(48, 147, 152, 0.85), rgba(48, 147, 152, 0.85)), url('" . esc_url($suburb_hero_image) . "') center center / cover no-repeat" : 
+        "#309398"; ?>;
+      padding: 34px 0 0;
+    }
+    .inner_widget .hero_text:first-of-type {
+      width: 100%;
+      display: flex !important;
+      justify-content: center;
+    }
+    .hero_widget .inner_widget {
+      display: flex;
+      flex-direction: column;
+      padding: 0 24px;
+    }
+    .hero_widget .inner_widget .hero_points {
+      order: 1;
+      margin-bottom: 0;
+    }
+    .hero_widget.widget .container {
+      width: 100%;
+    }
+    .hero_widget .btn_wrap {
+      margin-inline: auto;
+    }
+    .hero_widget .btn_wrap .btn_yellow {
+      min-height: 48px;
+      border-radius: 25px;
+    }
+    .inner_widget .hero_text, .hero_widget .btn_wrap, .hero_subtitle {
+      display: block !important;
+    }
+    .hero_subtitle br {
+      display: none;
+    }
+    .hero_widget .hero_title {
+      font-size: 32px;
+      line-height: 44px;
+      margin-bottom: 14px;
+      max-width: 100%;
+    }
+    .hero_widget .hero_subtitle {
+      font-size: 14px !important;
+      line-height: 20px !important;
+      text-transform: capitalize;
+      margin-bottom: 24px !important;
+    }
+    .hero_img_mob {
+      display: block;
+      margin-top: 24px;
+      width: 100%;
+    }
+    .hero_widget .hero_text.bottom-text {
+      margin-bottom: 24px;
+    }
+    .mobile_text_from_hero {
+      display: none !important;
+    }
+    .footer_button.bottomfixed {
+    border-radius: 24px 24px 0px 0px;
+    background: #FFEDCC;
+    box-shadow: 0px -4px 8px 0px rgba(0, 0, 0, 0.12);
+    padding: 10px 12px 16px;
+    bottom: 0;
+    width: calc(100% - 32px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+
+  }
+
+  .footer_button.bottomfixed a {
+    width: 100%;
+  }
+  }
+	
+	/* Enhanced styles for Demographics and Property Market sections */
+	#demographics_section, #property_market {
+		position: relative;
+		background: linear-gradient(to right, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.7)), #f8f8f8;
+		border-radius: 10px;
+		padding: 64px 0;
+		margin: 40px 0;
+		overflow: hidden;
+	}
+	
+	#demographics_section:before, #property_market:before {
+		content: "";
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 8px;
+		background: linear-gradient(90deg, #FFB027, #00838A);
+		border-radius: 10px 10px 0 0;
+	}
+	
+	#demographics_section .inner_widget, #property_market .inner_widget {
+		max-width: 1140px;
+		margin: 0 auto;
+		padding: 0 20px;
+	}
+	
+	#demographics_section .inner_title, #property_market .inner_title {
+		color: #333;
+		position: relative;
+		padding-bottom: 15px;
+		margin-bottom: 40px;
+	}
+	
+	#demographics_section .inner_title:after, #property_market .inner_title:after {
+		content: "";
+		position: absolute;
+		bottom: 0;
+		left: 50%;
+		transform: translateX(-50%);
+		width: 80px;
+		height: 4px;
+		background: #FFB027;
+		border-radius: 2px;
+	}
+	
+	/* Stats cards styling */
+	.suburb-stats-cards, .market-stats-cards {
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: center;
+		gap: 25px;
+		margin-bottom: 40px;
+	}
+	
+	.stats-card {
+		flex: 0 0 calc(33.333% - 25px);
+		min-width: 200px;
+		background: #FFFFFF;
+		box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+		border-radius: 10px;
+		padding: 24px;
+		text-align: center;
+		transition: all 0.3s ease;
+		position: relative;
+		overflow: hidden;
+		z-index: 1;
+	}
+	
+	.stats-card:before {
+		content: "";
+		position: absolute;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		background: linear-gradient(135deg, rgba(255, 176, 39, 0.1), rgba(0, 131, 138, 0.1));
+		z-index: -1;
+		opacity: 0;
+		transition: opacity 0.3s ease;
+	}
+	
+	.stats-card:hover {
+		transform: translateY(-5px);
+		box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12);
+	}
+	
+	.stats-card:hover:before {
+		opacity: 1;
+	}
+	
+	.stats-card h3 {
+		font-size: 16px;
+		font-weight: 600;
+		color: #555;
+		margin-bottom: 15px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+	
+	.stats-card .stats-value {
+		font-size: 32px !important;
+		font-weight: 700 !important;
+		color: #00838A;
+		margin: 0 !important;
+		padding: 5px 0;
+	}
+	
+	.stats-card .stats-note {
+		font-size: 14px !important;
+		color: #777;
+		margin: 5px 0 0 0 !important;
+		font-style: italic;
+	}
+	
+	/* Additional info sections */
+	.suburb-crime-info, .market-overview, .bedrooms-info {
+		background: #FFFFFF;
+		box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+		border-radius: 10px;
+		padding: 30px;
+		margin-bottom: 30px;
+		position: relative;
+	}
+	
+	.suburb-crime-info h3, .market-overview h3, .bedrooms-info h3 {
+		font-size: 22px;
+		font-weight: 700;
+		color: #333;
+		margin-bottom: 15px;
+		position: relative;
+		padding-left: 30px;
+	}
+	
+	.suburb-crime-info h3:before, .market-overview h3:before, .bedrooms-info h3:before {
+		content: "";
+		position: absolute;
+		left: 0;
+		top: 50%;
+		transform: translateY(-50%);
+		width: 20px;
+		height: 20px;
+		background-color: #FFB027;
+		border-radius: 50%;
+	}
+	
+	.suburb-crime-info p, .market-overview p, .bedrooms-info p {
+		color: #555;
+		font-size: 16px !important;
+		line-height: 1.6 !important;
+	}
+	
+	.safety-score-explanation {
+		color: #555;
+		font-size: 16px !important;
+		line-height: 1.6 !important;
+	}
+	
+	.safety-score-explanation strong {
+		color: #00838A;
+	}
+	
+	/* Special styling for market overview */
+	.market-overview {
+		border-left: 4px solid #FFB027;
+	}
+	
+	/* Responsive adjustments */
+	@media (max-width: 767px) {
+		.suburb-stats-cards, .market-stats-cards {
+			flex-direction: column;
+			align-items: center;
+		}
+		
+		.stats-card {
+			width: 100%;
+			max-width: 300px;
+		}
+		
+		#demographics_section, #property_market {
+			padding: 40px 0;
+		}
+		
+		#demographics_section .inner_title, #property_market .inner_title {
+			font-size: 30px;
+			line-height: 1.3;
+		}
+	}
+
+	/* Enhanced styles for Living in Suburb section */
+	#living_section {
+		position: relative;
+		background: linear-gradient(to right, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.7)), #f8f8f8;
+		border-radius: 10px;
+		padding: 64px 0;
+		margin: 40px 0;
+		overflow: hidden;
+	}
+
+	#living_section:before {
+		content: "";
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 8px;
+		background: linear-gradient(90deg, #FFB027, #00838A);
+		border-radius: 10px 10px 0 0;
+	}
+
+	#living_section .inner_widget {
+		max-width: 1140px;
+		margin: 0 auto;
+		padding: 0 20px;
+	}
+
+	#living_section .inner_title {
+		color: #333;
+		position: relative;
+		padding-bottom: 15px;
+		margin-bottom: 40px;
+	}
+
+	#living_section .inner_title:after {
+		content: "";
+		position: absolute;
+		bottom: 0;
+		left: 50%;
+		transform: translateX(-50%);
+		width: 80px;
+		height: 4px;
+		background: #FFB027;
+		border-radius: 2px;
+	}
+
+	.living-section-container {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 30px;
+		margin-bottom: 40px;
+	}
+
+	.living-section-card {
+		flex: 1 1 45%;
+		min-width: 300px;
+		background: #FFFFFF;
+		box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+		border-radius: 10px;
+		padding: 30px;
+		position: relative;
+		transition: all 0.3s ease;
+		overflow: hidden;
+	}
+
+	.living-section-card:hover {
+		transform: translateY(-5px);
+		box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12);
+	}
+
+	.living-section-card:before {
+		content: "";
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 5px;
+		height: 100%;
+		background: linear-gradient(to bottom, #FFB027, #00838A);
+		border-radius: 5px 0 0 5px;
+	}
+
+	.living-section-card h3 {
+		font-size: 22px !important;
+		font-weight: 700 !important;
+		color: #333;
+		margin-bottom: 20px !important;
+		padding-left: 35px !important;
+		position: relative;
+		display: flex;
+		align-items: center;
+	}
+
+	.living-section-card h3 i {
+		position: absolute;
+		left: 0;
+		color: #FFB027;
+		font-size: 24px;
+	}
+
+	.living-section-card p {
+		color: #555;
+		font-size: 16px !important;
+		line-height: 1.6 !important;
+		margin: 0 !important;
+	}
+
+	/* Special styling for walkability section */
+	.living-section-card.walkability-card .walkability-score {
+		display: inline-block;
+		background: linear-gradient(135deg, #FFB027, #00838A);
+		color: white;
+		font-weight: 700;
+		padding: 3px 10px;
+		border-radius: 15px;
+		margin-right: 5px;
+	}
+
+	/* Responsive adjustments */
+	@media (max-width: 767px) {
+		.living-section-container {
+			flex-direction: column;
+		}
+		
+		.living-section-card {
+			width: 100%;
+		}
+		
+		#living_section {
+			padding: 40px 0;
+		}
+		
+		#living_section .inner_title {
+			font-size: 30px;
+			line-height: 1.3;
+		}
+	}
+
+	/* Enhanced styles for Nearby Suburbs section */
+	#nearby_suburbs {
+		position: relative;
+		background: linear-gradient(to right, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.7)), #f8f8f8;
+		border-radius: 10px;
+		padding: 64px 0;
+		margin: 40px 0;
+		overflow: hidden;
+	}
+
+	#nearby_suburbs:before {
+		content: "";
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 8px;
+		background: linear-gradient(90deg, #FFB027, #00838A);
+		border-radius: 10px 10px 0 0;
+	}
+
+	#nearby_suburbs .inner_widget {
+		max-width: 1140px;
+		margin: 0 auto;
+		padding: 0 20px;
+	}
+
+	#nearby_suburbs .inner_title {
+		color: #333;
+		position: relative;
+		padding-bottom: 15px;
+		margin-bottom: 40px;
+	}
+
+	#nearby_suburbs .inner_title:after {
+		content: "";
+		position: absolute;
+		bottom: 0;
+		left: 50%;
+		transform: translateX(-50%);
+		width: 80px;
+		height: 4px;
+		background: #FFB027;
+		border-radius: 2px;
+	}
+
+	.nearby-suburbs-list {
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: center;
+		list-style: none;
+		padding: 0;
+		margin: 0;
+		gap: 15px;
+	}
+
+	.nearby-suburbs-list li {
+		background: #FFFFFF;
+		border-radius: 30px;
+		padding: 12px 25px;
+		transition: all 0.3s ease;
+		box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+	}
+
+	.nearby-suburbs-list li:hover {
+		transform: translateY(-3px);
+		box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+		background: linear-gradient(to right, #FFB027, #00838A);
+	}
+
+	.nearby-suburbs-list li a {
+		color: #333;
+		text-decoration: none;
+		font-weight: 500;
+		font-size: 16px;
+		display: flex;
+		align-items: center;
+	}
+
+	.nearby-suburbs-list li:hover a {
+		color: #FFFFFF;
+	}
+
+	.nearby-suburbs-list li a i {
+		margin-right: 8px;
+		color: #FFB027;
+	}
+
+	.nearby-suburbs-list li:hover a i {
+		color: #FFFFFF;
+	}
+
+  /* Add styling for Suburb Overview section */
+  #suburb_overview {
+    position: relative;
+    background: linear-gradient(to right, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.7)), #f8f8f8;
+    border-radius: 10px;
+    padding: 64px 0;
+    margin: 40px 0;
+    overflow: hidden;
+  }
+
+  #suburb_overview:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 8px;
+    background: linear-gradient(90deg, #FFB027, #00838A);
+    border-radius: 10px 10px 0 0;
+  }
+
+  #suburb_overview .inner_widget {
+    max-width: 1140px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+
+  #suburb_overview .inner_title {
+    color: #333;
+    position: relative;
+    padding-bottom: 15px;
+    margin-bottom: 40px;
+  }
+
+  #suburb_overview .inner_title:after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 4px;
+    background: #FFB027;
+    border-radius: 2px;
+  }
+
+  .suburb-overview {
+    background: #FFFFFF;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+    border-radius: 10px;
+    padding: 30px;
+    position: relative;
+    transition: all 0.3s ease;
+    overflow: hidden;
+    border-left: 4px solid #FFB027;
+    margin-bottom: 30px;
+  }
+
+  .suburb-overview:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12);
+  }
+
+  .suburb-overview h3 {
+    font-size: 22px !important;
+    font-weight: 700 !important;
+    color: #333;
+    margin-bottom: 20px !important;
+    position: relative;
+    display: flex;
+    align-items: center;
+  }
+
+  .suburb-overview p {
+    color: #555;
+    font-size: 16px !important;
+    line-height: 1.8 !important;
+    margin: 0 !important;
+  }
+
+  /* Responsive adjustments for suburb overview */
+  @media (max-width: 767px) {
+    #suburb_overview {
+      padding: 40px 0;
+    }
+    
+    #suburb_overview .inner_title {
+      font-size: 30px;
+      line-height: 1.3;
+    }
+  }
+  </style>
+<div id="main-content">
+      <div class="new_mobile_header">
+        <div class="mobilehead_logo">
+          <a href="https://www.huntergalloway.com.au/" alt="logo hunter Galloway">
+            <img src="https://cjmhfp3t381yd87a17zl60cv-wpengine.netdna-ssl.com/wp-content/themes/Divi/images/hunter_logo_black_.svg" />
+          </a>
+        </div>
+        <div>
+          <div class="header_button_flex">
+            <a href="#" alt="" class="btn_yellow rc_open old_head_cta pum-trigger" style="cursor: pointer"> Get a Free Assessment </a>
+          </div>
+          <ul>
+            <li>
+              <a href="tel:1300088065" alt="" class="mobilehead_phone_tel">1300 088 065</a>
+            </li>
+            <li>
+              <a href="https://www.huntergalloway.com.au/contact/" alt="" class="mobilehead_phone_link">Contact Us</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="link_pages">
+        <ul>
+          <li><a href="https://www.huntergalloway.com.au/our-team/" target="blank">Who We Are</a></li>
+          <li><a href="https://www.huntergalloway.com.au/home-loans-brisbane/" target="blank">What We Do</a></li>
+          <li><a href="https://www.huntergalloway.com.au/who-we-help/" target="blank">Who We Help</a></li>
+        </ul>
+      </div>
+      <section class="hero_widget widget">
+        <div class="container">
+          <div class="inner_widget">
+            <p class="hero_text"><span>Find out your chances of getting a loan</span>
+              <?=$elipsis_svg?>
+            </p>
+            <h1 class="hero_title">Mortgage Broker <?php echo esc_html($suburb); ?></h1>
+            <p class="hero_subtitle">
+              Improve your chances of getting a loan with an award winning mortgage broker.<br />
+              We have one of the highest loan approval rates in the country.
+            </p>
+            <ul class="hero_points">
+              <li><?=$check_img?><div><span>Market-leading <p class="tooltip">
+              Approximately 40% of home loan applications were rejected in December 2018 based on a survey of 52,000 households completed by
+                          DigitalFinance Analytics DFA. In 2017 to
+                          2018 Hunter Galloway submitted 342 home loan applications and had 8 applications rejected, giving a 2.33% rejection rate.
+              </p></span> loan approval rate in Australia of 97%</div></li>
+              <li><?=$check_img?>Variety of options due to direct access to 30+ Australian banks & lenders</li>
+              <li><?=$check_img?><div><span>#1 rated <p class="tooltip">
+                The highest rated and most reviewed Mortgage Broker in Brisbane: 5-star rating based on 1600+ reviews on Google
+              </p></span> Mortgage Broker in Brisbane</div></li>
+            </ul>
+            <div class="btn_wrap">
+              <a class="btn_yellow rc_open A-trigger" href="#">Get a Free Assessment</a>
+            </div>
+            <p class="hero_text bottom-text">We promise to get back to you within 4 business hours</p>
+          </div>
+          <img class="hero_img_mob" src="https://hgstagingsite.wpengine.com/wp-content/uploads/2024/10/hero_img_mb.jpg" alt="mobile_img">
+        </div>
+      </section>
+
+      <div class="home__nav-wrap">
+        <div class="home__nav-body">
+          <section class="mobile_text_from_hero">
+            <p class="hero_subtitle">Improve your chances of getting a loan with an award winning mortgage broker. We have one of the highest loan approval rates in the country</p>
+            <div class="btn_wrap">
+              <a class="btn_yellow rc_open A-trigger" href="#">Get a Free Assessment</a>
+            </div>
+            <p class="hero_text bottom-text">We promise to get back to you within 4 business hours</p>
+          </section>
+          <section class="reputation_widget widget box_list" id="reputation_widget">
+            <div>
+              <div class="inner_widget">
+                <div>
+                  <h2 class="inner_title">Our reputation and achievements</h2>
+                  <div class="market_wrapper">
+                    <div class="market_text">
+                      <span>Market average rejection rate is 40%, our rejection rate is <strong>3%</strong></span>
+                      <div class="market_dd">
+                        <div class="inner">
+                          Approximately 40% of home loan applications were rejected in December 2018 based on a survey of 52,000 households completed by
+                          <a href="https://www.mortgagebusiness.com.au/breaking-news/13042-home-loan-rejection-rate-hits-40" alt="">'DigitalFinance Analytics DFA'</a>. In 2017 to
+                          2018 Hunter Galloway submitted 342 home loan applications and had 8 applications rejected, giving a 2.33% rejection rate.
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="reputation_prize">
+                    <span>2024 Mortgage Broker of the Year</span>
+                  </div>
+
+                  <div class="front_popup_prize_image flex">
+                    <div class="slider_prize swiper-container">
+                      <!-- Swiper -->
+                      <div class="swiper-wrapper">
+                        <div class="slide_item swiper-slide">
+                          <img src="/wp-content/uploads/2019/07/best-mortgage-broker-2019.png" alt="" />
+                        </div>
+                        <div class="slide_item swiper-slide">
+                          <img src="/wp-content/uploads/2019/12/2019_001.png" alt="" />
+                        </div>
+                        <div class="slide_item swiper-slide">
+                          <img src="/wp-content/uploads/2019/12/2019_002.png" alt="" />
+                        </div>
+                        <div class="slide_item swiper-slide">
+                          <img src="/wp-content/uploads/2018/11/finance-broker-of-the-year-2018.png" alt="" />
+                        </div>
+                        <div class="slide_item swiper-slide">
+                          <img src="/wp-content/uploads/2018/11/30-under-20.png" alt="" />
+                        </div>
+                        <div class="slide_item swiper-slide">
+                          <img src="/wp-content/uploads/2024/06/Mortgage-Broker-Brisbane-Hunter-Galloway-Award-2024.png" alt="" />
+                        </div>
+                      </div>
+                      <!-- Add Arrows -->
+                      <div class="slide-button-next"></div>
+                      <div class="slide-button-prev"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <section class="risk_widget widget box_list" id="risk_widget">
+            <div>
+              <div class="inner_widget">
+                <h2 class="inner_title">
+                  Don't risk having your <br />
+                  home loan declined
+                </h2>
+                <div class="risk_holder">
+                  <div class="risk_inner-left">
+                    <div>
+                      Did you know that over
+                      <div class="market_text">
+                        <span>40%</span>
+                        <div class="market_dd">
+                          <div class="inner">
+                            Approximately 40% of home loan applications were rejected in December 2018 based on a survey of 52,000 households completed by
+                            <a href="https://www.mortgagebusiness.com.au/breaking-news/13042-home-loan-rejection-rate-hits-40" alt="">'DigitalFinance Analytics DFA'</a>. In 2017 to
+                            2018 Hunter Galloway submitted 342 home loan applications and had 8 applications rejected, giving a 2.33% rejection rate.
+                          </div>
+                        </div>
+                      </div>
+                      of home loan applications that get submitted <br />
+                      never make it to settlement? Don't take that risk.
+                    </div>
+
+                    <ul class="risk_list">
+                      <li class="scheme_ico">
+                        <p class="list_title">We know the banks inside out</p>
+                        <p class="list_text">
+                          Our brokers have over 35 years of combined experience in the finance industry, including decades of banking experience, and have processed thousands of home loan applications.
+                        </p>
+                        <p class="list_text">
+                          We have a wide range of lenders on our panel and we intimately understand their credit policies. This means we know the problems you may face on your loan
+                          application and how to mitigate them when applying with any specific bank or lender.
+                        </p>
+                      </li>
+                      <li class="umbrella_ico">
+                        <p class="list_title">Reducing risk of rejection</p>
+                        <p class="list_text">Unlike other brokers, Hunter Galloway completes our own internal credit assessment process before applying with any lender.</p>
+                        <p class="list_text">
+                          Your application will be assigned its own Credit Manager who reviews each application thoroughly before it is submitted to the lenders, meaning we won't
+                          apply with a lender who won't approve your loan.
+                        </p>
+                      </li>
+                    </ul>
+                  </div>
+
+                  <div class="risk_imgwrap">
+                    <img src="<?php echo get_template_directory_uri(); ?>/images/manager_new.png" alt="manager" />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <section id="why_choose" class="why_choose why_choose_widget widget box_list">
+            <div>
+              <div class="inner_widget">
+                <div class="why_choose_prize">
+                  <span>2024 Mortgage Broker of the Year</span>
+                </div>
+                <div class="why_choose_title">Why Choose Hunter Galloway As<br />Your Mortgage Broker?</div>
+                <div class="why_choose_blocks">
+                  <div class="why_choose_blocks_inner flex">
+                    <div class="why_choose_item">
+                      <img src="<?php echo get_template_directory_uri(); ?>/images/why_choose_001.svg" />
+                      <div class="why_choose_item_title">One of the lowest rejection rates</div>
+                      <div class="why_choose_item_text">Across Mortgage Brokers in Australia</div>
+                    </div>
+                    <div class="why_choose_item">
+                      <img src="<?php echo get_template_directory_uri(); ?>/images/why_choose_002.svg" />
+                      <div class="why_choose_item_title">The highest rated and most reviewed</div>
+                      <div class="why_choose_item_text">Mortgage Broker in Brisbane on Google</div>
+                    </div>
+                    <div class="why_choose_item">
+                      <img src="<?php echo get_template_directory_uri(); ?>/images/why_choose_003.svg" />
+                      <div class="why_choose_item_title">We have direct access to 30+ banks and lenders</div>
+                      <div class="why_choose_item_text">Across Australia</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+      <!-- Suburb Overview Section -->
+      <section class="text_widget widget box_list" id="suburb_overview">
+        <div>
+          <div class="inner_widget">
+            <h2 class="inner_title">About <?php echo esc_html($suburb); ?></h2>
+            
+            <!-- Suburb Map Component -->
+            <?php
+            // Get the suburb's GeoJSON data from ACF
+            $geojson = get_field('suburb_geojson');
+            
+            // Include the map component if we have GeoJSON data
+            if (!empty($geojson)) {
+                $args = ['suburb' => [
+                    'name' => $suburb,
+                    'latitude' => $latitude,
+                    'longitude' => $longitude,
+                    'zoom' => !empty($coordinates['zoom']) ? $coordinates['zoom'] : 13,
+                    'geojson' => $geojson
+                ]];
+                include(get_stylesheet_directory() . '/blocks/map-component.php');
+            }
+            ?>
+            
+            <div class="suburb-overview">
+              <h3><i class="fas fa-info-circle" style="color: #FFB027; margin-right: 10px;"></i>Overview</h3>
+              <p><?php echo wp_kses_post($suburb_description); ?></p>
+            </div>
+          </div>
+        </div>
+	</section>
+
+      <!-- First Dark Holder CTA -->
+      <section class="dark_holder_widget widget box_list">
+        <div>
+          <div class="inner_widget">
+            <h3 class="inner_title">Looking to buy a home in <?php echo esc_html($suburb); ?>?</h3>
+            <div class="btn_wrap">
+              <a class="btn_yellow rc_open" href="#">Find out if you're eligible for a loan</a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Demographics Section -->
+      <section class="widget box_list" id="demographics_section">
+        <div>
+          <div class="inner_widget">
+            <h2 class="inner_title"><?php echo esc_html($suburb); ?> Demographics</h2>
+            <div class="suburb-stats-cards">
+                <div class="stats-card">
+                    <h3><i class="fas fa-users" style="color: #FFB027; margin-right: 5px;"></i> Population</h3>
+                    <p class="stats-value"><?php echo number_format($demographics_population); ?></p>
+                </div>
+                <?php if (!empty($demographics_median_age)) : ?>
+                <div class="stats-card">
+                    <h3><i class="fas fa-birthday-cake" style="color: #FFB027; margin-right: 5px;"></i> Median Age</h3>
+                    <p class="stats-value"><?php echo $demographics_median_age; ?> years</p>
+                </div>
+                <?php endif; ?>
+                <?php if (!empty($demographics_families)) : ?>
+                <div class="stats-card">
+                    <h3><i class="fas fa-home" style="color: #FFB027; margin-right: 5px;"></i> Family Makeup</h3>
+                    <p class="stats-value"><?php echo esc_html($demographics_families); ?></p>
+                </div>
+                <?php endif; ?>
+                <?php if (!empty($demographics_weekly_rent)) : ?>
+                <div class="stats-card">
+                    <h3><i class="fas fa-key" style="color: #FFB027; margin-right: 5px;"></i> Weekly Rent</h3>
+                    <p class="stats-value">$<?php echo number_format(floatval($demographics_weekly_rent)); ?></p>
+                </div>
+                <?php endif; ?>
+                <?php if (!empty($demographics_weekly_income)) : ?>
+                <div class="stats-card">
+                    <h3><i class="fas fa-dollar-sign" style="color: #FFB027; margin-right: 5px;"></i> Weekly Income</h3>
+                    <p class="stats-value">$<?php echo number_format(floatval($demographics_weekly_income)); ?></p>
+                </div>
+                <?php endif; ?>
+                <?php if (!empty($demographics_crime_score)) : ?>
+                <div class="stats-card">
+                    <h3><i class="fas fa-shield-alt" style="color: #FFB027; margin-right: 5px;"></i> Safety Score</h3>
+                    <p class="stats-value"><?php echo $demographics_crime_score; ?></p>
+                    <p class="stats-note"><small>Lower score indicates higher safety</small></p>
+                </div>
+                <?php endif; ?>
+            </div>
+            
+            <?php if (!empty($crime_descriptions)) : ?>
+            <div class="suburb-crime-info">
+                <h3>Safety & Security in <?php echo esc_html($suburb); ?></h3>
+                <p class="safety-score-explanation">The safety score reflects crime levels in the area. <?php echo wp_kses_post($crime_descriptions); ?></p>
+            </div>
+            <?php endif; ?>
+          </div>
+        </div>
+      </section>
+
+      <!-- Housing Market Section -->
+      <section class="widget box_list" id="property_market">
+
+      
+        <div>
+          <div class="inner_widget">
+            <h2 class="inner_title"><?php echo esc_html($suburb); ?> Property Market</h2>
+            <div class="market-stats-cards">
+                <div class="stats-card">
+                    <h3><i class="fas fa-home" style="color: #FFB027; margin-right: 5px;"></i> Median House Price</h3>
+                    <p class="stats-value">$<?php echo number_format(floatval($market_houses)); ?></p>
+                </div>
+                <div class="stats-card">
+                    <h3><i class="fas fa-building" style="color: #FFB027; margin-right: 5px;"></i> Median Unit Price</h3>
+                    <p class="stats-value">$<?php echo number_format(floatval($market_units)); ?></p>
+                </div>
+                <?php if (!empty($days_on_market_houses)) : ?>
+                <div class="stats-card">
+                    <h3><i class="fas fa-clock" style="color: #FFB027; margin-right: 5px;"></i> Days on Market (Houses)</h3>
+                    <p class="stats-value"><?php echo $days_on_market_houses; ?> days</p>
+                </div>
+                <?php endif; ?>
+                <?php if (!empty($days_on_market_units)) : ?>
+                <div class="stats-card">
+                    <h3><i class="fas fa-clock" style="color: #FFB027; margin-right: 5px;"></i> Days on Market (Units)</h3>
+                    <p class="stats-value"><?php echo $days_on_market_units; ?> days</p>
+                </div>
+                <?php endif; ?> 
+            <?php if (!empty($property_description)) : ?>
+            <div class="market-overview">
+                <h3>What are properties like in <?php echo esc_html($suburb); ?>?</h3>
+                <p><?php echo wp_kses_post($property_description); ?></p>
+            </div>
+            <?php endif; ?>
+            
+            
+            
+            <?php if (!empty($bedrooms_description)) : ?>
+            <div class="bedrooms-info">
+                <h3>How many bedrooms in <?php echo esc_html($suburb); ?> properties?</h3>
+                <p><?php echo wp_kses_post($bedrooms_description); ?></p>
+            </div>
+            <?php endif; ?>
+          </div>
+        </div>
+      </section>
+
+      <!-- Second Dark Holder CTA -->
+      <section class="dark_holder_widget widget box_list">
+        <div>
+          <div class="inner_widget">
+            <h3 class="inner_title">Looking to invest in <?php echo esc_html($suburb); ?>?</h3>
+            <div class="btn_wrap">
+              <a class="btn_yellow rc_open" href="#">Check if you qualify for a loan</a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Living in Suburb Section -->
+      <section class="widget box_list" id="living_section">
+        <div>
+          <div class="inner_widget">
+            <h2 class="inner_title">Living in <?php echo esc_html($suburb); ?></h2>
+            
+            <div class="living-section-container">
+              <?php if (!empty($education)) : ?>
+              <div class="living-section-card">
+                <h3><i class="fas fa-graduation-cap"></i> Education</h3>
+                <p><?php echo wp_kses_post($education); ?></p>
+              </div>
+              <?php endif; ?>
+              
+              <?php if (!empty($parks_recreation)) : ?>
+              <div class="living-section-card">
+                <h3><i class="fas fa-tree"></i> Parks and Recreation</h3>
+                <p><?php echo wp_kses_post($parks_recreation); ?></p>
+              </div>
+              <?php endif; ?>
+              
+              <?php if (!empty($shopping_dining)) : ?>
+              <div class="living-section-card">
+                <h3><i class="fas fa-utensils"></i> Shopping and Dining</h3>
+                <p><?php echo wp_kses_post($shopping_dining); ?></p>
+              </div>
+              <?php endif; ?>
+              
+              <?php if (!empty($walkability_description)) : ?>
+              <div class="living-section-card walkability-card">
+                <h3><i class="fas fa-walking"></i> Transportation and Walkability</h3>
+                <p>
+                  <span class="walkability-score"><?php echo esc_html($walkability); ?>/100</span>
+                  <?php echo esc_html($transportation_options); ?>
+                </p>
+              </div>
+              <?php endif; ?>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Nearby Suburbs Section -->
+      <?php if (!empty($closest_suburb_1) || !empty($closest_suburb_2) || !empty($closest_suburb_3) || !empty($closest_suburb_4) || !empty($closest_suburb_5)) : ?>
+      <section class="widget box_list" id="nearby_suburbs">
+        <div>
+          <div class="inner_widget">
+            <h2 class="inner_title">Suburbs Near <?php echo esc_html($suburb); ?></h2>
+            <ul class="nearby-suburbs-list">
+                <?php if (!empty($closest_suburb_1)) : ?>
+                    <li>
+                        <a href="<?php echo esc_url(home_url('mortgage-broker-brisbane')); ?>">
+                            <i class="fa fa-map-marker" aria-hidden="true"></i>
+                            <?php echo esc_html($closest_suburb_1); ?>
+                        </a>
+                    </li>
+                <?php endif; ?>
+                
+                <?php if (!empty($closest_suburb_2)) : ?>
+                    <li>
+                        <a href="<?php echo esc_url(home_url('mortgage-broker-brisbane')); ?>">
+                            <i class="fa fa-map-marker" aria-hidden="true"></i>
+                            <?php echo esc_html($closest_suburb_2); ?>
+                        </a>
+                    </li>
+                <?php endif; ?>
+                
+                <?php if (!empty($closest_suburb_3)) : ?>
+                    <li>
+                        <a href="<?php echo esc_url(home_url('mortgage-broker-brisbane')); ?>">
+                            <i class="fa fa-map-marker" aria-hidden="true"></i>
+                            <?php echo esc_html($closest_suburb_3); ?>
+                        </a>
+                    </li>
+                <?php endif; ?>
+                
+                <?php if (!empty($closest_suburb_4)) : ?>
+                    <li>
+                        <a href="<?php echo esc_url(home_url('mortgage-broker-brisbane')); ?>">
+                            <i class="fa fa-map-marker" aria-hidden="true"></i>
+                            <?php echo esc_html($closest_suburb_4); ?>
+                        </a>
+                    </li>
+                <?php endif; ?>
+                
+                <?php if (!empty($closest_suburb_5)) : ?>
+                    <li>
+                        <a href="<?php echo esc_url(home_url('mortgage-broker-brisbane')); ?>">
+                            <i class="fa fa-map-marker" aria-hidden="true"></i>
+                            <?php echo esc_html($closest_suburb_5); ?>
+                        </a>
+                    </li>
+                <?php endif; ?>
+            </ul>
+          </div>
+        </div>
+      </section>
+      <?php endif; ?>
+
+      <!-- Our Mortgage Services Section -->
+      <section class="widget box_list">
+        <div>
+          <div class="inner_widget">
+            <h2 class="inner_title">Our Mortgage Services in <?php echo esc_html($suburb); ?></h2>
+            <div class="services-grid" style="display: flex; flex-wrap: wrap; gap: 30px;">
+              <div class="service-item" style="background: #f9f9f9; border-radius: 8px; padding: 30px; width: 30%; transition: all 0.3s ease;">
+                <h3 style="font-size: 22px; font-weight: 600; margin-bottom: 15px; color: #0e6f9a;">First Home Buyers</h3>
+                <p>Navigating the <?php echo esc_html($suburb); ?> property market as a first-time buyer can be challenging. Our brokers provide personalized guidance to help you find the right loan and maximize your borrowing capacity.</p>
+              </div>
+              <div class="service-item" style="background: #f9f9f9; border-radius: 8px; padding: 30px; width: 30%; transition: all 0.3s ease;">
+                <h3 style="font-size: 22px; font-weight: 600; margin-bottom: 15px; color: #0e6f9a;">Refinancing</h3>
+                <p>Looking to refinance your <?php echo esc_html($suburb); ?> property? We can help you secure better rates and terms tailored to your current financial situation.</p>
+              </div>
+              <div class="service-item" style="background: #f9f9f9; border-radius: 8px; padding: 30px; width: 30%; transition: all 0.3s ease;">
+                <h3 style="font-size: 22px; font-weight: 600; margin-bottom: 15px; color: #0e6f9a;">Investment Loans</h3>
+                <p>With median house prices in <?php echo esc_html($suburb); ?> at $<?php echo number_format(floatval($median_house_price)); ?>, let our investment loan specialists help you structure your loan for maximum benefit.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+
+      <!-- Lenders Panel Section -->
+      <section class="lenders_widget widget box_list" id="lenders_widget">
+        <div>
+          <div>
+            <h2 class="inner_title">Lenders on our panel</h2>
+
+            <div class="lenders_widget_box">
+              <ul>
+                <li>
+                  <img src="/wp-content/uploads/2018/11/westpac_logo.jpg" alt="Westpac Bank" class="et-waypoint et_pb_animation_top et-animated" />
+                </li>
+                <li>
+                  <img src="/wp-content/uploads/2018/11/anz_logo.jpg" alt="ANZ Bank" class="et-waypoint et_pb_animation_top et-animated" />
+                </li>
+                <li>
+                  <img src="/wp-content/uploads/2018/11/nab_logo.jpg" alt="NAB" class="et-waypoint et_pb_animation_top et-animated" />
+                </li>
+                <li>
+                  <img src="/wp-content/uploads/2018/11/amp_logo.jpg" alt="AMP" class="et-waypoint et_pb_animation_top et-animated" />
+                </li>
+                <li>
+                  <img src="/wp-content/uploads/2018/11/adelaidebank_logo.jpg" alt="Adelaide Bank" class="et-waypoint et_pb_animation_top et-animated" />
+                </li>
+                <li>
+                  <img src="/wp-content/uploads/2018/11/firstmac_logo.jpg" alt="FirstMac" class="et-waypoint et_pb_animation_top et-animated" />
+                </li>
+                <li>
+                  <img
+                    src="https://conversionratestore.github.io/projects/hantergalloway/img/commonwealth.png"
+                    alt="Commonwealth Bank (CBA)"
+                    class="et-waypoint et_pb_animation_top et-animated"
+                  />
+                </li>
+                <li>
+                  <img src="/wp-content/uploads/2018/11/stgeorge_logo.jpg" alt="St George Mortgage Brokers" class="et-waypoint et_pb_animation_top et-animated" />
+                </li>
+                <li>
+                  <img src="/wp-content/uploads/2018/11/ing_logo.jpg" alt="ING Direct" class="et-waypoint et_pb_animation_top et-animated" />
+                </li>
+                <li>
+                  <img src="/wp-content/uploads/2018/11/homeloans_logo.jpg" alt="Home Loans" class="et-waypoint et_pb_animation_top et-animated" />
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- FAQ Section -->
+      <section class="accordion_widget widget box_list" id="accordion_widget">
+        <div>
+          <div class="inner_widget">
+            <h2 class="inner_title">Questions and Answers About <?php echo esc_html($suburb); ?> Home Loans</h2>
+            <div class="accordion_holder">
+              <div class="et_pb_module et_pb_toggle et_pb_toggle_close">
+                <h5 class="et_pb_toggle_title">What should I know about buying property in <?php echo esc_html($suburb); ?>?</h5>
+                <div class="et_pb_toggle_content clearfix">
+                  <p>
+                    When buying in <?php echo esc_html($suburb); ?>, it's important to understand the local property market trends. Currently, the median house price is $<?php echo number_format(floatval($market_houses)); ?> and median unit price is $<?php echo number_format(floatval($market_units)); ?>.
+                  </p>
+                  <p>
+                    The area has a population of approximately <?php echo number_format(floatval($demographics_population)); ?> residents, and offers a range of amenities and lifestyle benefits. Working with a local mortgage broker who understands the <?php echo esc_html($suburb); ?> market can help you navigate the buying process more effectively.
+                  </p>
+                </div>
+              </div>
+              
+              <div class="et_pb_module et_pb_toggle et_pb_toggle_close">
+                <h5 class="et_pb_toggle_title">Are you able to do virtual meetings?</h5>
+                <div class="et_pb_toggle_content clearfix">
+                  <p>
+                    Yes, our mortgage brokers can 'face to face' meet you using Zoom Meeting or Google Hangouts, whichever is your preference. In our online meeting,
+                    we'll be able to go through your requirements and walk you through the home buying process in <?php echo esc_html($suburb); ?>.
+                  </p>
+                  <p>
+                    Our mortgage brokers are working and are available during the coronavirus outbreak, so if you need any assistance with a home loan
+                    <a href="/contact/">get in touch today.</a>
+                  </p>
+                </div>
+              </div>
+              
+              <div class="et_pb_module et_pb_toggle et_pb_toggle_close">
+                <h5 class="et_pb_toggle_title">What is a mortgage broker?</h5>
+                <div class="et_pb_toggle_content clearfix">
+                  <p>
+                    A mortgage broker is a consultant that can help you with finding a home loan, or mortgage usually from their panel of lenders. Once the right home loan has
+                    been selected, the mortgage broker will help you manage the home loan process, from initially signing the paperwork all the way until settlement.
+                  </p>
+                </div>
+              </div>
+
+              <div class="et_pb_module et_pb_toggle et_pb_toggle_close">
+                <h5 class="et_pb_toggle_title">How can a mortgage broker help me buy in <?php echo esc_html($suburb); ?>?</h5>
+                <div class="et_pb_toggle_content clearfix">
+                  <p>
+                    A mortgage broker familiar with <?php echo esc_html($suburb); ?> can provide valuable insights about the local property market and help you secure the best possible financing. They will work with you to understand your budget and goals, then connect you with lenders offering competitive rates and terms suited to your specific situation.
+                  </p>
+                  <p>
+                    At Hunter Galloway, we have access to over 30 different banks and lenders, giving you a wide range of home loan options to ensure we have a
+                    lender that can fit in with what you need when buying in <?php echo esc_html($suburb); ?>.
+                  </p>
+                </div>
+              </div>
+              
+              <div class="et_pb_module et_pb_toggle et_pb_toggle_close">
+                <h5 class="et_pb_toggle_title">Is it good to go through a mortgage broker?</h5>
+                <div class="et_pb_toggle_content clearfix">
+                  <p>Applying for your home loan through a mortgage broker gives you many advantages and there are no down sides.</p>
+                  <p>
+                    We will give your application more care and attention than going direct, and we can offer you the best loan product across over thirty different lenders.
+                  </p>
+                  <p>
+                    And if your loan application is complicated for any reason, we have the in depth knowledge and expertise required to correctly assess your situation and
+                    find you the right loan.
+                  </p>
+                </div>
+              </div>
+
+              <div class="et_pb_module et_pb_toggle et_pb_toggle_close">
+                <h5 class="et_pb_toggle_title">How much do mortgage brokers get paid in Australia?</h5>
+                <div class="et_pb_toggle_content clearfix">
+                  <p>Mortgage brokers in Australia get paid commissions from the banks. There is no cost to you as the client.</p>
+                  <p>
+                    We do the same work the branch manager would do in putting together your application, so the lenders pay us for that service. The difference is that we are
+                    invested in your loan application - we don't get paid otherwise - so we will work very hard for it to get approved, as well as provide incredible service.
+                  </p>
+                </div>
+              </div>
+              
+              <div class="et_pb_module et_pb_toggle et_pb_toggle_close">
+                <h5 class="et_pb_toggle_title">How long should a mortgage application take?</h5>
+                <div class="et_pb_toggle_content clearfix">
+                  <p>
+                    The length of a mortgage application depends on various factors, including the complexity of your application and the lender you're using.
+                    Simple applications with responsive lenders can be very quick, while more complex cases may take longer.
+                  </p>
+                  <p>
+                    For property purchases in <?php echo esc_html($suburb); ?>, it's common for us to have finance approved within 14 days, or 2 weeks - sometimes less if you have tight finance timeframes.
+                  </p>
+                  <p>
+                    We will give you an estimate of the expected timeframe for your application when we submit it to lenders, and keep you updated every step of the way.
+                    As a general guide, most applications are settled within a month (and many are settled much quicker).
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Final Dark Holder CTA -->
+      <section class="dark_holder_widget widget box_list">
+        <div>
+          <div class="inner_widget">
+            <h3 class="inner_title">Ready to get started with your <?php echo esc_html($suburb); ?> home loan?</h3>
+            <div class="btn_wrap">
+              <a class="btn_yellow rc_open" href="#">Get A Free Assessment</a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </div>
+  </div>
+</div>
+
+<script>
+  document.querySelector('.footer_button').insertAdjacentHTML('afterbegin', '<p><b>Get a home loan</b> with expert assistance</p>')
+</script>
+
+<?php get_footer(); ?> 

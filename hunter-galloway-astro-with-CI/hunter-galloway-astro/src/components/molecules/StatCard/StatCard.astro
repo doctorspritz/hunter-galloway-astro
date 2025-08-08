@@ -1,0 +1,102 @@
+---
+/**
+ * StatCard Component
+ * Hunter Galloway Design System - Molecular Component
+ * 
+ * A card component for displaying statistics with large numbers and descriptions.
+ * Built to match the exact WordPress structure and styling.
+ */
+
+import type { StatCardProps } from './StatCard.types';
+import { semantic } from '../../../tokens/semantic';
+
+interface Props extends StatCardProps {}
+
+const {
+  number,
+  description,
+  background = 'lightBlue',
+  size = 'md',
+  hoverable = true,
+  class: additionalClasses = '',
+} = Astro.props;
+---
+
+<div class={`hg-stat-card why_choose-item ${additionalClasses}`}>
+  <p class="stat-number">{number}</p>
+  <p class="stat-description">{description}</p>
+</div>
+
+<style define:vars={{
+  surfaceAccent: semantic.color.surface.accent,
+  textPrimary: semantic.color.text.primary,
+  textSecondary: semantic.color.text.secondary,
+  fontSize5xl: semantic.typography.size['5xl'],
+  fontSize4xl: semantic.typography.size['4xl'],
+  fontSize3xl: semantic.typography.size['3xl'],
+  fontSizeMd: semantic.typography.size.md,
+  fontWeightDisplay: semantic.typography.weight.display,
+  fontWeightEmphasis: semantic.typography.weight.emphasis,
+  lineHeightTight: semantic.typography.lineHeight.tight,
+  lineHeightBody: semantic.typography.lineHeight.body,
+  radiusMd: semantic.radius.md,
+  durationNormal: semantic.duration.normal,
+  spaceXl: semantic.space.xl,
+  spaceMd: semantic.space.md,
+  spaceSm: semantic.space.sm,
+}}>
+/* StatCard component styles - Using design tokens */
+.hg-stat-card {
+  text-align: center;
+  flex: 1;
+  min-width: 200px;
+  max-width: 250px;
+  background: var(--surfaceAccent);
+  padding: var(--spaceXl) var(--spaceMd);
+  border-radius: var(--radiusMd);
+  transition: transform var(--durationNormal) ease;
+}
+
+.hg-stat-card:hover {
+  transform: translateY(-4px);
+}
+
+.stat-number {
+  font-size: var(--fontSize5xl);
+  font-weight: var(--fontWeightDisplay);
+  color: var(--textPrimary);
+  margin: 0 0 var(--spaceSm) 0;
+  line-height: var(--lineHeightTight);
+}
+
+.stat-description {
+  font-size: var(--fontSizeMd);
+  color: var(--textSecondary);
+  margin: 0;
+  line-height: var(--lineHeightBody);
+  font-weight: var(--fontWeightEmphasis);
+}
+
+/* Responsive design using design tokens */
+@media (max-width: 768px) {
+  .hg-stat-card {
+    min-width: auto;
+    max-width: 300px;
+    width: 100%;
+  }
+  
+  .stat-number {
+    font-size: var(--fontSize4xl);
+  }
+}
+
+@media (max-width: 480px) {
+  .stat-number {
+    font-size: var(--fontSize3xl);
+  }
+  
+  .hg-stat-card {
+    padding: var(--spaceMd) var(--spaceSm);
+  }
+}
+</style>

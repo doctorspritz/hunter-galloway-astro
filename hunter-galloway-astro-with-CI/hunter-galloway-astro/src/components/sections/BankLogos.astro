@@ -1,0 +1,97 @@
+---
+// Bank Logos Section - Exact WordPress Content
+const bankLogos = [
+  { src: '/images/logos/fm.svg', alt: 'FM' },
+  { src: '/images/logos/bw.svg', alt: 'BW' },
+  { src: '/images/logos/teachers-mutual-bank.png', alt: 'Teachers Mutual Bank' },
+  { src: '/images/logos/westpac_logo.svg', alt: 'Westpac' },
+  { src: '/images/logos/george.svg', alt: 'George' },
+  { src: '/images/logos/macq_logo.png', alt: 'Macquarie Bank', class: 'icon_macq_logo' },
+  { src: '/images/logos/mebank.jpg', alt: 'ME Bank' },
+  { src: '/images/logos/nab.svg', alt: 'NAB' },
+  { src: '/images/logos/ing.svg', alt: 'ING' },
+  { src: '/images/logos/suncorp.svg', alt: 'Suncorp' },
+  { src: '/images/logos/anz.svg', alt: 'ANZ' },
+  { src: 'https://assets-global.website-files.com/6136b19c6ce8df83584ee2cf/6147e7a162f7c8729cdffb97_bank-of-queensland-limited-boq-vector-logo%20copy-2.png', alt: 'Bank of Queensland' },
+  { src: '/images/logos/cb.svg', alt: 'CB' },
+  { src: 'https://www.auswidebank.com.au/Client_Theme/imgs/auswide-bank-logo.png', alt: 'Auswide Bank' }
+];
+---
+
+<section class="banks">
+  <div class="container">
+    <h3 class="text-center">We offer flexibility and best rates due to the variety of banks & <span class="text-nowrap">lender networks</span> we work with</h3>
+    <div class="flex flex-wrap banks_row">
+      {bankLogos.map((logo) => (
+        <img 
+          src={logo.src} 
+          alt={logo.alt}
+          class={logo.class || ''}
+          loading="lazy"
+        />
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+/* Bank Logos Section Styles - Match WordPress exactly */
+.banks {
+  padding: 50px 0;
+  background: white;
+}
+
+.banks h3 {
+  margin-bottom: 3rem;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.banks_row {
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.banks_row img {
+  max-height: 50px;
+  max-width: 120px;
+  object-fit: contain;
+  opacity: 0.7;
+  transition: opacity 0.3s ease;
+}
+
+.banks_row img:hover {
+  opacity: 1;
+}
+
+/* Specific styling for Macquarie logo */
+.icon_macq_logo {
+  max-height: 40px !important;
+}
+
+@media (max-width: 768px) {
+  .banks_row {
+    gap: 1rem;
+  }
+  
+  .banks_row img {
+    max-height: 40px;
+    max-width: 100px;
+  }
+  
+  .icon_macq_logo {
+    max-height: 32px !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .banks_row img {
+    max-height: 35px;
+    max-width: 80px;
+  }
+}
+</style>

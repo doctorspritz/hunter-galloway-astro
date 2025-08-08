@@ -1,0 +1,770 @@
+<?php
+
+$image_path = get_stylesheet_directory_uri() . '/assets/img/pages/';
+$checkmarkImgURL = get_stylesheet_directory_uri() . '/assets/img/img_new/24_checkmark.svg';
+?>
+
+<?php get_header(); ?>
+
+<div id="main-content" class="lp">
+  <div id="main-content" class="lp">
+    <section class="lp_header lp-header">
+      <div class="container">
+        <div class="lp-header__inner">
+          <div class="lp-header__left">
+            <h1 class="lp-header__title lp-header__title--desk">Your Property Investment Journey Starts Here</h1>
+            <div class="lp-header__description">
+              With a 97% approval rate, Hunter Galloway helps Australian investors secure the right loan. We work with over 30 lenders, ensuring you get the best deal.
+            </div>
+            <div class="lp-header__action">
+              <button class="lp-header__btn btn_yellow rc_open pum-trigger">Get Your Free Investment Consultation</button>
+            </div>
+            <div class="lp-header__rating">
+              <?php include 'blocks/rating.php'; ?>
+            </div>
+          </div>
+          <div class="lp-header__right">
+            <picture class="lp-header__img">
+              <source srcset="<?php echo esc_url($image_path . 'lp-3-cover-mob.webp') ?>" media="(max-width: 992px)">
+              <source srcset="<?php echo esc_url($image_path . 'lp-3-cover.webp') ?>" media="(min-width: 993px)">
+              <img src="<?php echo esc_url($image_path . 'lp-3-cover.webp') ?>" alt="" width="560" height="500" loading="lazy">
+
+            </picture>
+            <h2 class="lp-header__title lp-header__title--mob">Your Property Investment Journey Starts Here</h2>
+
+          </div>
+        </div>
+    </section>
+    <section class="lp__awards">
+      <div class="container">
+        <?php get_template_part('template-parts/blocks/awards'); ?>
+      </div>
+    </section>
+    <section class="lp__info lp-info">
+      <div class="container">
+        <div class="lp-info__inner">
+
+          <div class="lp-info__content">
+            <h2 class="lp-info__title">Find Out How Much You Can Borrow to Invest</h2>
+            <div class="lp-info__description">Leverage Hunter Galloway's expertise to secure the best financing for your investment property. We'll explore your options from our 30+ lender network and create a personalized plan to maximize your returns.</div>
+            <div class="lp-info__subtitle">Equity Benefits:</div>
+            <ul class="lp-info__list">
+              <li>
+                <div><span>Calculate Your Investment Potential:</span> Get a precise assessment of your borrowing power to confidently pursue your property goals.</div>
+              </li>
+              <li>
+                <div><span>Secure the Best Loan:</span> Our in-depth knowledge and lender network ensure you get the most favorable loan terms.</div>
+              </li>
+              <li>
+                <div><span>Strategic Investment Planning:</span> We'll help you develop a tailored roadmap to achieve long-term success, whether you're starting out or growing your portfolio.</div>
+              </li>
+            </ul>
+            <div class="lp-info__actions"><button class="btn_yellow rc_open pum-trigger"><span class="desktop">Maximize Your Investment Potential</span> <span class="mob">Learn How to Use My Equity</span></button></div>
+          </div>
+          <picture class="lp-info__bg">
+            <source srcset="<?php echo esc_url($image_path . 'lp-2-info-1-mob.webp') ?>" media="(max-width: 992px)">
+            <source srcset="<?php echo esc_url($image_path . 'lp-2-info-1.webp') ?>" media="(min-width: 993px)">
+            <img src="<?php echo esc_url($image_path . 'lp-2-info-1.webp') ?>" alt="" width="560" height="500" loading="lazy">
+          </picture>
+        </div>
+      </div>
+    </section>
+    <section class="lp__info lp-info">
+      <div class="container">
+        <div class="lp-info__inner">
+          <picture class="lp-info__bg">
+            <source srcset="<?php echo esc_url($image_path . 'lp-2-info-2-mob.webp') ?>" media="(max-width: 992px)">
+            <source srcset="<?php echo esc_url($image_path . 'lp-3-info-2.webp') ?>" media="(min-width: 993px)">
+            <img src="<?php echo esc_url($image_path . 'lp-3-info-2.webp') ?>" alt="" width="588" height="392" loading="lazy">
+          </picture>
+          <div class="lp-info__content">
+            <h2 class="lp-info__title">Leverage Equity for Your Next Investment</h2>
+            <div class="lp-info__description">Let Hunter Galloway's expertise guide you. We'll help you use your existing equity to secure the financing you need for your next investment property.</div>
+            <div class="lp-info__subtitle">We'll guide you through: </div>
+            <ol class="lp-info__list">
+              <li>
+                <div><span>Determining your usable equity:</span> We'll provide a precise calculation and help you understand your options.</div>
+              </li>
+              <li>
+                <div><span>Secure the Best Loan:</span> Our in-depth knowledge and lender network ensure you get the most favorable loan terms.</div>
+              </li>
+              <li>
+                <div><span>Strategic Investment Planning:</span> We'll help you develop a tailored roadmap to achieve long-term success, whether you're starting out or growing your portfolio.</div>
+              </li>
+            </ol>
+            <div class="lp-info__actions"><button class="btn_yellow rc_open pum-trigger">Get a Free Assessment</button></div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+    <section class="lp__goals lp-goals">
+      <div class="container">
+        <h2 class="lp-goals__title">Achieve Your Property <br> Investment Goals </h2>
+        <div class="lp-goals__description">Explore tailored refinancing options designed to help you achieve your financial goals.</div>
+        <div class="lp-goals__blocks">
+          <div class="lp-goals__block goal-block">
+            <h3 class="goal-block__title">Your First Investment Property</h3>
+            <div class="goal-block__description">We'll help you secure the right loan and navigate the complexities of the market.</div>
+            <div class="goal-block__action"><a href="/property-investor-portfolio/" target="_blank">Get Started Now</a></div>
+          </div>
+          <div class="lp-goals__block goal-block">
+            <h3 class="goal-block__title">Grow Your Portfolio</h3>
+            <div class="goal-block__description">Leverage your existing equity and secure strategic financing to expand your investments.</div>
+            <div class="goal-block__action"><a href="/property-investor-portfolio/" target="_blank">Grow My Portfolio</a></div>
+          </div>
+          <div class="lp-goals__block goal-block">
+            <h3 class="goal-block__title">Generate Passive Income</h3>
+            <div class="goal-block__description">Invest in rental properties to build a reliable income stream for the future.</div>
+            <div class="goal-block__action"><button class="rc_open pum-trigger">Discover Rental Property Loans</button></div>
+          </div>
+          <div class="lp-goals__block goal-block">
+            <h3 class="goal-block__title">Build Long-Term Wealth</h3>
+            <div class="goal-block__description">Develop a property investment strategy designed for sustained growth and financial security.</div>
+            <div class="goal-block__action"><button class="rc_open pum-trigger">Start Building Wealth</button></div>
+          </div>
+          <div class="lp-goals__block goal-block">
+            <h3 class="goal-block__title">Plan for Retirement</h3>
+            <div class="goal-block__description">Secure your financial future by investing in properties that generate long-term returns.</div>
+            <div class="goal-block__action"><button class="rc_open pum-trigger">Start Planning for Retirement</button></div>
+          </div>
+          <div class="lp-goals__block goal-block">
+            <h3 class="goal-block__title">Refinance Your Investment Loan</h3>
+            <div class="goal-block__description">Review your current investment loan to secure a better rate or unlock equity for further investment.</div>
+            <div class="goal-block__action"><a href='refinance-home-loan/' target="_blank">Explore Refinance Options</a></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="lp__join lp-join">
+      <div class="container">
+        <div class="lp-join__block join-block">
+          <picture class="join-block__img">
+            <source srcset="<?php echo esc_url($image_path . 'freepik-mob.webp') ?>" media="(max-width: 992px)">
+            <source srcset="<?php echo esc_url($image_path . 'freepik.webp') ?>" media="(min-width: 993px)">
+            <img src="<?php echo esc_url($image_path . 'freepik.webp') ?>" alt="" width="289" height="271" loading="lazy">
+
+          </picture>
+
+          <h2 class="join-block__title">Get a Clear Picture of Your Borrowing Power</h2>
+          <div class="join-block__description">Get a free, no-obligation assessment from our team to find out.</div>
+          <div class="join-block__actions">
+            <a href="/mortgage-calculator/" class="btn_yellow">Calculate My Borrowing Capacity</a>
+            <div class="join-block__actions-text">Answer a few questions to get a result</div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="lp__info lp-info">
+      <div class="container">
+        <div class="lp-info__inner">
+          <picture class="lp-info__bg">
+            <source srcset="<?php echo esc_url($image_path . 'lp-3-info-1-mob.webp') ?>" media="(max-width: 992px)">
+            <source srcset="<?php echo esc_url($image_path . 'lp-3-info-1.webp') ?>" media="(min-width: 993px)">
+            <img src="<?php echo esc_url($image_path . 'lp-3-info-1.webp') ?>" alt="" width="588" height="392" loading="lazy">
+          </picture>
+          <div class="lp-info__content">
+            <h2 class="lp-info__title">Your Partner for Stress-Free Property Investment</h2>
+            <div class="lp-info__description">We'll guide you through every step, providing clear communication and expert support. Let Hunter Galloway help you achieve your property investment goals with confidence.</div>
+            <div class="lp-info__subtitle" style="display: none"></div>
+            <ul class="lp-info__list">
+              <li>
+                <div><span>Dedicated Support:</span> Your personal investment specialist will provide tailored advice and ongoing assistance.</div>
+              </li>
+              <li>
+                <div><span>Clear Communication:</span> We'll keep you informed with regular updates and transparent explanations, demystifying the investment process.</div>
+              </li>
+              <li>
+                <div><span>Seamless Process:</span> We handle the complexities of financing, so you can focus on finding the right property.</div>
+              </li>
+            </ul>
+            <div class="lp-info__actions"><button class="btn_yellow rc_open pum-trigger">Meet Your Investment Partner</button></div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+    <section class="lp__journey lp-journey">
+      <div class="container">
+        <h2>Let's Plan Your Home Upgrade Together</h2>
+        <div class="lp-journey__steps">
+          <div class="lp-journey__step journey-step journey-step--active">
+            <div class="journey-step__order ">STEP 1</div>
+            <div class="journey-step__title">Free Investor Consultation</div>
+            <div class="journey-step__description">Let's discuss your goals and assess your financial situation, with no obligation.</div>
+            <div class="journey-step__actions"><button class="header__assessment btn_yellow rc_open pum-trigger">Get a Consultation</button></div>
+          </div>
+          <div class="lp-journey__step journey-step">
+            <div class="journey-step__order ">STEP 2</div>
+            <div class="journey-step__title">Personalized Investment Plan</div>
+            <div class="journey-step__description">Get a clear roadmap outlining your borrowing power, best loan options, and equity strategies.</div>
+          </div>
+          <div class="lp-journey__step journey-step">
+            <div class="journey-step__order ">STEP 3</div>
+            <div class="journey-step__title">Expert Consultation</div>
+            <div class="journey-step__description">Our team will explain your investment plan, answer your questions, and guide you towards the right decision.</div>
+
+          </div>
+          <div class="lp-journey__step journey-step">
+            <div class="journey-step__order ">STEP 4</div>
+            <div class="journey-step__title">Beyond Settlement</div>
+            <div class="journey-step__description">We'll guide you from pre-approval to settlement and beyond, helping you grow your portfolio.</div>
+
+          </div>
+        </div>
+      </div>
+      <div class="lp-journey__bg">
+        <img src="<?php echo esc_url($image_path . 'lp-2-upbg.webp') ?>" alt="" width="100%" height="100%" loading="lazy">
+      </div>
+    </section>
+    <section class="lp__choose lp-choose">
+      <div class="container">
+        <div class="lp-choose__inner">
+          <div class="lp-choose__img">
+            <img src="<?php echo esc_url($image_path . 'hg-2.webp') ?>" alt="" width="420" height="420" loading="lazy">
+          </div>
+          <div class="lp-choose__content">
+            <h2 class="lp-choose__title">Why Choose Hunter Galloway As Your Mortgage Broker? </h2>
+            <div class="lp-choose__items">
+              <div class="lp-choose__item">
+                <div class="lp-choose__value">97%</div>
+                <div class="lp-choose__label">Loan approval rate</div>
+              </div>
+              <div class="lp-choose__item">
+                <div class="lp-choose__value">14</div>
+                <div class="lp-choose__label">Years of experience</div>
+              </div>
+              <div class="lp-choose__item">
+                <div class="lp-choose__value">30+</div>
+                <div class="lp-choose__label">Banks and lenders we have direct access to</div>
+              </div>
+              <div class="lp-choose__item">
+                <div class="lp-choose__value">2,000+</div>
+                <div class="lp-choose__label">Satisfied customers</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="lp__stories lp-stories">
+      <div class="container">
+        <div class="lp-stories__google">
+          <img src="<?php echo esc_url($image_path . 'google.svg') ?>" alt="" width="109" height="36" class="google logo">
+          <div class="rating">5.0</div>
+          <div class="stars"></div>
+        </div>
+        <h2 class="lp-stories__title">Trusted by <span>2000+</span> Happy Clients</h2>
+        <div class="lp-stories__items" data-items="stories" data-show="3">
+          <div class="lp-stories__item story-item">
+            <div class="story-item__header">
+              <div class="story-item__img"><img src="<?php echo esc_url($image_path . 'comments/marie.webp') ?>" alt="story1" width="44" height="44" loading="lazy"></div>
+              <div class="story-item__author">
+                <div class="story-item__author-name">
+                  Marie “Mlive” Livesey
+                </div>
+                <div class="story-item__author-pos">
+                  Local Guide • 16 reviews
+                </div>
+              </div>
+            </div>
+            <div class="story-item__rating">
+              <div class="story-item__stars"></div>
+              <div class="story-item__date">2 weeks ago</div>
+            </div>
+            <div class="story-item__content story-item__content--hidden">
+              <div class="story-item__text">Joshua and Alex have been absolutely incredible throughout our journey of purchasing our first home! Not only did they guide us with expertise and care, but they also acted swiftly to secure our pre-approval well ahead of the busy Christmas season. Their efficiency and attention to detail made the entire process seamless and stress-free.We truly appreciated their professionalism, clear communication, and dedication to making this milestone achievable for us. They were always available to answer our questions and made everything so straightforward. Thank you, Joshua and Alex, for going above and beyond to make this experience so positive and smooth! Highly recommend Hunter Galloway to anyone seeking exceptional mortgage brokers!</div>
+              <button class="story-item__read-more" data-button="read-more"><span class="more">Read more</span><span class="less">Read less</span></button>
+            </div>
+          </div>
+          <div class="lp-stories__item story-item">
+            <div class="story-item__header">
+              <div class="story-item__img"><img src="<?php echo esc_url($image_path . 'comments/joanna.webp') ?>" alt="story1" width="44" height="44" loading="lazy"></div>
+              <div class="story-item__author">
+                <div class="story-item__author-name">
+                  Joanna Hardie
+                </div>
+                <div class="story-item__author-pos">
+                  3 reviews
+                </div>
+              </div>
+            </div>
+            <div class="story-item__rating">
+              <div class="story-item__stars"></div>
+              <div class="story-item__date">6 days ago</div>
+            </div>
+            <div class="story-item__content story-item__content--hidden">
+              <div class="story-item__text">The team at Hunter Galloway take all of the guess work out of financing and buying property. A massive thank you to Jayden and Brenton for answering all my questions and stepping me through the process. Highly recommend their additional free content around the home buying process, it’s a wonderful value add for their clients. If you are looking for friendly, transparent and trustworthy advice, use these guys!</div>
+              <button class="story-item__read-more" data-button="read-more"><span class="more">Read more</span><span class="less">Read less</span></button>
+            </div>
+          </div>
+          <div class="lp-stories__item story-item">
+            <div class="story-item__header">
+              <div class="story-item__img"><img src="<?php echo esc_url($image_path . 'comments/jess.webp') ?>" alt="story1" width="44" height="44" loading="lazy"></div>
+              <div class="story-item__author">
+                <div class="story-item__author-name">
+                  Jess Wagland
+                </div>
+                <div class="story-item__author-pos">
+                  6 reviews
+                </div>
+              </div>
+            </div>
+            <div class="story-item__rating">
+              <div class="story-item__stars"></div>
+              <div class="story-item__date">2 weeks ago</div>
+            </div>
+            <div class="story-item__content story-item__content--hidden">
+              <div class="story-item__text">Highly recommend Hunter Galloway! We had the pleasure of dealing with Ty and Christian through the process of buying our first home. On hand to answer questions throughout the whole process. Always super fast responses. Hunter Galloway also have tons of videos and content to help with the process as well which was useful
+                Thanks very much to both</div>
+              <button class="story-item__read-more" data-button="read-more"><span class="more">Read more</span><span class="less">Read less</span></button>
+            </div>
+          </div>
+          <div class="lp-stories__item story-item">
+            <div class="story-item__header">
+              <div class="story-item__img"><img src="<?php echo esc_url($image_path . 'comments/rachel.webp') ?>" alt="story1" width="44" height="44" loading="lazy"></div>
+              <div class="story-item__author">
+                <div class="story-item__author-name">
+                  Rachel Wagner
+                </div>
+                <div class="story-item__author-pos">
+                  1 review
+                </div>
+              </div>
+            </div>
+            <div class="story-item__rating">
+              <div class="story-item__stars"></div>
+              <div class="story-item__date">month ago</div>
+            </div>
+            <div class="story-item__content story-item__content--hidden">
+              <div class="story-item__text">This is the second time we have refinanced with Hunter Galloway. They are incredible to deal with. Christian, Ty and the team make refinancing a breeze rather than stressful. They always have your best interests at heart. We are very happy once again with our home loan and will definitely be a repeat customer. We cannot recommend them enough. Their outstanding service speaks for itself!</div>
+              <button class="story-item__read-more" data-button="read-more"><span class="more">Read more</span><span class="less">Read less</span></button>
+            </div>
+          </div>
+          <div class="lp-stories__item story-item">
+            <div class="story-item__header">
+              <div class="story-item__img"><img src="<?php echo esc_url($image_path . 'comments/julie.webp') ?>" alt="story1" width="44" height="44" loading="lazy"></div>
+              <div class="story-item__author">
+                <div class="story-item__author-name">
+                  Julie H
+                </div>
+                <div class="story-item__author-pos">
+                  3 reviews
+                </div>
+              </div>
+            </div>
+            <div class="story-item__rating">
+              <div class="story-item__stars"></div>
+              <div class="story-item__date">2 weeks ago</div>
+            </div>
+            <div class="story-item__content story-item__content--hidden">
+              <div class="story-item__text">We cannot recommend Hunter Galloway highly enough! From start to finish, they provided exceptional support throughout our entire home-buying journey. Their team ensured we were connected with reliable and professional parties at every step, making the process seamless and stress-free. They truly went above and beyond to address our questions, guide us through complex decisions, and keep us informed at every stage. Thanks to their expertise and dedication, we felt confident and well-supported in what can often be a daunting experience. If you’re looking for a mortgage broker who genuinely cares and delivers outstanding service, look no further than Hunter Galloway. You will not be disappointed!</div>
+              <button class="story-item__read-more" data-button="read-more"><span class="more">Read more</span><span class="less">Read less</span></button>
+            </div>
+          </div>
+          <div class="lp-stories__item story-item">
+            <div class="story-item__header">
+              <div class="story-item__img"><img src="<?php echo esc_url($image_path . 'comments/ragni.webp') ?>" alt="story1" width="44" height="44" loading="lazy"></div>
+              <div class="story-item__author">
+                <div class="story-item__author-name">
+                  Ragni Krishna
+                </div>
+                <div class="story-item__author-pos">
+                  4 reviews
+                </div>
+              </div>
+            </div>
+            <div class="story-item__rating">
+              <div class="story-item__stars"></div>
+              <div class="story-item__date">month ago</div>
+            </div>
+            <div class="story-item__content story-item__content--hidden">
+              <div class="story-item__text">We had a great experience with Hunter Galloway buying our first home. Nathan and Alex were amazing, providing a lot of guidance for us, as we were new to this, even providing educational videos for each step of the process. They always gave clear and understandable instructions and provided regular updates. This helped us a lot with our anxieties of purchasing our first home. They helped us from getting the loan, searching the property till finalizing our home. Alex answered the questions each time when I ask him something even it wasn't relating to a loan.We couldn’t be happier with their service and highly recommend them to anyone needing a mortgage broker.</div>
+              <button class="story-item__read-more" data-button="read-more"><span class="more">Read more</span><span class="less">Read less</span></button>
+            </div>
+          </div>
+        </div>
+        <div class="lp-stories__more">
+          <button data-button="load-more">Load More</button>
+        </div>
+        <script>
+          const readMoreBtns = document.querySelectorAll('[data-button="read-more"]');
+
+          readMoreBtns.forEach((btn) => {
+            btn.addEventListener('click', (event) => {
+              event.preventDefault();
+              const content = event.target.closest('.story-item__content');
+
+              if (content) {
+                content.classList.toggle('story-item__content--hidden');
+              }
+            });
+          });
+
+          const loadMoreBtn = document.querySelector('[data-button="load-more"]');
+          const stories = document.querySelector('[data-items="stories"]');
+          const storiesItems = stories.querySelectorAll('.story-item');
+
+          const hideStories = () => {
+            if (window.innerWidth <= 992 && loadMoreBtn.style.display !== 'none') {
+              stories.dataset.show = 3;
+            } else {
+              stories.dataset.show = 6;
+            }
+            storiesItems.forEach((item, index) => {
+              if (index >= parseInt(stories.dataset.show)) {
+                item.style.display = 'none';
+              }
+            });
+          }
+
+          hideStories();
+          window.addEventListener('resize', hideStories);
+
+          loadMoreBtn.addEventListener('click', (event) => {
+            event.preventDefault();
+            stories.dataset.show = parseInt(stories.dataset.show) + 3;
+
+            storiesItems.forEach((item, index) => {
+              if (index < parseInt(stories.dataset.show)) {
+                item.style.display = 'block';
+              } else {
+                item.style.display = 'none';
+              }
+            });
+            loadMoreBtn.style.display = 'none';
+          });
+        </script>
+    </section>
+    <section class="lp__compare lp-compare">
+      <div class="container">
+        <div class="lp-compare__container">
+
+          <div class="lp-compare__inner">
+            <div class="row header">
+              <div class="img"></div>
+
+              <div class="hg">
+                <div class="content">Get a Loan with <span>Hunter Galloway</span></div>
+              </div>
+              <div class="lender">
+                <div class="content">Applying directly to a lender</div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="img"></div>
+              <div class="hg">
+                <div class="content">
+                  <div class="title">We Work for You, Not the Bank</div>
+                  <div class="text">We're independent brokers, fiercely loyal to you. We'll negotiate the best rates and terms on your behalf, putting your interests first.</div>
+                </div>
+              </div>
+              <div class="lender">
+                <div class="content">
+                  <div class="title">They Work for Themselves </div>
+                  <div class="text">Their priority is their bottom line, not necessarily your best interest.</div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="img"></div>
+
+              <div class="hg">
+                <div class="content">
+                  <div class="title">30+ Lenders, Tailored to You</div>
+                  <div class="text">At Hunter Galloway, our brokers consider both your current needs and future goals to ensure you get the best loan that truly supports all your requirements.</div>
+                </div>
+              </div>
+              <div class="lender">
+                <div class="content">
+                  <div class="title">Limited Loan Options from Lenders</div>
+                  <div class="text">Lenders can only offer a limited selection of loan products, and there's no guarantee that you're getting the best deal available.</div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="img"></div>
+
+              <div class="hg">
+                <div class="content">
+                  <div class="title">Streamlined Process, Faster Approval</div>
+                  <div class="text"> We simplify the loan process, eliminating unnecessary delays and securing your pre-approval quickly.</div>
+                </div>
+
+              </div>
+              <div class="lender">
+                <div class="content">
+
+                  <div class="title">Slow and Complicated Process</div>
+                  <div class="text">Dealing with a single bank can be slow and frustrating.</div>
+                </div>
+              </div>
+            </div>
+            <img class="bg" src="<?php echo esc_url($image_path . 'man.webp') ?>" alt="" width="437" height="656" loading="lazy">
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="lp__faq lp-faq accordion_widget widget box_list" id="accordion_widget">
+      <div class="container">
+        <div class="inner_widget">
+          <h2 class="inner_title" plerdy-tracking-id="23454709301">Questions and Answers</h2>
+          <div class="accordion_holder">
+            <div class="et_pb_module et_pb_toggle et_pb_toggle_close">
+              <h5 class="et_pb_toggle_title" plerdy-tracking-id="69681535701">Are you able to do virtual meetings?</h5>
+              <div class="et_pb_toggle_content clearfix">
+                <p>
+                  Yes, our mortgage brokers can still 'face to face' meet you using Zoom Meeting or Google Hangouts, whichever is your preference. In our online meeting,
+                  we'll be able to go through your requirements and walk you through the home buying process.
+                </p>
+                <p>
+                  Our mortgage brokers are working and are available during the coronavirus outbreak, so if you need any assistance with a home loan
+                  <a href="/contact/" plerdy-tracking-id="67898512901">get in touch today.</a>
+                </p>
+              </div>
+            </div>
+            <div class="et_pb_module et_pb_toggle et_pb_toggle_close">
+              <h5 class="et_pb_toggle_title" plerdy-tracking-id="98932973501">What is a mortgage broker?</h5>
+              <div class="et_pb_toggle_content clearfix">
+                <p>
+                  A mortgage broker is a consultant that can help you with finding a home loan, or mortgage usually from their panel of lenders. Once the right home loan has
+                  been selected, the mortgage broker will help you manage the home loan process, from initially signing the paperwork all the way until settlement.
+                </p>
+              </div>
+            </div>
+
+            <div class="et_pb_module et_pb_toggle et_pb_toggle_close">
+              <h5 class="et_pb_toggle_title" plerdy-tracking-id="35670628101">What does a mortgage broker do?</h5>
+              <div class="et_pb_toggle_content clearfix">
+                <p>
+                  A mortgage broker acts on your behalf to arrange a home loan through a bank or lender. Australian banks and lenders have different policies and loan
+                  requirements, and it is a brokers job to find a loan from one of these parties that fit with your individual situation.
+                </p>
+                <p>
+                  Mortgage Brokers can help find the right home loan for any situation, from purchasing your first home to buying an investment property all the way to
+                  refinancing your mortgage to a better interest rate.
+                </p>
+                <p>
+                  At <a href="/" plerdy-tracking-id="15503332101">Hunter Galloway</a> we have access to over 30 different banks and lenders, giving you a wide range of home loan options to ensure we have a
+                  lender that can fit in with what you need.
+                </p>
+              </div>
+            </div>
+            <div class="et_pb_module et_pb_toggle et_pb_toggle_close">
+              <h5 class="et_pb_toggle_title" plerdy-tracking-id="60138606701">Is it good to go through a mortgage broker?</h5>
+              <div class="et_pb_toggle_content clearfix">
+                <p>Applying for your home loan through a mortgage broker gives you many advantages and there are no down sides.</p>
+                <p>
+                  We will give your application more care and attention than going direct, and we can offer you the best loan product across over thirty different lenders.
+                </p>
+                <p>
+                  And if your loan application is complicated for any reason, we have the in depth knowledge and expertise required to correctly assess your situation and
+                  find you the right loan.
+                </p>
+              </div>
+            </div>
+
+            <div class="et_pb_module et_pb_toggle et_pb_toggle_close">
+              <h5 class="et_pb_toggle_title" plerdy-tracking-id="36522849801">How much do mortgage brokers get paid in Australia?</h5>
+              <div class="et_pb_toggle_content clearfix">
+                <p>Mortgage brokers in Australia get paid commissions from the banks. There is no cost to you as the client.</p>
+                <p>
+                  We do the same work the branch manager would do in putting together your application, so the lenders pay us for that service. The difference is that we are
+                  invested in your loan application - we don't get paid otherwise - so we will work very hard for it to get approved, as well as provide incredible service.
+                </p>
+                <p>
+                  As our team at <a href="/" plerdy-tracking-id="15503332102">Hunter Galloway</a> are mortgage broking and credit experts, we can answer all of your questions instead of directing you to
+                  another department.
+                </p>
+              </div>
+            </div>
+            <div class="et_pb_module et_pb_toggle et_pb_toggle_close">
+              <h5 class="et_pb_toggle_title" plerdy-tracking-id="31354997501">What types of customers do you help?</h5>
+              <div class="et_pb_toggle_content clearfix">
+                <p>
+                  Our mission is to make your home loan application effortless, and to provide competitive rates. We always work towards building a strong and personal relationship with every one of our
+                  clients and will work tirelessly to find the right home loan for you. Your mortgage is a lifelong commitment, and so is our commitment to you.
+                </p>
+                <ul class="inner_list">
+                  <li plerdy-tracking-id="53904782101"><a href="/first-time-investor/" plerdy-tracking-id="53904782101">Are you a First Time Investor who wants to build a portfolio?</a></li>
+                  <li plerdy-tracking-id="10566986501"><a href="/first-home-buyer-loans/" plerdy-tracking-id="10566986501">Are you a first home buyer who is overwhelmed and doesn’t know where to start?</a></li>
+                  <li plerdy-tracking-id="73128781801"><a href="/home-or-investment-property/" plerdy-tracking-id="73128781801">Are you looking to update your home and keep your existing home as an investment?</a></li>
+                  <li plerdy-tracking-id="84463263301"><a href="/home-loans-for-doctors/" plerdy-tracking-id="84463263301">Are you a medical professional looking for no deposit 100% LVR financing?</a></li>
+                  <li plerdy-tracking-id="34857933801"><a href="/property-investor-portfolio/" plerdy-tracking-id="34857933801">Are you a seasoned investor looking to add to your portfolio?</a></li>
+                  <li plerdy-tracking-id="22466834701">
+                    <a href="/home-loans-without-hassle/" plerdy-tracking-id="22466834701">Feeling too busy?</a><a href="/home-loans-without-hassle/" plerdy-tracking-id="22466834701"> Is your property purchase being held back due to lack of time?</a>
+                  </li>
+                </ul>
+                <p>We help all sorts of clients from across Brisbane, so get in touch with the team today to book a <a href="/free-assessment/" plerdy-tracking-id="28854131101">free assessment</a>.</p>
+              </div>
+            </div>
+
+            <div class="et_pb_module et_pb_toggle et_pb_toggle_close">
+              <h5 class="et_pb_toggle_title" plerdy-tracking-id="68877661101">What is an Independent Mortgage Broker?</h5>
+              <div class="et_pb_toggle_content clearfix">
+                <p>
+                  An Independent Mortgage Broker in Brisbane is a broker that is not subjected to outside authority. In other words, they should technically be charging a fee
+                  for their services and not be paid commissions by the banks.
+                </p>
+                <p>
+                  In Australia, brokers are not technically independent. Brokers use an aggregator, who provide access to all of the loans offered by the banks and lenders.
+                  We are paid a commission from the banks for providing them with a home loan.
+                </p>
+                <p>
+                  But there is still a difference between independently owned mortgage brokers, and those owned by banks. Mortgage brokers who are owned by the banks are
+                  influenced to recommend the loans from the banks that own them.
+                </p>
+                <p>
+                  <a href="/" plerdy-tracking-id="15503332103">Hunter Galloway</a> is an independently owned Mortgage Broker, not connected to any banks or lender. We use Connective Financial services as our
+                  aggregator who provide the latest technology and training to help find our customers the best finance options.
+                </p>
+                <p>
+                  We are not owned by a bank, and neither the aggregator or the banks have any influence on our decisions or loan recommendations. We only care about what is
+                  best for you.
+                </p>
+              </div>
+            </div>
+
+            <div class="et_pb_module et_pb_toggle et_pb_toggle_close">
+              <h5 class="et_pb_toggle_title" plerdy-tracking-id="19118497701">Why should I use a mortgage broker in Brisbane?</h5>
+              <div class="et_pb_toggle_content clearfix">
+                <p>
+                  Using a mortgage broker gives you many more options than going directly through a bank. Individual banks can only offer you the small number of loans that
+                  they have. We have access to over 40 banks in Australia, so we can find you the right lender and the right loan.
+                </p>
+                <p>The best mortgage brokers can help you through their intimate knowledge of credit policy, making the home loan process quick, easy and stress-free.</p>
+                <p>
+                  We work with a wide range of borrowers, from <a href="/first-home-buyer-loans/" plerdy-tracking-id="44202923501">first home owners</a>,
+                  <a href="/property-investor-portfolio/" plerdy-tracking-id="74790861701">experienced property investors</a> to <a href="/home-loans-for-doctors/" plerdy-tracking-id="29530321101">medical professionals</a> helping them find
+                  the best deal.
+                </p>
+                <p>
+                  Through our intimate bank credit knowledge, we can find ‘secret’ policy exceptions to get approvals for applications that would normally get declined,
+                  including no deposit <a href="/guarantor-home-loan/" plerdy-tracking-id="34484483701">guarantor home loans</a> and <a href="/unusual-employment-loan/" plerdy-tracking-id="56036451101">unusual employment loans.</a>
+                </p>
+                <p>
+                  We also have very strong relationships with the credit teams and key staff at the banks meaning we are also in a good position to get the very best interest
+                  rates for you, ensuring you can secure a better deal. Often this means a cheaper variable or fixed interest rates, or rebates from the bank to cover the costs to
+                  <a href="/refinance-home-loan/" plerdy-tracking-id="41746119601">refinance your loan.</a>
+                </p>
+              </div>
+            </div>
+            <div class="et_pb_module et_pb_toggle et_pb_toggle_close">
+              <h5 class="et_pb_toggle_title" plerdy-tracking-id="16283344901">What is the difference between fixed and variable rates?</h5>
+              <div class="et_pb_toggle_content clearfix">
+                <p>
+                  A fixed rate mortgage means that you 'lock in' an interest rate for either a two-, three-, or five-year fixed period. While you're on that fixed rate, your
+                  loan repayment will not change, even if interest rates go up.
+                </p>
+                <p>
+                  The main benefit of a fixed rate mortgage is security. You know what your monthly repayments will be and you don't have to worry about interest rates rising
+                  or falling.
+                </p>
+                <p>
+                  A variable rate mortgage means that your mortgage repayments will change based on current interest rates. If the interest rates go up, then your repayments
+                  will increase. If interest rates drop, so do your repayments.
+                </p>
+                <p>
+                  The main benefit of a variable rate mortgage is flexibility. A variable rate home loan will allow you to make extra repayments without penalties and you
+                  also have the option of extra facilities like offset accounts.
+                </p>
+              </div>
+            </div>
+            <div class="et_pb_module et_pb_toggle et_pb_toggle_close">
+              <h5 class="et_pb_toggle_title" plerdy-tracking-id="54652426901">How can I manage risk and borrow the smart way?</h5>
+              <div class="et_pb_toggle_content clearfix">
+                <p>
+                  Managing risk is all about understanding your situation, and borrowing the right amount of money. Borrowing the absolute maximum amount of money possible
+                  can be a problem if your financial or living circumstances change, so it's important to get the assistance of a mortgage broker to help make sure that
+                  you're borrowing the right amount of money.
+                </p>
+                <p>
+                  Here at Hunter Galloway - Mortgage Broker Brisbane, we take the time to learn about your unique situation and what you're trying to achieve so we can find you the right loan - and the
+                  right loan amount - that will help you to achieve your goals without putting yourself through any unnecessary financial risk.
+                </p>
+              </div>
+            </div>
+            <div class="et_pb_module et_pb_toggle et_pb_toggle_close">
+              <h5 class="et_pb_toggle_title" plerdy-tracking-id="52550149601">How long should a mortgage application take?</h5>
+              <div class="et_pb_toggle_content clearfix">
+                <p>
+                  The length of a mortgage application depends on a lot of different factors, including the complexity of the application and the lender that you're using.
+                  Simple applications with the most responsive lenders can be very quick. More complex applications or some of the slower lenders can take a bit more time.
+                </p>
+                <p>
+                  If you are purchasing a property it's very common for us to have our finance approved within 14 days, or 2 weeks - sometimes less if you have tight finance
+                  timeframes.
+                </p>
+                <p>
+                  We will give you an idea of the expected time for your application when we submit it to the lenders, and keep you posted every step of the way. As a general
+                  guide, though, most applications are settled within a month (and many are settled much quicker than that).
+                </p>
+              </div>
+            </div>
+
+            <div class="et_pb_module et_pb_toggle et_pb_toggle_close">
+              <h5 class="et_pb_toggle_title" plerdy-tracking-id="13288099201">How can Hunter Galloway make the home loan application process simple?</h5>
+              <div class="et_pb_toggle_content clearfix">
+                <p>We will do all of the leg work on your home loan application to make it as simple and stress-free as possible.</p>
+                <p>
+                  It starts with an information session with one of our brokers. They will sit down with you to understand your background, your goals, and your financial
+                  circumstances.
+                </p>
+                <p>
+                  Based on this information, we work with an internal credit team and utilise cutting-edge technology to provide you with the best home loan solution for you.
+                </p>
+                <p>
+                  Our internal credit team will go through your application with a fine-toothed comb to make sure that everything is in order and you have the best possible
+                  chance of getting your loan approved.
+                </p>
+                <p>
+                  As your application progresses, we will be there to help you every step of the way. We will provide you with regular updates about the progress of your
+                  application, and will work to quickly resolve any issues if they crop up.
+                </p>
+                <p>
+                  If you want some examples of just how easy it can be, check out our Google reviews. We have over 680 reviews with a 5-star average rating, which goes to
+                  show just how easy and simple applying for a home loan with us can be.
+                </p>
+              </div>
+            </div>
+            <div class="et_pb_module et_pb_toggle et_pb_toggle_close">
+              <h5 class="et_pb_toggle_title" plerdy-tracking-id="16761593301">Are there different products that would suit me better over others? What are my options?</h5>
+              <div class="et_pb_toggle_content clearfix">
+                <p>
+                  There are literally hundreds of different home loans across 40 different lenders in Australia, each of them with their advantages and disadvantages. Some
+                  products will be better suited for you than others. It's a good idea to check each product to see what suits your unique
+                  situation the best.
+                </p>
+                <p>
+                  Luckily, that's exactly what the mortgage brokers at Hunter Galloway are here to do! We search across all of the options from the lenders and banks to find
+                  you the right product.
+                </p>
+                <p>
+                  Once we find the right product for you, we will meet with you to discuss your options and answer any questions you might have before moving ahead with your
+                  application. Rest assured that we will find you the best loan possible.
+                </p>
+              </div>
+            </div>
+            <div class="et_pb_module et_pb_toggle et_pb_toggle_close">
+              <h5 class="et_pb_toggle_title" plerdy-tracking-id="64269118901">What are the latest home loan interest rates?</h5>
+              <div class="et_pb_toggle_content clearfix">
+                <p>
+                  We have access to 30+ lenders, with interest rates starting from 3.99% and comparsion rate of 3.99%.
+                </p>
+                <p>
+                  It's important to note that the lowest current interest rate is not suitable for all customers, and your eligiblity will depend on the banks credit approval process and features.
+                </p>
+                <p>
+                  Also please note that the comparison rate provided is based on a loan amount of $150,000 and a term of 25 years. Loan to value ratio of 70% or less.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+  <?php get_footer();

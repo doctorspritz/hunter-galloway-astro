@@ -1,0 +1,322 @@
+{
+  "project": "Hunter Galloway WordPress to Astro Migration",
+  "lastUpdated": "2025-01-08",
+  "totalPages": 20,
+  "completedPages": 1,
+  "inProgressPages": 0,
+  "overallProgress": 5,
+  
+  "pages": {
+    "homepage": {
+      "priority": "P0",
+      "status": "completed",
+      "progress": 90,
+      "wordpressTemplate": "front-page.php",
+      "astroPath": "src/pages/index.astro",
+      "businessValue": "critical",
+      "complexity": "low",
+      "estimatedHours": 40,
+      "actualHours": 35,
+      "componentsNeeded": [],
+      "componentsBuilt": ["Header", "Footer", "HeroSection", "Awards", "LoanPurpose", "BankLogos", "Statistics", "Reviews"],
+      "notes": "Nearly complete, needs final polish and testing"
+    },
+    
+    "stamp-duty-calculator": {
+      "priority": "P1",
+      "status": "not_started",
+      "progress": 0,
+      "wordpressTemplate": "post-stamp-duty-calculator.php",
+      "astroPath": "src/pages/calculators/stamp-duty.astro",
+      "businessValue": "critical",
+      "complexity": "medium",
+      "estimatedHours": 24,
+      "actualHours": 0,
+      "componentsNeeded": ["StampDutyCalculator", "StateSelector", "ResultsDisplay", "PropertyTypeSelector"],
+      "componentsBuilt": [],
+      "phpFiles": ["post-stamp-duty-calculator.php", "template-parts/calculators/calculate-stamp-duty.php"],
+      "cssFiles": [],
+      "sections": [],
+      "notes": "High-priority calculator for lead generation"
+    },
+    
+    "deposit-calculator": {
+      "priority": "P1", 
+      "status": "not_started",
+      "progress": 0,
+      "wordpressTemplate": "post-deposit-calculator.php",
+      "astroPath": "src/pages/calculators/deposit.astro",
+      "businessValue": "high",
+      "complexity": "medium",
+      "estimatedHours": 24,
+      "actualHours": 0,
+      "componentsNeeded": ["DepositCalculator", "InteractiveSlider", "CalculatorResults"],
+      "componentsBuilt": [],
+      "phpFiles": ["post-deposit-calculator.php"],
+      "cssFiles": [],
+      "sections": [],
+      "notes": "Important calculator for first home buyers"
+    },
+    
+    "home-loans-for-doctors": {
+      "priority": "P1",
+      "status": "not_started", 
+      "progress": 0,
+      "wordpressTemplate": "home-loans-for-doctors.php",
+      "astroPath": "src/pages/professionals/doctors.astro",
+      "businessValue": "critical",
+      "complexity": "high",
+      "estimatedHours": 40,
+      "actualHours": 0,
+      "componentsNeeded": ["ProfessionalHero", "RiskWidget", "DoctorBenefits", "WhyChooseWidget"],
+      "componentsBuilt": [],
+      "phpFiles": ["home-loans-for-doctors.php", "home-loans-for-doctors-1.php"],
+      "cssFiles": ["style-1.css", "style.css", "assets/css/pages/lp.css", "assets/css/pages/lp-fhl.css"],
+      "sections": ["hero_widget", "widget", "why_choose", "risk_widget", "reputation_widget", "reviews_widget"],
+      "notes": "High-value professional landing page with complex sections"
+    },
+    
+    "nurse-home-loan": {
+      "priority": "P1",
+      "status": "not_started",
+      "progress": 0, 
+      "wordpressTemplate": "nurse-home-loan.php",
+      "astroPath": "src/pages/professionals/nurses.astro",
+      "businessValue": "high",
+      "complexity": "medium",
+      "estimatedHours": 24,
+      "actualHours": 0,
+      "componentsNeeded": ["ProfessionalHero", "RiskWidget", "NurseBenefits"],
+      "componentsBuilt": [],
+      "phpFiles": ["nurse-home-loan.php"],
+      "cssFiles": ["style-1.css", "style.css", "assets/css/pages/lp.css"],
+      "sections": ["hero_widget", "widget", "reputation_widget", "risk_widget", "why_choose"],
+      "notes": "Can reuse doctor components with modifications"
+    },
+    
+    "blog-template": {
+      "priority": "P2",
+      "status": "not_started",
+      "progress": 0,
+      "wordpressTemplate": "blog.php", 
+      "astroPath": "src/pages/blog/index.astro",
+      "businessValue": "medium",
+      "complexity": "medium",
+      "estimatedHours": 24,
+      "actualHours": 0,
+      "componentsNeeded": ["BlogListing", "BlogCard", "Pagination", "BlogFilters"],
+      "componentsBuilt": [],
+      "phpFiles": ["blog.php"],
+      "cssFiles": [],
+      "sections": [],
+      "notes": "Important for SEO and content marketing"
+    },
+    
+    "post-single": {
+      "priority": "P2",
+      "status": "not_started",
+      "progress": 0,
+      "wordpressTemplate": "post-single.php",
+      "astroPath": "src/pages/blog/[slug].astro", 
+      "businessValue": "medium",
+      "complexity": "high",
+      "estimatedHours": 40,
+      "actualHours": 0,
+      "componentsNeeded": ["PostLayout", "AuthorBio", "RelatedPosts", "PostNavigation"],
+      "componentsBuilt": [],
+      "phpFiles": ["post-single-1.php", "post-single.php"],
+      "cssFiles": ["assets/css/templates/single.css"],
+      "sections": ["hero_widget", "widget", "reputation_widget", "reviews_widget", "text_widget"],
+      "notes": "Most complex template with 24 sections"
+    },
+    
+    "suburb-mortgage-broker": {
+      "priority": "P2", 
+      "status": "not_started",
+      "progress": 0,
+      "wordpressTemplate": "suburb-template.php",
+      "astroPath": "src/pages/locations/[suburb].astro",
+      "businessValue": "high",
+      "complexity": "medium", 
+      "estimatedHours": 32,
+      "actualHours": 0,
+      "componentsNeeded": ["LocationHero", "LocalTestimonials", "SuburbStats"],
+      "componentsBuilt": [],
+      "phpFiles": ["suburb-template.php"],
+      "cssFiles": ["style-1.css", "style.css"],
+      "sections": ["hero_widget", "mobile_text_from_hero", "reputation_widget", "box_list"],
+      "notes": "Important for local SEO and suburb-specific marketing"
+    },
+    
+    "map-page": {
+      "priority": "P2",
+      "status": "not_started", 
+      "progress": 0,
+      "wordpressTemplate": "page-mappage.php",
+      "astroPath": "src/pages/locations/map.astro",
+      "businessValue": "medium",
+      "complexity": "medium",
+      "estimatedHours": 24,
+      "actualHours": 0,
+      "componentsNeeded": ["InteractiveMap", "SuburbSelector", "LocationCard"],
+      "componentsBuilt": [],
+      "phpFiles": ["page-mappage.php"],
+      "cssFiles": ["style.css", "assets/css/sections/awards.css"],
+      "sections": ["map-wrapper", "suburb-loan", "container"],
+      "notes": "Interactive map for Brisbane property locations"
+    },
+    
+    "refinance-home-loan": {
+      "priority": "P2",
+      "status": "not_started",
+      "progress": 0,
+      "wordpressTemplate": "refinance-home-loan.php", 
+      "astroPath": "src/pages/services/refinance.astro",
+      "businessValue": "high",
+      "complexity": "medium",
+      "estimatedHours": 32,
+      "actualHours": 0,
+      "componentsNeeded": ["RefinanceCalculator", "ComparisonTool", "SavingsWidget"],
+      "componentsBuilt": [],
+      "phpFiles": ["refinance-home-loan.php"],
+      "cssFiles": ["style-1.css", "style.css", "assets/css/pages/lp.css"],
+      "sections": ["refinance_widget", "risk_widget", "refinance_risk_widget", "why_choose"],
+      "notes": "Important service page with specialized calculators"
+    },
+    
+    "contact": {
+      "priority": "P3",
+      "status": "not_started",
+      "progress": 0,
+      "wordpressTemplate": "page-contact.php",
+      "astroPath": "src/pages/contact.astro", 
+      "businessValue": "medium",
+      "complexity": "low",
+      "estimatedHours": 16,
+      "actualHours": 0,
+      "componentsNeeded": ["ContactForm", "OfficeInfo", "ContactMap"],
+      "componentsBuilt": [],
+      "phpFiles": ["page-contact.php"],
+      "cssFiles": [],
+      "sections": [],
+      "notes": "Standard contact page"
+    },
+    
+    "our-team": {
+      "priority": "P3",
+      "status": "not_started",
+      "progress": 0,
+      "wordpressTemplate": "page-ourteam.php",
+      "astroPath": "src/pages/about/team.astro",
+      "businessValue": "medium", 
+      "complexity": "low",
+      "estimatedHours": 16,
+      "actualHours": 0,
+      "componentsNeeded": ["TeamMember", "TeamGrid", "TeamBio"],
+      "componentsBuilt": [],
+      "phpFiles": ["page-ourteam.php"],
+      "cssFiles": [],
+      "sections": [],
+      "notes": "Team member profiles and bios"
+    },
+    
+    "what-we-do": {
+      "priority": "P3",
+      "status": "not_started",
+      "progress": 0,
+      "wordpressTemplate": "page-whatwedo.php", 
+      "astroPath": "src/pages/about/services.astro",
+      "businessValue": "medium",
+      "complexity": "low",
+      "estimatedHours": 16,
+      "actualHours": 0,
+      "componentsNeeded": ["ServiceCard", "ServiceGrid", "ProcessSteps"],
+      "componentsBuilt": [],
+      "phpFiles": ["page-whatwedo.php"],
+      "cssFiles": [],
+      "sections": [],
+      "notes": "Services overview page"
+    },
+    
+    "who-we-help": {
+      "priority": "P3",
+      "status": "not_started",
+      "progress": 0,
+      "wordpressTemplate": "page-whowehelp.php",
+      "astroPath": "src/pages/about/who-we-help.astro",
+      "businessValue": "medium",
+      "complexity": "low", 
+      "estimatedHours": 16,
+      "actualHours": 0,
+      "componentsNeeded": ["CustomerType", "CustomerGrid", "CaseStudy"],
+      "componentsBuilt": [],
+      "phpFiles": ["page-whowehelp.php"],
+      "cssFiles": [],
+      "sections": [],
+      "notes": "Target customer segments"
+    },
+    
+    "get-free-assessment": {
+      "priority": "P2",
+      "status": "not_started", 
+      "progress": 0,
+      "wordpressTemplate": "get-free-assessment.php",
+      "astroPath": "src/pages/assessment.astro",
+      "businessValue": "critical",
+      "complexity": "medium",
+      "estimatedHours": 32,
+      "actualHours": 0,
+      "componentsNeeded": ["MultiStepForm", "FormValidation", "ProgressIndicator"],
+      "componentsBuilt": [],
+      "phpFiles": ["get-free-assessment.php"],
+      "cssFiles": [],
+      "sections": [],
+      "notes": "Critical lead generation form"
+    }
+  },
+  
+  "sprints": {
+    "sprint1": {
+      "name": "Calculators & Core Pages",
+      "duration": "Week 1-2", 
+      "pages": ["stamp-duty-calculator", "deposit-calculator", "homepage"],
+      "status": "not_started",
+      "estimatedHours": 56,
+      "actualHours": 35
+    },
+    "sprint2": {
+      "name": "Professional Landing Pages",
+      "duration": "Week 3-4",
+      "pages": ["home-loans-for-doctors", "nurse-home-loan"], 
+      "status": "not_started",
+      "estimatedHours": 64,
+      "actualHours": 0
+    },
+    "sprint3": {
+      "name": "Content & Blog",
+      "duration": "Week 5-6",
+      "pages": ["blog-template", "post-single"],
+      "status": "not_started", 
+      "estimatedHours": 64,
+      "actualHours": 0
+    },
+    "sprint4": {
+      "name": "Location & Services", 
+      "duration": "Week 7-8",
+      "pages": ["suburb-mortgage-broker", "map-page", "refinance-home-loan"],
+      "status": "not_started",
+      "estimatedHours": 88,
+      "actualHours": 0
+    }
+  },
+  
+  "components": {
+    "reusable": {
+      "existing": ["Header", "Footer", "HeroSection", "Awards", "LoanPurpose", "BankLogos", "Statistics", "Reviews"],
+      "needed": ["ProfessionalHero", "RiskWidget", "WhyChooseWidget", "BlogCard", "FormValidation"]
+    },
+    "pageSpecific": {
+      "needed": ["StampDutyCalculator", "DepositCalculator", "InteractiveMap", "MultiStepForm"]
+    }
+  }
+}

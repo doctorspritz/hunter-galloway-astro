@@ -1,0 +1,532 @@
+<?php
+/*
+ * Template Name: Post Stamp duty calculator Template
+ * Template Post Type: post, page, product
+ */
+?>
+
+<?php
+get_header();
+$default_state = get_field('default_state');
+$et_pb_calculate_value = get_post_meta(get_the_ID(), '_et_pb_calculate', true);
+$et_pb_calculate_value2 = get_post_meta(get_the_ID(), '_et_pb_calculate', true);
+
+
+$assets = '/wp-content/themes/hunter-galloway/assets/img/img_new/';
+
+$show_default_title = get_post_meta(get_the_ID(), '_et_pb_show_title', true);
+
+$is_page_builder_used = et_pb_is_pagebuilder_used(get_the_ID());
+
+
+$backgroundColorBanner = '#FFF7E3';
+$et_pb_calculate_title = '<span class="c-yellow_2">Uncover</span> what discounts and stamp duty waivers are you eligible for</h4>';
+$et_pb_calculate_label = 'Enter the purchase price';
+$et_pb_calculate_link = '/stamp-duty-calculator-queensland';
+
+if ($et_pb_calculate_value2 == 0) {
+	$backgroundColorBanner = '#E2F3FF';
+} else if ($et_pb_calculate_value2 == 1) {
+	$backgroundColorBanner = '#DEFADF';
+} else if ($et_pb_calculate_value2 == 2) {
+	$backgroundColorBanner = '#D2FFFA';
+} else if ($et_pb_calculate_value2 == 3) {
+	$backgroundColorBanner = '#FFE2E2';
+} else if ($et_pb_calculate_value2 == 4) {
+	$backgroundColorBanner = '#FFE2F2';
+} else if ($et_pb_calculate_value2 == 5) {
+	$backgroundColorBanner = '#EEFBBD';
+}
+
+$et_pb_calculate_field = '
+	<select class="select">
+		<option value="" disabled="" selected="">Choose a Suburb</option>
+		<option value="View All">View All</option>
+		<option value="BELMONT">BELMONT</option>
+		<option value="CHANDLER">CHANDLER</option>
+		<option value="HAMILTON">HAMILTON</option>
+		<option value="HOLLAND PARK">HOLLAND PARK</option>
+		<option value="MORNINGSIDE">MORNINGSIDE</option>
+		<option value="PULLENVALE">PULLENVALE</option>
+		<option value="ST LUCIA">ST LUCIA</option>
+		<option value="TENNYSON">TENNYSON</option>
+		<option value="THE GABBA">THE GABBA</option>
+		<option value="TOOWONG">TOOWONG</option>
+	</select>';
+
+$et_pb_calculate_link = '/mortgage-calculator';
+
+if ($et_pb_calculate_value == 0) {
+	$et_pb_calculate_title = '<span class="c-yellow_2">Calculate</span> how your deposit translates to your home price and monthly payment.</h4>';
+	$et_pb_calculate_label = 'Enter the amount of your deposit';
+	$et_pb_calculate_link = '/deposit-calculator';
+} else if ($et_pb_calculate_value == 1) {
+	$et_pb_calculate_title = '<span class="c-yellow_2">Compare suburbs</span> in Brisbane: housing price, green zones and more.';
+	$et_pb_calculate_label = 'Which suburb are you interested in?';
+	$et_pb_calculate_link = '/suburbs-map';
+} else if ($et_pb_calculate_value == 2) {
+	$et_pb_calculate_title = '<span class="c-yellow_2">Uncover</span> what discounts and stamp duty waivers are you eligible for</h4>';
+	$et_pb_calculate_label = 'Enter the purchase price';
+	$et_pb_calculate_link = '/stamp-duty-calculator-queensland';
+} else if ($et_pb_calculate_value == 3) {
+	$et_pb_calculate_title = '<span class="c-yellow_2">Calculate</span> Your Home Equity</h4>';
+	$et_pb_calculate_label = 'Enter your current loan amount';
+	$et_pb_calculate_link = '/equity-calculator';
+} else if ($et_pb_calculate_value == 4) {
+	$et_pb_calculate_title = '<span class="c-yellow_2">Calculate</span> your borrowing capacity</h4>';
+	$et_pb_calculate_label = 'Enter the amount of your deposit';
+} else if ($et_pb_calculate_value == 5) {
+	$et_pb_calculate_title = '<span class="c-yellow_2">Compare</span> your current rent with your mortgage payment</h4>';
+	$et_pb_calculate_label = 'Enter the weekly rent you currently pay for the property you live in.</b></label>';
+	$et_pb_calculate_link = '/mortgage-vs-rent-calculator';
+}
+
+if ($et_pb_calculate_value != 1) {
+	$et_pb_calculate_field = '
+			<div class="relative">
+					<p class="absolute_curr">$</p>
+					<input type="text" placeholder="e.g. ';
+
+	if ($et_pb_calculate_value == 2) {
+		$et_pb_calculate_field .= '400,000';
+	} else if ($et_pb_calculate_value == 3) {
+		$et_pb_calculate_field .= '200,000';
+	} else if ($et_pb_calculate_value == 4) {
+		$et_pb_calculate_field .= '50,000';
+	} else if ($et_pb_calculate_value == 5) {
+		$et_pb_calculate_field .= '500';
+	} else {
+		$et_pb_calculate_field .= '50,000';
+	}
+
+	$et_pb_calculate_field .= '" oninput="addCommas(this)" class="input-banner">
+			</div>';
+}
+?>
+<style>
+	@import url('<?php echo (get_stylesheet_directory_uri() . '/assets/css/pages/stamp-duty-calculator-page.css') ?>');
+</style>
+<div class="container" data-calculate-value="<?php echo esc_attr($et_pb_calculate_value); ?>">
+	<?php get_template_part('template-parts/calculators/calculate-stamp-duty', null, array(
+		'default_state' => $default_state,
+	)); ?>
+	<div id="main-content">
+		<div class="blog_row flex">
+			<div class="blog_row_left">
+				<div class="sidebar_sticky">
+					<div class="sidebar">
+						<div class="sidebar_head flex items-center">
+							<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32"
+								fill="none">
+								<path
+									d="M15 19.9999C14.4067 19.9999 13.8266 19.824 13.3333 19.4943C12.8399 19.1647 12.4554 18.6961 12.2284 18.148C12.0013 17.5998 11.9419 16.9966 12.0576 16.4146C12.1734 15.8327 12.4591 15.2981 12.8787 14.8786C13.2982 14.459 13.8328 14.1733 14.4147 14.0576C14.9967 13.9418 15.5999 14.0012 16.1481 14.2283C16.6962 14.4553 17.1648 14.8399 17.4944 15.3332C17.8241 15.8265 18 16.4066 18 16.9999C18 17.7956 17.6839 18.5586 17.1213 19.1212C16.5587 19.6838 15.7956 19.9999 15 19.9999ZM20 6.99991C20 7.26512 20.1054 7.51948 20.2929 7.70701C20.4804 7.89455 20.7348 7.99991 21 7.99991H27C26.9997 7.86036 26.9701 7.72243 26.9133 7.59499C26.8565 7.46754 26.7736 7.3534 26.67 7.25991L21.11 2.25991C20.9266 2.09321 20.6878 2.00056 20.44 1.99991H20V6.99991ZM27 9.99991V26.9999C26.9661 27.8231 26.6091 28.5998 26.0063 29.1614C25.4035 29.723 24.6035 30.0243 23.78 29.9999H8.22C7.39647 30.0243 6.59654 29.723 5.99373 29.1614C5.39092 28.5998 5.03386 27.8231 5 26.9999V4.99991C5.03386 4.17671 5.39092 3.40006 5.99373 2.83844C6.59654 2.27682 7.39647 1.97552 8.22 1.99991H18V6.99991C18 7.79556 18.3161 8.55862 18.8787 9.12123C19.4413 9.68384 20.2044 9.99991 21 9.99991H27ZM21.71 22.2899L19.17 19.7499C19.8522 18.716 20.1262 17.4656 19.9391 16.2411C19.752 15.0166 19.117 13.9051 18.1572 13.1221C17.1973 12.3391 15.981 11.9402 14.7439 12.0028C13.5067 12.0654 12.3369 12.585 11.461 13.4609C10.5851 14.3368 10.0655 15.5066 10.0029 16.7438C9.94029 17.9809 10.3392 19.1972 11.1222 20.1571C11.9052 21.1169 13.0167 21.7519 14.2412 21.939C15.4657 22.1261 16.716 21.8521 17.75 21.1699L20.29 23.7099C20.383 23.8036 20.4936 23.878 20.6154 23.9288C20.7373 23.9796 20.868 24.0057 21 24.0057C21.132 24.0057 21.2627 23.9796 21.3846 23.9288C21.5064 23.878 21.617 23.8036 21.71 23.7099C21.8037 23.6169 21.8781 23.5063 21.9289 23.3845C21.9797 23.2626 22.0058 23.1319 22.0058 22.9999C22.0058 22.8679 21.9797 22.7372 21.9289 22.6153C21.8781 22.4935 21.8037 22.3829 21.71 22.2899Z"
+									fill="#FDB948" />
+							</svg>
+							<h3>Table of Contents:</h3>
+						</div>
+						<div class="sidebar_content loading">
+							<i class="elementor-toc__spinner eicon-animation-spin eicon-loading" aria-hidden="true"></i>
+							<ul></ul>
+						</div>
+					</div>
+
+					<div class="sidebar_calculate" style="<?php
+																								if ($et_pb_calculate_value == 'none') {
+																									echo "display: none!important";
+																								}
+																								?>">
+						<div class="sidebar_calculate_head">
+							<?php echo $et_pb_calculate_title; ?>
+						</div>
+						<div class="sidebar_calculate_body">
+							<label><b>
+									<?php echo $et_pb_calculate_label; ?>
+								</b></label>
+							<?php echo $et_pb_calculate_field; ?>
+
+							<a href="<?php echo $et_pb_calculate_link ?>" class="btn_yellow btn_calculate" target="_blank" <?php
+																																																							if ($et_pb_calculate_link == '#') {
+																																																								echo "onclick='scrollToSection(event)'";
+																																																							}
+																																																							?>>
+								<?php
+								if ($et_pb_calculate_value2 == 1) {
+									echo 'Compare Suburbs';
+								} else {
+									echo 'Calculate';
+								}
+								?>
+								<img src="<?php echo $assets; ?>16_arrow_r_black.svg" alt="arrow image"
+									style="margin: 0 0 0 8px!important;">
+							</a>
+						</div>
+					</div>
+
+				</div>
+			</div>
+			<div>
+				<?php
+				if (et_builder_is_product_tour_enabled()):
+					// load fullwidth page in Product Tour mode
+					while (have_posts()):
+						the_post(); ?>
+
+						<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
+							<div class="entry-content">
+								<?php
+								the_content();
+								?>
+							</div> <!-- .entry-content -->
+
+						</article> <!-- .et_pb_post -->
+
+					<?php endwhile;
+				else:
+					?>
+
+					<!-- <div id="post_exerpt_link" class="single_exerpt">
+					
+				</div> -->
+					<?php while (have_posts()):
+						the_post(); ?>
+						<?php if (et_get_option('divi_integration_single_top') <> '' && et_get_option('divi_integrate_singletop_enable') == 'on')
+							echo (et_get_option('divi_integration_single_top')); ?>
+						<article id="post-<?php the_ID(); ?>" <?php post_class('et_pb_post'); ?>>
+							<?php if (('off' !== $show_default_title && $is_page_builder_used) || !$is_page_builder_used) { ?>
+								<div class="et_post_meta_wrapper">
+
+									<?php
+									if (!post_password_required()):
+
+										$thumb = '';
+
+										$width = (int) apply_filters('et_pb_index_blog_image_width', 1080);
+
+										$height = (int) apply_filters('et_pb_index_blog_image_height', 675);
+										$classtext = 'et_featured_image';
+										$titletext = get_the_title();
+
+										$post_format = et_pb_post_format();
+
+										if ('video' === $post_format && false !== ($first_video = et_get_first_video())) {
+											printf(
+												'<div class="et_main_video_container">
+											%1$s
+										</div>',
+												$first_video
+											);
+										} else if (!in_array($post_format, array('gallery', 'link', 'quote')) && 'on' === et_get_option('divi_thumbnails', 'on') && '' !== $thumb) {
+											print_thumbnail($thumb, $thumbnail["use_timthumb"], $titletext, $width, $height);
+										} else if ('gallery' === $post_format) {
+											et_pb_gallery_images();
+										}
+									?>
+
+									<?php
+										$text_color_class = et_divi_get_post_text_color();
+
+										$inline_style = et_divi_get_post_bg_inline_style();
+
+										switch ($post_format) {
+											case 'audio':
+												$audio_player = et_pb_get_audio_player();
+
+												if ($audio_player) {
+													printf(
+														'<div class="et_audio_content%1$s"%2$s>
+													%3$s
+												</div>',
+														esc_attr($text_color_class),
+														$inline_style,
+														$audio_player
+													);
+												}
+
+												break;
+											case 'quote':
+												printf(
+													'<div class="et_quote_content%2$s"%3$s>
+												%1$s
+											</div> <!-- .et_quote_content -->',
+													et_get_blockquote_in_content(),
+													esc_attr($text_color_class),
+													$inline_style
+												);
+
+												break;
+											case 'link':
+												printf(
+													'<div class="et_link_content%3$s"%4$s>
+												<a href="%1$s" class="et_link_main_url">%2$s</a>
+											</div> <!-- .et_link_content -->',
+													esc_url(et_get_link_url()),
+													esc_html(et_get_link_url()),
+													esc_attr($text_color_class),
+													$inline_style
+												);
+
+												break;
+										}
+
+									endif;
+									?>
+								</div> <!-- .et_post_meta_wrapper -->
+							<?php } ?>
+
+							<div class="entry-content">
+								<?php
+								// do_action('et_before_content');
+
+								the_content();
+
+								wp_link_pages(array('before' => '<div class="page-links">' . esc_html__('Pages:', 'Divi'), 'after' => '</div>'));
+								?>
+							</div> <!-- .entry-content 2 -->
+
+
+						</article> <!-- .et_pb_post -->
+
+					<?php endwhile; ?>
+
+
+				<?php endif; ?>
+			</div>
+		</div>
+		<div class="single_bottom_choose">
+			<h2 class="single_bottom_title text-center">
+				Why Choose <span class="c-yellow">Hunter Galloway</span> As Your Mortgage Broker?
+			</h2>
+			<div class="single_bottom_inner flex">
+				<div class="single_bottom_item">
+					<div>
+
+						<div class="single_bottom_image">
+							<svg xmlns="http://www.w3.org/2000/svg" width="40" height="50" viewBox="0 0 40 50"
+								fill="none">
+								<path
+									d="M4.37124 19.4165C4.37124 19.4165 5.60673 17.426 4.8077 14.6616C4.00589 11.8989 2.13871 10.8496 2.13871 10.8496C2.13871 10.8496 0.741467 13.2218 1.52236 15.9148C2.30186 18.6095 4.37124 19.4165 4.37124 19.4165Z"
+									fill="#FDB948" />
+								<path
+									d="M7.80199 20.8286C7.80199 20.8286 9.962 20.6125 11.1989 18.1984C12.4358 15.7861 11.4903 13.0879 11.4903 13.0879C11.4903 13.0879 9.4851 13.5968 8.21475 16.0737C6.94579 18.5487 7.80199 20.8286 7.80199 20.8286Z"
+									fill="#FDB948" />
+								<path
+									d="M8.02067 24.0186C7.02084 26.6802 8.10712 28.8032 8.10712 28.8032C8.10712 28.8032 10.2281 28.2349 11.2014 25.6431C12.1734 23.0477 10.9546 20.5273 10.9546 20.5273C10.9546 20.5273 9.02049 21.357 8.02067 24.0186Z"
+									fill="#FDB948" />
+								<path
+									d="M12.9018 26.1621C12.9018 26.1621 11.0374 27.2184 10.2426 29.9828C9.44773 32.7524 10.6874 34.736 10.6874 34.736C10.6874 34.736 12.754 33.922 13.5293 31.2256C14.3032 28.5291 12.9018 26.1621 12.9018 26.1621Z"
+									fill="#FDB948" />
+								<path
+									d="M14.4576 40.7208C14.4576 40.7208 16.2509 39.1956 16.3722 36.3354C16.4921 33.4733 14.6026 31.7129 14.6026 31.7129C14.6026 31.7129 13.0603 33.3949 12.9362 36.3301C12.8135 39.2636 14.4576 40.7208 14.4576 40.7208Z"
+									fill="#FDB948" />
+								<path
+									d="M7.12744 14.0892C7.12744 14.0892 9.03924 13.2909 9.59981 10.4376C10.1618 7.58432 9.07549 5.41602 9.07549 5.41602C9.07549 5.41602 6.86109 6.41999 6.31307 9.20358C5.76645 11.9854 7.12744 14.0892 7.12744 14.0892Z"
+									fill="#FDB948" />
+								<path
+									d="M4.37107 25.4834C4.37107 25.4834 5.08085 23.1251 3.66547 20.7807C2.24731 18.4346 0.216982 18.1191 0.216982 18.1191C0.216982 18.1191 -0.558336 20.901 0.822177 23.1878C2.20269 25.4764 4.37107 25.4834 4.37107 25.4834Z"
+									fill="#FDB948" />
+								<path
+									d="M5.95484 31.7054C5.95484 31.7054 6.22676 29.2094 4.4307 27.3165C2.63185 25.4218 0.595947 25.6798 0.595947 25.6798C0.595947 25.6798 0.333789 28.608 2.08523 30.4539C3.83945 32.298 5.95484 31.7054 5.95484 31.7054Z"
+									fill="#FDB948" />
+								<path
+									d="M8.36588 36.8519C8.36588 36.8519 8.02424 34.3699 5.85168 33.2474C3.67772 32.1214 1.80078 33.1376 1.80078 33.1376C1.80078 33.1376 2.26095 36.0275 4.37774 37.1256C6.49452 38.2184 8.36588 36.8519 8.36588 36.8519Z"
+									fill="#FDB948" />
+								<path
+									d="M9.42339 38.9876C7.1588 38.1962 5.39062 39.4843 5.39062 39.4843C5.39062 39.4843 6.12272 42.2836 8.32875 43.0557C10.5376 43.8279 12.2639 42.1912 12.2639 42.1912C12.2639 42.1912 11.688 39.7771 9.42339 38.9876Z"
+									fill="#FDB948" />
+								<path
+									d="M7.36267 15.7906L6.35587 15.1719C6.30288 15.3096 1.12387 29.0602 15.6764 44.6096L16.4043 43.5446C2.54901 28.7377 7.15908 16.3118 7.36267 15.7906Z"
+									fill="#FDB948" />
+								<path
+									d="M35.6279 19.3911C35.6279 19.3911 34.391 17.4006 35.1915 14.6379C35.9905 11.8735 37.8591 10.8242 37.8591 10.8242C37.8591 10.8242 39.2549 13.1947 38.474 15.8894C37.6973 18.5841 35.6279 19.3911 35.6279 19.3911Z"
+									fill="#FDB948" />
+								<path
+									d="M32.1993 20.8032C32.1993 20.8032 30.0393 20.5853 28.801 18.173C27.5642 15.7607 28.5096 13.0625 28.5096 13.0625C28.5096 13.0625 30.5148 13.5715 31.7866 16.0465C33.0555 18.5234 32.1993 20.8032 32.1993 20.8032Z"
+									fill="#FDB948" />
+								<path
+									d="M31.9795 23.9913C32.9794 26.6528 31.8931 28.7758 31.8931 28.7758C31.8931 28.7758 29.7721 28.2076 28.7974 25.6157C27.8268 23.0204 29.0442 20.5 29.0442 20.5C29.0442 20.5 30.9797 21.3314 31.9795 23.9913Z"
+									fill="#FDB948" />
+								<path
+									d="M27.0994 26.1367C27.0994 26.1367 28.9624 27.1912 29.7586 29.9609C30.5535 32.7288 29.3124 34.7123 29.3124 34.7123C29.3124 34.7123 27.2472 33.8966 26.4719 31.2002C25.6966 28.5037 27.0994 26.1367 27.0994 26.1367Z"
+									fill="#FDB948" />
+								<path
+									d="M25.5398 40.6932C25.5398 40.6932 23.7479 39.1698 23.6266 36.3078C23.5066 33.4458 25.3975 31.6836 25.3975 31.6836C25.3975 31.6836 26.937 33.3656 27.0625 36.3026C27.1866 39.2395 25.5398 40.6932 25.5398 40.6932Z"
+									fill="#FDB948" />
+								<path
+									d="M32.8691 14.0636C32.8691 14.0636 30.9601 13.2653 30.3995 10.412C29.8375 7.55872 30.9252 5.38867 30.9252 5.38867C30.9252 5.38867 33.1396 6.39265 33.6862 9.17798C34.2329 11.9581 32.8691 14.0636 32.8691 14.0636Z"
+									fill="#FDB948" />
+								<path
+									d="M35.6274 25.458C35.6274 25.458 34.9176 23.0997 36.3316 20.7553C37.7497 18.4092 39.7814 18.0938 39.7814 18.0938C39.7814 18.0938 40.5582 20.8756 39.1763 23.1624C37.7943 25.451 35.6274 25.458 35.6274 25.458Z"
+									fill="#FDB948" />
+								<path
+									d="M34.0461 31.6798C34.0461 31.6798 33.7728 29.1838 35.5703 27.2874C37.3691 25.3945 39.405 25.6525 39.405 25.6525C39.405 25.6525 39.6672 28.5825 37.9143 30.4266C36.1615 32.2707 34.0461 31.6798 34.0461 31.6798Z"
+									fill="#FDB948" />
+								<path
+									d="M31.6328 36.8261C31.6328 36.8261 31.9758 34.3423 34.1484 33.2181C36.3238 32.0921 38.1993 33.1083 38.1993 33.1083C38.1993 33.1083 37.7391 35.9982 35.6224 37.0945C33.5042 38.1926 31.6328 36.8261 31.6328 36.8261Z"
+									fill="#FDB948" />
+								<path
+									d="M30.576 38.9634C32.8406 38.1738 34.6102 39.4602 34.6102 39.4602C34.6102 39.4602 33.8795 42.2577 31.672 43.0351C29.4646 43.8037 27.7383 42.167 27.7383 42.167C27.7383 42.167 28.3128 39.7547 30.576 38.9634Z"
+									fill="#FDB948" />
+								<path
+									d="M32.6365 15.7653L33.6461 15.1465C33.6991 15.2842 38.8781 29.0348 24.3242 44.5824L23.5977 43.5175C37.4502 28.7141 32.8401 16.2847 32.6365 15.7653Z"
+									fill="#FDB948" />
+							</svg>
+						</div>
+						<div class="single_bottom_text_top">
+							Mortgage Broker of the Year
+						</div>
+						<div class="single_bottom_text_bottom">
+							in 2017, 2018 and 2019
+						</div>
+					</div>
+				</div>
+				<div class="single_bottom_item">
+					<div>
+
+						<div class="single_bottom_image">
+							<svg xmlns="http://www.w3.org/2000/svg" width="51" height="50" viewBox="0 0 51 50"
+								fill="none">
+								<path fill-rule="evenodd" clip-rule="evenodd"
+									d="M25.5408 3.83008C13.8443 3.83008 4.33203 13.3424 4.33203 25.0389C4.33203 36.7354 13.8443 46.2476 25.5408 46.2476C25.5417 46.2476 25.5427 46.2476 25.5436 46.2476C27.987 46.2442 30.3998 45.8148 32.6794 44.9939L31.8703 44.1848C31.4107 43.7281 31.0499 43.2009 30.7353 42.6466C29.057 43.1479 27.3085 43.4174 25.5491 43.4198C25.5482 43.4198 25.5473 43.4198 25.5463 43.4198H25.5408C20.7105 43.4198 15.96 41.4498 12.5449 38.0348C9.12986 34.6197 7.15987 29.8691 7.15987 25.0389C7.15987 20.2086 9.12986 15.458 12.5449 12.043C15.96 8.62791 20.7105 6.65792 25.5408 6.65792C30.3711 6.65792 35.1217 8.62791 38.5367 12.043C41.9518 15.458 43.9218 20.2086 43.9218 25.0389V25.0444C43.9218 25.0453 43.9218 25.0462 43.9218 25.0471C43.9182 26.8053 43.6469 28.5507 43.1458 30.2278C43.7018 30.5429 44.2316 30.9074 44.6895 31.3684L45.4931 32.172C46.3124 29.8937 46.7446 27.4834 46.7496 25.0416C46.7496 25.0407 46.7496 25.0398 46.7496 25.0389C46.7496 13.3424 37.2374 3.83008 25.5408 3.83008ZM25.5408 9.48575C21.4872 9.48575 17.4111 11.1755 14.5443 14.0423C11.6775 16.9091 9.98771 20.9852 9.98771 25.0389C9.98771 29.0925 11.6775 33.1686 14.5443 36.0354C17.4111 38.9022 21.4872 40.592 25.5408 40.592H25.5436C27.0009 40.5898 28.4579 40.3618 29.8627 39.9513C29.8336 39.6928 29.7856 39.4378 29.7853 39.1753V36.3475C29.7853 36.0133 29.8178 35.6867 29.8654 35.3643L28.8492 34.3453C27.8099 34.7188 26.6998 34.9391 25.5353 34.9391C20.0858 34.9391 15.6406 30.4938 15.6406 25.0444C15.6406 19.5949 20.0858 15.1387 25.5353 15.1387C30.9847 15.1387 35.441 19.5949 35.441 25.0444C35.441 26.205 35.2213 27.3118 34.85 28.3472L35.8663 29.3635C36.189 29.3154 36.5149 29.2806 36.8494 29.2806H39.6772C39.9382 29.2808 40.1934 29.3292 40.4505 29.3579C40.8611 27.9547 41.0907 26.5004 41.0939 25.0444V25.0389C41.0939 20.9852 39.4042 16.9091 36.5373 14.0423C33.6705 11.1755 29.5945 9.48575 25.5408 9.48575ZM25.5353 17.9665C21.6141 17.9665 18.4685 21.1232 18.4685 25.0444C18.4685 28.9656 21.6141 32.1112 25.5353 32.1112C25.8755 32.1112 26.2078 32.0797 26.535 32.0339L22.5418 28.0379C21.9364 27.4499 21.5202 26.6946 21.3464 25.8688C21.1726 25.043 21.2491 24.184 21.566 23.4019C21.883 22.6197 22.426 21.9499 23.1257 21.478C23.8254 21.0061 24.6499 20.7537 25.4939 20.7529C26.0622 20.7518 26.6249 20.865 27.1486 21.0856C27.6723 21.3061 28.1464 21.6297 28.5426 22.037L32.5358 26.033C32.5808 25.7095 32.6132 25.3808 32.6132 25.0444C32.6132 21.1232 29.4565 17.9665 25.5353 17.9665ZM25.527 23.6084C25.4809 23.608 25.4348 23.6098 25.3889 23.6139C25.1207 23.6405 24.8657 23.7433 24.6539 23.9101C24.4421 24.0768 24.2824 24.3007 24.1936 24.5552C24.1048 24.8097 24.0906 25.0843 24.1526 25.3466C24.2147 25.6089 24.3505 25.8481 24.5439 26.0358L33.0385 34.5386C32.7738 35.0903 32.6131 35.6988 32.6132 36.3475V39.1753C32.6141 40.3034 33.0638 41.3876 33.8642 42.1826L36.6837 45.0105C38.3282 46.6533 41.0401 46.6533 42.6846 45.0105L45.5124 42.1826C47.1552 40.5382 47.1552 37.8263 45.5124 36.1818L42.6846 33.3622C41.8895 32.5618 40.8054 32.1122 39.6772 32.1112H36.8494C36.2008 32.1111 35.5923 32.2718 35.0406 32.5365L26.5377 24.0419C26.4068 23.9058 26.2498 23.7973 26.0763 23.7229C25.9027 23.6484 25.7159 23.6095 25.527 23.6084Z"
+									fill="#FDB948" />
+							</svg>
+						</div>
+						<div class="single_bottom_text_top">
+							The highest rated and most reviewed
+						</div>
+						<div class="single_bottom_text_bottom">
+							Mortgage Broker in Brisbane on Google
+						</div>
+					</div>
+				</div>
+				<div class="single_bottom_item">
+					<div>
+
+						<div class="single_bottom_image">
+							<svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 50 50"
+								fill="none">
+								<path
+									d="M46.5833 19.1336L39.901 17.743L36.6924 11.7391C36.522 11.4322 36.2097 11.25 35.8689 11.25C35.5282 11.25 35.2158 11.4322 35.0455 11.7391L31.6854 17.743L31.25 17.8293L38.3109 19.2967C39.2858 19.4885 40.0808 20.2078 40.3837 21.1669C40.6866 22.1356 40.4784 23.1522 39.8158 23.9003L34.6953 29.5684L34.8846 31.2564L35.8689 30.8056L42.0874 33.6637C42.2105 33.7212 42.343 33.75 42.4755 33.75C42.6743 33.75 42.8636 33.6925 43.0339 33.5678C43.3084 33.3664 43.4504 33.0307 43.4125 32.6854L42.6553 25.8184L47.2553 20.7257C47.4825 20.4668 47.5582 20.1023 47.4541 19.7762C47.3405 19.4501 47.066 19.2008 46.5833 19.1336Z"
+									fill="#FDB948" />
+								<path
+									d="M7.34468 25.8184L6.58748 32.6854C6.54962 33.0307 6.69159 33.3664 6.96608 33.5678C7.13645 33.6925 7.32575 33.75 7.52451 33.75C7.65702 33.75 7.78953 33.7212 7.91258 33.6637L14.1311 30.8056L15.1154 31.2564L15.3047 29.5684L10.2031 23.9194C9.52163 23.1522 9.3134 22.1355 9.60681 21.1861C9.91916 20.2078 10.7142 19.4885 11.6891 19.2871L18.75 17.8293L18.3146 17.743L14.9545 11.7391C14.7842 11.4322 14.4718 11.25 14.1311 11.25C13.7903 11.25 13.478 11.4322 13.3076 11.7391L9.93809 17.743L3.2558 19.1336C2.92452 19.2008 2.65004 19.4501 2.54592 19.7762C2.44181 20.1023 2.51753 20.4668 2.74469 20.7257L7.34468 25.8184Z"
+									fill="#FDB948" />
+								<path
+									d="M38.7083 21.6573C38.6143 21.3514 38.3605 21.1146 38.0598 21.0554L29.8734 19.309L25.7473 11.6718C25.4372 11.1094 24.5631 11.1094 24.2529 11.6718L20.1268 19.309L11.9405 21.0554C11.6397 21.1146 11.3859 21.3514 11.292 21.6573C11.198 21.9731 11.2638 22.3086 11.4705 22.5552L17.1192 29.0182L16.1793 37.7407C16.1417 38.0663 16.2733 38.3821 16.5271 38.5695C16.7809 38.7669 17.1098 38.8064 17.3824 38.6682L24.9954 35.0371L32.6085 38.6682C32.7212 38.7176 32.8434 38.7472 32.9562 38.7472C33.1348 38.7472 33.304 38.688 33.4638 38.5695C33.7175 38.3821 33.8397 38.0663 33.8115 37.7407L32.8716 29.0182L38.5203 22.5552C38.7365 22.3086 38.8023 21.9731 38.7083 21.6573Z"
+									fill="#FDB948" />
+							</svg>
+						</div>
+						<div class="single_bottom_text_top">
+							One of the lowest rejection rates
+						</div>
+						<div class="single_bottom_text_bottom">
+							<div class="hg_adv_text">
+								<span class="home_banner_market_wrapper">
+									<p class="home_banner_market">across Mortgage Brokers in
+										Australia
+									</p>
+									<div class="home_banner_market_dd">
+										<div class="inner">
+											Approximately 40% of home loan applications were
+											rejected in
+											December 2018 based on a survey of 52,000 households
+											completed by <a
+												href='https://www.mortgagebusiness.com.au/breaking-news/13042-home-loan-rejection-rate-hits-40'
+												alt=''>'DigitalFinance Analytics DFA'</a>. In 2017
+											to
+											2018 Hunter Galloway submitted 342 home loan
+											applications
+											and had 8 applications rejected, giving a 2.33%
+											rejection
+											rate.
+										</div>
+									</div>
+								</span>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="single_bottom_item">
+					<div>
+
+						<div class="single_bottom_image">
+							<svg xmlns="http://www.w3.org/2000/svg" width="51" height="50" viewBox="0 0 51 50"
+								fill="none">
+								<path
+									d="M37.9749 25.7818C38.0751 24.0145 37.8008 22.246 37.17 20.5921C36.5391 18.9382 35.566 17.4362 34.3143 16.1845C33.0627 14.9328 31.5607 13.9597 29.9067 13.3289C28.2528 12.6981 26.4843 12.4238 24.717 12.5241C13.6359 13.2435 8.94011 27.0743 17.2328 34.3678C24.8707 41.2254 37.3745 36.0915 37.9749 25.7818ZM25.4983 24.2193C29.6693 24.2783 30.2985 30.206 26.2795 31.1568L26.2796 32.0318C26.2796 32.239 26.1973 32.4377 26.0507 32.5842C25.9042 32.7308 25.7055 32.8131 25.4983 32.8131C25.2911 32.8131 25.0924 32.7308 24.9459 32.5842C24.7994 32.4377 24.7171 32.239 24.7171 32.0318V31.1568C23.9409 30.9808 23.2476 30.5463 22.7508 29.9246C22.254 29.3029 21.9831 28.5308 21.9827 27.7349C21.9867 27.5304 22.0708 27.3355 22.2168 27.1923C22.3629 27.049 22.5594 26.9688 22.764 26.9688C22.9686 26.9688 23.165 27.0491 23.3111 27.1923C23.4572 27.3356 23.5412 27.5304 23.5452 27.735C23.5452 28.1213 23.6598 28.4989 23.8744 28.8201C24.089 29.1413 24.394 29.3916 24.7509 29.5394C25.1078 29.6872 25.5005 29.7259 25.8794 29.6505C26.2582 29.5752 26.6063 29.3891 26.8794 29.116C27.1525 28.8428 27.3386 28.4948 27.4139 28.116C27.4893 27.7371 27.4506 27.3444 27.3028 26.9875C27.1549 26.6306 26.9046 26.3256 26.5834 26.111C26.2622 25.8964 25.8846 25.7818 25.4983 25.7818C24.6343 25.7826 23.8003 25.4649 23.1557 24.8894C22.5112 24.314 22.1014 23.5211 22.0048 22.6625C21.9081 21.8039 22.1313 20.9398 22.6316 20.2354C23.132 19.531 23.8745 19.0357 24.7171 18.8443V17.9693C24.7171 17.7621 24.7994 17.5634 24.9459 17.4169C25.0924 17.2704 25.2911 17.1881 25.4983 17.1881C25.7055 17.1881 25.9042 17.2704 26.0507 17.4169C26.1973 17.5634 26.2796 17.7621 26.2796 17.9693V18.8443C27.0557 19.0203 27.749 19.4548 28.2459 20.0765C28.7427 20.6983 29.0135 21.4703 29.0139 22.2662C29.0139 22.4734 28.9316 22.6721 28.7851 22.8186C28.6386 22.9651 28.4399 23.0474 28.2327 23.0474C28.0255 23.0474 27.8268 22.9651 27.6803 22.8186C27.5338 22.6721 27.4514 22.4734 27.4514 22.2662C27.4514 21.8799 27.3369 21.5023 27.1223 21.1811C26.9077 20.8599 26.6026 20.6096 26.2457 20.4617C25.8889 20.3139 25.4962 20.2752 25.1173 20.3506C24.7384 20.426 24.3904 20.612 24.1173 20.8851C23.8441 21.1583 23.6581 21.5063 23.5827 21.8852C23.5074 22.264 23.546 22.6567 23.6939 23.0136C23.8417 23.3705 24.092 23.6755 24.4132 23.8902C24.7344 24.1048 25.112 24.2193 25.4983 24.2193Z"
+									fill="#FDB948" />
+								<path
+									d="M44.25 21.875C43.5573 21.8744 42.8841 22.1044 42.3367 22.5288C41.7892 22.9532 41.3986 23.5478 41.2266 24.2188H39.5391C39.5547 24.4766 39.5625 24.7344 39.5625 25C39.5625 25.2656 39.5547 25.5234 39.5391 25.7813H41.2266C41.3986 26.4522 41.7892 27.0468 42.3367 27.4712C42.8841 27.8956 43.5573 28.1256 44.25 28.125C48.3706 28.0219 48.3719 21.9782 44.25 21.875Z"
+									fill="#FDB948" />
+								<path
+									d="M38.7578 35.1328C38.1989 35.1295 37.65 35.2809 37.1719 35.5703L35.9687 34.3672C35.6294 34.7612 35.2612 35.1294 34.8672 35.4687L36.0703 36.6719C35.7965 37.147 35.6519 37.6855 35.6507 38.2339C35.6495 38.7823 35.7919 39.3214 36.0636 39.7977C36.3353 40.274 36.727 40.671 37.1996 40.949C37.6723 41.2271 38.2095 41.3766 38.7578 41.3827C42.8786 41.2798 42.8783 35.2353 38.7578 35.1328Z"
+									fill="#FDB948" />
+								<path
+									d="M26.2801 40.7266V39.0391C26.0223 39.0547 25.7645 39.0625 25.4989 39.0625C25.2332 39.0625 24.9754 39.0547 24.7176 39.0391V40.7266C23.9815 40.9167 23.3399 41.3688 22.9133 41.9981C22.4866 42.6274 22.3041 43.3907 22.3999 44.1449C22.4958 44.8991 22.8634 45.5925 23.4339 46.0951C24.0044 46.5977 24.7386 46.875 25.4989 46.875C26.2592 46.875 26.9934 46.5977 27.5639 46.0951C28.1343 45.5925 28.502 44.8991 28.5978 44.1449C28.6936 43.3907 28.5111 42.6274 28.0844 41.9981C27.6578 41.3688 27.0162 40.9167 26.2801 40.7266Z"
+									fill="#FDB948" />
+								<path
+									d="M24.7176 9.27343V10.9609C24.9832 10.9453 25.2332 10.9375 25.4989 10.9375C25.7645 10.9375 26.0223 10.9453 26.2801 10.9609V9.27343C27.0162 9.08329 27.6578 8.6312 28.0844 8.00191C28.5111 7.37262 28.6936 6.60932 28.5978 5.85509C28.502 5.10085 28.1343 4.40746 27.5639 3.90487C26.9934 3.40228 26.2592 3.125 25.4989 3.125C24.7386 3.125 24.0044 3.40228 23.4339 3.90487C22.8634 4.40746 22.4958 5.10085 22.3999 5.85509C22.3041 6.60932 22.4866 7.37262 22.9133 8.00191C23.3399 8.6312 23.9815 9.08329 24.7176 9.27343Z"
+									fill="#FDB948" />
+								<path
+									d="M35.9688 15.6328L37.1719 14.4297C37.8266 14.8163 38.5998 14.9507 39.3466 14.8079C40.0934 14.665 40.7624 14.2546 41.2282 13.6537C41.694 13.0528 41.9246 12.3026 41.8768 11.5437C41.8289 10.7849 41.5059 10.0696 40.9682 9.53198C40.4306 8.99434 39.7153 8.67128 38.9565 8.62339C38.1977 8.5755 37.4475 8.80607 36.8465 9.27185C36.2456 9.73763 35.8352 10.4066 35.6923 11.1534C35.5494 11.9002 35.6839 12.6735 36.0704 13.3282L34.8672 14.5312C35.2612 14.8706 35.6294 15.2388 35.9688 15.6328Z"
+									fill="#FDB948" />
+								<path
+									d="M12.2423 14.8675C12.7987 14.8704 13.345 14.7189 13.8204 14.43L15.0236 15.6331C15.3695 15.2402 15.7401 14.8697 16.1329 14.5237L14.9298 13.3206C16.7509 10.1686 12.6562 7.04422 10.0314 9.53163C9.60277 9.97204 9.31266 10.5284 9.1969 11.132C9.08114 11.7355 9.14482 12.3597 9.38007 12.9275C9.61531 13.4952 10.0118 13.9816 10.5205 14.3263C11.0292 14.6711 11.6278 14.8593 12.2423 14.8675Z"
+									fill="#FDB948" />
+								<path
+									d="M11.4594 25.7813C11.4281 25.2609 11.4281 24.7391 11.4594 24.2188H9.77186C9.58171 23.4823 9.1295 22.8405 8.49998 22.4136C7.87047 21.9867 7.10687 21.8041 6.35233 21.8999C5.59779 21.9958 4.9041 22.3635 4.4013 22.9342C3.89849 23.5049 3.62109 24.2394 3.62109 25C3.62109 25.7606 3.89849 26.4951 4.4013 27.0658C4.9041 27.6365 5.59779 28.0043 6.35233 28.1001C7.10687 28.1959 7.87047 28.0133 8.49998 27.5864C9.1295 27.1595 9.58171 26.5177 9.77186 25.7813H11.4594Z"
+									fill="#FDB948" />
+								<path
+									d="M15.0237 34.3672L13.8206 35.5703C13.1659 35.1855 12.3934 35.0525 11.6478 35.1962C10.9021 35.34 10.2344 35.7507 9.76975 36.3513C9.30509 36.9519 9.07532 37.7014 9.12347 38.4592C9.17162 39.2171 9.4944 39.9314 10.0313 40.4684C10.5683 41.0054 11.2826 41.3282 12.0404 41.3765C12.7983 41.4247 13.5477 41.195 14.1484 40.7304C14.7491 40.2658 15.1598 39.5982 15.3037 38.8525C15.4475 38.1069 15.3146 37.3344 14.9298 36.6797L16.1331 35.4766C15.7402 35.1306 15.3697 34.76 15.0237 34.3672Z"
+									fill="#FDB948" />
+							</svg>
+						</div>
+						<div class="single_bottom_text_top">
+							We have direct access to 30+ banks
+						</div>
+						<div class="single_bottom_text_bottom">
+							and lenders across Australia
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div> <!-- #main-content -->
+</div><!-- .container -->
+
+<style>
+	.btn_up {
+		position: fixed;
+		bottom: 10px;
+		right: 10px;
+		z-index: 9;
+		opacity: 0;
+		pointer-events: none;
+	}
+
+	.btn_up.active {
+		opacity: 1;
+		pointer-events: auto;
+	}
+
+	@media (max-width: 767px) {
+		.btn_up {
+			bottom: 70px;
+		}
+
+		.btn_up svg {
+			width: 53px;
+			height: 53px;
+		}
+	}
+</style>
+<a href="#" class="btn_up">
+	<svg width="84" height="84" viewBox="0 0 116 116" fill="none" xmlns="http://www.w3.org/2000/svg">
+		<circle cx="58" cy="58" r="50" fill="#FDB948" stroke="white" stroke-width="16" />
+		<path d="M70.0487 65.875L58 53.7065L45.9513 65.875L42.25 62.1288L58 46.1875L73.75 62.1288L70.0487 65.875Z"
+			fill="white" />
+	</svg>
+</a>
+
+<?php
+
+get_footer();

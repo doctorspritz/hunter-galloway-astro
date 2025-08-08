@@ -1,0 +1,650 @@
+<?php
+/*
+ * Template Name: Custom Post
+ * Template Post Type: post, page, product
+ */
+get_header();
+
+// echo do_shortcode('[et_pb_section global_module="7829"][/et_pb_section]');
+
+$show_default_title = get_post_meta( get_the_ID(), '_et_pb_show_title', true );
+
+$is_page_builder_used = et_pb_is_pagebuilder_used( get_the_ID() );
+
+?>
+
+<style>
+	html {
+    font-size: 100%!important;
+  
+}
+	body.admin-bar.et_fixed_nav body[class*='-template-single-new'] div#page-container{
+		margin-top: -32px!important;
+	}
+	 body[class*='-template-single-new'] div#page-container{
+		margin-top: 0px!important;
+	}
+  .et_fixed_nav #main-header,  .et_fixed_nav #top-header {
+    position: relative;
+}
+ body[class*='-template-single-new'] div#content-area {
+	background: #ebebeb;
+}
+
+ body[class*='-template-single-new'] .herro_box {
+	max-width: 1000px;
+}
+
+ body[class*='-template-single-new'] .herro_box img {
+	max-width: 425px !important;
+	border: 0px solid #FECF2F;
+	border-radius: 0px;
+	width: 100%;
+}
+
+ body[class*='-template-single-new'] .herro_box .et_pb_text_inner h1 {
+	line-height: 1.25;
+	font-size: 46px;
+}
+
+ body[class*='-template-single-new'] .herro_box .et_pb_text_inner p {
+	margin-top: 0;
+	margin-bottom: 1rem;
+	text-shadow: 1px 1px 1px rgba(0, 0, 0, .004)!important;
+	font-size: 1.2875rem;
+	line-height: 1.8;
+	color: #fff;
+	padding-bottom: 0px;
+}
+
+ body[class*='-template-single-new'] .white_box {
+	background: #fff;
+	color: #000;
+	max-width: 1000px;
+}
+
+ body[class*='-template-single-new'] .white_box.white_box_second {
+	border-bottom-left-radius: 10px;
+	border-bottom-right-radius: 10px;
+	padding-bottom: 80px;
+}
+
+ body[class*='-template-single-new'] .white_box.white_box_first {
+	border-top-left-radius: 10px;
+	border-top-right-radius: 10px;
+	padding-top: 50px;
+}
+
+ body[class*='-template-single-new'] .white_box.white_box_second .et_pb_text_inner {
+	width: 72%;
+}
+
+ body[class*='-template-single-new'] .white_box .et_pb_image .et_pb_image_wrap {
+	display: block;
+}
+
+ body[class*='-template-single-new'] .pdf_section a.et_pb_button {
+	color: #fff;
+	background-color: #fcce2b;
+	text-align: center;
+	border: 0;
+	display: inline-block;
+	margin: 0;
+	line-height: normal;
+	position: relative;
+	text-decoration: none;
+	font-size: 20px;
+	border-radius: 2rem;
+	padding: .85rem 4.5rem;
+}
+
+ body[class*='-template-single-new'] .pdf_section a.et_pb_button:after,
+ body[class*='-template-single-new'] .pdf_section a.et_pb_button:before {
+	content: none;
+}
+
+ body[class*='-template-single-new'] .pdf_section.et_pb_section {
+	padding-bottom: 5rem;
+}
+
+ body[class*='-template-single-new'] .white_box .et_pb_text_inner p {
+	letter-spacing: -.01em;
+	text-shadow: 1px 1px 1px rgba(0, 0, 0, .004)!important;
+	margin-top: 0px;
+	margin-bottom: 0!important;
+	text-align: left;
+	font-size: 1.1rem;
+	line-height: 2.1rem;
+	color: #474747;
+}
+
+ body[class*='-template-single-new'] .white_box .et_pb_text_inner h2 {
+	width: 100%;
+	display: block;
+	line-height: 1.3;
+	text-transform: none;
+	text-align: center;
+	color: #474747;
+	margin: 0 0 1.5rem;
+	font-weight: 700;
+	font-size: 1.75rem;
+	margin-bottom: 0!important;
+	letter-spacing: -.01em;
+}
+
+ body[class*='-template-single-new'] .white_box .et_pb_image img {
+	max-width: 217px;
+	display: block;
+	margin: 0 auto;
+	border-radius: 0;
+	border: none;
+}
+
+ body[class*='-template-single-new'] .white_box .et_pb_image_wrap:after {
+	content: " ";
+	margin: 0 auto;
+	box-shadow: 0 6px 40px 0 hsla(0, 0%, 64%, .5);
+	height: 1rem;
+	display: block;
+	margin-top: -1rem;
+	width: 13rem;
+}
+
+ body[class*='-template-single-new'] .contents_menu_selector .et_pb_column_1_5 {
+	width: 19.6%;
+}
+
+ body[class*='-template-single-new'] .contents_menu_selector .et_pb_column_1_5:nth-child(1),
+ body[class*='-template-single-new'] .contents_menu_selector .et_pb_column_1_5:nth-child(5) {
+	width: 9.6%;
+}
+
+ body[class*='-template-single-new'] .contents_menu_selector .et_pb_text_inner h1 {
+	color: #000;
+}
+
+ body[class*='-template-single-new'] .contents_menu_selector img {
+	border: 0px solid #FECF2F;
+	border-radius: 0px;
+}
+
+ body[class*='-template-single-new'] .contents_menu_selector .et_pb_blurb .et_pb_module_header a,
+ body[class*='-template-single-new'] .contents_menu_selector .et_pb_blurb h4 a {
+	text-decoration: none;
+	color: #000;
+	text-decoration: none;
+	letter-spacing: .05em;
+	margin-bottom: 6px;
+	margin-top: 15px;
+	font-weight: 700;
+	text-transform: uppercase;
+	font-size: .875rem;
+	line-height: 1.2;
+	color: #222;
+	text-align: center;
+}
+
+ body[class*='-template-single-new'] .contents_menu_selector .et_pb_blurb_description,
+ body[class*='-template-single-new'] .contents_menu_selector h4.et_pb_module_header {
+	text-align: center;
+}
+
+ body[class*='-template-single-new'] .contents_menu_selector .et_pb_blurb_description p a {
+	color: #000;
+	text-decoration: none;
+	text-align: center;
+	font-size: 17px;
+	margin-bottom: 0!important;
+}
+
+ body[class*='-template-single-new'] #main-header,
+ body[class*='-template-single-new'] #main-header .nav li ul,
+ body[class*='-template-single-new'] .et-search-form,
+ body[class*='-template-single-new'] #main-header .et_mobile_menu {
+	background-color: #000;
+}
+
+ body[class*='-template-single-new'] #main-content .container {
+	width: 100%;
+	max-width: 100%;
+	padding-top: 58px!important;
+    padding-top: 0px!important;
+}
+
+ body[class*='-template-single-new'] .entry-content {
+	background-color: #ebebeb!important;
+}
+
+ body[class*='-template-single-new'] .et_pb_section {
+	padding-bottom: 0px;
+}
+
+ body[class*='-template-single-new'] .et_pb_text_inner p,
+ body[class*='-template-single-new'] .turn_block p {
+	margin-bottom: 1rem;
+	font-size: 1.04688rem;
+	letter-spacing: -.01em;
+	text-shadow: 1px 1px 1px rgba(0, 0, 0, .004)!important;
+	line-height: 2;
+	margin-top: -1rem;
+}
+
+ body[class*='-template-single-new'] .et_pb_text_inner h1 {
+	display: block;
+	font-size: 22px;
+	text-transform: uppercase;
+	letter-spacing: .05em;
+	margin-bottom: 14px;
+	color: #fff;
+	line-height: 1.25;
+	text-align: center!important;
+	font-weight: 800!important;
+}
+
+ body[class*='-template-single-new'] .et_pb_text_inner h2 {
+	text-align: left;
+	margin-bottom: 1.5rem;
+	font-weight: 800;
+	font-size: 2rem;
+	line-height: 1.4;
+	color: #000;
+}
+
+ body[class*='-template-single-new'] .et_pb_text_inner p img.smush-detected-img,
+ body[class*='-template-single-new'] .turn_block img {
+	max-width: 672px !important;
+	box-shadow: 0 0 0 4px #ddd;
+	margin: 0 auto!important;
+	height: auto;
+	border: 0px solid #DDDDDD;
+	border-radius: 0px;
+	display: block;
+	width: 100%;
+}
+
+ body[class*='-template-single-new'] .chapter_header p,
+ body[class*='-template-single-new'] .chapter_header li {
+	font-size: 1.1875rem;
+	line-height: 1.8;
+	margin-top: 0;
+	margin-bottom: 0rem;
+	color: #fff;
+}
+
+ body[class*='-template-single-new'] .chapter_header p a,
+ body[class*='-template-single-new'] .chapter_header li a,
+ body[class*='-template-single-new'] .chapter_header p a:hover,
+ body[class*='-template-single-new'] .chapter_header li a:hover {
+	color: #fff;
+	text-decoration: underline;
+}
+
+ body[class*='-template-single-new'] .chapter_header img,
+ body[class*='-template-single-new'] .turn_block img {
+	max-width: 425.5px !important;
+}
+
+ body[class*='-template-single-new'] .chapter_header .et_pb_image .et_pb_image_wrap {
+	display: block;
+}
+
+ body[class*='-template-single-new'] .chapter_header img.smush-detected-img {
+	max-width: 425px !important;
+	margin: 0 auto!important;
+	vertical-align: middle;
+	height: auto;
+	border: 0 none!important;
+	border-radius: 0!important;
+	display: block;
+	width: 100%;
+}
+
+ body[class*='-template-single-new'] .et_pb_column.et_pb_column_1_2.et_pb_column_16.et_pb_css_mix_blend_mode_passthrough {
+	border-right: 0px dotted #9caeb6;
+}
+
+ body[class*='-template-single-new'] .chapter_text .et_pb_text_inner p {
+	text-align: center!important;
+	margin-bottom: 35px;
+	font-weight: 200;
+	line-height: 1.25;
+	font-size: 46px;
+}
+
+ body[class*='-template-single-new'] .et_pb_section.chapter_header {
+	padding-top: 15px;
+	padding-bottom: 15px;
+}
+
+ body[class*='-template-single-new'] .et_pb_gutters3 .et_pb_column_4_4 .et_pb_module {
+	margin-bottom: 0.75%;
+}
+
+ body[class*='-template-single-new'] .turn_block p {
+	color: #fff;
+}
+
+ body[class*='-template-single-new'] .turn_block img {
+	max-width: 425px !important;
+	box-shadow: none;
+}
+
+ body[class*='-template-single-new'] .turn_block .et_pb_text_inner h2 {
+	margin-bottom: 0rem;
+	text-align: center;
+	color: #fff;
+}
+
+ body[class*='-template-single-new'].et_pb_pagebuilder_layout.single-post #page-container .et_pb_with_background.turn_block .et_pb_row {
+	width: 91%;
+}
+
+ body[class*='-template-single-new'] #dpsp-content-bottom {
+	margin: 0 auto;
+	margin-top: 1.2em;
+	max-width: 1000px;
+}
+
+ body[class*='-template-single-new'] .et_post_meta_wrapper {
+	max-width: 1000px;
+	margin: 0 auto;
+}
+ body[class*='-template-single-new']  #sidebar {
+    display: none;
+   
+}
+ body[class*='-template-single-new']  #left-area {
+    float: none;
+    padding-right: 0;
+    width: 100%!important;
+}
+ body[class*='-template-single-new']	.et_pb_row {
+   
+    width: 100%;
+}
+		body[class*='page-template-single-new'] .et_post_meta_wrapper {
+    display: none;
+}
+	body[class*='-template-single-new'] .page_layout_top{
+		padding-top: 54px!important;
+	}
+	body[class*='-template-single-new'] .blurb_section .white_box.white_box_second .et_pb_text_inner {
+    width: 72%;
+    margin: 0 auto;
+}
+	body[class*='-template-single-new'] .blue_box {
+      background: #2a7dad;
+    color: #fff;
+    max-width: 1000px;
+}
+	body[class*='-template-single-new'] .blue_box .et_pb_text_inner h2 {
+text-align: center;
+    color: #ffffff;
+ 
+    font-weight: 700;
+    font-size: 1.75rem;
+   
+    letter-spacing: -.01em;
+}
+	body[class*='page-template-single-new']	 #left-area ul  {
+   
+    list-style-type: none;
+}
+	body[class*='page-template-single-new'] .wp-caption p.wp-caption-text {
+ 
+    margin-top: 10px!important;
+}
+	body[class*='page-template-single-new']	 .et_pb_text_inner h2 {
+ 
+    margin-bottom: 60px;
+}
+	body[class*='page-template-single-new'] .contents_menu_selector h4.et_pb_module_header {
+    display:none;
+}
+	body[class*='page-template-single-new']	 article.et_pb_post {
+    margin-bottom: 0px;
+}
+	body[class*='page-template-single-new']	 #left-area {
+   
+    padding-bottom: 0px;
+}
+	body[class*='page-template-single-new']	#main-content .container:before {
+ 
+    content: none;
+}
+	body[class*='page-template-single-new']	.et_pb_row {
+       border-top-width: 0px;
+    border-bottom-width: 0px;
+}
+	body[class*='page-template-single-new'] .et_pb_divider {
+   
+    margin-top: 70px;
+}
+@media all and (max-width: 1024px) {
+	 body[class*='-template-single-new'] .et_pb_section:not(.et_pb_with_background) {
+		max-width: 85%;
+	}
+	 body[class*='-template-single-new'] .et_pb_section.contents_menu_selector {
+		max-width: 100%;
+	}
+	 body[class*='-template-single-new'] .et_pb_column.et_pb_column_empty {
+		display: block;
+	}
+}
+
+@media all and (max-width: 736px) {
+	 body[class*='-template-single-new'] .contents_menu_selector img {
+		max-width: 179px;
+	}
+	 body[class*='-template-single-new'] .white_box.white_box_second .et_pb_text_inner {
+		width: 100%;
+		padding: 20px;
+	}
+	 body[class*='-template-single-new'] .white_box .et_pb_button_module_wrapper.et_pb_button_0_wrapper.et_pb_button_alignment_.et_pb_module {
+		padding-left: 20px;
+		padding-right: 20px;
+	}
+}
+	@media all and (max-width: 667px) {
+		body[class*='-template-single-new'] .blurb_section .white_box.white_box_second .et_pb_text_inner {
+    width: 100%;
+   
+}
+		body[class*='page-template-single-new']	.et_pb_row {
+    
+    padding-left: 20px;
+    padding-right: 20px;
+}
+	body[class*='page-template-single-new']		.et_pb_pagebuilder_layout.single-post #page-container .et_pb_with_background .et_pb_row {
+    width: 100%;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+		body[class*='-template-single-new'] .et_pb_section:not(.et_pb_with_background) {
+    max-width: 95%;
+}
+	body[class*='-template-single-new']	 .et_pb_row {
+    padding-right: 15px;
+    padding-left: 15px;
+}
+	body[class*='-template-single-new']	 #page-container .et_pb_with_background .et_pb_row.chapter_text {
+    width: 100%;
+		    padding-right: 20px;
+    padding-left: 20px;
+}
+	body[class*='-template-single-new']	.entry-content table {
+    width: 100%!important;
+ 
+    /* max-width: 100%!important; */
+    height: auto!important;
+    /* overflow-x: auto; */
+    display: block;
+    overflow-x: auto;
+    /* white-space: nowrap; */
+}
+		body[class*='-template-single-new'].et_pb_pagebuilder_layout.single-post #page-container .et_pb_with_background .et_pb_row {
+    width: 95%;
+			    margin: 0 auto;
+}
+		body[class*='-template-single-new'] #main-header {
+    background-color: #000;
+    background: #000!important;
+}
+	body[class*='-template-single-new']	#main-header  .mobile_menu_bar:before {
+    color: #fff!important;
+}
+	}
+</style>
+<div id="main-content">
+	<?php
+		if ( et_builder_is_product_tour_enabled() ):
+			// load fullwidth page in Product Tour mode
+			while ( have_posts() ): the_post(); ?>
+
+				<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
+					<div class="entry-content">
+					<?php
+						the_content();
+					?>
+					</div> <!-- .entry-content -->
+
+				</article> <!-- .et_pb_post -->
+
+		<?php endwhile;
+		else:
+	?>
+	<div class="container">
+		<div id="content-area" class="clearfix">
+			<div id="left-area">
+			<?php while ( have_posts() ) : the_post(); ?>
+				<?php if (et_get_option('divi_integration_single_top') <> '' && et_get_option('divi_integrate_singletop_enable') == 'on') echo(et_get_option('divi_integration_single_top')); ?>
+				<article id="post-<?php the_ID(); ?>" <?php post_class( 'et_pb_post' ); ?>>
+					<?php if ( ( 'off' !== $show_default_title && $is_page_builder_used ) || ! $is_page_builder_used ) { ?>
+						<div class="et_post_meta_wrapper">
+							<h1 class="entry-title"><?php the_title(); ?></h1>
+
+						<?php
+							if ( ! post_password_required() ) :
+
+								et_divi_post_meta();
+
+								$thumb = '';
+
+								$width = (int) apply_filters( 'et_pb_index_blog_image_width', 1080 );
+
+								$height = (int) apply_filters( 'et_pb_index_blog_image_height', 675 );
+								$classtext = 'et_featured_image';
+								$titletext = get_the_title();
+								$thumbnail = get_thumbnail( $width, $height, $classtext, $titletext, $titletext, false, 'Blogimage' );
+								$thumb = $thumbnail["thumb"];
+
+								$post_format = et_pb_post_format();
+
+								if ( 'video' === $post_format && false !== ( $first_video = et_get_first_video() ) ) {
+									printf(
+										'<div class="et_main_video_container">
+											%1$s
+										</div>',
+										$first_video
+									);
+								} else if ( ! in_array( $post_format, array( 'gallery', 'link', 'quote' ) ) && 'on' === et_get_option( 'divi_thumbnails', 'on' ) && '' !== $thumb ) {
+									print_thumbnail( $thumb, $thumbnail["use_timthumb"], $titletext, $width, $height );
+								} else if ( 'gallery' === $post_format ) {
+									et_pb_gallery_images();
+								}
+							?>
+
+							<?php
+								$text_color_class = et_divi_get_post_text_color();
+
+								$inline_style = et_divi_get_post_bg_inline_style();
+
+								switch ( $post_format ) {
+									case 'audio' :
+										$audio_player = et_pb_get_audio_player();
+
+										if ( $audio_player ) {
+											printf(
+												'<div class="et_audio_content%1$s"%2$s>
+													%3$s
+												</div>',
+												esc_attr( $text_color_class ),
+												$inline_style,
+												$audio_player
+											);
+										}
+
+										break;
+									case 'quote' :
+										printf(
+											'<div class="et_quote_content%2$s"%3$s>
+												%1$s
+											</div> <!-- .et_quote_content -->',
+											et_get_blockquote_in_content(),
+											esc_attr( $text_color_class ),
+											$inline_style
+										);
+
+										break;
+									case 'link' :
+										printf(
+											'<div class="et_link_content%3$s"%4$s>
+												<a href="%1$s" class="et_link_main_url">%2$s</a>
+											</div> <!-- .et_link_content -->',
+											esc_url( et_get_link_url() ),
+											esc_html( et_get_link_url() ),
+											esc_attr( $text_color_class ),
+											$inline_style
+										);
+
+										break;
+								}
+
+							endif;
+						?>
+					</div> <!-- .et_post_meta_wrapper -->
+				<?php  } ?>
+
+					<div class="entry-content">
+					<?php
+						do_action( 'et_before_content' );
+
+						the_content();
+
+						wp_link_pages( array( 'before' => '<div class="page-links">' . esc_html__( 'Pages:', 'Divi' ), 'after' => '</div>' ) );
+					?>
+					</div> <!-- .entry-content -->
+					<div class="et_post_meta_wrapper">
+					<?php
+					if ( et_get_option('divi_468_enable') == 'on' ){
+						echo '<div class="et-single-post-ad">';
+						if ( et_get_option('divi_468_adsense') <> '' ) echo( et_get_option('divi_468_adsense') );
+						else { ?>
+							<a href="<?php echo esc_url(et_get_option('divi_468_url')); ?>"><img src="<?php echo esc_attr(et_get_option('divi_468_image')); ?>" alt="468" class="foursixeight" /></a>
+				<?php 	}
+						echo '</div> <!-- .et-single-post-ad -->';
+					}
+				?>
+
+					<?php if (et_get_option('divi_integration_single_bottom') <> '' && et_get_option('divi_integrate_singlebottom_enable') == 'on') echo(et_get_option('divi_integration_single_bottom')); ?>
+
+					<?php
+						if ( ( comments_open() || get_comments_number() ) && 'on' == et_get_option( 'divi_show_postcomments', 'on' ) ) {
+							comments_template( '', true );
+						}
+					?>
+					</div> <!-- .et_post_meta_wrapper -->
+				</article> <!-- .et_pb_post -->
+
+			<?php endwhile; ?>
+			</div> <!-- #left-area -->
+
+			<?php get_sidebar(); ?>
+		</div> <!-- #content-area -->
+	</div> <!-- .container -->
+	<?php endif; ?>
+</div> <!-- #main-content -->
+
+<?php
+
+get_footer();

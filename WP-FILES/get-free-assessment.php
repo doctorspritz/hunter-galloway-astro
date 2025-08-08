@@ -1,0 +1,1064 @@
+<?php
+/*
+ * Template Name: Get Free Assessment Template
+ * Template Post Type: post, page, product
+ */
+
+get_header();
+
+$userAgent = $_SERVER['HTTP_USER_AGENT'];
+$isMobile = strpos($userAgent, 'Mobile') !== false || strpos($userAgent, 'Android') !== false || strpos($userAgent, 'iPhone') !== false || strpos($userAgent, 'iPad') !== false;
+
+$assets = '/wp-content/themes/hunter-galloway/assets/img/img_new/';
+
+$htmlIcons = '
+<div class="flex-center-between result-wrapper_icons">
+    <div class="item_hover"><img src="' . $assets . '2019_001.png" alt="icons">
+        <span class="item_tooltip center">FBAA Broker of the Year in 2019</span>
+    </div>
+    <div class="item_hover"><img src="' . $assets . '2019_002.png" alt="icons">
+        <span class="item_tooltip center">FBAA Broker of the Year in 2019</span>
+    </div>
+    <div class="item_hover"><img src="' . $assets . 'finance-broker-of-the-year-2018.png"
+            alt="icons">
+        <span class="item_tooltip center">FBAA Broker of the Year in 2018</span>
+    </div>
+    <div class="item_hover"><img src="' . $assets . 'best-mortgage-broker-2019.png"
+            alt="icons">
+        <span class="item_tooltip center">FBAA Broker of the Year in 2019</span>
+    </div>
+    <div class="item_hover"><img src="' . $assets . '30-under-20.png" alt="icons">
+        <span class="item_tooltip center">FBAA Broker of the Year in 2019</span>
+    </div>
+    <div class="item_hover"><img src="' . $assets . 'vow-award-mortgage-broker.png"
+            alt="icons">
+        <span class="item_tooltip center">FBAA Broker of the Year in 2019</span>
+    </div>
+</div>'
+    ?>
+
+<style>
+    html.crs_fixed,
+    html.crs_fixed body {
+        overflow: hidden !important;
+        display: block;
+    }
+
+    #main-content ul {
+        list-style-type: none;
+    }
+
+    #main-content li,
+    #main-content p,
+    #main-content a {
+        color: var(--Grey-dark, #262626);
+        font-family: "Open Sans";
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 24px;
+    }
+
+    #main-content ul:not(.list) li {
+        padding-left: 24px;
+        position: relative;
+        font-weight: 600;
+        margin-bottom: 8px;
+    }
+
+    #main-content ul:not(.list, .tabs) {
+        padding: 24px 0;
+    }
+
+    #main-content ul:not(.list, .tabs) li:before {
+        content: '';
+        position: absolute;
+        left: 6px;
+        top: 10px;
+        width: 4px;
+        height: 4px;
+        border-radius: 50%;
+        background-color: #FDB948;
+    }
+
+    .result-wrapper {
+        margin: 0 auto 80px;
+    }
+
+    .result-form .wpcf7-response-output {
+        position: fixed;
+		top: 80px;
+		right: 0;
+		margin: 0;
+		background: #ffc4c4;
+		border-color: red;
+		border-radius: 0;
+		max-width: 300px;
+		z-index: 99;
+		pointer-events: none;
+		opacity: 0;
+		transition: all 0.2s ease;
+    }
+
+    .result-typ {
+        display: none;
+    }
+
+    .result-wrapper h2 {
+        color: var(--Grey-dark, #262626);
+        font-size: 40px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: 48px;
+        padding-bottom: 16px;
+    }
+
+    .result-wrapper_block {
+        border-radius: 8px;
+        border: 1px solid var(--Gray-300, #D8D8D8);
+        background: var(--White, #FFF);
+        padding: 40px;
+    }
+
+    .result-wrapper_block>div {
+        width: 50%;
+    }
+
+    .result-wrapper_block>div>div {
+        max-width: 467px;
+    }
+
+    .result-wrapper_block form {
+        max-width: 480px;
+        background-color: transparent;
+        border-radius: 0;
+    }
+
+    .result-wrapper_block>div:first-child {
+        border-right: 1px solid #D8D8D8;
+        padding-right: 20px;
+    }
+
+    .result-wrapper_block>div:last-child {
+        padding-left: 20px;
+    }
+
+    .result-wrapper_block>div:last-child>div {
+        margin-left: auto;
+    }
+
+    .result-wrapper h4 {
+        margin-bottom: 24px;
+    }
+
+    .result-wrapper select,
+    .result-wrapper input:not(.btn_yellow) {
+        border-radius: 4px;
+        border: 1px solid var(--Gray-300, #D8D8D8) !important;
+        background: var(--White, #FFF) !important;
+        margin-top: 16px;
+        padding: 12px 16px;
+        font-family: "Open Sans";
+        font-size: 14px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 20px;
+    }
+
+    .result-wrapper_block>div>div.result-typ {
+        max-width: 499px;
+    }
+
+    .result-wrapper_block .item_hover img {
+        transform: scale(0.7);
+    }
+
+    form {
+        position: relative;
+    }
+
+    form .wpcf7-spinner {
+        position: absolute;
+        bottom: -60px;
+        left: 13px;
+    }
+
+    .result-wrapper_block form p {
+        padding: 0;
+    }
+    .crs_custom_submit,
+    .result-wrapper form input.btn_yellow {
+        margin: 24px 0 0 0;
+        color: var(--Grey-dark, #262626);
+        font-family: "Open Sans";
+        font-style: normal;
+        font-weight: 600;
+        line-height: 46px;
+        display: block;
+        border: none;
+        width: 100%;
+        cursor: pointer;
+    }
+
+    .result_get h2 {
+        font-size: 32px;
+        line-height: 40px;
+        padding-bottom: 0;
+    }
+
+    .result-typ h3 {
+        font-size: 32px;
+        line-height: 40px;
+        padding-bottom: 24px;
+        font-weight: 700;
+    }
+
+    .result-wrapper_block hr,
+    .result-typ hr {
+        border-width: 0.5px;
+        border-color: #EEE;
+        background-color: transparent;
+    }
+
+    .result-wrapper_block hr {
+        margin: 32px 0;
+    }
+
+    .result-typ hr {
+        margin: 24px 0 40px;
+    }
+
+    #main-content .result-typ hr+p {
+        font-size: 18px;
+        line-height: 26px;
+        max-width: 420px;
+    }
+
+    #main-content .result-typ a:not(.btn_yellow) {
+        font-size: 14px;
+        font-weight: 600;
+        line-height: 22px;
+        text-decoration-line: underline;
+    }
+
+    .result-form h4 {
+        font-size: 24px;
+        line-height: 32px;
+        padding-bottom: 8px;
+        margin: 0;
+        color: var(--Grey-dark, #262626);
+        font-style: normal;
+        font-weight: 700;
+    }
+
+    .btn_back {
+        color: #000;
+        font-size: 14px;
+        font-style: normal;
+        font-weight: 600;
+        line-height: 24px;
+        letter-spacing: -0.6px;
+        text-transform: capitalize;
+        padding: 4px;
+        margin-right: 20px;
+        background-color: transparent;
+        border: none;
+        margin-top: 40px;
+        cursor: pointer;
+    }
+
+    .btn_back svg {
+        margin-right: 12px;
+        flex-shrink: 0;
+    }
+
+    #main-content .result-typ_two a.btn_yellow {
+        max-width: 280px;
+        width: 100%;
+        margin-top: 40px;
+        text-decoration: none;
+        color: var(--Grey-dark, #262626);
+        text-align: center;
+        font-family: "Open Sans";
+        font-size: 18px;
+        font-style: normal;
+        font-weight: 600;
+        line-height: 48px;
+        display: block;
+    }
+
+    #main-content .result-wrapper_block .list li p {
+        font-size: 14px;
+        font-weight: 600;
+    }
+
+    .result-form select {
+        appearance: none;
+        background: url('<?php echo $assets; ?>16_arrow_down.svg') no-repeat right 16px center / 16px!important;
+    }
+
+    .btn_select {
+        cursor: pointer;
+    }
+
+    /* new footer */
+    #footer-widgets {
+        padding-top: 0 !important;
+    }
+
+    .footer-widget li:before {
+        border-color: #FDB948 !important;
+    }
+
+    #footer-widgets .footer-widget .footer_logo a {
+        white-space: nowrap;
+    }
+
+    .footer-widget h4.title {
+        font-size: 28px;
+        font-weight: 700;
+        line-height: 36px;
+        padding-bottom: 24px;
+    }
+
+    #main-footer #custom_html-3 a,
+    #main-footer #custom_html-3 a img {
+        width: 24px !important;
+        height: 24px !important;
+    }
+
+    #main-footer #custom_html-3 a {
+        display: block;
+        margin-left: 10px;
+    }
+
+    #main-footer #custom_html-3>div>div {
+        display: flex;
+        align-items: center;
+    }
+
+    .result-wrapper input.btn_select {
+        display: none;
+        background: url('<?php echo $assets; ?>16_arrow_down.svg') no-repeat right 16px center / 16px!important;
+    }
+
+    #main-content .result-typ.result-typ_one ul {
+        padding-bottom: 0;
+    }
+
+    .result-form .wpcf7-not-valid-tip {
+        display: none;
+    }
+
+    .result-form form.wpcf7-form.not-error .wpcf7-not-valid-tip {
+        display: block;
+    }
+
+    @media screen and (min-width: 991px) {
+        #footer-widgets {
+            padding-top: 34px !important;
+        }
+
+        #et-footer-nav .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .result_get .list li:not(:last-child) {
+            margin-bottom: 12px;
+        }
+
+        .result-wrapper form input.btn_yellow,
+        .crs_custom_submit {
+            font-size: 18px;
+        }
+    }
+
+    /* end new footer */
+    @media screen and (min-width: 768px) {
+        .row_info>div:not(:last-child) {
+            margin-right: 64px;
+            margin-bottom: 40px;
+        }
+    }
+   
+    @media screen and (max-width: 991px) {
+        #footer-bottom {
+            padding-bottom: 65px !important;
+        }
+
+        #main-footer #custom_html-3 a:first-child {
+            margin-left: 0 !important;
+        }
+
+        #footer-widgets {
+            padding-bottom: 24px !important;
+        }
+
+        #footer-widgets .footer_contact:last-child,
+        #footer-widgets .footer-widget:nth-child(n) {
+            margin-bottom: 0 !important;
+        }
+
+        #main-content {
+            padding: 0;
+        }
+
+        #main-content li,
+        #main-content p,
+        #main-content a {
+            font-size: 14px;
+            line-height: 22px;
+        }
+
+        #main-content ul:not(.list, .tabs) {
+            padding: 16px 0;
+        }
+
+        .result-typ h3 {
+            font-size: 24px;
+            line-height: 32px;
+        }
+
+        .result-wrapper_block {
+            padding: 32px 24px;
+        }
+
+        .result-wrapper_block>div {
+            width: 100%;
+            padding: 0 !important;
+            border: none !important;
+        }
+
+        .result-wrapper h2 {
+            font-size: 24px;
+            line-height: 32px;
+        }
+
+        .result-wrapper_block li p {
+            font-weight: 600;
+        }
+
+        .result-form h4 {
+            padding-bottom: 0;
+            font-size: 18px;
+            line-height: 26px;
+        }
+
+        .result-wrapper_icons {
+            flex-wrap: wrap;
+            justify-content: center;
+            max-width: 340px;
+            margin: 0 auto;
+        }
+
+        .result-wrapper_icons img {
+            height: 60px;
+            width: auto;
+            max-width: 78px!important;
+            object-fit: contain;
+            margin: 8px;
+        }
+
+        .result-wrapper_block {
+            margin-bottom: 20px;
+        }
+
+        .result-wrapper_block form,
+        .result-wrapper_block>div>div {
+            max-width: 100%;
+        }
+
+        .result-wrapper_head {
+            border-radius: 8px;
+            background: var(--Yellow-light, #FFF5E2);
+            padding: 24px;
+            margin-bottom: 20px;
+        }
+
+        .result-wrapper>h2 {
+            font-size: 32px;
+            line-height: 40px;
+        }
+
+        .result-wrapper_block .result-typ hr {
+            margin: 8px 0 24px;
+        }
+
+        .result-wrapper_block .result-typ ul {
+            padding-bottom: 0;
+        }
+
+        .result-wrapper {
+            margin: 24px auto;
+        }
+
+        .result-wrapper_icons .item_tooltip {
+            left: 50%;
+            max-width: 343px;
+            transform: translateX(-50%);
+        }
+
+        .result-wrapper_icons .item_hover:first-child .item_tooltip {
+            left: 0;
+            transform: translateX(0);
+        }
+
+        .result-wrapper_icons .item_hover:nth-child(4) .item_tooltip {
+            left: auto;
+            right: 0;
+            transform: none;
+        }
+
+        .result-wrapper_icons .item_hover:first-child .item_tooltip:after {
+            left: 20px;
+        }
+
+        .result-wrapper_icons .item_hover:first-child .item_tooltip:before {
+            left: 20px;
+        }
+
+        .result-wrapper_icons .item_hover:nth-child(4) .item_tooltip:after {
+            left: auto;
+            right: 21px;
+        }
+
+        .result-wrapper_icons .item_hover:nth-child(4) .item_tooltip:before {
+            left: auto;
+            right: 19px;
+        }
+
+        [data-name="transaction_type"] select {
+            display: none;
+        }
+
+        .wpcf7-form-control-wrap,
+        .result-wrapper input.btn_select {
+            display: block;
+        }
+    }
+
+    @media screen and (max-width: 767px) {
+        .row_info {
+            text-align: center;
+        }
+
+        .row_info>div {
+            margin-bottom: 16px;
+        }
+
+        .row_info_loan {
+            flex-direction: column;
+            padding: 20px;
+        }
+
+        .row_info_loan>p {
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 20px;
+            line-height: 24px;
+        }
+
+        .row_info_loan>div,
+        .row_info_loan .btn_yellow {
+            max-width: 100%;
+            width: 100%;
+        }
+        .crs_custom_submit,
+        .result-wrapper form input.btn_yellow {
+            padding-right: 24px;
+            background: #FFBA3A url('<?php echo $assets ?>16_arrow_r_black.svg') no-repeat left calc(50% + 37px) center / 16px;
+        }
+
+        #main-content .container {
+            padding-top: 24px !important;
+        }
+
+        .footer_adv_top .hg_adv li {
+            margin: 0 auto 16px !important;
+        }
+
+        .footer_adv_top {
+            margin-bottom: 30px;
+        }
+
+        .result-wrapper_block hr {
+            margin: 24px 0;
+        }
+    }
+    .result-form .result-form_shortcode form.wpcf7-form input:not(.btn_select) {
+        display: none;
+    }
+</style>
+<div id="main-content">
+    <div class="result-wrapper container">
+        <div class="result-wrapper_block flex-lg">
+            <div class="result_get">
+                <div>
+                    <h2>Get a Free Assessment</h2>
+                    <ul class="list">
+                        <li class="flex">
+                            <img src="<?php echo $assets; ?>24_checkmark.svg" alt="checkmark">
+                            <p>Finding the best possible deal for YOU across our 30+ Australian banks & lender
+                                networks.</p>
+                        </li>
+                        <li class="flex">
+                            <img src="<?php echo $assets; ?>24_checkmark.svg" alt="checkmark">
+                            <p>Give you full transparency, and personalised advice with the best loan products in your situation.</p>
+                        </li>
+                        <li class="flex">
+                            <img src="<?php echo $assets; ?>24_checkmark.svg" alt="checkmark">
+                            <p>Helping you understand the entire process, and what you need to do next.</p>
+                        </li>
+                    </ul>
+                    <hr>
+                    <?php
+                    if (!$isMobile) {
+                        echo $htmlIcons;
+                    }
+                    ?>
+                </div>
+            </div>
+            <div>
+                <div class="result-form">
+                    <h4>Get a free expert advice in 4 hours</h4>
+                    <div class="crs_custom_form">
+                        <input placeholder="Name" value="" type="text" name="text-name">
+                        <input placeholder="Email" value="" type="email" name="text-email">
+                        <input placeholder="Phone" value="" type="tel" name="text-phone">
+                    </div>
+                    <div class="result-form_shortcode">
+                        <div class="wpcf7 js" id="wpcf7-f68942-o13" lang="en-US" dir="ltr">
+                            <div class="screen-reader-response"><p role="status" aria-live="polite" aria-atomic="true"></p> <ul></ul></div>
+                            <form action="/get-free-assessment/#wpcf7-f68942-o13" method="post" class="wpcf7-form resetting" aria-label="Contact form" novalidate="novalidate" data-status="resetting" data-hs-cf-bound="true">
+                                <div style="display: none;">
+                                <input type="hidden" name="_wpcf7" value="68942">
+                                <input type="hidden" name="_wpcf7_version" value="5.9.3">
+                                <input type="hidden" name="_wpcf7_locale" value="en_US">
+                                <input type="hidden" name="_wpcf7_unit_tag" value="wpcf7-f68942-o13">
+                                <input type="hidden" name="_wpcf7_container_post" value="0">
+                                <input type="hidden" name="_wpcf7_posted_data_hash" value="">
+                                </div>
+                                <p><span class="wpcf7-form-control-wrap" data-name="text-name"><input size="40" class="wpcf7-form-control wpcf7-text wpcf7-validates-as-required" aria-required="true" aria-invalid="false" placeholder="Name" value="" type="text" name="text-name"></span>
+                                <span class="wpcf7-form-control-wrap" data-name="text-email"><input size="40" class="wpcf7-form-control wpcf7-email wpcf7-validates-as-required wpcf7-text wpcf7-validates-as-email" aria-required="true" aria-invalid="false" placeholder="Email" value="" type="email" name="text-email"></span><span class="wpcf7-form-control-wrap" data-name="text-phone"><input size="40" class="wpcf7-form-control wpcf7-tel wpcf7-validates-as-required wpcf7-text wpcf7-validates-as-tel" aria-required="true" aria-invalid="false" placeholder="Phone" value="" type="tel" name="text-phone"></span>
+                                <span class="wpcf7-form-control-wrap" data-name="transaction_type"><select class="wpcf7-form-control wpcf7-select wpcf7-validates-as-required" aria-required="true" aria-invalid="false" name="transaction_type"><option value="">What Are You Looking To Do?</option><option value="Purchase A Property">Purchase A Property</option><option value="Refinance A Loan">Refinance A Loan</option><option value="Commercial Or Business Loan">Commercial Or Business Loan</option><option value="Build">Build</option></select></span><input class="wpcf7-form-control wpcf7-submit has-spinner btn_yellow" type="submit" value="Submit"><span class="wpcf7-spinner"></span>
+                                </p><p style="display: none !important;" class="akismet-fields-container" data-prefix="_wpcf7_ak_"><label>Δ<textarea name="_wpcf7_ak_hp_textarea" cols="45" rows="8" maxlength="100"></textarea></label><input type="hidden" id="ak_js_13" name="_wpcf7_ak_js" value="1715759824184"><script>document.getElementById( "ak_js_13" ).setAttribute( "value", ( new Date() ).getTime() );</script></p><input type="hidden" class="wpcf7-pum" value="{&quot;closepopup&quot;:false,&quot;closedelay&quot;:0,&quot;openpopup&quot;:false,&quot;openpopup_id&quot;:0}"><div class="wpcf7-response-output" aria-hidden="true"></div>
+                            </form>
+                        </div>
+                    </div>
+                    <button type="button" class="crs_custom_submit btn_yellow">Submit</button>
+                </div>
+                <div class="result-typ result-typ_one">
+                    <h3>Thank you for Enquiry!</h3>
+                    <p>We have received your request and sent you a confirmation email. <b>We will get in contact
+                            with you within 4 business hours.</b></p>
+                    <p>We are looking forward to meeting you and help you find the right solution for your needs!
+                    </p>
+
+                    <hr>
+                    <p><b>In the meantime, here are some resources that you might find useful:</b></p>
+                    <ul>
+                        <li><a href="/first-home-buyer-loans/" target="_blank">First Home Buyers Guide</a></li>
+                        <li><a href="/refinance-home-loan/" target="_blank">Refinancing Guide</a></li>
+                        <li><a href="/upgrade-my-home/" target="_blank">Renovation Guide</a></li>
+                        <li><a href="/first-time-investor/" target="_blank">Property Investment Guide</a></li>
+                    </ul>
+                </div>
+                <div class="result-typ result-typ_two">
+                    <h3>Thank you for your interest.</h3>
+                    <p>Here at <b>Hunter Galloway,</b> we have a dedicated specialist team to look after our more
+                        complicated loans.</p>
+                    <p>Due to the complex nature of building loans, we are only able to take on a limited number of
+                        these at one time.</p>
+                    <p><b>Unfortunately,</b> our team is currently at maximum capacity.</p>
+                    <p>It would be irresponsible of us to take on your home loan at this time as we would not be
+                        able to give you the quality of service that you deserve.</p>
+                    <p>We would recommend contacting another mortgage broker to see if they have the capacity to
+                        assist with your loan.</p>
+                    <p><b>Sorry that we aren't able to help.</b></p>
+                    <div class="items-center">
+                        <button type="button" class="items-center btn_back">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="8" height="12" viewBox="0 0 8 12"
+                                fill="none">
+                                <path d="M8 10.59L3.36437 6L8 1.41L6.57287 -6.23816e-08L0.5 6L6.57287 12L8 10.59Z"
+                                    fill="#262626" />
+                            </svg>
+                            Back
+                        </button>
+                        <a href="/" class="btn_yellow">To the Home page</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <?php
+        if ($isMobile) {
+            echo $htmlIcons;
+        }
+        ?>
+    </div>
+</div>
+
+<style>
+    .select_popup {
+        position: fixed;
+        left: 0;
+        top: 0;
+        opacity: 0;
+        pointer-events: none;
+        width: 100%;
+        height: 100vh;
+        display: flex;
+        background: rgba(0, 0, 0, 0.60);
+        z-index: 99999;
+    }
+
+    .select_popup_container {
+        margin: auto 0 0 0;
+        width: 100%;
+        background: var(--White, #FFF);
+        transform: translateY(100px);
+        transition: ALL 0.25s ease;
+        padding: 24px;
+    }
+
+    .select_popup.active {
+        opacity: 1;
+        pointer-events: auto;
+    }
+
+    .select_popup.active .select_popup_container {
+        transform: translateY(0);
+    }
+
+    .select_popup h4 {
+        color: var(--Grey-dark, #262626);
+        font-family: "Open Sans";
+        font-size: 18px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: 26px;
+        padding: 0;
+    }
+
+    .select_popup ul {
+        list-style-type: none;
+        padding: 12px 0;
+        margin: 0;
+    }
+
+    .select_popup ul li {
+        padding: 12px 0;
+        color: var(--Grey-text, #444);
+        font-family: "Open Sans";
+        font-size: 14px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 20px;
+        text-transform: capitalize;
+        border-bottom: 1px solid #D9D9D9;
+        width: 100%;
+        cursor: pointer;
+    }
+    .select_popup ul li:first-child {
+        display: none;
+    }
+</style>
+<div class="select_popup" data-id="68942">
+    <div class="select_popup_container">
+        <h4>What are you looking to do?</h4>
+        <ul></ul>
+    </div>
+</div>
+<script>
+
+    const typBlockOne = document.querySelector('.result-typ_one');
+    const typBlockTwo = document.querySelector('.result-typ_two');
+
+    const form = document.querySelector('.result-form');
+    const result_get = document.querySelector('.result_get');
+    const result_icons = document.querySelector('.result-wrapper_icons');
+
+    document.querySelector('.btn_back').addEventListener('click', () => {
+        typBlockOne.style = '';
+        typBlockTwo.style = '';
+        form.style = '';
+        if (isMobile) {
+            result_get.style = '';
+            result_icons.style = '';
+        }
+
+        document.querySelector('.wpcf7-form.not-error')?.classList.remove("not-error");
+
+        jQuery(function ($) {
+            $('html, body').animate({
+                scrollTop: $('.result-wrapper').offset().top - (isMobile ? 71 : 0)
+            }, 250);
+        })
+    })
+
+    function sentForm() {
+        if (form.querySelector('.result-form_shortcode select').value == 'Build') {
+            typBlockTwo.style.display = 'block';
+        } else {
+            typBlockOne.style.display = 'block';
+        }
+        form.style.display = 'none';
+
+        if (isMobile) {
+            result_get.style.display = 'none';
+            result_icons.style.display = 'none';
+        }
+
+        document.querySelector('.crs_custom_submit').style = '';
+
+        jQuery(function ($) {
+            $('html, body').animate({
+                scrollTop: 0
+            }, 250);
+        })
+    }
+
+    document.addEventListener('wpcf7mailsent', function (event) {
+        if (event.detail.contactFormId == 68942) {
+            sentForm()
+        }
+    })
+
+    document.querySelector('.result-form .result-form_shortcode select[name="transaction_type"]').addEventListener('change', (e) => {
+        let target = e.target
+        if (target.value == 'Build') {
+            sentForm()
+            target.value = '';
+        }
+    })
+
+    document.querySelector('.crs_custom_submit').addEventListener('click', (e) => {
+        let submit = document.querySelector('.result-form .result-form_shortcode form.wpcf7-form .wpcf7-submit')
+        submit.style = 'background-color: lightgray; pointer-events: none;'
+        e.target.style = 'background-color: lightgray; pointer-events: none;'
+
+        let waitInitForm = setInterval(() => {
+            if (document.querySelector('.result-form_shortcode .wpcf7-form.init')) {
+                clearInterval(waitInitForm)
+                submit.click()
+            }
+        })
+    })
+
+    document.querySelector('.result-form .result-form_shortcode form.wpcf7-form').addEventListener('submit', function (event) {
+
+        var formTarget = event.target;
+
+        document.querySelectorAll('.crs_custom_form input').forEach((input, index) => {
+            if (input.style.display !== 'none') {
+                formTarget.querySelector(`input[name="${input.name}"]`).value = input.value;
+                input.style.display = 'none';
+                formTarget.querySelector(`input[name="${input.name}"]`).style.display = 'block';
+            }
+        })
+
+        var nameField = formTarget.querySelector('input[name="text-name"]');
+        var emailField = formTarget.querySelector('input[name="text-email"]');
+        var phoneField = formTarget.querySelector('input[name="text-phone"]');
+        var selectField = formTarget.querySelector('select[name="transaction_type"]');
+        var errorMessages = {};
+
+        if (!nameField.value.trim()) {
+            errorMessages['text-name'] = 'Please enter your name.';
+        }
+        if (!selectField.value.trim()) {
+            errorMessages['transaction_type'] = 'Please choose an option.';
+        }
+
+        if (!emailField.value.trim()) {
+            errorMessages['text-email'] = 'Please enter a valid email address.';
+        } else {
+            var emailRegex = /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/;
+            if (!emailRegex.test(emailField.value.trim())) {
+                errorMessages['text-email'] = 'Please enter a valid email address. ';
+            }
+        }
+
+        if (!phoneField.value.trim()) {
+            errorMessages['text-phone'] = 'Please enter your phone number.';
+        } else {
+            var phoneRegex = /^(04\d{2}\s\d{3}\s\d{3}|\d{2}\s\d{4}\s\d{4})$/;
+            if (!phoneRegex.test(phoneField.value.trim())) {
+                errorMessages['text-phone'] = 'Please enter a valid phone number.';
+            }
+        }
+
+        // Remove existing error messages
+        var existingErrorTips = document.querySelectorAll('.not-valid-tip');
+
+        existingErrorTips.forEach(function (errorTip) {
+            errorTip.remove();
+        });
+
+        // Create new error messages
+        Object.keys(errorMessages).forEach(function (fieldName) {
+            var field = formTarget.querySelector('.wpcf7-form-control-wrap [name="' + fieldName + '"]');
+            var errorTip = document.createElement('span');
+            errorTip.classList.add('not-valid-tip');
+            errorTip.textContent = errorMessages[fieldName];
+            field.insertAdjacentElement('afterend', errorTip);
+        });
+
+        // If there are no error messages, proceed with form submission
+        if (Object.keys(errorMessages).length === 0) {
+            console.log('is typ')
+            formTarget.classList.add("not-error")
+        } else {
+            event.preventDefault();
+            event.stopImmediatePropagation(); // Prevent form submission
+            console.log('not typ')
+            formTarget.classList.remove("not-error")
+
+            formTarget.querySelector('.wpcf7-submit').style = '';
+            document.querySelector('.crs_custom_submit').style = '';
+        }
+        
+        // }
+    }, false);
+
+    var phoneInput = document.querySelectorAll('input[name="text-phone"]');
+
+    phoneInput.forEach(item => {
+        let value = '';
+        item.addEventListener('input', function (event) {
+            var input = event.target;
+            if (input.value.length <= 12) {
+                var formattedPhoneNumber = formatPhoneNumber(input.value);
+                input.value = formattedPhoneNumber;
+                value = formattedPhoneNumber;
+            } else {
+                input.value = value;
+            }
+        });
+        item.addEventListener('keydown', function (event) {
+            var key = event.key;
+            var selectionStart = item.selectionStart;
+            var selectionEnd = item.selectionEnd;
+            var value = item.value;
+
+            if (key === 'Backspace' || key === 'Delete') {
+                // If Backspace or Delete is pressed, remove the previous or next character respectively
+                if (key === 'Backspace' && selectionStart > 0) {
+                    item.value = value.slice(0, selectionStart - 1) + value.slice(selectionEnd);
+                    item.setSelectionRange(selectionStart - 1, selectionStart - 1);
+                } else if (key === 'Delete' && selectionEnd < value.length) {
+                    item.value = value.slice(0, selectionStart) + value.slice(selectionEnd + 1);
+                    item.setSelectionRange(selectionStart, selectionStart);
+                }
+                event.preventDefault(); // Prevent default behavior (e.g., removing entire value)
+            }
+        });
+    })
+
+    let waitselect = setInterval(() => {
+        if (document.querySelector('.result-form_shortcode [data-name="transaction_type"] select') && !document.querySelector('.btn_select')) {
+            clearInterval(waitselect)
+
+            let selectForm = document.querySelector('.result-form_shortcode [data-name="transaction_type"] select');
+            selectForm.insertAdjacentHTML('beforebegin', `<input type="text" class="btn_select" value="${selectForm.querySelector('option').innerHTML}" readonly>`)
+
+            document.querySelector('.select_popup h4').innerHTML = selectForm.querySelector('option').innerHTML
+            document.querySelector('.select_popup ul').innerHTML = selectForm.innerHTML.split('option').join('li');
+
+            document.querySelector('.btn_select')?.addEventListener('click', (e) => {
+                document.querySelector('.select_popup').classList.add('active');
+                document.querySelector('html').classList.add("crs_fixed");
+            })
+
+            document.querySelectorAll('.select_popup ul li').forEach((option, index) => {
+                option.addEventListener('click', (e) => {
+                    selectForm.selectedIndex = index;
+                    document.querySelector('.btn_select').value = option.innerText;
+                    document.querySelector('.select_popup').classList.remove('active');
+                    document.querySelector('html').classList.remove("crs_fixed");
+                    if (option.innerText.includes('Build')) {
+                        sentForm()
+                        document.querySelector('.btn_select').value = selectForm.querySelector('option').innerHTML;
+                        selectForm.selectedIndex = 0;
+                    }
+                })
+            });
+        }
+    })
+
+
+    document.addEventListener('click', (e) => {
+        if (e.target.classList.contains('select_popup')) {
+            e.target.classList.remove('active');
+            document.querySelector('html').classList.remove("crs_fixed");
+        }
+    })
+
+    function getAppHeight() {
+        return Math.max(document.documentElement.clientHeight, window.innerHeight || 0);
+    }
+
+    function setPopupHeight() {
+        var appHeight = getAppHeight();
+        var popup = document.querySelector('.select_popup');
+
+        popup.style.height = appHeight + 'px';
+    }
+
+    window.addEventListener('resize', setPopupHeight);
+    setPopupHeight()
+
+
+    window.addEventListener('scroll', () => {
+        const btnformWrapper = document.querySelector('.result-form .btn_yellow');
+        const formWrapper = document.querySelector('.result-wrapper_block');
+
+        if (btnformWrapper && formWrapper && isMobile) {
+
+            const formWrapperRect = formWrapper.getBoundingClientRect();
+            const btnformWrapperRect = btnformWrapper.getBoundingClientRect()
+
+            const windowHeight = window.innerHeight || document.documentElement.clientHeight;
+            
+            if (formWrapperRect.top < windowHeight && btnformWrapperRect.bottom > 75) {
+                document.querySelector('.footer_button').hidden = true;
+            } else {
+                document.querySelector('.footer_button').hidden = false;
+            }
+        }
+    });
+    document.querySelector('.header__assessment-control a').addEventListener('click', (e) => {
+        if (window.location.href.includes('get-free-assessment')) {
+          scrollToSection(e, 'body')
+        }
+    })
+
+    let waitError = setInterval(() => {
+		if (document.querySelector('.result-form .wpcf7-response-output')?.innerText != '' &&
+			document.querySelector('.result-form .wpcf7-response-output')?.innerText != 'Thank you') {
+
+			console.log(document.querySelector('.result-form .wpcf7-response-output').innerText)
+
+			document.querySelector('.result-form .wpcf7-response-output').style = 'opacity: 1';
+
+			setTimeout(() => {
+				if (document.querySelector('.result-form .wpcf7-response-output')?.innerText != '') {
+
+					document.querySelector('.result-form .wpcf7-response-output').style = 'opacity: 0';
+					document.querySelector('.result-form .wpcf7-response-output').innerText = '';
+				}
+			}, 5000);
+
+            if ( document.querySelector('.result-form .wpcf7-submit')) {
+                document.querySelector('.result-form .wpcf7-submit').style = '';
+                document.querySelector('.crs_custom_submit').style = '';
+            }
+		}
+	}, 100)
+
+</script>
+
+<?php
+
+get_footer();
