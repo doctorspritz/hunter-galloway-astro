@@ -18,6 +18,71 @@ Instead of converting pages sequentially, we'll build **reusable components firs
 
 ---
 
+## 🧭 Parallel Task Board (self‑contained units)
+
+Each task below is independently shippable. Use feature branches, add a demo to `src/pages/design-system.astro`, and open a PR.
+
+- [ ] WhyChoose organism (+ item molecule)
+  - Branch: `feat/why-choose`
+  - Files: `src/components/molecules/WhyChooseItem/WhyChooseItem.astro`, `src/components/organisms/WhyChoose/WhyChoose.astro`
+  - Variants: with stats, with icons
+  - Tokens: text/surface/border/shadow only; no literals
+  - Acceptance: renders 3–6 items, hover effects, responsive, a11y labels
+
+- [ ] HeroWidget (flexible hero refactor)
+  - Branch: `feat/hero-widget`
+  - Files: `src/components/organisms/HeroWidget/HeroWidget.astro`; migrate usages from `HeroSection.astro`
+  - Variants: professional/general/calculator; left/right media
+  - Acceptance: tokenized colors/shadows; responsive; keyboard focus for CTAs
+
+- [ ] RiskWidget variants
+  - Branch: `feat/risk-widget-variants`
+  - Files: `src/components/organisms/RiskWidget/RiskWidget.astro`
+  - Variants: general/professional/refinance via props
+  - Acceptance: no hard-coded colors; demo data examples in design system
+
+- [ ] ReputationWidget (awards + rating + review snippets)
+  - Branch: `feat/reputation-widget`
+  - Files: `src/components/organisms/ReputationWidget/ReputationWidget.astro` (reuse `Awards.astro`, `ReviewCard`)
+  - Acceptance: displays aggregate rating, n reviews, awards strip; mobile layout
+
+- [ ] AccordionWidget (+ AccordionItem)
+  - Branch: `feat/accordion-widget`
+  - Files: `src/components/molecules/AccordionItem/AccordionItem.astro`, `src/components/organisms/AccordionWidget/AccordionWidget.astro`
+  - Acceptance: keyboard accessible (Enter/Space toggle, Arrow nav), ARIA attributes, smooth animation via tokens
+
+- [ ] DarkSection layout (dark_holder_widget)
+  - Branch: `feat/dark-section`
+  - Files: `src/components/layouts/DarkSection.astro`
+  - Props: title/descr/slots; handles contrast tokens and link colors
+  - Acceptance: passes contrast checks; no literals
+
+- [ ] ContentWidget + TextWidget (widget/text_widget)
+  - Branch: `feat/content-text-widgets`
+  - Files: `src/components/organisms/ContentWidget/ContentWidget.astro`, `src/components/molecules/TextWidget/TextWidget.astro`
+  - Acceptance: spacing tokens, optional header/footer slots, responsive grid
+
+- [ ] Button extensions (dark_btn_widget + img_btn_widget)
+  - Branch: `feat/button-variants`
+  - Files: extend `src/components/atoms/Button/Button.astro`; add `src/components/molecules/ImageButton/ImageButton.astro`
+  - Acceptance: dark variant, image-backed button, focus/hover states via tokens
+
+- [ ] Reviews enhancements (grid/slider variants)
+  - Branch: `feat/reviews-enhancements`
+  - Files: `src/components/organisms/Reviews.astro`
+  - Acceptance: switchable layout prop; a11y for slider controls; tokenized
+
+- [ ] Token housekeeping
+  - Branch: `chore/tokens-housekeeping`
+  - Files: `src/tokens/{primitive.ts,semantic.ts,component.ts}`
+  - Acceptance: add missing primitives/semantic mappings; remove literals found in scans
+
+Notes
+- Add a demo block for each component in `src/pages/design-system.astro`.
+- Follow `docs/CONTRIBUTING.md` for branching, commits, and PR checks.
+
+---
+
 ## 📊 Component Reuse Analysis
 
 ### Highest Impact Components (Used by 7+ Pages):
