@@ -9,12 +9,16 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0  # Need full git history for changed file detection
       - uses: actions/setup-node@v4
         with:
           node-version: 20
           cache: npm
       - run: npm ci
       - run: npm run build
-      - run: npm run -s check:tokens
+      - run: node scripts/check-no-literals.mjs
+        env:
+          GITHUB_BASE_REF: main
 
 
