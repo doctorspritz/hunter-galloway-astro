@@ -64,7 +64,8 @@ const heroClasses = [
         <Button 
           href={buttonHref}
           variant="primary"
-          class="btn_yellow rc_open A-trigger"
+          fullWidth={true}
+          class="rc_open A-trigger"
         >
           {buttonText}
         </Button>
@@ -108,7 +109,8 @@ const heroClasses = [
 
 .hero_widget .hero_title {
   color: #fff;
-  font-weight: 900;
+  font-family: var(--hg-font-family);
+  font-weight: var(--hg-font-weight-black);
   font-size: 40px;
   padding-bottom: 30px;
   margin: 0;
@@ -117,7 +119,8 @@ const heroClasses = [
 
 .hero_widget .hero_subtitle {
   color: #fff;
-  font-weight: 900;
+  font-family: var(--hg-font-family);
+  font-weight: var(--hg-font-weight-black);
   font-size: 20px;
   padding-bottom: 40px;
   max-width: 840px;
@@ -127,6 +130,7 @@ const heroClasses = [
 
 .hero_widget .hero_text {
   color: #fff;
+  font-family: var(--hg-font-family);
   font-size: 17px;
   padding-bottom: 43px;
   margin: 0 auto;
@@ -140,13 +144,7 @@ const heroClasses = [
   padding-bottom: 15px;
 }
 
-.hero_widget .btn_wrap .btn_yellow {
-  width: 100%;
-  display: block;
-  text-align: center;
-  padding: 15px 20px;
-  text-decoration: none;
-}
+/* Button atom handles all button styling now */
 
 .hero_widget .bottom-text {
   font-size: 15px;

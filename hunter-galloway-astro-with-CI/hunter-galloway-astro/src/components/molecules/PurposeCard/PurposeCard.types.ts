@@ -14,12 +14,12 @@ export interface PurposeCardProps {
   image: string;
   /** URL to navigate to when clicked */
   href: string;
-  /** Optional badge text (e.g., "Most Popular") */
-  badge?: string;
   /** Card size variant */
   size?: 'md' | 'lg';
-  /** Background color variant */
-  variant?: 'default' | 'peach';
+  /** Card style variant */
+  variant?: 'normal' | 'highlighted' | 'with-badge';
+  /** Badge text when using with-badge variant */
+  badge?: string;
   /** Additional CSS classes */
   class?: string;
 }

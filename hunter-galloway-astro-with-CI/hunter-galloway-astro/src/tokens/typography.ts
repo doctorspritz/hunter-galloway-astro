@@ -32,6 +32,7 @@ export const typography = {
     semibold: '600',    // Used in buttons
     bold: '700',        // Used in headings
     extrabold: '800',   // Used in stat numbers
+    black: '900',       // Used in hero titles/subtitles
   },
 
   // Line Heights
@@ -118,6 +119,7 @@ export const cssVariables = {
   '--hg-font-weight-semibold': fontWeight.semibold,
   '--hg-font-weight-bold': fontWeight.bold,
   '--hg-font-weight-extrabold': fontWeight.extrabold,
+  '--hg-font-weight-black': fontWeight.black,
   '--hg-line-height-normal': lineHeight.normal,
   '--hg-line-height-tight': lineHeight.tight,
 } as const;

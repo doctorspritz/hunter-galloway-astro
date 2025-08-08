@@ -22,11 +22,33 @@ export default {
       }
     ],
     // Allow camelCase keyframe names (common in JS animations)
-    'keyframes-name-pattern': null
+    'keyframes-name-pattern': null,
+    // Enforce design tokens usage - no hardcoded font values
+    'declaration-property-value-disallowed-list': {
+      'font-family': [
+        // Disallow common hardcoded font families
+        '"Open Sans"',
+        "'Open Sans'",
+        'Arial',
+        'sans-serif',
+        '"Gotham Pro"',
+        "'Gotham Pro'",
+      ],
+      'font-weight': [
+        // Disallow numeric font weights
+        '400',
+        '500', 
+        '600',
+        '700',
+        '800',
+        '900',
+      ]
+    }
   },
   ignoreFiles: [
     'dist/**/*',
     'node_modules/**/*',
-    '.astro/**/*'
+    '.astro/**/*',
+    'src/styles/global.css'  // Allow hardcoded fonts in global styles only
   ]
 };

@@ -20,16 +20,21 @@ const {
   icon,
   image,
   href,
-  badge,
   size = 'md',
-  variant = 'default',
+  variant = 'normal',
+  badge,
   class: additionalClasses = '',
 } = Astro.props;
+
+// Determine if badge should be shown based on variant and badge prop
+const shouldShowBadge = (variant === 'with-badge' || variant === 'highlighted') && badge;
+// Set background style based on variant
+const backgroundClass = variant === 'highlighted' ? 'highlighted' : 'normal';
 ---
 
-<a href={href} class={`hg-purpose-card load-purpose__block purpose-block purpose-block--${variant} ${additionalClasses}`} data-purpose={badge ? 'first' : undefined}>
+<a href={href} class={`hg-purpose-card load-purpose__block purpose-block purpose-block--${backgroundClass} ${additionalClasses}`} data-purpose={shouldShowBadge ? 'first' : undefined}>
   <!-- Badge (Most Popular) -->
-  {badge && (
+  {shouldShowBadge && (
     <div class="purpose-block__badge">{badge}</div>
   )}
   
@@ -157,11 +162,11 @@ const {
 }
 
 /* Variant styles */
-.purpose-block--peach {
+.purpose-block--highlighted {
   background: var(--surfaceHighlight);
 }
 
-.purpose-block--default {
+.purpose-block--normal {
   background: var(--surfaceSecondary);
 }
 
