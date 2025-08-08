@@ -121,10 +121,8 @@ tmp/
 temp/
 
 # === PROJECT SPECIFIC ===
-# Keep archived folders but ignore their node_modules
-hunter-galloway-astro-ARCHIVED-*/node_modules/
-hunter-galloway-astro-ARCHIVED-*/dist/
-hunter-galloway-astro-ARCHIVED-*/.astro/
+# Ignore entire archived folders (they have their own git history)
+hunter-galloway-astro-ARCHIVED-*/
 
 # Ignore large WordPress assets that can be regenerated
 WP-FILES/assets/img/*.jpg
