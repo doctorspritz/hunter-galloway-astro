@@ -6,7 +6,12 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "lint": "eslint . --ext .js,.ts,.astro",
+    "lint:css": "echo 'CSS linting placeholder - add stylelint if needed'",
+    "test:unit": "vitest",
+    "build-storybook": "cd .. && npm run build-storybook",
+    "test:storybook": "cd .. && npm run test:storybook"
   },
   "dependencies": {
     "@astrojs/react": "^4.3.0",
@@ -24,5 +29,20 @@
     "react-dom": "^19.1.1",
     "swiper": "^11.2.10",
     "tailwindcss": "^4.1.11"
+  },
+  "devDependencies": {
+    "@lhci/cli": "^0.15.1",
+    "@playwright/test": "^1.54.2",
+    "@typescript-eslint/eslint-plugin": "^8.39.0",
+    "@typescript-eslint/parser": "^8.39.0",
+    "@vitest/ui": "^3.2.4",
+    "eslint": "^9.32.0",
+    "eslint-plugin-astro": "^1.3.1",
+    "jsdom": "^26.1.0",
+    "pixelmatch": "^7.1.0",
+    "playwright": "^1.54.2",
+    "pngjs": "^7.0.0",
+    "typescript-eslint": "^8.39.0",
+    "vitest": "^3.2.4"
   }
 }
