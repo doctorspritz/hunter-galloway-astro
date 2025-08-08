@@ -19,7 +19,6 @@ Failing due to hard-coded colors/px (scripts/check-no-literals.mjs):
 - src/components/organisms/Footer.astro
 - src/components/organisms/Header.astro
 - src/components/organisms/Header.stories.ts
-- src/components/organisms/HeroSection.astro
 - src/components/organisms/LoanPurpose.astro
 - src/components/organisms/PropertyMap.astro
 - src/components/organisms/Reviews.astro

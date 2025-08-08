@@ -79,12 +79,12 @@ src/components/
 │   │   └── Tooltip.types.ts
 │   └── index.ts                # Molecule exports
 ├── organisms/                   # Complex section components
-│   └── [Future implementation] # Header, Footer, HeroSection, etc.
+│   └── [Future implementation] # Header, Footer, HeroWidget, etc.
 ├── sections/                    # Page sections (temporary organism location)
 │   ├── Awards.astro            # Awards showcase section
 │   ├── BankLogos.astro         # Lender logos section
 │   ├── Footer.astro            # Complete footer organism
-│   ├── HeroSection.astro       # Homepage hero area
+│   ├── HeroWidget/             # Flexible hero component
 │   ├── LoanPurpose.astro       # Loan purpose selection
 │   ├── PropertyMap.astro       # Interactive property map
 │   ├── Reviews.astro           # Customer reviews section

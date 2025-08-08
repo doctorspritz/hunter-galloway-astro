@@ -169,7 +169,7 @@ src/
 │   │   ├── AwardItem/
 │   │   └── TrustIndicator/
 │   ├── organisms/
-│   │   ├── HeroSection/
+│   │   ├── HeroWidget/
 │   │   ├── StatisticsSection/
 │   │   ├── LoanPurposeSection/
 │   │   ├── AwardsSection/

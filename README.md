@@ -58,7 +58,7 @@ src/components/
 └── organisms/       # Complex section components
     ├── Header/      # Full navigation + branding
     ├── Footer/      # Multi-column footer
-    └── HeroSection/ # Homepage hero
+    └── HeroWidget/  # Flexible hero component
 ```
 
 ### Component Development Rules

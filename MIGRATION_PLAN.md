@@ -44,7 +44,7 @@ This document outlines a comprehensive plan to migrate the Hunter Galloway mortg
 - **Layout.astro**: SEO-optimized base layout with meta tags and Schema.org
 - **Header.astro**: Responsive navigation with mobile menu
 - **Footer.astro**: Complete sitemap with service links
-- **HeroSection.astro**: Exact WordPress hero with tooltips and trust indicators
+- **HeroWidget.astro**: Flexible hero with tooltips and trust indicators
 - **Awards.astro**: 6 awards with hover tooltips matching WordPress exactly
 - **LoanPurpose.astro**: 2x2 card grid with hover effects and "Most Popular" badge
 - **BankLogos.astro**: 14+ bank partner logos section

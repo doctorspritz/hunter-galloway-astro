@@ -97,7 +97,7 @@ Complex components using atoms + molecules:
 **Required Organisms:**
 - [ ] Header (navigation + logo + CTA)
 - [ ] Footer (pre-footer + main footer + bottom)
-- [ ] HeroSection
+- [ ] HeroWidget
 - [ ] Awards section
 - [ ] Statistics section
 

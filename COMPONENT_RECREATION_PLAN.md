@@ -68,7 +68,7 @@ npm install @headlessui/react framer-motion swiper
 ### Phase 2: Homepage Hero Section (Week 1-2)
 
 #### 2.1 Hero Organism
-**File**: `src/components/sections/HeroSection.astro`
+**File**: `src/components/organisms/HeroWidget/HeroWidget.astro`
 **Layout**: Split 60/40 (text/image)
 **Elements**:
 ```typescript

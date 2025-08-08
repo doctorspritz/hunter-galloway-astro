@@ -8,7 +8,7 @@
 // Export all organism components
 export { default as Header } from './Header.astro';
 export { default as Footer } from './Footer.astro';
-export { default as HeroSection } from './HeroSection.astro';
+export { default as HeroWidget } from './HeroWidget/HeroWidget.astro';
 export { default as Awards } from './Awards.astro';
 export { default as BankLogos } from './BankLogos.astro';
 export { default as LoanPurpose } from './LoanPurpose.astro';

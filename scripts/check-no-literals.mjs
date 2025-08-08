@@ -36,6 +36,12 @@ for (const f of files) {
     (f.startsWith('src/pages/') && !f.startsWith('src/pages/design-system/review/')) ||
     f.endsWith('.stories.ts')
   ) continue;
+  try {
+    await fs.access(f);
+  } catch {
+    // File was deleted/renamed in this PR; skip
+    continue;
+  }
   const s = await fs.readFile(f, 'utf8');
   if (colorRe.test(s) || pxRe.test(s)) errors.push(f);
 }
