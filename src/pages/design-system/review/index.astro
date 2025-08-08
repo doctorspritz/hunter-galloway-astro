@@ -1,0 +1,26 @@
+---
+import glob from 'fast-glob';
+
+const componentPages = await glob('src/pages/design-system/review/components/*.astro');
+const templatePages  = await glob('src/pages/design-system/review/templates/*.astro');
+
+function toRoute(f) { return '/' + f.replace(/^src\/pages\//,'').replace(/\.astro$/,''); }
+---
+<html lang="en">
+  <head><meta charset="utf-8" /><title>Design System Review</title></head>
+  <body>
+    <h1>Design System</h1>
+
+    <h2>Components</h2>
+    <ul>
+      {componentPages.map(f => <li><a href={toRoute(f)}>{toRoute(f)}</a></li>)}
+    </ul>
+
+    <h2>Templates</h2>
+    <ul>
+      {templatePages.map(f => <li><a href={toRoute(f)}>{toRoute(f)}</a></li>)}
+    </ul>
+  </body>
+</html>
+
+

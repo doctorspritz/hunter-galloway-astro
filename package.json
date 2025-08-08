@@ -14,7 +14,10 @@
     "check:tokens:hex": "grep -R --line-number -E '#[0-9a-fA-F]{3,8}\\b' src/components || true",
     "check:tokens:func": "grep -R --line-number -E 'rgba?\\(|hsla?\\(' src/components || true",
     "check:tokens": "npm run -s check:tokens:hex && npm run -s check:tokens:func",
-    "prepr": "npm run -s build && npm run -s check:tokens"
+    "prepr": "npm run -s build && npm run -s check:tokens",
+    "check": "node scripts/check-no-literals.mjs && node scripts/check-atomic-boundaries.mjs && node scripts/check-registry.mjs && node scripts/check-similarity.mjs",
+    "new:component": "node scripts/generate-component.mjs",
+    "snap": "node scripts/capture-snapshots.mjs"
   },
   "dependencies": {
     "@astrojs/react": "^4.3.0",
@@ -34,6 +37,9 @@
     "tailwindcss": "^4.1.11"
   },
   "devDependencies": {
+    "fast-glob": "^3.3.2",
+    "globby": "^14.0.2",
+    "puppeteer": "^22.15.0",
     "@chromatic-com/storybook": "^4.1.0",
     "@storybook/addon-a11y": "^9.1.1",
     "@storybook/addon-docs": "^9.1.1",

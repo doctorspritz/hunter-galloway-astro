@@ -2,6 +2,22 @@
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
+## Agent Operating References (read first)
+
+- Standard Operating Procedure (SOP): `instructions.md`
+- Project context and paths: `project_config.md`
+- Active plan, rules, and logs: `workflow_state.md`
+- Contribution workflow: `docs/CONTRIBUTING.md`
+- Component strategy backlog: `REUSABLE_COMPONENTS_STRATEGY.md`
+
+Quick rules for Claude Code
+- Always follow the reuse flow in `instructions.md` (organism → molecule → atom; add variants before creating new components).
+- Preview all visual work in `src/pages/design-system.astro` (canonical). Do not rely on Storybook for this project.
+- Use tokens only; run local checks before PR:
+  - `npm run build`
+  - `npm run -s check:tokens`
+- Use branches: `feat/...`, `fix/...`, `docs/...`; open PRs to `main` and complete the PR template checklist.
+
 ## Project Overview
 
 This is a WordPress child theme for Hunter Galloway, a mortgage broker website. It's built on top of the Divi theme framework and includes custom calculators, forms, and landing pages.
