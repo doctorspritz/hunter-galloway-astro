@@ -8,10 +8,14 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0  # Need full git history for changed file detection
       - uses: pnpm/action-setup@v4
         with: { version: 9 }
       - run: pnpm i --frozen-lockfile
       - run: pnpm run check
+        env:
+          GITHUB_BASE_REF: ${{ github.base_ref }}
 
   # Optional screenshots of demo routes (for quick PR eyeballing)
   screenshots:

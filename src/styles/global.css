@@ -1,123 +1,33 @@
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,600;0,700;0,800;1,400&display=swap');
 @import "tailwindcss";
 
-/* Hunter Galloway Design System - CSS Variables */
-:root {
-  /* Colors from design tokens */
-  --hg-yellow-primary: #FDB948;
-  --hg-yellow-dark: #E5A43F;
-  --hg-yellow-alt: #EC9B16;
-  --hg-gray-dark: #262626;
-  --hg-gray-text: #444444;
-  --hg-gray-text-light: #1e1e1e;
-  --hg-gray-light: #FFF5E2;
-  --hg-background: #f8f9fa;
-  --hg-background-alt: #f4f4f4;
-  --hg-light-blue: #f0f8ff;
-  --hg-white: #ffffff;
-  --hg-success: #28a745;
-  --hg-tooltip-bg: #333333;
-  --hg-tooltip-text: #ffffff;
-  
-  /* Typography from design tokens */
-  --hg-font-family: 'Open Sans', system-ui, sans-serif;
-  --hg-font-weight-normal: 400;
-  --hg-font-weight-medium: 500;
-  --hg-font-weight-semibold: 600;
-  --hg-font-weight-bold: 700;
-  --hg-font-weight-extrabold: 800;
-  
-  /* Spacing from design tokens */
-  --hg-section-padding: 50px;
-  --hg-container-max-width: 1272px;
-  --hg-card-padding: 2rem;
-  --hg-card-gap: 2rem;
-  --hg-border-radius-sm: 4px;
-  --hg-border-radius-md: 12px;
-  --hg-border-radius-lg: 24px;
-  --hg-border-radius-pill: 25px;
-  
-  /* Effects from design tokens */
-  --hg-shadow-md: 0 4px 20px rgba(0, 0, 0, 0.1);
-  --hg-shadow-lg: 0 8px 30px rgba(0, 0, 0, 0.15);
-  --hg-shadow-tooltip: 0 4px 12px rgba(0, 0, 0, 0.15);
-  --hg-transition-normal: 0.3s;
-  --hg-transform-hover: translateY(-4px);
-  --hg-z-tooltip: 1000;
-  /* App theme */
-  --app-bg: #ffffff;
-  --app-text: #1f2937;
-  
-  /* Legacy variables for backward compatibility */
-  --yellow-primary: var(--hg-yellow-primary);
-  --yellow-dark: var(--hg-yellow-dark);
-  --gray-dark: var(--hg-gray-dark);
-  --gray-text: var(--hg-gray-text);
-  --gray-light: var(--hg-gray-light);
-}
+/* Variables come from TokenStyles.astro (semantic tokens to CSS vars) */
+:root {}
 
 /* Base Styles - Match WordPress exactly */
-body {
-  font-family: 'Open Sans', system-ui, sans-serif;
-  padding: 0 !important;
-  background: var(--app-bg);
-  color: var(--app-text);
-}
+body { font-family: var(--font-family-body); padding: 0 !important; background: var(--color-surface-primary); color: var(--color-text-primary); }
 
-#main-content * {
-  font-family: 'Open Sans', system-ui, sans-serif;
-}
+#main-content * { font-family: var(--font-family-body); }
 
 /* Typography - WordPress styles */
-h1, h2, h3, h4 {
-  color: var(--gray-dark);
-  font-size: 40px;
-  font-style: normal;
-  font-weight: 700;
-  line-height: 48px;
-}
+h1, h2, h3, h4 { color: var(--color-text-primary); font-style: normal; font-weight: var(--font-weight-heading); }
 
-h1 {
-  font-weight: 400;
-}
+h1 { font-weight: var(--font-weight-body); }
 
-h1 b {
-  font-weight: 800;
-}
+h1 b { font-weight: var(--font-weight-display); }
 
-h3 {
-  font-size: 32px;
-  line-height: 40px;
-}
+h3 { font-size: var(--font-size-3xl); }
 
-h4 {
-  font-size: 24px;
-  line-height: 32px;
-}
+h4 { font-size: var(--font-size-xl); }
 
 /* Body text - WordPress styles */
-li, p, a {
-  color: var(--gray-dark);
-  font-family: 'Open Sans', system-ui, sans-serif;
-  font-size: 16px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 24px;
-}
+li, p, a { color: var(--color-text-primary); font-family: var(--font-family-body); font-size: var(--font-size-md); font-style: normal; font-weight: var(--font-weight-body); line-height: var(--line-height-body); }
 
 /* Container - WordPress layout */
-#main-content .container {
-  max-width: 1272px;
-  width: 100%;
-  padding: 0 16px !important;
-  margin: 0 auto;
-  overflow: hidden;
-}
+#main-content .container { max-width: var(--size-container-max); width: 100%; padding: 0 var(--space-sm) !important; margin: 0 auto; overflow: hidden; }
 
 /* Section spacing - WordPress pattern */
-#main-content section {
-  padding: 50px 0;
-}
+#main-content section { padding: var(--space-xl) 0; }
 
 /* List styles - WordPress pattern */
 ul {
@@ -128,27 +38,13 @@ ul {
 
 /* WordPress specific list styling for benefits */
 ul.list li {
-  margin-bottom: 8px;
+  margin-bottom: var(--space-xs);
 }
 
 /* Button styles - WordPress yellow button */
-.btn_yellow {
-  background-color: var(--yellow-primary);
-  color: var(--gray-dark);
-  padding: 12px 24px;
-  border-radius: 25px;
-  font-weight: 600;
-  text-decoration: none;
-  display: inline-flex;
-  align-items: center;
-  transition: background-color 0.3s ease;
-  border: none;
-  cursor: pointer;
-}
+.btn_yellow { background-color: var(--color-interactive-primary); color: var(--color-text-primary); padding: var(--space-sm) var(--space-md); border-radius: var(--radius-pill); font-weight: var(--font-weight-strong); text-decoration: none; display: inline-flex; align-items: center; transition: background-color var(--durationNormal) ease; border: none; cursor: pointer; }
 
-.btn_yellow:hover {
-  background-color: var(--yellow-dark);
-}
+.btn_yellow:hover { background-color: var(--color-interactive-primary-hover); }
 
 /* Flex utilities - WordPress uses these extensively */
 .flex {
@@ -182,14 +78,6 @@ html {
 }
 
 /* Dark mode */
-@media (prefers-color-scheme: dark) {
-  :root {
-    --app-bg: #0b0d0f;
-    --app-text: #e5e7eb;
-  }
-}
+@media (prefers-color-scheme: dark) { :root { /* map dark tokens here if/when defined */ } }
 
-html[data-theme="dark"] {
-  --app-bg: #0b0d0f;
-  --app-text: #e5e7eb;
-}
+html[data-theme="dark"] { }
