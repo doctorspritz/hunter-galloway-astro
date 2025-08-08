@@ -79,7 +79,7 @@ Each task below is independently shippable. Use feature branches, add a demo to 
 
 Notes
 - Add a demo block for each component in `src/pages/design-system.astro`.
-- Follow `docs/CONTRIBUTING.md` for branching, commits, and PR checks.
+- Follow `instructions.md` (SOP) and `docs/CONTRIBUTING.md` for branching, commits, and PR checks.
 
 ---
 
@@ -258,7 +258,7 @@ These components from our analysis are already implemented in Astro:
 
 ## 📋 Component Development Workflow
 
-### For Each Component:
+### For Each Component (must follow SOP):
 
 1. **Analyze WordPress Implementation**:
    ```bash
@@ -274,6 +274,7 @@ These components from our analysis are already implemented in Astro:
    - Props interface with TypeScript
    - CSS module or styled-components
    - Responsive design
+    - Reuse decision: organism → molecule → atom per `instructions.md`
 
 3. **Test in Isolation**:
    - Create component story for Storybook
@@ -326,5 +327,7 @@ These components from our analysis are already implemented in Astro:
 - **Polish Phase**: 2-3 weeks final refinements
 
 ---
+
+See also: `instructions.md` (Atomic Reuse SOP), `project_config.md` (context), `workflow_state.md` (active plan and logs).
 
 **This component-first strategy will dramatically accelerate the WordPress to Astro migration while ensuring consistency and quality across all pages.**

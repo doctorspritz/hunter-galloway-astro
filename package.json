@@ -10,7 +10,11 @@
     "astro": "astro",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
-    "test:storybook": "chromatic --project-token=$CHROMATIC_PROJECT_TOKEN"
+    "test:storybook": "chromatic --project-token=$CHROMATIC_PROJECT_TOKEN",
+    "check:tokens:hex": "grep -R --line-number -E '#[0-9a-fA-F]{3,8}\\b' src/components || true",
+    "check:tokens:func": "grep -R --line-number -E 'rgba?\\(|hsla?\\(' src/components || true",
+    "check:tokens": "npm run -s check:tokens:hex && npm run -s check:tokens:func",
+    "prepr": "npm run -s build && npm run -s check:tokens"
   },
   "dependencies": {
     "@astrojs/react": "^4.3.0",
