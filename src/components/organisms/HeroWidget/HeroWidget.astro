@@ -1,0 +1,226 @@
+---
+/**
+ * HeroWidget Organism
+ * Flexible, tokenized hero for multiple page types
+ */
+
+import Container from '../../atoms/Container/Container.astro';
+import Button from '../../atoms/Button/Button.astro';
+import { semantic } from '../../../tokens/semantic';
+
+type Variant = 'general' | 'professional' | 'calculator';
+type MediaPosition = 'left' | 'right';
+
+interface BenefitItem {
+  text: string;
+  tooltip?: string;
+}
+
+interface CTAConfig {
+  text: string;
+  href: string;
+}
+
+interface ImageConfig {
+  desktop: string;
+  mobile: string;
+  alt: string;
+}
+
+interface ReviewsConfig {
+  logoSrc?: string;
+  text: string; // e.g., "Based on 2000+ reviews"
+}
+
+interface Props {
+  variant?: Variant;
+  mediaPosition?: MediaPosition;
+  titleHtml: string; // supports inline markup via set:html
+  benefits: BenefitItem[];
+  cta: CTAConfig;
+  image: ImageConfig;
+  yearsExperience?: string; // e.g., "14"
+  reviews?: ReviewsConfig;
+}
+
+const {
+  variant = 'general',
+  mediaPosition = 'right',
+  titleHtml,
+  benefits,
+  cta,
+  image,
+  yearsExperience = '14',
+  reviews = { logoSrc: '/images/google.svg', text: 'Based on 2000+ reviews' },
+} = Astro.props as Props;
+
+const isMediaLeft = mediaPosition === 'left';
+---
+
+<section class={[
+  'hg-hero',
+  `hg-hero--${variant}`,
+  isMediaLeft ? 'hg-hero--media-left' : 'hg-hero--media-right',
+].join(' ')}>
+  <Container>
+    <div class="hg-hero__inner">
+      {isMediaLeft && (
+        <picture class="hg-hero__media d-lg-block d-none">
+          <img src={image.desktop} alt={image.alt} loading="eager"/>
+        </picture>
+      )}
+
+      <div class="hg-hero__content">
+        <h1 set:html={titleHtml} />
+
+        {benefits?.length > 0 && (
+          <ul class="hg-hero__benefits list">
+            {benefits.map((item) => (
+              <li class="flex">
+                <img src="/images/24_checkmark.svg" alt="checkmark" />
+                {item.tooltip ? (
+                  <p>
+                    <span class="item_hover">
+                      {item.text}
+                      <span class="item_tooltip hidden">{item.tooltip}</span>
+                    </span>
+                  </p>
+                ) : (
+                  <p>{item.text}</p>
+                )}
+              </li>
+            ))}
+          </ul>
+        )}
+
+        <Button variant="primary" size="lg" href={cta.href} class="hg-hero__cta">
+          {cta.text}
+          <img class="d-lg-none ml-2" src="/images/16_arrow_r_black.svg" alt="arrow image" />
+        </Button>
+
+        <div class="flex hg-hero__features">
+          <div class="items-center hg-hero__years">
+            <div class="hg-hero__count">
+              <p class="d-lg-block d-none">{yearsExperience}</p>
+              <svg class="d-lg-none hg-hero__years-icon" xmlns="http://www.w3.org/2000/svg" width="56" height="37" viewBox="0 0 56 37" fill="none">
+                <path d="M22.8952 32H15.7V18.6477C15.7 18.4015 15.7 17.9521 15.7 17.2996C15.7 16.6347 15.706 15.9022 15.7179 15.1019C15.7419 14.3016 15.7718 13.5814 15.8077 12.9412C15.4966 13.3228 15.2036 13.6491 14.9284 13.92C14.6653 14.1908 14.4081 14.4432 14.1569 14.6772L11.1783 17.2072L7.5 12.5534L16.5074 5H22.8952V32Z" fill="currentColor" />
+                <path d="M48.5 26.7736H45.6112V32H38.6133V26.7736H28.1525V21.4179L39.0619 5H45.6112V21.3256H48.5V26.7736ZM38.6133 21.3256V18.186C38.6133 17.9029 38.6193 17.5458 38.6313 17.1149C38.6433 16.684 38.6552 16.2531 38.6672 15.8222C38.6911 15.3789 38.709 15.0096 38.721 14.7141C38.7449 14.4063 38.7629 14.2401 38.7748 14.2155H38.5775C38.3502 14.7695 38.1408 15.2312 37.9495 15.6005C37.7581 15.9576 37.5069 16.3824 37.1958 16.8748L34.2891 21.3256H38.6133Z" fill="currentColor" />
+              </svg>
+            </div>
+            <p>Years<br class="d-lg-block d-none" /> of experience</p>
+          </div>
+          <div class="items-center hg-hero__reviews">
+            {reviews.logoSrc && <img src={reviews.logoSrc} alt="reviews logo" />}
+            <p set:html={reviews.text} />
+          </div>
+        </div>
+      </div>
+
+      {!isMediaLeft && (
+        <picture class="hg-hero__media d-lg-block d-none">
+          <img src={image.desktop} alt={image.alt} loading="eager"/>
+        </picture>
+      )}
+
+      <picture class="hg-hero__media d-lg-none">
+        <img src={image.mobile} alt={image.alt} loading="eager"/>
+      </picture>
+    </div>
+  </Container>
+</section>
+
+<style define:vars={{
+  spaceMd: semantic.space.md,
+  spaceLg: semantic.space.lg,
+  spaceXl: semantic.space.xl,
+  spaceXxl: semantic.space['2xl'],
+  radiusMd: semantic.radius.md,
+  brandPrimary: semantic.color.brand.primary,
+  surfacePrimary: semantic.color.surface.primary,
+  textPrimary: semantic.color.text.primary,
+  shadowSubtle: semantic.shadow.subtle,
+  durationNormal: semantic.duration.normal,
+}}>
+.hg-hero {
+  padding: var(--spaceMd) 0 var(--spaceXxl) 0;
+  background: var(--surfacePrimary);
+}
+
+.hg-hero--professional {
+  background: var(--surfacePrimary);
+}
+
+.hg-hero--calculator {
+  background: var(--surfacePrimary);
+}
+
+.hg-hero__inner {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--spaceXl);
+}
+
+.hg-hero--media-left .hg-hero__inner {
+  flex-direction: row-reverse;
+}
+
+.hg-hero__content {
+  max-width: 680px;
+  width: 100%;
+}
+
+.hg-hero__media img {
+  max-width: 500px;
+  width: 100%;
+  border-radius: var(--radiusMd);
+}
+
+.hg-hero__benefits {
+  padding: var(--spaceLg) 0;
+}
+
+.hg-hero__benefits li {
+  align-items: flex-start;
+  gap: var(--spaceMd);
+  margin-bottom: var(--spaceMd);
+}
+
+.hg-hero__benefits li img { width: 24px; height: 24px; flex-shrink: 0; margin-top: 2px; }
+
+.item_hover { position: relative; cursor: help; text-decoration: underline; }
+.item_hover:hover .item_tooltip {
+  display: block !important;
+  position: absolute;
+  background: var(--surfacePrimary);
+  color: var(--textPrimary);
+  padding: var(--spaceMd);
+  border-radius: var(--radiusMd);
+  width: 300px;
+  top: 100%;
+  left: 0;
+  z-index: 1000;
+  font-size: 14px;
+  line-height: 1.4;
+  box-shadow: var(--shadowSubtle);
+}
+
+.hg-hero__cta { margin-top: var(--spaceLg); }
+
+.hg-hero__features { gap: var(--spaceXl); margin-top: var(--spaceXl); }
+.hg-hero__years, .hg-hero__reviews { display: flex; align-items: center; gap: var(--spaceMd); }
+.hg-hero__count p { font-size: 3rem; font-weight: 800; color: var(--brandPrimary); margin: 0; }
+.hg-hero__years-icon { color: var(--brandPrimary); }
+
+/* Responsive display helpers (match WordPress pattern used elsewhere) */
+.d-lg-none { display: none; }
+.d-lg-block { display: block; }
+
+@media (max-width: 1024px) {
+  .hg-hero__inner { flex-direction: column; }
+  .hg-hero__media img { max-width: 100%; }
+  .hg-hero__features { justify-content: space-between; }
+  .d-lg-none { display: block; }
+  .d-lg-block { display: none; }
+}
+</style>
+

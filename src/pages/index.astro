@@ -1,7 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import Header from '../components/organisms/Header.astro';
-import HeroSection from '../components/organisms/HeroSection.astro';
+import HeroWidget from '../components/organisms/HeroWidget/HeroWidget.astro';
 import Awards from '../components/organisms/Awards.astro';
 import LoanPurpose from '../components/organisms/LoanPurpose.astro';
 import BankLogos from '../components/organisms/BankLogos.astro';
@@ -18,8 +18,35 @@ import Container from '../components/atoms/Container/Container.astro';
   <Header />
   
   <div id="main-content">
-    <!-- Hero Section - Exact WordPress Content -->
-    <HeroSection />
+    <!-- Hero Widget -->
+    <HeroWidget
+      titleHtml={'<b>Get a home loan </b>with full <span class="text-nowrap">guidance and</span> expert assistance'}
+      benefits={[
+        {
+          text: 'Market-leading loan approval rate in Australia of 97%',
+          tooltip:
+            "Approximately 40% of home loan applications were rejected in December 2018 based on a survey of 52,000 households completed by 'DigitalFinance Analytics DFA'. In 2017 to 2018 Hunter Galloway submitted 342 home loan applications and had 8 applications rejected, giving a 2.33% rejection rate.",
+        },
+        { text: 'Variety of options due to direct access to 30+ Australian banks & lenders' },
+        {
+          text: '#1 rated Mortgage Broker in Brisbane',
+          tooltip:
+            'The highest rated and most reviewed Mortgage Broker in Brisbane: 5-star rating based on 2000+ reviews on Google',
+        },
+      ]}
+      cta={{ text: 'Calculate my borrowing capacity', href: '/mortgage-calculator/' }}
+      image={{
+        desktop:
+          '/images/what-you-see-when-you-look-up-full-length-shot-affectionate-family-four-holding-cardboard-roof-their-heads-while-sitting-living-room-home.jpg',
+        mobile:
+          '/images/what-you-see-when-you-look-up-full-length-shot-affectionate-family-four-holding-cardboard-roof-their-heads-while-sitting-living-room-home.png',
+        alt: 'Family holding cardboard house',
+      }}
+      yearsExperience={'14'}
+      reviews={{ logoSrc: '/images/google.svg', text: 'Based on<br class="d-lg-block d-none"> 2000+ reviews' }}
+      variant={'general'}
+      mediaPosition={'right'}
+    />
 
     <!-- Awards Section -->
     <Awards />
