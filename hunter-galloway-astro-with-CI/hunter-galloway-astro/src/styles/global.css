@@ -1,4 +1,4 @@
-@import "tailwindcss";
+@import url("tailwindcss");
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,600;0,700;0,800;1,400&display=swap');
 
 /* Hunter Galloway Design System - CSS Variables */
@@ -8,16 +8,16 @@
   --hg-yellow-dark: #E5A43F;
   --hg-yellow-alt: #EC9B16;
   --hg-gray-dark: #262626;
-  --hg-gray-text: #444444;
+  --hg-gray-text: #444;
   --hg-gray-text-light: #1e1e1e;
   --hg-gray-light: #FFF5E2;
   --hg-background: #f8f9fa;
   --hg-background-alt: #f4f4f4;
   --hg-light-blue: #f0f8ff;
-  --hg-white: #ffffff;
+  --hg-white: #fff;
   --hg-success: #28a745;
-  --hg-tooltip-bg: #333333;
-  --hg-tooltip-text: #ffffff;
+  --hg-tooltip-bg: #333;
+  --hg-tooltip-text: #fff;
   
   /* Typography from design tokens */
   --hg-font-family: 'Open Sans', system-ui, sans-serif;
@@ -38,9 +38,9 @@
   --hg-border-radius-pill: 25px;
   
   /* Effects from design tokens */
-  --hg-shadow-md: 0 4px 20px rgba(0, 0, 0, 0.1);
-  --hg-shadow-lg: 0 8px 30px rgba(0, 0, 0, 0.15);
-  --hg-shadow-tooltip: 0 4px 12px rgba(0, 0, 0, 0.15);
+  --hg-shadow-md: 0 4px 20px rgb(0 0 0 / 10%);
+  --hg-shadow-lg: 0 8px 30px rgb(0 0 0 / 15%);
+  --hg-shadow-tooltip: 0 4px 12px rgb(0 0 0 / 15%);
   --hg-transition-normal: 0.3s;
   --hg-transform-hover: translateY(-4px);
   --hg-z-tooltip: 1000;

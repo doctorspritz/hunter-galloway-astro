@@ -48,6 +48,7 @@ export default [
       'wordpress-source/',
       '.eslintrc.cjs',
       '.stylelintrc.cjs',
+      '.stylelintrc.js',
       '.storybook/',
       'lighthouserc.js'
     ]

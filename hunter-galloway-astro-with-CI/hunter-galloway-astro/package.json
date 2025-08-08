@@ -8,7 +8,7 @@
     "preview": "astro preview",
     "astro": "astro",
     "lint": "eslint . --ext .js,.ts,.astro",
-    "lint:css": "echo 'CSS linting placeholder - add stylelint if needed'",
+    "lint:css": "stylelint 'src/**/*.{css,scss}' --fix",
     "test:unit": "vitest",
     "build-storybook": "cd .. && npm run build-storybook",
     "test:storybook": "cd .. && npm run test:storybook"
@@ -31,7 +31,9 @@
     "tailwindcss": "^4.1.11"
   },
   "devDependencies": {
+    "@axe-core/playwright": "^4.10.2",
     "@lhci/cli": "^0.15.1",
+    "@percy/cli": "^1.31.1",
     "@playwright/test": "^1.54.2",
     "@typescript-eslint/eslint-plugin": "^8.39.0",
     "@typescript-eslint/parser": "^8.39.0",
@@ -42,6 +44,8 @@
     "pixelmatch": "^7.1.0",
     "playwright": "^1.54.2",
     "pngjs": "^7.0.0",
+    "stylelint": "^16.23.1",
+    "stylelint-config-standard": "^39.0.0",
     "typescript-eslint": "^8.39.0",
     "vitest": "^3.2.4"
   }
