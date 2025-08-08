@@ -38,7 +38,7 @@ ul {
 
 /* WordPress specific list styling for benefits */
 ul.list li {
-  margin-bottom: 8px;
+  margin-bottom: var(--space-xs);
 }
 
 /* Button styles - WordPress yellow button */
