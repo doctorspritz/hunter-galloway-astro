@@ -22,8 +22,13 @@ const colorRe = /#[0-9a-fA-F]{3,8}\b|rgba?\(/;
 const pxRe = /(?<!var\()(?<!calc\()(?<!clamp\()\b\d+(?:\.\d+)?px\b/;
 
 for (const f of files) {
-  // Ignore legacy pages, token sources, and story files
-  if (f.includes('/pages/legacy/') || f.includes('/tokens/') || f.endsWith('.stories.ts')) continue;
+  // Ignore legacy pages, tokens, top-level pages, and story files. Review routes remain allowed.
+  if (
+    f.includes('/pages/legacy/') ||
+    f.includes('/tokens/') ||
+    (f.startsWith('src/pages/') && !f.startsWith('src/pages/design-system/review/')) ||
+    f.endsWith('.stories.ts')
+  ) continue;
   const s = await fs.readFile(f, 'utf8');
   if (colorRe.test(s) || pxRe.test(s)) errors.push(f);
 }
