@@ -24,6 +24,16 @@ This is a WordPress child theme for Hunter Galloway, a mortgage broker website. 
 - **Page Templates**: Custom PHP templates for specific pages (mortgage calculators, landing pages, blog)
 - **Block System**: Reusable blocks for awards, badges, ratings in `/blocks/` and `/template-parts/blocks/`
 
+## Astro Component Development Progress
+
+### ✅ COMPLETED Components
+- **HeroWidget** (`hunter-galloway-astro-ARCHIVED-20250808/src/components/sections/HeroWidget.astro`)
+  - **Used by**: 7+ pages (doctors, nurses, suburb, posts, covid, refinance)
+  - **Variants**: Professional, nurse, general, calculator, refinance
+  - **Features**: Dynamic backgrounds, responsive design, WordPress-exact styling
+  - **Status**: ✅ Complete and tested - ready for page assembly
+  - **Location**: Test page available at `/hero-widget-test`
+
 ## Development Commands
 
 ### File Locations

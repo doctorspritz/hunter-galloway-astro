@@ -21,6 +21,9 @@ export { default as PurposeCard } from './molecules/PurposeCard/PurposeCard.astr
 export { default as AwardItem } from './molecules/AwardItem/AwardItem.astro';
 export { default as Tooltip } from './molecules/Tooltip/Tooltip.astro';
 
+// Section Components
+export { default as HeroWidget } from './sections/HeroWidget.astro';
+
 // Design System Metadata
 export const designSystem = {
   version: '1.0.0',
