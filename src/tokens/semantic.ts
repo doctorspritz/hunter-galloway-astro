@@ -151,6 +151,13 @@ export const semantic = {
     normal: primitive.duration.normal,    // Standard transitions
     slow: primitive.duration.slow,        // Complex animations
   },
+
+  // Responsive breakpoints by role
+  breakpoint: {
+    mobile: '480px',                      // Small mobile devices
+    tablet: '768px',                      // Tablets and small desktops
+    desktop: '1024px',                    // Desktop and larger
+  },
 } as const;
 
 export default semantic;
