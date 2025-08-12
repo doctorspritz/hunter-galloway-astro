@@ -19,8 +19,7 @@
     "check:demo": "node scripts/check-demo-route.mjs",
     "new:component": "node scripts/generate-component.mjs",
     "snap": "node scripts/capture-snapshots.mjs",
-    "verify:setup": "node scripts/verify-setup.mjs",
-
+    "verify:setup": "node scripts/verify-setup.mjs"
   },
   "dependencies": {
     "@astrojs/react": "^4.3.0",
