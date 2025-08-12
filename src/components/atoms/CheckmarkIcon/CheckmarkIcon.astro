@@ -1,0 +1,49 @@
+---
+/**
+ * CheckmarkIcon Atom
+ * Green circle with white checkmark
+ */
+
+interface Props {
+  size?: 'sm' | 'md' | 'lg';
+  className?: string;
+}
+
+const { size = 'md', className = '' } = Astro.props;
+
+const sizes = {
+  sm: '16px',
+  md: '24px', 
+  lg: '32px'
+};
+---
+
+<div class={`checkmark-icon checkmark-icon--${size} ${className}`}>
+  <svg width={sizes[size]} height={sizes[size]} viewBox="0 0 24 24" fill="none">
+    <rect x="2" y="2" width="20" height="20" fill="#77B255"/>
+    <path d="M7 12l3 3 7-7" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  </svg>
+</div>
+
+<style>
+.checkmark-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.checkmark-icon--sm svg {
+  width: 16px;
+  height: 16px;
+}
+
+.checkmark-icon--md svg {
+  width: 24px;
+  height: 24px;
+}
+
+.checkmark-icon--lg svg {
+  width: 32px;
+  height: 32px;
+}
+</style>

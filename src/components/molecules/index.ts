@@ -4,18 +4,22 @@
  */
 
 // Export molecular components
-export { default as StatCard } from './StatCard/StatCard.astro';
-export { default as PurposeCard } from './PurposeCard/PurposeCard.astro';
-export { default as RiskCard } from './RiskCard/RiskCard.astro';
 export { default as AwardItem } from './AwardItem/AwardItem.astro';
-export { default as Tooltip } from './Tooltip/Tooltip.astro';
-export { default as NavDropdown } from './NavDropdown/NavDropdown.astro';
+export { default as BenefitItem } from './BenefitItem/BenefitItem.astro';
+export { default as CalculatorResult } from './CalculatorResult/CalculatorResult.astro';
+export { default as ExperienceBadge } from './ExperienceBadge/ExperienceBadge.astro';
 export { default as FooterNavigation } from './FooterNavigation/FooterNavigation.astro';
 export { default as FooterStatCard } from './FooterStatCard/FooterStatCard.astro';
+export { default as NavDropdown } from './NavDropdown/NavDropdown.astro';
 export { default as PhoneLink } from './PhoneLink/PhoneLink.astro';
+export { default as PurposeCard } from './PurposeCard/PurposeCard.astro';
+export { default as ReviewBadge } from './ReviewBadge/ReviewBadge.astro';
 export { default as ReviewCard } from './ReviewCard/ReviewCard.astro';
+export { default as RiskCard } from './RiskCard/RiskCard.astro';
 export { default as SocialLinks } from './SocialLinks/SocialLinks.astro';
-export { default as CalculatorResult } from './CalculatorResult/CalculatorResult.astro';
+export { default as StatCard } from './StatCard/StatCard.astro';
+export { default as Tooltip } from './Tooltip/Tooltip.astro';
+export { default as WhyChooseItem } from './WhyChooseItem/WhyChooseItem.astro';
 
 // Export types
 export type { StatCardProps } from './StatCard/StatCard.types';

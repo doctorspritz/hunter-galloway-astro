@@ -1,0 +1,54 @@
+---
+/**
+ * ExperienceBadge Molecule
+ * Circular badge with number and label
+ */
+
+interface Props {
+  years: string;
+  className?: string;
+}
+
+const { years, className = '' } = Astro.props;
+---
+
+<div class={`experience-badge ${className}`}>
+  <div class="experience-badge__circle">
+    <span class="experience-badge__number">{years}</span>
+  </div>
+  <div class="experience-badge__text">
+    <span>Years<br/>of experience</span>
+  </div>
+</div>
+
+<style>
+.experience-badge {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.experience-badge__circle {
+  width: 54px;
+  height: 54px;
+  border: 1px solid #FDB948;
+  border-radius: 27px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.experience-badge__number {
+  color: #FDB948;
+  font-size: 29px;
+  font-weight: 800;
+  line-height: 52px;
+}
+
+.experience-badge__text {
+  color: #262626;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+}
+</style>

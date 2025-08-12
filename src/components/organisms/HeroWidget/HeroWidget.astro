@@ -1,18 +1,15 @@
 ---
 /**
  * HeroWidget Organism
- * Flexible, tokenized hero for multiple page types
+ * Combines multiple molecules to create a hero section
  */
 
 import Container from '../../atoms/Container/Container.astro';
-import Button from '../../atoms/Button/Button.astro';
-import { semantic } from '../../../tokens/semantic';
-import { component } from '../../../tokens/component';
+import BenefitItem from '../../molecules/BenefitItem/BenefitItem.astro';
+import ExperienceBadge from '../../molecules/ExperienceBadge/ExperienceBadge.astro';
+import ReviewBadge from '../../molecules/ReviewBadge/ReviewBadge.astro';
 
-type Variant = 'general' | 'professional' | 'calculator';
-type MediaPosition = 'left' | 'right';
-
-interface BenefitItem {
+interface BenefitItemData {
   text: string;
   tooltip?: string;
 }
@@ -30,413 +27,153 @@ interface ImageConfig {
 
 interface ReviewsConfig {
   logoSrc?: string;
-  text: string; // e.g., "Based on 2000+ reviews"
+  text: string;
 }
 
 interface Props {
-  variant?: Variant;
-  mediaPosition?: MediaPosition;
-  titleHtml: string; // supports inline markup via set:html
-  benefits: BenefitItem[];
+  titleHtml: string;
+  benefits: BenefitItemData[];
   cta: CTAConfig;
   image: ImageConfig;
-  yearsExperience?: string; // e.g., "14"
+  yearsExperience?: string;
   reviews?: ReviewsConfig;
 }
 
 const {
-  variant = 'general',
-  mediaPosition = 'right',
   titleHtml,
   benefits,
   cta,
   image,
   yearsExperience = '14',
-  reviews = { logoSrc: '/images/google.svg', text: 'Based on 2000+ reviews' },
-} = Astro.props as Props;
-
-const isMediaLeft = mediaPosition === 'left';
+  reviews = { logoSrc: '/images/img_new/google.svg', text: 'Based on<br/>2000+ reviews' },
+} = Astro.props;
 ---
 
-<div class="hero-widget">
-  <div class="hero-widget-container">
-    <div class="hero-widget-content">
-      
-      <!-- Title Section -->
-      <div class="hero-widget-title">
-        <h1 set:html={titleHtml}></h1>
-      </div>
-
-      <!-- Benefits Section -->
-      <div class="hero-widget-benefits">
-        {benefits.map((item) => (
-          <div class="hero-widget-benefit-item">
-            <div class="hero-widget-checkmark">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-                <rect x="2" y="2" width="20" height="20" fill="var(--colorChartreuseGreen52)"/>
-                <path d="M7 12l3 3 7-7" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
-            </div>
-            <div class="hero-widget-benefit-text">
-              {item.tooltip ? (
-                <div class="hero-widget-benefit-tooltip">
-                  <span class="hero-widget-benefit-tooltip-trigger item_hover">
-                    {item.text}
-                    <span class="item_tooltip hidden">{item.tooltip}</span>
-                  </span>
-                  {item.text === 'Market-leading' ? ' loan approval rate in Australia of 97%' : 
-                   item.text === '#1 rated' ? ' Mortgage Broker in Brisbane' : ''}
-                </div>
-              ) : (
-                <span class="hero-widget-benefit-text-normal">
-                  {item.text}
-                </span>
-              )}
-            </div>
-          </div>
-        ))}
-      </div>
-
-      <!-- CTA Button -->
-      <div class="hero-widget-cta">
-        <a href={cta.href} class="hero-widget-cta-link">{cta.text}</a>
-      </div>
-
-      <!-- Features Section -->
-      <div class="hero-widget-features">
-        <div class="hero-widget-experience">
-          <div class="hero-widget-experience-circle">
-            <span class="hero-widget-experience-number">{yearsExperience}</span>
-          </div>
-          <div class="hero-widget-experience-text">
-            <span>Years<br/>of experience</span>
-          </div>
+<section class="hero-widget">
+  <Container>
+    <div class="hero-widget__layout">
+      <!-- Content Column -->
+      <div class="hero-widget__content">
+        <!-- Title -->
+        <div class="hero-widget__title">
+          <h1 set:html={titleHtml}></h1>
         </div>
-        <div class="hero-widget-reviews">
-          <div class="hero-widget-logo">
-            {reviews.logoSrc && (
-              <img src={reviews.logoSrc} alt="reviews logo" />
-            )}
-          </div>
-          <div class="hero-widget-reviews-text">
-            <span set:html={reviews.text}></span>
-          </div>
+
+        <!-- Benefits List -->
+        <div class="hero-widget__benefits">
+          {benefits.map((item) => (
+            <BenefitItem text={item.text} tooltip={item.tooltip} />
+          ))}
+        </div>
+
+        <!-- CTA Button -->
+        <div class="hero-widget__cta">
+          <a href={cta.href} class="hero-widget__button">
+            {cta.text}
+          </a>
+        </div>
+
+        <!-- Features Row -->
+        <div class="hero-widget__features">
+          <ExperienceBadge years={yearsExperience} />
+          <ReviewBadge logoSrc={reviews.logoSrc} text={reviews.text} />
         </div>
       </div>
+
+      <!-- Image Column -->
+      <div class="hero-widget__image">
+        <img src={image.desktop} alt={image.alt} loading="eager" />
+      </div>
     </div>
+  </Container>
+</section>
 
-    <!-- Media Section -->
-    <div class="hero-widget-media">
-      <img 
-        src={image.desktop} 
-        alt={image.alt}
-        loading="eager"
-      />
-    </div>
-  </div>
-</div>
-
-<style define:vars={{
-  // Layout
-  containerMaxWidth: component.heroWidget.layout.containerMaxWidth,
-  contentMaxWidth: component.heroWidget.layout.contentMaxWidth,
-  mediaWidth: component.heroWidget.layout.mediaWidth,
-  minHeight: component.heroWidget.layout.minHeight,
-  
-  // Spacing
-  paddingExact: component.heroWidget.spacing.paddingExact,
-  paddingContainerExact: component.heroWidget.spacing.paddingContainerExact,
-  paddingBottomTitle: component.heroWidget.spacing.paddingBottomTitle,
-  paddingBottomBenefits: component.heroWidget.spacing.paddingBottomBenefits,
-  paddingTopFeatures: component.heroWidget.spacing.paddingTopFeatures,
-  paddingMobile: component.heroWidget.spacing.paddingMobile,
-  
-  // Gaps
-  gapExact: component.heroWidget.gaps.gapExact,
-  gapSmallExact: component.heroWidget.gaps.gapSmallExact,
-  gapMediumExact: component.heroWidget.gaps.gapMediumExact,
-  gapMobile: component.heroWidget.gaps.gapMobile,
-  
-  // Checkmark dimensions
-  checkmarkWidth: component.heroWidget.dimensions.checkmark.widthExact,
-  checkmarkHeight: component.heroWidget.dimensions.checkmark.heightExact,
-  checkmarkInnerWidth: component.heroWidget.dimensions.checkmark.innerWidthExact,
-  checkmarkInnerHeight: component.heroWidget.dimensions.checkmark.innerHeightExact,
-  
-  // Button dimensions
-  buttonWidth: component.heroWidget.dimensions.button.widthExact,
-  buttonMinHeight: component.heroWidget.dimensions.button.minHeightExact,
-  buttonBorderRadius: component.heroWidget.dimensions.button.borderRadius,
-  
-  // Experience dimensions
-  experienceWidth: component.heroWidget.dimensions.experience.widthExact,
-  experienceHeight: component.heroWidget.dimensions.experience.heightExact,
-  experienceBorderRadius: component.heroWidget.dimensions.experience.borderRadius,
-  experienceOutlineWidth: component.heroWidget.dimensions.experience.outlineWidth,
-  experienceOutlineOffset: component.heroWidget.dimensions.experience.outlineOffset,
-  
-  // Logo dimensions
-  logoWidth: component.heroWidget.dimensions.logo.widthExact,
-  logoHeight: component.heroWidget.dimensions.logo.heightExact,
-  
-  // Media dimensions
-  mediaWidth: component.heroWidget.dimensions.media.widthExact,
-  mediaBorderRadius: component.heroWidget.dimensions.media.borderRadius,
-  
-  // Tooltip dimensions
-  tooltipWidth: component.heroWidget.dimensions.tooltip.widthExact,
-  tooltipPadding: component.heroWidget.dimensions.tooltip.paddingExact,
-  tooltipBorderRadius: component.heroWidget.dimensions.tooltip.borderRadius,
-  
-  // Colors
-  colorGrey27: component.heroWidget.colors.grey27,
-  colorGrey15: component.heroWidget.colors.grey15,
-  colorChartreuseGreen52: component.heroWidget.colors.chartreuseGreen52,
-  colorOrange64: component.heroWidget.colors.orange64,
-  
-  // Typography
-  titleFontSize: component.heroWidget.typography.title.fontSizeExact,
-  titleLineHeight: component.heroWidget.typography.title.lineHeightExact,
-  titleWeightExtrabold: component.heroWidget.typography.title.weightExtrabold,
-  titleWeightNormal: component.heroWidget.typography.title.weightNormal,
-  
-  bodyFontSize: component.heroWidget.typography.body.fontSizeExact,
-  bodyLineHeight: component.heroWidget.typography.body.lineHeightExact,
-  bodyWeightNormal: component.heroWidget.typography.body.weightNormal,
-  bodyWeightSemibold: component.heroWidget.typography.body.weightSemibold,
-  
-  buttonFontSize: component.heroWidget.typography.button.fontSizeExact,
-  buttonLineHeight: component.heroWidget.typography.button.lineHeightExact,
-  buttonWeightSemibold: component.heroWidget.typography.button.weightSemibold,
-  
-  experienceFontSize: component.heroWidget.typography.experience.fontSizeExact,
-  experienceLineHeight: component.heroWidget.typography.experience.lineHeightExact,
-  experienceWeightExtrabold: component.heroWidget.typography.experience.weightExtrabold,
-  
-  tooltipFontSize: component.heroWidget.typography.tooltip.fontSizeExact,
-  
-  // Shadows
-  tooltipShadow: component.heroWidget.shadows.tooltip,
-  
-  // Responsive
-  responsiveBreakpoint: component.heroWidget.responsive.breakpoint,
-}}>
-
+<style>
 .hero-widget {
-  padding: var(--paddingExact);
+  padding: 12px 0 50px 0;
   background: white;
 }
 
-.hero-widget-container {
-  max-width: var(--containerMaxWidth);
-  margin: 0 auto;
-  padding: var(--paddingContainerExact);
+.hero-widget__layout {
   display: flex;
   align-items: flex-start;
-  gap: var(--gapExact);
-  min-height: var(--minHeight);
+  gap: 64px;
+  min-height: 500px;
 }
 
-.hero-widget-content {
+.hero-widget__content {
   flex: 1;
-  max-width: var(--contentMaxWidth);
+  max-width: 680px;
   display: flex;
   flex-direction: column;
-  gap: var(--gapSmallExact);
+  gap: 24px;
 }
 
-.hero-widget-title h1 {
+.hero-widget__title h1 {
   font-family: 'Open Sans', sans-serif;
-  font-size: var(--titleFontSize);
-  line-height: var(--titleLineHeight);
-  color: var(--colorGrey27);
+  font-size: 40px;
+  line-height: 48px;
+  color: #444444;
   margin: 0;
-  padding-bottom: var(--paddingBottomTitle);
+  padding-bottom: 10px;
 }
 
-.hero-widget-title h1 b {
-  font-weight: var(--titleWeightExtrabold);
+.hero-widget__title h1 b {
+  font-weight: 800;
 }
 
-.hero-widget-benefits {
+.hero-widget__benefits {
   display: flex;
   flex-direction: column;
-  gap: var(--gapSmallExact);
-  padding-bottom: var(--paddingBottomBenefits);
+  gap: 8px;
+  padding-bottom: 8px;
 }
 
-.hero-widget-benefit-item {
+.hero-widget__cta {
   display: flex;
-  align-items: flex-start;
-  gap: var(--gapSmallExact);
+  justify-content: flex-start;
 }
 
-.hero-widget-checkmark {
-  flex-shrink: 0;
-  width: var(--checkmarkWidth);
-  height: var(--checkmarkHeight);
-}
-
-.hero-widget-benefit-text {
-  display: flex;
-  flex-direction: column;
-  gap: 0;
-}
-
-.hero-widget-benefit-tooltip {
-  display: flex;
-  flex-direction: row;
-  align-items: baseline;
-  gap: 0;
-}
-
-.hero-widget-benefit-tooltip-trigger {
-  color: var(--colorGrey15);
-  font-size: var(--bodyFontSize);
-  font-weight: var(--bodyWeightSemibold);
-  text-decoration: underline;
-  line-height: var(--bodyLineHeight);
-  cursor: help;
-  white-space: nowrap;
-}
-
-.hero-widget-benefit-tooltip-text {
-  color: var(--colorGrey15);
-  font-size: var(--bodyFontSize);
-  font-weight: var(--bodyWeightNormal);
-  line-height: var(--bodyLineHeight);
-}
-
-.hero-widget-benefit-text-normal {
-  color: var(--colorGrey15);
-  font-size: var(--bodyFontSize);
-  font-weight: var(--bodyWeightNormal);
-  line-height: var(--bodyLineHeight);
-}
-
-.hero-widget-cta {
-  width: var(--buttonWidth);
-  min-height: var(--buttonMinHeight);
-  background: var(--colorOrange64);
-  border-radius: var(--buttonBorderRadius);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.hero-widget-cta-link {
-  color: var(--colorGrey15);
-  font-size: var(--buttonFontSize);
-  font-weight: var(--buttonWeightSemibold);
-  line-height: var(--buttonLineHeight);
+.hero-widget__button {
+  background: #FDB948;
+  color: #262626;
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 48px;
+  padding: 0 32px;
+  border-radius: 33px;
   text-decoration: none;
+  display: inline-block;
+  min-height: 48px;
   text-align: center;
 }
 
-.hero-widget-features {
+.hero-widget__features {
   display: flex;
-  gap: var(--gapExact);
-  padding-top: var(--paddingTopFeatures);
+  gap: 64px;
+  padding-top: 40px;
 }
 
-.hero-widget-experience {
-  display: flex;
-  align-items: center;
-  gap: var(--gapMediumExact);
-}
-
-.hero-widget-experience-circle {
-  width: var(--experienceWidth);
-  height: var(--experienceHeight);
-  border: var(--experienceOutlineWidth) solid var(--colorOrange64);
-  border-radius: var(--experienceBorderRadius);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.hero-widget-experience-number {
-  color: var(--colorOrange64);
-  font-size: var(--experienceFontSize);
-  font-weight: var(--experienceWeightExtrabold);
-  line-height: var(--experienceLineHeight);
-}
-
-.hero-widget-experience-text {
-  color: var(--colorGrey15);
-  font-size: var(--bodyFontSize);
-  font-weight: var(--bodyWeightNormal);
-  line-height: var(--bodyLineHeight);
-}
-
-.hero-widget-reviews {
-  display: flex;
-  align-items: center;
-  gap: var(--gapMediumExact);
-}
-
-.hero-widget-logo {
-  width: var(--logoWidth);
-  height: var(--logoHeight);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.hero-widget-logo img {
-  max-width: 100%;
-  max-height: 100%;
-}
-
-.hero-widget-reviews-text {
-  color: var(--colorGrey15);
-  font-size: var(--bodyFontSize);
-  font-weight: var(--bodyWeightNormal);
-  line-height: var(--bodyLineHeight);
-}
-
-.hero-widget-media {
+.hero-widget__image {
   flex-shrink: 0;
-  width: var(--mediaWidth);
-  max-width: var(--mediaWidth);
+  width: 560px;
+  max-width: 560px;
 }
 
-.hero-widget-media img {
+.hero-widget__image img {
   width: 100%;
   height: auto;
-  border-radius: var(--mediaBorderRadius);
+  border-radius: 8px;
 }
 
-/* Tooltip styles */
-.item_hover { position: relative; }
-.item_hover:hover .item_tooltip {
-  display: block !important;
-  position: absolute;
-  background: white;
-  color: var(--colorGrey15);
-  padding: var(--tooltipPadding);
-  border-radius: var(--tooltipBorderRadius);
-  width: var(--tooltipWidth);
-  top: 100%;
-  left: 0;
-  z-index: 1000;
-  font-size: var(--tooltipFontSize);
-  line-height: 1.4;
-  box-shadow: var(--tooltipShadow);
-}
-
-/* Responsive design */
-@media (max-width: var(--responsiveBreakpoint)) {
-  .hero-widget {
-    padding: var(--paddingMobile);
-  }
-  
-  .hero-widget-container {
+/* Responsive */
+@media (max-width: 1024px) {
+  .hero-widget__layout {
     flex-direction: column;
-    gap: var(--gapMobile);
+    gap: 32px;
   }
   
-  .hero-widget-media {
+  .hero-widget__image {
     width: 100%;
     max-width: 100%;
   }
