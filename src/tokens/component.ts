@@ -64,6 +64,30 @@ export const component = {
     },
   },
 
+  // HeroWidget component tokens
+  heroWidget: {
+    content: {
+      maxWidth: '680px',
+      titleFontSize: semantic.typography.size['5xl'],
+      titleLineHeight: semantic.typography.lineHeight.tight,
+      titleWeight: semantic.typography.weight.display,
+    },
+    media: {
+      maxWidth: '500px',
+    },
+    checkmark: {
+      size: '24px',
+      marginTop: '2px',
+    },
+    tooltip: {
+      width: '300px',
+      fontSize: semantic.typography.size.sm,
+    },
+    breakpoint: {
+      tablet: semantic.breakpoint.tablet,
+    },
+  },
+
   // Card component tokens
   card: {
     // Stat card variant

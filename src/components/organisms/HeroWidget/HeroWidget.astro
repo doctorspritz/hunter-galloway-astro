@@ -7,6 +7,7 @@
 import Container from '../../atoms/Container/Container.astro';
 import Button from '../../atoms/Button/Button.astro';
 import { semantic } from '../../../tokens/semantic';
+import { component } from '../../../tokens/component';
 
 type Variant = 'general' | 'professional' | 'calculator';
 type MediaPosition = 'left' | 'right';
@@ -140,9 +141,13 @@ const isMediaLeft = mediaPosition === 'left';
   textPrimary: semantic.color.text.primary,
   shadowSubtle: semantic.shadow.subtle,
   durationNormal: semantic.duration.normal,
-  titleFontSize: semantic.typography.size['5xl'],
-  titleLineHeight: semantic.typography.lineHeight.tight,
-  titleWeight: semantic.typography.weight.display,
+  contentMaxWidth: component.heroWidget.content.maxWidth,
+  mediaMaxWidth: component.heroWidget.media.maxWidth,
+  checkmarkSize: component.heroWidget.checkmark.size,
+  checkmarkMarginTop: component.heroWidget.checkmark.marginTop,
+  tooltipWidth: component.heroWidget.tooltip.width,
+  tooltipFontSize: component.heroWidget.tooltip.fontSize,
+  breakpointTablet: component.heroWidget.breakpoint.tablet,
 }}>
 .hg-hero {
   padding: var(--spaceMd) 0 var(--spaceXxl) 0;
@@ -168,7 +173,7 @@ const isMediaLeft = mediaPosition === 'left';
 }
 
 .hg-hero__content {
-  max-width: 680px;
+  max-width: var(--contentMaxWidth);
   width: 100%;
 }
 
@@ -181,7 +186,7 @@ const isMediaLeft = mediaPosition === 'left';
 }
 
 .hg-hero__media img {
-  max-width: 500px;
+  max-width: var(--mediaMaxWidth);
   width: 100%;
   border-radius: var(--radiusMd);
 }
@@ -196,7 +201,12 @@ const isMediaLeft = mediaPosition === 'left';
   margin-bottom: var(--spaceMd);
 }
 
-.hg-hero__benefits li img { width: 24px; height: 24px; flex-shrink: 0; margin-top: 2px; }
+.hg-hero__benefits li img { 
+  width: var(--checkmarkSize); 
+  height: var(--checkmarkSize); 
+  flex-shrink: 0; 
+  margin-top: var(--checkmarkMarginTop); 
+}
 
 .item_hover { position: relative; cursor: help; text-decoration: underline; }
 .item_hover:hover .item_tooltip {
@@ -206,11 +216,11 @@ const isMediaLeft = mediaPosition === 'left';
   color: var(--textPrimary);
   padding: var(--spaceMd);
   border-radius: var(--radiusMd);
-  width: 300px;
+  width: var(--tooltipWidth);
   top: 100%;
   left: 0;
   z-index: 1000;
-  font-size: 14px;
+  font-size: var(--tooltipFontSize);
   line-height: 1.4;
   box-shadow: var(--shadowSubtle);
 }
@@ -226,7 +236,7 @@ const isMediaLeft = mediaPosition === 'left';
 .d-lg-none { display: none; }
 .d-lg-block { display: block; }
 
-@media (max-width: 1024px) {
+@media (max-width: var(--breakpointTablet)) {
   .hg-hero__inner { flex-direction: column; }
   .hg-hero__media img { max-width: 100%; }
   .hg-hero__features { justify-content: space-between; }
