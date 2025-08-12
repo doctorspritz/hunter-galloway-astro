@@ -1,11 +1,14 @@
 ---
 /**
- * Awards Section - Exact WordPress Content
- * Refactored to use Hunter Galloway Design System components
+ * Awards Organism
+ * Hunter Galloway Design System - Organism Component
+ * 
+ * Composes Container atom and AwardItem molecules to create
+ * an awards showcase section with proper spacing.
  */
 import Container from '../atoms/Container/Container.astro';
 import AwardItem from '../molecules/AwardItem/AwardItem.astro';
-import { semantic } from '../../tokens/semantic';
+import { component } from '../../tokens/component';
 
 const awards = [
   {
@@ -64,29 +67,42 @@ const awards = [
 </section>
 
 <style define:vars={{
-  surfaceSecondary: semantic.color.surface.secondary,
-  spaceLg: semantic.space.lg,
-  spaceMd: semantic.space.md,
-  spaceXl: semantic.space.xl,
+  backgroundColor: component.awards.colors.background,
+  paddingY: component.awards.spacing.paddingY,
+  paddingYMobile: component.awards.spacing.paddingYMobile,
+  gap: component.awards.layout.gap,
+  gapTablet: component.awards.layout.gapTablet,
+  gapMobile: component.awards.layout.gapMobile,
+  maxWidth: component.awards.layout.maxWidth,
 }}>
-/* Awards Section Styles - Using Design System */
 .hg-awards-section {
-  padding: var(--spaceLg) 0;
-  background: var(--surfaceSecondary);
+  padding: var(--paddingY) 0;
+  background: var(--backgroundColor);
 }
 
 .hg-awards-grid {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: var(--spaceXl);
+  gap: var(--gap);
   flex-wrap: wrap;
+  max-width: var(--maxWidth);
 }
 
 /* Responsive design */
-@media (max-width: 768px) {
+@media (max-width: 1024px) {
   .hg-awards-grid {
-    gap: var(--spaceMd);
+    gap: var(--gapTablet);
+  }
+}
+
+@media (max-width: 768px) {
+  .hg-awards-section {
+    padding: var(--paddingYMobile) 0;
+  }
+  
+  .hg-awards-grid {
+    gap: var(--gapMobile);
   }
 }
 </style>

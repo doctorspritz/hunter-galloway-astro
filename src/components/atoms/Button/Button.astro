@@ -1,10 +1,6 @@
 ---
 /**
- * Button Component
- * Hunter Galloway Design System - Atomic Component
- * 
- * A flexible button component that supports multiple variants, sizes, and states.
- * Uses design tokens for consistent styling across the application.
+ * Button Atom - Hunter Galloway Design System
  */
 
 import type { ButtonProps } from './Button.types';
@@ -13,201 +9,119 @@ import { semantic } from '../../../tokens/semantic';
 interface Props extends ButtonProps {}
 
 const {
+  text,
   variant = 'primary',
   size = 'md',
-  type = 'button',
   disabled = false,
-  loading = false,
-  fullWidth = false,
-  href,
-  target = '_self',
   class: additionalClasses = '',
-  onClick,
 } = Astro.props;
 
-// Build CSS classes based on props
 const buttonClasses = [
   'hg-button',
   `hg-button--${variant}`,
   `hg-button--${size}`,
   disabled && 'hg-button--disabled',
-  loading && 'hg-button--loading',
-  fullWidth && 'hg-button--full-width',
   additionalClasses,
 ].filter(Boolean).join(' ');
-
-// Determine if this should render as a link or button
-const Element = href ? 'a' : 'button';
 ---
 
-{Element === 'a' ? (
-  <a 
-    href={href}
-    target={target}
-    class={buttonClasses}
-    role="button"
-    tabindex={disabled ? -1 : 0}
-    aria-disabled={disabled}
-  >
-    {loading && (
-      <svg class="animate-spin -ml-1 mr-2 h-4 w-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-        <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
-        <path class="opacity-75" fill="currentColor" d="m4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-      </svg>
-    )}
-    <slot />
-  </a>
-) : (
-  <button
-    type={type}
-    class={buttonClasses}
-    disabled={disabled || loading}
-    aria-disabled={disabled || loading}
-  >
-    {loading && (
-      <svg class="animate-spin -ml-1 mr-2 h-4 w-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-        <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
-        <path class="opacity-75" fill="currentColor" d="m4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-      </svg>
-    )}
-    <slot />
-  </button>
-)}
+<button type="button" class={buttonClasses} disabled={disabled} aria-disabled={disabled}>
+  {text}
+</button>
 
 <style define:vars={{
-  fontFamilyBody: semantic.typography.fontFamily.body.join(', '),
-  fontWeightStrong: semantic.typography.weight.strong,
-  radiusPill: semantic.radius.pill,
-  durationNormal: semantic.duration.normal,
+  colorTextPrimary: semantic.color.text.primary,
   colorInteractivePrimary: semantic.color.interactive.primary,
   colorInteractivePrimaryHover: semantic.color.interactive.primaryHover,
   colorInteractiveSecondary: semantic.color.interactive.secondary,
-  colorSurfaceTertiary: semantic.color.surface.tertiary,
   colorSurfaceSecondary: semantic.color.surface.secondary,
-  colorTextPrimary: semantic.color.text.primary,
+  colorSurfaceTertiary: semantic.color.surface.tertiary,
   colorBorderFocus: semantic.color.border.focus,
-  fontSizeSm: semantic.typography.size.sm,
-  fontSizeMd: semantic.typography.size.md,
-  fontSizeLg: semantic.typography.size.lg,
+  radiusPill: semantic.radius.pill,
   spaceSm: semantic.space.sm,
   spaceMd: semantic.space.md,
   spaceLg: semantic.space.lg,
+  fontFamilyBody: semantic.typography.fontFamily.body.join(', '),
+  fontWeightStrong: semantic.typography.weight.strong,
+  fontSizeSm: semantic.typography.size.sm,
+  fontSizeMd: semantic.typography.size.md,
+  fontSizeLg: semantic.typography.size.lg,
+  durationNormal: semantic.duration.normal,
+  shadowMd: semantic.shadow.md,
+  shadowLg: semantic.shadow.lg,
 }}>
-/* Button component styles using design tokens */
-.hg-button {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  text-decoration: none;
-  user-select: none;
-  white-space: nowrap;
-  border: none;
-  cursor: pointer;
-  font-family: var(--fontFamilyBody);
-  font-weight: var(--fontWeightStrong);
-  border-radius: var(--radiusPill);
-  transition: all var(--durationNormal) ease;
-}
+ .hg-button {
+   display: inline-flex;
+   align-items: center;
+   justify-content: center;
+   text-decoration: none;
+   user-select: none;
+   white-space: nowrap;
+   border: none;
+   cursor: pointer;
+   font-family: var(--fontFamilyBody);
+   font-weight: var(--fontWeightStrong);
+   border-radius: var(--radiusPill);
+   transition: all var(--durationNormal) ease;
+ }
 
-/* Primary variant - WordPress btn_yellow exact styling */
-.hg-button--primary {
-  background: var(--colorInteractivePrimary);
-  color: var(--colorTextPrimary);
-  box-shadow: 0px 6px 12px rgba(43, 43, 43, 0.15); /* WordPress exact shadow */
-  border-radius: 33px; /* WordPress pill button radius */
-  font-weight: 600; /* WordPress exact weight */
-  font-size: 15px; /* WordPress exact size */
-  min-height: 48px; /* WordPress exact height */
-  line-height: 1; /* WordPress line-height */
-  transition: all 0.35s ease; /* WordPress transition duration */
-}
+ .hg-button--primary {
+   background: var(--colorInteractivePrimary);
+   color: var(--colorTextPrimary);
+   box-shadow: var(--shadowMd);
+ }
 
-.hg-button--primary:hover {
-  background: var(--colorInteractivePrimaryHover);
-  text-decoration: none;
-  transform: translateY(-2px); /* WordPress hover effect */
-  box-shadow: 0px 8px 16px rgba(43, 43, 43, 0.2);
-}
+ .hg-button--primary:hover {
+   background: var(--colorInteractivePrimaryHover);
+   text-decoration: none;
+   transform: translateY(-2px);
+   box-shadow: var(--shadowLg);
+ }
 
-/* Secondary variant */
-.hg-button--secondary {
-  background: var(--colorInteractiveSecondary);
-  color: var(--colorTextPrimary);
-}
+ .hg-button--secondary {
+   background: var(--colorInteractiveSecondary);
+   color: var(--colorTextPrimary);
+ }
 
-.hg-button--secondary:hover {
-  background: var(--colorSurfaceTertiary);
-  text-decoration: none;
-}
+ .hg-button--secondary:hover {
+   background: var(--colorSurfaceTertiary);
+   text-decoration: none;
+ }
 
-/* Ghost variant */
-.hg-button--ghost {
-  background: transparent;
-  color: var(--colorInteractivePrimary);
-}
+ .hg-button--ghost {
+   background: transparent;
+   color: var(--colorInteractivePrimary);
+ }
 
-.hg-button--ghost:hover {
-  background: var(--colorSurfaceSecondary);
-  text-decoration: none;
-}
+ .hg-button--ghost:hover {
+   background: var(--colorSurfaceSecondary);
+   text-decoration: none;
+ }
 
-/* Outline variant */
-.hg-button--outline {
-  background: transparent;
-  color: var(--colorInteractivePrimary);
-  border: 2px solid var(--colorInteractivePrimary);
-}
+ .hg-button--outline {
+   background: transparent;
+   color: var(--colorInteractivePrimary);
+   border: 2px solid var(--colorInteractivePrimary);
+ }
 
-.hg-button--outline:hover {
-  background: var(--colorInteractivePrimary);
-  color: var(--colorTextPrimary);
-  text-decoration: none;
-}
+ .hg-button--outline:hover {
+   background: var(--colorInteractivePrimary);
+   color: var(--colorTextPrimary);
+   text-decoration: none;
+ }
 
-/* Size variants */
-.hg-button--sm {
-  padding: var(--spaceSm) var(--spaceMd);
-  font-size: var(--fontSizeSm);
-}
+ .hg-button--sm { padding: var(--spaceSm) var(--spaceMd); font-size: var(--fontSizeSm); }
+ .hg-button--md { padding: var(--spaceSm) var(--spaceMd); font-size: var(--fontSizeMd); }
+ .hg-button--lg { padding: var(--spaceMd) var(--spaceLg); font-size: var(--fontSizeLg); }
 
-.hg-button--md {
-  padding: var(--spaceSm) var(--spaceMd);
-  font-size: var(--fontSizeMd);
-}
+ .hg-button--disabled {
+   opacity: 0.5;
+   cursor: not-allowed;
+   pointer-events: none;
+ }
 
-.hg-button--lg {
-  padding: var(--spaceMd) var(--spaceLg);
-  font-size: var(--fontSizeLg);
-}
-
-/* State variants */
-.hg-button--disabled {
-  opacity: 0.5;
-  cursor: not-allowed;
-  pointer-events: none;
-}
-
-.hg-button--loading {
-  cursor: wait;
-}
-
-.hg-button--full-width {
-  width: 100%;
-}
-
-.hg-button:focus {
-  outline: 2px solid var(--colorBorderFocus);
-  outline-offset: 2px;
-}
-
-/* Custom animations */
-@keyframes spin {
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-.animate-spin {
-  animation: spin 1s linear infinite;
-}
+ .hg-button:focus {
+   outline: 2px solid var(--colorBorderFocus);
+   outline-offset: 2px;
+ }
 </style>

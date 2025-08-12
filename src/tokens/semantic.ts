@@ -137,6 +137,8 @@ export const semantic = {
   // Shadow by role
   shadow: {
     sm: primitive.shadow.sm,              // Small shadows
+    md: primitive.shadow.md,              // Medium shadows
+    lg: primitive.shadow.lg,              // Large shadows
     subtle: primitive.shadow.sm,          // Subtle elevation
     card: primitive.shadow.md,            // Card elevation
     prominent: primitive.shadow.lg,       // Prominent elevation

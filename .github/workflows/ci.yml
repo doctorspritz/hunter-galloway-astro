@@ -2,6 +2,41 @@ name: CI
 
 on:
   pull_request:
+    branches: [main, develop]
+  push:
+    branches: [main]
+
+jobs:
+  build-test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Install dependencies
+        run: npm ci
+      - name: Validate Atomic Design Principles
+        run: npm run check:atomic
+      - name: Build Astro app
+        run: npm run build
+      - name: Install Playwright
+        run: npx playwright install --with-deps
+      - name: Start preview server
+        run: npm run preview -- --host 127.0.0.1 --port 3000 &
+      - name: Wait for server
+        run: npx wait-on http://127.0.0.1:3000
+      - name: Run a11y tests
+        run: npx playwright test tests/a11y/a11y.spec.ts
+      - name: Run visual comparison tests
+        run: npx playwright test tests/visual/wp-comparison.spec.ts
+      # - name: Run Lighthouse (optional)
+      #   run: npx lhci autorun --config=lighthouserc.js
+
+name: CI
+
+on:
+  pull_request:
     branches: [ main ]
 
 jobs:

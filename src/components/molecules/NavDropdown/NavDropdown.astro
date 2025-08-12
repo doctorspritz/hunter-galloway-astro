@@ -128,15 +128,27 @@ const layoutClass = promoImage ? 'hg-dropdown--with-image' :
   transition: all 0.3s ease;
   z-index: 1000;
   min-width: 600px;
+  /* Ensure dropdowns are hidden by default */
+  display: none;
 }
 
-.hg-dropdown.visible,
-.hg-nav-item:hover .hg-dropdown {
+/* Only show dropdown when explicitly visible */
+.hg-dropdown.visible {
   opacity: 1;
   visibility: visible;
   pointer-events: auto;
   transform: translateX(-50%) translateY(0);
+  display: block;
 }
+
+/* Remove the hover-based visibility to prevent conflicts */
+/* .hg-nav-item:hover .hg-dropdown {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transform: translateX(-50%) translateY(0);
+  display: block;
+} */
 
 /* Layout variants */
 .hg-dropdown--standard {

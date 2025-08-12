@@ -1,17 +1,30 @@
 ---
 /**
- * Header Component - Legacy (WordPress-exact)
+ * Header Organism - Refactored for Atomic Design
+ * 
+ * Properly composes atoms and molecules:
+ * - Logo atom for branding
+ * - NavItem/NavLink molecules for navigation
+ * - Button atom for CTAs
+ * - Icon atoms for visual elements
+ * - Input atom for search
+ * - NavDropdown molecules for mega menus
+ * - PhoneLink molecule for contact
+ * - Container atom for layout
  */
 
 import Container from '../atoms/Container/Container.astro';
 import Logo from '../atoms/Logo/Logo.astro';
 import Button from '../atoms/Button/Button.astro';
 import Icon from '../atoms/Icon/Icon.astro';
+import Input from '../atoms/Input/Input.astro';
+import NavItem from '../molecules/NavItem/NavItem.astro';
+import NavLink from '../molecules/NavLink/NavLink.astro';
 import PhoneLink from '../molecules/PhoneLink/PhoneLink.astro';
 import NavDropdown from '../molecules/NavDropdown/NavDropdown.astro';
 import { semantic } from '../../tokens/semantic';
 
-// Menu structure based on Hunter Galloway design
+// Menu structure - organisms can have complex data but should compose atoms/molecules
 const menuItems = [
   {
     label: 'Home Loans',
@@ -132,13 +145,15 @@ const menuItems = [
       <Logo size="header" />
       <ul class="hg-nav-menu">
         {menuItems.map((item) => (
-          <li class="hg-nav-item">
-            <a href={item.url || '#'} class="hg-nav-link" data-dropdown={item.type === 'mega'}>
+          <NavItem hasDropdown={item.type === 'mega'}>
+            <NavLink 
+              href={item.url || '#'} 
+              hasDropdown={item.type === 'mega'}
+              showChevron={item.type === 'mega'}
+              chevronDirection="down"
+            >
               {item.label}
-              {item.type === 'mega' && (
-                <Icon name="chevron-down" size="sm" color="inherit" inline />
-              )}
-            </a>
+            </NavLink>
             {item.type === 'mega' && (
               <NavDropdown
                 columns={item.columns}
@@ -146,7 +161,7 @@ const menuItems = [
                 promoImage={item.promoImage}
               />
             )}
-          </li>
+          </NavItem>
         ))}
       </ul>
       <div class="hg-nav-actions">
@@ -154,9 +169,7 @@ const menuItems = [
           <Icon name="search" size="sm" color="inherit" />
         </button>
         <PhoneLink />
-        <Button variant="primary" size="md" class="hg-header-cta">
-          Get Free Assessment
-        </Button>
+        <Button text="Get Free Assessment" variant="primary" size="md" class="hg-header-cta" />
         <button id="mobile-menu-toggle" class="hg-mobile-toggle" aria-label="Menu">
           <Icon name="menu" size="md" color="inherit" />
         </button>
@@ -166,7 +179,12 @@ const menuItems = [
   <div class="hg-search-form" id="search-form">
     <Container>
       <form class="hg-search-form__inner">
-        <input type="search" placeholder="Search..." class="hg-search-input" />
+        <Input 
+          type="search" 
+          placeholder="Search..." 
+          name="search"
+          class="hg-search-input"
+        />
         <button type="button" class="hg-search-close" aria-label="Close search">
           <Icon name="close" size="sm" color="inherit" />
         </button>
@@ -188,19 +206,19 @@ const menuItems = [
       <ul class="hg-mobile-menu-list">
         {menuItems.map((item) => (
           <li class="hg-mobile-menu-item">
-            <a href={item.url || '#'} class="hg-mobile-menu-link">
+            <NavLink 
+              href={item.url || '#'} 
+              showChevron={item.type === 'mega'}
+              chevronDirection="right"
+              class="hg-mobile-menu-link"
+            >
               {item.label}
-              {item.type === 'mega' && (
-                <Icon name="chevron-right" size="sm" color="inherit" inline />
-              )}
-            </a>
+            </NavLink>
           </li>
         ))}
       </ul>
       <div class="hg-mobile-cta">
-        <Button variant="primary" size="md" class="hg-mobile-cta-button">
-          Get a Free Assessment
-        </Button>
+        <Button text="Get a Free Assessment" variant="primary" size="md" class="hg-mobile-cta-button" />
       </div>
     </div>
   </div>
@@ -231,6 +249,41 @@ const menuItems = [
 .hg-nav-item:hover .hg-nav-link { color: var(--brandPrimary); }
 .hg-nav-link:after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 2px; background: var(--brandPrimary); transform: scaleX(0); transition: transform .2s ease; }
 .hg-nav-item:hover .hg-nav-link:after { transform: scaleX(1); }
+
+/* Ensure only one dropdown is visible at a time */
+.hg-dropdown {
+  display: none !important;
+}
+
+.hg-dropdown.visible {
+  display: block !important;
+}
+
+/* Prevent dropdown overlap issues */
+.hg-nav-item {
+  z-index: 1001;
+}
+
+.hg-nav-item:hover {
+  z-index: 1002;
+}
+
+/* Ensure dropdowns are properly positioned */
+.hg-nav-item .hg-dropdown {
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1000;
+}
+
+/* Override any problematic styles that might force visibility */
+.hg-nav-item .hg-dropdown:not(.visible) {
+  opacity: 0 !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+  display: none !important;
+}
 .hg-nav-actions { display: flex; align-items: center; gap: 16px; }
 .hg-search-toggle { background: none; border: none; color: var(--textPrimary); cursor: pointer; padding: 8px; border-radius: 50%; transition: background-color var(--durationNormal) ease; }
 .hg-search-toggle:hover { background-color: var(--surfaceSecondary); }
@@ -293,11 +346,40 @@ navItems.forEach(item => {
   const dropdown = item.querySelector('.hg-dropdown');
   let dropdownTimeout;
   if (dropdown) {
-    item.addEventListener('mouseenter', () => { clearTimeout(dropdownTimeout); dropdown.classList.add('visible'); });
-    item.addEventListener('mouseleave', () => { clearTimeout(dropdownTimeout); dropdownTimeout = setTimeout(() => { dropdown.classList.remove('visible'); }, 200); });
-    dropdown.addEventListener('mouseenter', () => { clearTimeout(dropdownTimeout); dropdown.classList.add('visible'); });
-    dropdown.addEventListener('mouseleave', () => { clearTimeout(dropdownTimeout); dropdownTimeout = setTimeout(() => { dropdown.classList.remove('visible'); }, 200); });
+    item.addEventListener('mouseenter', () => { 
+      // Hide all other dropdowns first
+      document.querySelectorAll('.hg-dropdown').forEach(d => {
+        if (d !== dropdown) {
+          d.classList.remove('visible');
+        }
+      });
+      clearTimeout(dropdownTimeout); 
+      dropdown.classList.add('visible'); 
+    });
+    item.addEventListener('mouseleave', () => { 
+      clearTimeout(dropdownTimeout); 
+      dropdownTimeout = setTimeout(() => { 
+        dropdown.classList.remove('visible'); 
+      }, 200); 
+    });
+    dropdown.addEventListener('mouseenter', () => { 
+      clearTimeout(dropdownTimeout); 
+      dropdown.classList.add('visible'); 
+    });
+    dropdown.addEventListener('mouseleave', () => { 
+      clearTimeout(dropdownTimeout); 
+      dropdownTimeout = setTimeout(() => { 
+        dropdown.classList.remove('visible'); 
+      }, 200); 
+    });
   }
+});
+
+// Ensure all dropdowns are hidden on page load
+document.addEventListener('DOMContentLoaded', () => {
+  document.querySelectorAll('.hg-dropdown').forEach(dropdown => {
+    dropdown.classList.remove('visible');
+  });
 });
 
 document.addEventListener('touchmove', (e) => { if (mobileMenu?.classList.contains('visible')) { if (!e.target?.closest('.hg-mobile-menu')) { e.preventDefault(); } } }, { passive: false });

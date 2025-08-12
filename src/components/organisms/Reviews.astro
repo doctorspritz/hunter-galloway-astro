@@ -1,13 +1,45 @@
 ---
-import { semantic } from '../../tokens/semantic';
 /**
- * Reviews Section - Exact WordPress version
- * Customer testimonials with Swiper slider functionality
+ * Reviews Organism
+ * Hunter Galloway Design System - Organism Component
+ * 
+ * Composes Container, Typography atoms and ReviewCard molecules to create
+ * a customer testimonials section with slider functionality.
  */
-// Reviews Section - Static version matching WordPress exactly
 
-// Real customer reviews from WordPress
-const reviews = [
+import Container from '../atoms/Container/Container.astro';
+import Typography from '../atoms/Typography/Typography.astro';
+import Button from '../atoms/Button/Button.astro';
+import ReviewCard from '../molecules/ReviewCard/ReviewCard.astro';
+import { component } from '../../tokens/component';
+import { semantic } from '../../tokens/semantic';
+
+interface Props {
+  /** Custom title for the reviews section */
+  title?: string;
+  /** Custom subtitle/description */
+  subtitle?: string;
+  /** Custom reviews data */
+  reviews?: Array<{
+    id: number;
+    name: string;
+    image: string;
+    text: string;
+    rating: number;
+  }>;
+  /** Additional CSS classes */
+  class?: string;
+}
+
+const {
+  title = "We appreciate our customers' feedback!",
+  subtitle = "Here's what some of our customers say about our work.",
+  reviews: customReviews,
+  class: additionalClasses = '',
+} = Astro.props;
+
+// Default customer reviews from WordPress
+const defaultReviews = [
   {
     id: 1,
     name: "Dr Emmanuel Alfa",
@@ -44,210 +76,134 @@ const reviews = [
     rating: 5
   }
 ];
+
+// Use custom reviews if provided, otherwise use default
+const reviews = customReviews || defaultReviews;
+
+// Build CSS classes
+const sectionClasses = [
+  'hg-reviews',
+  additionalClasses,
+].filter(Boolean).join(' ');
 ---
 
-<article class="reviews" id="post-909">
-  <div class="container text-lg-center">
-    <h2>We appreciate our customers' feedback!</h2>
-    <p>Here's what some of our customers say about our work.</p>
+<section class={sectionClasses} id="reviews-section">
+  <Container class="hg-reviews__container">
+    <div class="hg-reviews__header">
+      <Typography 
+        element="h2" 
+        size="4xl" 
+        weight="heading"
+        class="hg-reviews__title"
+      >
+        {title}
+      </Typography>
+      
+      <Typography 
+        element="p" 
+        size="lg" 
+        class="hg-reviews__subtitle"
+      >
+        {subtitle}
+      </Typography>
+    </div>
     
-    <div class="slider_customer swiper-container swiper">
-      <div class="swiper-wrapper">
+    <div class="hg-reviews__slider">
+      <div class="hg-reviews__wrapper">
         {reviews.map((review) => (
-          <div class="slide_item swiper-slide">
-            <div class="img_holder">
-              <img src={review.image} alt={review.name} loading="lazy" />
-            </div>
-            
-            <p class="user_name">{review.name}</p>
-            
-            <div class="slide_content">
-              <p class={`text ${review.text.length > 180 ? 'line-3' : ''}`}>
-                {review.text}
-              </p>
-              
-              {review.text.length > 180 && (
-                <a class="btn_show_more">
-                  <span class="more">... <span>Read more</span></span>
-                  <span class="less">Show less</span>
-                </a>
-              )}
-            </div>
-            
-            <div class="rating">
-              {Array.from({ length: review.rating }, (_, i) => (
-                <img key={i} src="/images/star.svg" alt="star" width="16" height="16" />
-              ))}
-            </div>
-          </div>
+          <ReviewCard
+            name={review.name}
+            image={review.image}
+            text={review.text}
+            rating={review.rating}
+            hasReadMore={true}
+            className="hg-reviews__card"
+          />
         ))}
       </div>
       
       <!-- Navigation Arrows -->
-      <div class="slide-button-next" tabindex="0" role="button" aria-label="Next slide"></div>
-      <div class="slide-button-prev" tabindex="0" role="button" aria-label="Previous slide"></div>
+      <div class="hg-reviews__nav-next" tabindex="0" role="button" aria-label="Next slide"></div>
+      <div class="hg-reviews__nav-prev" tabindex="0" role="button" aria-label="Previous slide"></div>
     </div>
     
-    <button type="button" class="btn_yellow btn_show d-lg-none">
-      Show more
-      <img src="/images/arrow-right-black.svg" alt="arrow" width="16" height="16" />
-    </button>
-  </div>
-</article>
+    <Button 
+      text="Show more"
+      variant="primary"
+      class="hg-reviews__show-more d-lg-none"
+    />
+  </Container>
+</section>
 
 <style define:vars={{
+  background: component.reviews.colors.background,
+  paddingY: component.reviews.spacing.paddingY,
+  paddingYMobile: component.reviews.spacing.paddingYMobile,
+  titleMarginBottom: component.reviews.spacing.titleMarginBottom,
+  subtitleMarginBottom: component.reviews.spacing.subtitleMarginBottom,
+  gap: component.reviews.layout.gap,
+  gapMobile: component.reviews.layout.gapMobile,
+  cardWidth: component.reviews.layout.cardWidth,
+  cardWidthMobile: component.reviews.layout.cardWidthMobile,
+  maxWidth: component.reviews.layout.maxWidth,
+  navButtonSize: component.reviews.navigation.buttonSize,
+  navButtonOffset: component.reviews.navigation.buttonOffset,
   brandPrimary: semantic.color.brand.primary,
   brandHover: semantic.color.brand.primaryHover,
   textPrimary: semantic.color.text.primary,
-  textSecondary: semantic.color.text.secondary,
-  surfacePrimary: semantic.color.surface.primary,
-  surfaceHighlight: semantic.color.surface.highlight,
 }}>
-/* Reviews Section Styles - Exact WordPress HTML match */
-.reviews { padding: 50px 0; background: var(--surfaceHighlight); }
-
-.container {
-  max-width: 1272px;
-  margin: 0 auto;
-  padding: 0 1rem;
+.hg-reviews {
+  padding: var(--paddingY) 0;
+  background: var(--background);
 }
 
-.text-lg-center {
+.hg-reviews__container {
   text-align: center;
 }
 
-.reviews h2 {
-  font-size: 40px;
-  font-weight: 700;
-  line-height: 48px;
-  color: var(--textPrimary);
-  margin: 0 0 16px 0;
+.hg-reviews__header {
+  margin-bottom: var(--subtitleMarginBottom);
 }
 
-.reviews p {
-  font-size: 18px;
-  line-height: 1.5;
-  color: var(--textSecondary);
-  margin: 0 0 48px 0;
+.hg-reviews__title {
+  margin-bottom: var(--titleMarginBottom);
 }
 
-/* Slider container */
-.slider_customer {
+.hg-reviews__subtitle {
+  margin: 0;
+}
+
+.hg-reviews__slider {
   position: relative;
 }
 
-.swiper-wrapper {
+.hg-reviews__wrapper {
   display: flex;
-  gap: 24px;
+  gap: var(--gap);
   overflow-x: auto;
   scroll-snap-type: x mandatory;
-  padding: 0 20px;
+  padding: 0 var(--navButtonOffset);
   scrollbar-width: none;
   -ms-overflow-style: none;
 }
 
-.swiper-wrapper::-webkit-scrollbar {
+.hg-reviews__wrapper::-webkit-scrollbar {
   display: none;
 }
 
-/* Review cards */
-.slide_item {
-  flex: 0 0 350px;
-  background: var(--surfacePrimary);
-  border: 1px solid var(--semanticBorderPrimary, #e5e5e5);
-  border-radius: 8px;
-  padding: 30px 24px 24px;
-  text-align: center;
+.hg-reviews__card {
+  flex: 0 0 var(--cardWidth);
   scroll-snap-align: start;
-  transition: all 0.3s ease;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
 }
 
-.slide_item:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
-}
-
-.img_holder {
-  width: 72px;
-  height: 72px;
-  border-radius: 50%;
-  overflow: hidden;
-  margin: 0 auto 16px;
-  border: 2px solid var(--brandPrimary);
-}
-
-.img_holder img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.user_name {
-  font-size: 16px;
-  font-weight: 600;
-  color: var(--textPrimary);
-  margin: 0 0 16px 0;
-  text-transform: capitalize;
-}
-
-.slide_content {
-  margin-bottom: 16px;
-}
-
-.text {
-  font-size: 14px;
-  line-height: 1.6;
-  color: var(--textSecondary);
-  margin: 0 0 12px 0;
-  text-align: left;
-}
-
-.text.line-3 {
-  display: -webkit-box;
-  -webkit-line-clamp: 3;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-.btn_show_more {
-  font-size: 14px;
-  color: var(--brandPrimary);
-  text-decoration: none;
-  cursor: pointer;
-  font-weight: 500;
-}
-
-.btn_show_more:hover {
-  color: var(--brandHover);
-  text-decoration: underline;
-}
-
-.btn_show_more .less {
-  display: none;
-}
-
-.rating {
-  display: flex;
-  justify-content: center;
-  gap: 2px;
-  margin-top: 12px;
-}
-
-.rating img {
-  width: 16px;
-  height: 16px;
-}
-
-/* Navigation arrows - WordPress style */
-.slide-button-next,
-.slide-button-prev {
+/* Navigation arrows */
+.hg-reviews__nav-next,
+.hg-reviews__nav-prev {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  width: 40px;
-  height: 40px;
+  width: var(--navButtonSize);
+  height: var(--navButtonSize);
   background: var(--brandPrimary);
   border-radius: 50%;
   border: none;
@@ -259,20 +215,20 @@ const reviews = [
   transition: all 0.3s ease;
 }
 
-.slide-button-next:hover,
-.slide-button-prev:hover {
+.hg-reviews__nav-next:hover,
+.hg-reviews__nav-prev:hover {
   background: var(--brandHover);
 }
 
-.slide-button-next {
-  right: -20px;
+.hg-reviews__nav-next {
+  right: calc(var(--navButtonOffset) * -1);
 }
 
-.slide-button-prev {
-  left: -20px;
+.hg-reviews__nav-prev {
+  left: calc(var(--navButtonOffset) * -1);
 }
 
-.slide-button-next::after {
+.hg-reviews__nav-next::after {
   content: '';
   width: 0;
   height: 0;
@@ -282,7 +238,7 @@ const reviews = [
   margin-left: 2px;
 }
 
-.slide-button-prev::after {
+.hg-reviews__nav-prev::after {
   content: '';
   width: 0;
   height: 0;
@@ -292,25 +248,8 @@ const reviews = [
   margin-right: 2px;
 }
 
-/* Mobile show more button */
-.btn_yellow {
-  background: var(--brandPrimary);
-  color: var(--textPrimary);
-  border: none;
-  border-radius: 25px;
-  padding: 12px 24px;
-  font-size: 16px;
-  font-weight: 600;
-  cursor: pointer;
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
+.hg-reviews__show-more {
   margin-top: 32px;
-  transition: background-color 0.3s ease;
-}
-
-.btn_yellow:hover {
-  background: var(--brandHover);
 }
 
 .d-lg-none {
@@ -319,24 +258,20 @@ const reviews = [
 
 /* Responsive design */
 @media (max-width: 768px) {
-  .reviews {
-    padding: 40px 0;
+  .hg-reviews {
+    padding: var(--paddingYMobile) 0;
   }
   
-  .reviews h2 {
-    font-size: 32px;
-    line-height: 40px;
-  }
-  
-  .swiper-wrapper {
+  .hg-reviews__wrapper {
     flex-direction: column;
-    gap: 20px;
+    gap: var(--gapMobile);
     overflow-x: visible;
+    padding: 0;
   }
   
-  .slide_item {
+  .hg-reviews__card {
     flex: none;
-    width: 100%;
+    width: var(--cardWidthMobile);
     max-width: 400px;
     margin: 0 auto;
   }
@@ -345,20 +280,9 @@ const reviews = [
     display: inline-flex;
   }
   
-  .slide-button-next,
-  .slide-button-prev {
+  .hg-reviews__nav-next,
+  .hg-reviews__nav-prev {
     display: none;
-  }
-}
-
-@media (max-width: 480px) {
-  .slide_item {
-    padding: 24px 20px 20px;
-  }
-  
-  .img_holder {
-    width: 64px;
-    height: 64px;
   }
 }
 </style>

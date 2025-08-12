@@ -8,6 +8,12 @@ import Icon from '../components/atoms/Icon/Icon.astro';
 import Logo from '../components/atoms/Logo/Logo.astro';
 import Slider from '../components/atoms/Slider/Slider.astro';
 import Container from '../components/atoms/Container/Container.astro';
+import Image from '../components/atoms/Image/Image.astro';
+import Avatar from '../components/atoms/Avatar/Avatar.astro';
+import StarRating from '../components/atoms/StarRating/StarRating.astro';
+import NavItem from '../components/molecules/NavItem/NavItem.astro';
+import NavLink from '../components/molecules/NavLink/NavLink.astro';
+import BenefitCard from '../components/molecules/BenefitCard/BenefitCard.astro';
 import StatCard from '../components/molecules/StatCard/StatCard.astro';
 import PurposeCard from '../components/molecules/PurposeCard/PurposeCard.astro';
 import FooterStatCard from '../components/molecules/FooterStatCard/FooterStatCard.astro';
@@ -16,6 +22,11 @@ import Tooltip from '../components/molecules/Tooltip/Tooltip.astro';
 import SocialLinks from '../components/molecules/SocialLinks/SocialLinks.astro';
 import CalculatorResult from '../components/molecules/CalculatorResult/CalculatorResult.astro';
 import AwardItem from '../components/molecules/AwardItem/AwardItem.astro';
+import NavDropdown from '../components/molecules/NavDropdown/NavDropdown.astro';
+import BenefitList from '../components/molecules/BenefitList/BenefitList.astro';
+import ExperienceBadge from '../components/molecules/ExperienceBadge/ExperienceBadge.astro';
+import ReviewBadge from '../components/molecules/ReviewBadge/ReviewBadge.astro';
+import BankLogo from '../components/molecules/BankLogo/BankLogo.astro';
 import Header from '../components/organisms/Header.astro';
 import HeroWidget from '../components/organisms/HeroWidget/HeroWidget.astro';
 import Awards from '../components/organisms/Awards.astro';
@@ -25,10 +36,15 @@ import Reviews from '../components/organisms/Reviews.astro';
 import RiskWidget from '../components/organisms/RiskWidget/RiskWidget.astro';
 import MortgageRentCalculator from '../components/organisms/MortgageRentCalculator/MortgageRentCalculator.astro';
 import Footer from '../components/organisms/Footer.astro';
+import Hero from '../components/organisms/Hero/Hero.astro';
+import PageTemplate from '../components/templates/PageTemplate/PageTemplate.astro';
 import { colors, typography, spacing, effects, semantic, primitive } from '../tokens';
 ---
 
 <Layout title="Design System">
+  <style is:global>
+    /* Remove problematic global overrides - let the header work normally */
+  </style>
   <style>
     .design-system {
       max-width: 1400px;
@@ -164,6 +180,24 @@ import { colors, typography, spacing, effects, semantic, primitive } from '../to
     .tab-content.active {
       display: block;
     }
+
+    /* Remove problematic dropdown overrides - let the header work normally */
+    
+    /* Design System specific styles for better header demo */
+    .design-system .hg-header {
+      position: relative;
+      z-index: 1000;
+    }
+    
+    /* Add some spacing for the header demo */
+    .organism-block {
+      margin-bottom: 2rem;
+    }
+    
+    /* Ensure the header demo doesn't interfere with other components */
+    .design-system .hg-header .hg-dropdown {
+      z-index: 1001;
+    }
   </style>
 
   <div class="design-system">
@@ -171,6 +205,33 @@ import { colors, typography, spacing, effects, semantic, primitive } from '../to
       <div class="section-header">
         <Typography element="h1" size="3xl" weight="display">Hunter Galloway Design System</Typography>
         <Typography>A comprehensive atomic design system built with Astro components and design tokens.</Typography>
+        
+        <div style="margin-top: 2rem; padding: 1.5rem; background: #f0f8ff; border-radius: 8px; border-left: 4px solid #3b82f6;">
+          <Typography element="h3" size="lg" weight="heading" style="margin-bottom: 0.5rem;">✅ Atomic Design Refactoring Complete</Typography>
+          <Typography size="sm" color="secondary" style="margin-bottom: 1rem;">Successfully implemented proper atomic design hierarchy with the following improvements:</Typography>
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem;">
+            <div>
+              <Typography size="sm" weight="strong">⚛️ Atoms (Self-contained)</Typography>
+              <Typography size="xs" color="secondary">• Button: Now uses text prop instead of slots</Typography>
+              <Typography size="xs" color="secondary">• Badge: Simplified with text prop</Typography>
+              <Typography size="xs" color="secondary">• Image: New responsive atom created</Typography>
+              <Typography size="xs" color="secondary">• Max 5 props, single responsibility</Typography>
+            </div>
+            <div>
+              <Typography size="sm" weight="strong">🧬 Molecules (Composed)</Typography>
+              <Typography size="xs" color="secondary">• NavItem/NavLink: Moved from atoms</Typography>
+              <Typography size="xs" color="secondary">• BenefitCard: New molecule created</Typography>
+              <Typography size="xs" color="secondary">• Proper atom composition patterns</Typography>
+            </div>
+            <div>
+              <Typography size="sm" weight="strong">🔗 Structure (Clean)</Typography>
+              <Typography size="xs" color="secondary">• Removed duplicate components</Typography>
+              <Typography size="xs" color="secondary">• Eliminated sections/ directory</Typography>
+              <Typography size="xs" color="secondary">• PageTemplate created</Typography>
+              <Typography size="xs" color="secondary">• Proper import hierarchy enforced</Typography>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -375,13 +436,38 @@ import { colors, typography, spacing, effects, semantic, primitive } from '../to
         <!-- Typography Atom -->
         <div class="component-demo">
           <Typography element="h3" size="xl" weight="heading">Typography</Typography>
+          
+
+          
           <div class="grid">
-            <Typography element="h1">Heading 1</Typography>
-            <Typography element="h2">Heading 2</Typography>
-            <Typography element="h3">Heading 3</Typography>
-            <Typography element="p">Body text example</Typography>
-            <Typography size="lg">Large text</Typography>
-            <Typography size="sm">Small text</Typography>
+            <div>
+              <Typography element="h1" size="5xl" weight="display">Heading 1</Typography>
+              <Typography size="sm" color="secondary">5xl / Display / Tight</Typography>
+            </div>
+            <div>
+              <Typography element="h2" size="3xl" weight="heading">Heading 2</Typography>
+              <Typography size="sm" color="secondary">3xl / Heading / Tight</Typography>
+            </div>
+            <div>
+              <Typography element="h3" size="2xl" weight="heading">Heading 3</Typography>
+              <Typography size="sm" color="secondary">2xl / Heading / Snug</Typography>
+            </div>
+            <div>
+              <Typography size="lg">Body Large</Typography>
+              <Typography size="sm" color="secondary">lg / Body / Normal</Typography>
+            </div>
+            <div>
+              <Typography>Body Text</Typography>
+              <Typography size="sm" color="secondary">base / Body / Normal</Typography>
+            </div>
+            <div>
+              <Typography size="sm">Body Small</Typography>
+              <Typography size="xs" color="secondary">sm / Body / Normal</Typography>
+            </div>
+            <div>
+              <Typography size="xs">Caption</Typography>
+              <Typography size="xs" color="secondary">xs / Body / Normal</Typography>
+            </div>
           </div>
           
           <div class="component-docs">
@@ -389,31 +475,45 @@ import { colors, typography, spacing, effects, semantic, primitive } from '../to
             <div class="component-description">Flexible text component that renders any HTML element with consistent styling and responsive behavior.</div>
             <div class="component-props">element: 'h1' | 'h2' | 'h3' | 'p' | 'span' | 'div' | 'label'</div>
             <div class="component-props">size: 'xs' | 'sm' | 'base' | 'lg' | 'xl' | '2xl' | '3xl' | '4xl' | '5xl'</div>
-            <div class="component-props">weight: 'body' | 'emphasis' | 'strong' | 'heading' | 'bold' | 'display'</div>
+            <div class="component-props">weight: 'body' | 'emphasis' | 'strong' | 'heading' | 'display'</div>
           </div>
         </div>
 
         <!-- Button Atom -->
         <div class="component-demo">
-          <Typography element="h3" size="xl" weight="heading">Button</Typography>
+          <Typography element="h3" size="xl" weight="heading">Button (Refactored Atom)</Typography>
+          
+          <div style="margin-bottom: 1rem; padding: 1rem; background: #f0fdf4; border-radius: 8px; border-left: 4px solid #10b981;">
+            <Typography size="sm" weight="strong">🔄 Atomic Design Refactoring Complete</Typography>
+            <Typography size="xs" color="secondary">Removed slots and complex behaviors. Now uses text prop for pure atomic design compliance.</Typography>
+          </div>
+          
           <div style="display:flex;gap:12px;flex-wrap:wrap;margin-bottom:1rem;">
-            <Button variant="primary" size="md">Primary</Button>
-            <Button variant="secondary" size="md">Secondary</Button>
-            <Button variant="ghost" size="md">Ghost</Button>
-            <Button variant="outline" size="md">Outline</Button>
+            <Button text="Primary" variant="primary" size="md" />
+            <Button text="Secondary" variant="secondary" size="md" />
+            <Button text="Ghost" variant="ghost" size="md" />
+          </div>
+          <div style="display:flex;gap:12px;flex-wrap:wrap;margin-bottom:1rem;">
+            <Button text="Large" variant="primary" size="lg" />
+            <Button text="Medium" variant="primary" size="md" />
+            <Button text="Small" variant="primary" size="sm" />
           </div>
           <div style="display:flex;gap:12px;flex-wrap:wrap;">
-            <Button variant="primary" size="lg">Large</Button>
-            <Button variant="primary" size="md">Medium</Button>
-            <Button variant="primary" size="sm">Small</Button>
+            <Button text="Disabled" variant="primary" size="md" disabled={true} />
+            <Button text="Get Pre-Approved" variant="primary" size="lg" />
+            <Button text="Learn More" variant="secondary" size="md" />
           </div>
           
           <div class="component-docs">
-            <div class="component-title">Button Component</div>
-            <div class="component-description">Interactive button component with multiple variants, sizes, and states for consistent user interactions.</div>
-            <div class="component-props">variant: 'primary' | 'secondary' | 'ghost' | 'outline'</div>
-            <div class="component-props">size: 'sm' | 'md' | 'lg'</div>
-            <div class="component-props">disabled: boolean</div>
+            <div class="component-title">Button Atom (Refactored)</div>
+            <div class="component-description">
+              <strong>Before:</strong> Used slots for content, had loading states and complex behaviors (9 props)<br>
+              <strong>After:</strong> Self-contained with text prop, single responsibility (5 props), no slots<br><br>
+              <strong>Atomic Design Compliance:</strong> Pure atom - no composition, no complex behaviors, focused solely on button display and interaction.
+            </div>
+            <div class="component-props">text: string (required), variant: 'primary' | 'secondary' | 'ghost', size: 'sm' | 'md' | 'lg', disabled?: boolean, class?: string</div>
+            <div class="component-props">✅ Atomic Design: No slots, max 5 props, single responsibility</div>
+            <div class="component-props">🎯 Usage: CTAs, form submissions, navigation actions</div>
           </div>
         </div>
 
@@ -437,12 +537,72 @@ import { colors, typography, spacing, effects, semantic, primitive } from '../to
           </div>
         </div>
 
+        <!-- Image Atom -->
+        <div class="component-demo">
+          <Typography element="h3" size="xl" weight="heading">Image (New Atom)</Typography>
+          
+          <div style="margin-bottom: 1rem; padding: 1rem; background: #f0f8ff; border-radius: 8px; border-left: 4px solid #3b82f6;">
+            <Typography size="sm" weight="strong">✨ New Image Atom</Typography>
+            <Typography size="xs" color="secondary">Created as fundamental building block for all visual content. Self-contained with lazy loading and responsive behavior.</Typography>
+          </div>
+          
+          <div class="grid">
+            <div>
+              <Image 
+                src="https://via.placeholder.com/300x200/FDB948/000000?text=Hero+Image" 
+                alt="Hero image example" 
+                width="300" 
+                height="200" 
+              />
+              <Typography size="sm" color="secondary">Hero/Banner Images (16:9 aspect)</Typography>
+            </div>
+            <div>
+              <Image 
+                src="https://via.placeholder.com/150x150/77B255/FFFFFF?text=Avatar" 
+                alt="Avatar example" 
+                width="150" 
+                height="150" 
+              />
+              <Typography size="sm" color="secondary">Square Images (1:1 aspect)</Typography>
+            </div>
+            <div>
+              <Image 
+                src="https://via.placeholder.com/200x100/EC9B16/FFFFFF?text=Card" 
+                alt="Card image example" 
+                width="200" 
+                height="100" 
+              />
+              <Typography size="sm" color="secondary">Card Images (2:1 aspect)</Typography>
+            </div>
+            <div>
+              <Image 
+                src="https://via.placeholder.com/100x120/10B981/FFFFFF?text=Logo" 
+                alt="Logo example" 
+                width="100" 
+                height="120" 
+              />
+              <Typography size="sm" color="secondary">Logo/Icon Images (custom aspect)</Typography>
+            </div>
+          </div>
+          
+          <div class="component-docs">
+            <div class="component-title">Image Atom (New)</div>
+            <div class="component-description">
+              Self-contained image atom with lazy loading, responsive behavior, and consistent border radius. 
+              <br><strong>Features:</strong> Lazy loading, responsive scaling, consistent styling, accessibility support
+              <br><strong>Usage:</strong> Hero sections, card images, avatars, logos, content media
+            </div>
+            <div class="component-props">src: string (required), alt: string (required), width?: string | number, height?: string | number</div>
+            <div class="component-props">✅ Atomic Design: Self-contained, no slots, single responsibility (image display)</div>
+          </div>
+        </div>
+
         <!-- Other Atoms -->
         <div class="component-demo">
           <Typography element="h3" size="xl" weight="heading">Other Atoms</Typography>
           <div class="grid">
             <div>
-              <Badge>Most Popular</Badge>
+              <Badge text="Most Popular" variant="primary" size="md" />
               <Typography size="sm" color="secondary">Badge Component</Typography>
             </div>
             <div>
@@ -457,11 +617,29 @@ import { colors, typography, spacing, effects, semantic, primitive } from '../to
               <Slider min={0} max={100} value={50} step={5} />
               <Typography size="sm" color="secondary">Slider Component</Typography>
             </div>
+            <div>
+              <Avatar 
+                src="https://lh3.googleusercontent.com/a-/AOh14GgZImFmtfLkefQoN-i2XM5Z7hHnDqTWFX3xNNHPcA=s128-c0x00000000-cc-rp-mo" 
+                alt="User avatar" 
+                size="lg" 
+                bordered={true} 
+              />
+              <Typography size="sm" color="secondary">Avatar Component</Typography>
+            </div>
+            <div>
+              <StarRating rating={4} size="md" />
+              <Typography size="sm" color="secondary">Star Rating Component</Typography>
+            </div>
           </div>
           
           <div class="component-docs">
-            <div class="component-title">Additional Atoms</div>
-            <div class="component-description">Badge, Icon, Logo, and Slider components for various UI needs.</div>
+            <div class="component-title">Additional Atoms (New)</div>
+            <div class="component-description">
+              Badge, Icon, Logo, Slider, Avatar, and StarRating components for various UI needs.
+              <br><br><strong>New Atoms:</strong>
+              <br>• <strong>Avatar:</strong> Self-contained user image with size variants (sm, md, lg, xl) and optional border
+              <br>• <strong>StarRating:</strong> Displays 1-5 stars with size variants, used in review systems
+            </div>
           </div>
         </div>
 
@@ -479,6 +657,7 @@ import { colors, typography, spacing, effects, semantic, primitive } from '../to
             <div class="component-props">padding: string (default: '1rem')</div>
           </div>
         </div>
+
       </section>
     </div>
 
@@ -505,6 +684,37 @@ import { colors, typography, spacing, effects, semantic, primitive } from '../to
             <div class="component-props">value: string</div>
             <div class="component-props">label: string</div>
             <div class="component-props">variant: 'default' | 'highlight'</div>
+          </div>
+        </div>
+
+        <!-- Benefit Cards -->
+        <div class="component-demo">
+          <Typography element="h3" size="xl" weight="heading">Benefit Cards</Typography>
+          <div class="grid">
+            <BenefitCard 
+              icon="checkmark"
+              title="Expert Guidance"
+              description="Get professional advice from experienced mortgage brokers who understand the market."
+              variant="default"
+            />
+            <BenefitCard 
+              icon="shield"
+              title="Trusted Service"
+              description="Join thousands of satisfied customers who trust us with their home loan needs."
+              variant="light"
+            />
+            <BenefitCard 
+              icon="star"
+              title="Award Winning"
+              description="Recognized as the leading mortgage broker in Brisbane for exceptional service."
+              variant="featured"
+            />
+          </div>
+          
+          <div class="component-docs">
+            <div class="component-title">BenefitCard Component</div>
+            <div class="component-description">Molecule that composes Icon and Typography atoms to create benefit display cards for trust-building sections.</div>
+            <div class="component-props">icon: string, title: string, description: string, variant: 'default' | 'light' | 'featured'</div>
           </div>
         </div>
 
@@ -541,6 +751,366 @@ import { colors, typography, spacing, effects, semantic, primitive } from '../to
             <div class="component-props">href: string</div>
             <div class="component-props">badge?: string</div>
             <div class="component-props">variant: 'default' | 'peach' | 'blue'</div>
+          </div>
+        </div>
+
+        <!-- Navigation Components -->
+        <div class="component-demo">
+          <Typography element="h3" size="xl" weight="heading">Navigation Components (NavItem & NavLink)</Typography>
+          
+          <div style="margin-bottom: 1rem; padding: 1rem; background: #fff7ed; border-radius: 8px; border-left: 4px solid #f59e0b;">
+            <Typography size="sm" weight="strong">🔄 Moved from Atoms to Molecules</Typography>
+            <Typography size="xs" color="secondary">These were relocated because they violate atomic design principles: NavLink has 6 props (atoms max: 5), both use slots, and have complex interaction behavior.</Typography>
+          </div>
+          
+          <div style="margin-bottom: 1rem;">
+            <Typography size="sm" color="secondary">
+              💡 <strong>Interactive Demo:</strong> Hover over the navigation items below to see the yellow highlighting, dotted underline color change, and chevron rotation effects.
+            </Typography>
+          </div>
+          
+          <div class="grid">
+            <div>
+              <ul style="list-style: none; padding: 0; margin: 0; display: flex; gap: 24px; background: #f9f9f9; padding: 20px; border-radius: 8px;">
+                <NavItem>
+                  <NavLink href="#" showChevron={true} chevronDirection="down">
+                    Home Loans
+                  </NavLink>
+                </NavItem>
+                <NavItem hasDropdown={true}>
+                  <NavLink href="#" hasDropdown={true} showChevron={true}>
+                    Calculators
+                  </NavLink>
+                </NavItem>
+                <NavItem>
+                  <NavLink href="#" showChevron={true} chevronDirection="right">
+                    Resources
+                  </NavLink>
+                </NavItem>
+                <NavItem>
+                  <NavLink href="#">
+                    Contact
+                  </NavLink>
+                </NavItem>
+                <NavItem>
+                  <NavLink href="#" showChevron={true} chevronDirection="down">
+                    About Us
+                  </NavLink>
+                </NavItem>
+              </ul>
+              <Typography size="sm" color="secondary" style="margin-top: 1rem;">Navigation Bar Demo (matches live site) - Hover to see effects!</Typography>
+            </div>
+          </div>
+          
+          <div style="margin-top: 2rem;">
+            <Typography element="h4" size="lg" weight="heading">Individual Components</Typography>
+            <div class="grid" style="margin-top: 1rem;">
+              <div>
+                <ul style="list-style: none; padding: 0; margin: 0; background: #f9f9f9; padding: 16px; border-radius: 6px;">
+                  <NavItem>
+                    <NavLink href="#" showChevron={true} chevronDirection="down">
+                      Home Loans
+                    </NavLink>
+                  </NavItem>
+                </ul>
+                <Typography size="sm" color="secondary">NavItem with NavLink (hover for effects)</Typography>
+              </div>
+              <div>
+                <ul style="list-style: none; padding: 0; margin: 0; background: #f9f9f9; padding: 16px; border-radius: 6px;">
+                  <NavItem hasDropdown={true}>
+                    <NavLink href="#" hasDropdown={true} showChevron={true}>
+                      Services
+                    </NavLink>
+                  </NavItem>
+                </ul>
+                <Typography size="sm" color="secondary">NavItem with Dropdown (hover for effects)</Typography>
+              </div>
+              <div>
+                <ul style="list-style: none; padding: 0; margin: 0; background: #f9f9f9; padding: 16px; border-radius: 6px;">
+                  <NavItem isActive={true}>
+                    <NavLink href="#" isActive={true}>
+                      About Us
+                    </NavLink>
+                  </NavItem>
+                </ul>
+                <Typography size="sm" color="secondary">Active NavItem (already highlighted)</Typography>
+              </div>
+            </div>
+          </div>
+          
+          <div class="component-docs">
+            <div class="component-title">Navigation Molecules</div>
+            <div class="component-description">
+              NavItem wraps navigation items and handles dropdown positioning. NavLink provides consistent link styling with optional chevron indicators.
+              <br><br>
+              <strong>Why Molecules:</strong> NavLink had 6 props (atoms max: 5), both use slots for content composition, and have complex interaction behavior (hover effects, dropdown positioning).
+              <br><strong>Hover Effects:</strong> Text turns yellow (#ffba3a), dotted underline changes to yellow, and chevrons rotate 180 degrees.
+            </div>
+            <div class="component-props">NavItem: hasDropdown, isActive, class</div>
+            <div class="component-props">NavLink: href, hasDropdown, isActive, showChevron, chevronDirection, class</div>
+            <div class="component-props">✅ Proper molecules: Complex behavior, slot usage allowed, >5 props</div>
+          </div>
+        </div>
+
+        <!-- Navigation Dropdown -->
+        <div class="component-demo">
+          <Typography element="h3" size="xl" weight="heading">Navigation Dropdown</Typography>
+          <div class="grid">
+            <div>
+              <div style="position: relative; padding: 2rem; border: 1px solid #e5e7eb; border-radius: 8px; background: #f9fafb;">
+                <Typography size="sm" color="secondary" style="margin-bottom: 1rem;">Standard Dropdown</Typography>
+                <div style="position: relative;">
+                  <NavDropdown 
+                    columns={[
+                      {
+                        heading: 'Your Goal',
+                        links: [
+                          { label: 'Buying First Home', url: '/buying-first-home' },
+                          { label: 'Property Renovation', url: '/property-renovation' },
+                          { label: 'Refinancing A Loan', url: '/refinancing-a-loan' },
+                        ]
+                      },
+                      {
+                        heading: 'Loan Types',
+                        links: [
+                          { label: 'Home Guarantee Scheme', url: '/home-guarantee-scheme' },
+                          { label: 'Green Home Loans', url: '/green-home-loans' },
+                          { label: 'No Deposit Home Loans', url: '/no-deposit-home-loans' },
+                        ]
+                      }
+                    ]}
+                  />
+                  <style>
+                    /* Force visibility for this specific dropdown */
+                    .hg-dropdown {
+                      opacity: 1 !important;
+                      visibility: visible !important;
+                      pointer-events: auto !important;
+                      position: relative !important;
+                      top: auto !important;
+                      left: auto !important;
+                      transform: none !important;
+                      margin-top: 1rem;
+                      width: 100% !important;
+                      min-width: auto !important;
+                      display: block !important;
+                    }
+                  </style>
+                </div>
+              </div>
+            </div>
+            <div>
+              <div style="position: relative; padding: 2rem; border: 1px solid #e5e7eb; border-radius: 8px; background: #f9fafb;">
+                <Typography size="sm" color="secondary" style="margin-bottom: 1rem;">With Promo Card</Typography>
+                <div style="position: relative;">
+                  <NavDropdown 
+                    columns={[
+                      {
+                        heading: 'Calculators',
+                        links: [
+                          { label: 'Mortgage Calculator', url: '/mortgage-calculator', badge: 'Popular' },
+                          { label: 'Deposit Calculator', url: '/deposit-calculator' },
+                          { label: 'Mortgage Vs Rent Calculator', url: '/mortgage-vs-rent-calculator' },
+                        ]
+                      }
+                    ]}
+                    promo={{
+                      title: 'Get A Home Affordability Report',
+                      description: 'Calculate Your Mortgage Capacity And Get Personal Mortgage Report For Free',
+                      cta: { label: 'Start', url: '/affordability-report' }
+                    }}
+                  />
+                  <style>
+                    /* Force visibility for this specific dropdown */
+                    .hg-dropdown {
+                      opacity: 1 !important;
+                      visibility: visible !important;
+                      pointer-events: auto !important;
+                      position: relative !important;
+                      top: auto !important;
+                      left: auto !important;
+                      transform: none !important;
+                      margin-top: 1rem;
+                      width: 100% !important;
+                      min-width: auto !important;
+                      display: block !important;
+                    }
+                  </style>
+                </div>
+              </div>
+            </div>
+            <div>
+              <div style="position: relative; padding: 2rem; border: 1px solid #e5e7eb; border-radius: 8px; background: #f9fafb;">
+                <Typography size="sm" color="secondary" style="margin-bottom: 1rem;">With Image Card</Typography>
+                <div style="position: relative;">
+                  <NavDropdown 
+                    columns={[
+                      {
+                        heading: 'Guides',
+                        links: [
+                          { label: 'First Home Buyers Guide', url: '/first-home-buyers-guide' },
+                          { label: 'Refinancing Guide', url: '/refinancing-guide' },
+                          { label: 'Renovation Guide', url: '/renovation-guide' },
+                        ]
+                      }
+                    ]}
+                    promoImage={{
+                      imageUrl: '/images/what-you-see-when-you-look-up-full-length-shot-affectionate-family-four-holding-cardboard-roof-their-heads-while-sitting-living-room-home.jpg',
+                      title: 'Does HECS Debt Affect Your Home Loan? [And What To Do About It]',
+                      url: '/does-hecs-debt-affect-your-home-loan'
+                    }}
+                  />
+                  <style>
+                    /* Force visibility for this specific dropdown */
+                    .hg-dropdown {
+                      opacity: 1 !important;
+                      visibility: visible !important;
+                      pointer-events: auto !important;
+                      position: relative !important;
+                      top: auto !important;
+                      left: auto !important;
+                      transform: none !important;
+                      margin-top: 1rem;
+                      width: 100% !important;
+                      min-width: auto !important;
+                      display: block !important;
+                    }
+                  </style>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="component-docs">
+            <div class="component-title">NavDropdown Component</div>
+            <div class="component-description">Mega menu dropdown component for navigation with support for multiple columns, promo cards, and image cards.</div>
+            <div class="component-props">columns: NavDropdownColumn[]</div>
+            <div class="component-props">promo?: NavDropdownPromo</div>
+            <div class="component-props">promoImage?: NavDropdownPromoImage</div>
+          </div>
+        </div>
+
+        <!-- BenefitList Molecule -->
+        <div class="component-demo">
+          <Typography element="h3" size="xl" weight="heading">BenefitList</Typography>
+          <div class="grid">
+            <div>
+              <BenefitList 
+                items={[
+                  { text: "No upfront fees or charges" },
+                  { text: "Pre-approved in 24 hours", hoverText: "24 hours", tooltip: "Most applications receive conditional approval within 24 hours of submission with complete documentation." },
+                  { text: "Expert guidance through the entire process" },
+                  { text: "Access to 40+ lenders and exclusive rates" }
+                ]}
+              />
+              <Typography size="sm" color="secondary" style="margin-top: 1rem;">Standard benefit list with tooltip support</Typography>
+            </div>
+            <div>
+              <BenefitList 
+                items={[
+                  { text: "Competitive interest rates" },
+                  { text: "Fast approval process" },
+                  { text: "Professional service" }
+                ]}
+              />
+              <Typography size="sm" color="secondary" style="margin-top: 1rem;">Simple benefit list without tooltips</Typography>
+            </div>
+          </div>
+          
+          <div class="component-docs">
+            <div class="component-title">BenefitList Molecule (New)</div>
+            <div class="component-description">Composes Icon and Typography atoms to create lists of benefits with checkmarks. Supports hover tooltips for additional context. Used in Hero sections and trust-building content.</div>
+            <div class="component-props">items: BenefitItem[] (text, tooltip?, hoverText?)</div>
+            <div class="component-props">✅ Atomic Composition: Icon atom + Typography atom + Tooltip molecule</div>
+            <div class="component-props">💡 Hover over "24 hours" text to see tooltip demo</div>
+          </div>
+        </div>
+
+        <!-- Experience & Review Badges -->
+        <div class="component-demo">
+          <Typography element="h3" size="xl" weight="heading">Experience & Review Badges</Typography>
+          <div class="grid">
+            <div>
+              <ExperienceBadge years="14" />
+              <Typography size="sm" color="secondary" style="margin-top: 1rem;">ExperienceBadge - Shows years of experience</Typography>
+            </div>
+            <div>
+              <ReviewBadge 
+                logoSrc="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='108' height='40' viewBox='0 0 108 40'%3E%3Crect width='108' height='40' rx='8' fill='%234285F4'/%3E%3Ctext x='54' y='25' text-anchor='middle' fill='white' font-family='Arial, sans-serif' font-size='14' font-weight='bold'%3EGoogle%3C/text%3E%3C/svg%3E"
+                text="5★ Google Reviews<br/>Trusted by thousands"
+              />
+              <Typography size="sm" color="secondary" style="margin-top: 1rem;">ReviewBadge - Shows review information with logo</Typography>
+            </div>
+            <div style="display: flex; align-items: center; gap: 24px; padding: 20px; background: #f9f9f9; border-radius: 8px;">
+              <ExperienceBadge years="14" />
+              <ReviewBadge 
+                logoSrc="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='108' height='40' viewBox='0 0 108 40'%3E%3Crect width='108' height='40' rx='8' fill='%2310B981'/%3E%3Ctext x='54' y='25' text-anchor='middle' fill='white' font-family='Arial, sans-serif' font-size='12' font-weight='bold'%3EProductReview%3C/text%3E%3C/svg%3E"
+                text="5★ Excellent Service<br/>Over 1000+ reviews"
+              />
+              <Typography size="sm" color="secondary" style="margin-left: 1rem;">Combined usage in Hero sections</Typography>
+            </div>
+          </div>
+          
+          <div class="component-docs">
+            <div class="component-title">Badge Molecules (New)</div>
+            <div class="component-description">
+              <strong>ExperienceBadge:</strong> Circular badge with number and "Years of experience" label. Uses design tokens for WordPress-exact styling.<br>
+              <strong>ReviewBadge:</strong> Logo with review text for social proof. Supports HTML in text for multi-line content.
+            </div>
+            <div class="component-props">ExperienceBadge: years: string</div>
+            <div class="component-props">ReviewBadge: logoSrc: string, text: string (supports HTML)</div>
+            <div class="component-props">🎯 Usage: Hero organism feature badges, social proof sections</div>
+          </div>
+        </div>
+
+        <!-- BankLogo Molecule -->
+        <div class="component-demo">
+          <Typography element="h3" size="xl" weight="heading">BankLogo</Typography>
+          <div class="grid">
+            <div>
+              <BankLogo 
+                src="/images/logos/westpac_logo.svg"
+                alt="Westpac"
+              />
+              <Typography size="sm" color="secondary" style="margin-top: 1rem;">Westpac logo with hover effects</Typography>
+              <Typography size="xs" color="secondary">File: westpac_logo.svg</Typography>
+            </div>
+            <div>
+              <BankLogo 
+                src="/images/logos/macq_logo.png"
+                alt="Macquarie Bank"
+                class="icon_macq_logo"
+              />
+              <Typography size="sm" color="secondary" style="margin-top: 1rem;">Macquarie logo (special styling)</Typography>
+              <Typography size="xs" color="secondary">File: macq_logo.png</Typography>
+            </div>
+            <div style="display: flex; gap: 2rem; align-items: center; justify-content: center; padding: 20px; background: #f9f9f9; border-radius: 8px; flex-wrap: wrap;">
+              <BankLogo src="/images/logos/anz.svg" alt="ANZ" />
+              <BankLogo src="/images/logos/nab.svg" alt="NAB" />
+              <BankLogo src="/images/logos/westpac_logo.svg" alt="Westpac" />
+              <BankLogo src="/images/logos/suncorp.svg" alt="Suncorp" />
+              <BankLogo src="/images/logos/ing.svg" alt="ING" />
+              <BankLogo src="/images/logos/george.svg" alt="George" />
+            </div>
+            <div style="margin-top: 1rem;">
+              <Typography size="sm" color="secondary">Real bank logos in uniform grid layout - major Australian banks</Typography>
+              <Typography size="xs" color="secondary">Files tested: anz.svg, nab.svg, westpac_logo.svg, suncorp.svg, ing.svg, george.svg</Typography>
+            </div>
+          </div>
+          
+          <div class="component-docs">
+            <div class="component-title">BankLogo Molecule (New)</div>
+            <div class="component-description">
+              Composes Image atom to create consistent bank logo display with uniform sizing and hover effects.
+              <br><strong>Features:</strong> Fixed dimensions (120x50px), uniform sizing, opacity transitions, responsive breakpoints
+              <br><strong>Uniform Sizing:</strong> All logos display in same size containers (120x50px) with proper scaling and no cutoff
+              <br><strong>Real Logos:</strong> Uses actual bank logo files from /public/images/logos/ directory
+              <br><strong>Usage:</strong> BankLogos organism, lender network displays, partner showcases
+            </div>
+            <div class="component-props">src: string, alt: string, class?: string</div>
+            <div class="component-props">✅ Atomic Composition: Image atom with consistent styling and behavior</div>
+            <div class="component-props">📏 Uniform Sizing: Fixed 120x50px containers with padding ensure no logo cutoff</div>
+            <div class="component-props">🎯 Hover over logos to see opacity transition effects</div>
           </div>
         </div>
 
@@ -596,16 +1166,85 @@ import { colors, typography, spacing, effects, semantic, primitive } from '../to
           <Typography>Complex components composed of molecules and atoms that form distinct sections of the interface.</Typography>
         </div>
 
+        <!-- Hero Organism -->
+        <div class="component-demo">
+          <Typography element="h3" size="xl" weight="heading">Hero (New)</Typography>
+          
+          <div style="margin-bottom: 1rem; padding: 1rem; background: #f0fdf4; border-radius: 8px; border-left: 4px solid #10b981;">
+            <Typography size="sm" weight="strong">✅ New Hero Organism Complete</Typography>
+            <Typography size="xs" color="secondary">Built with proper atomic design composition:</Typography>
+            <Typography size="xs" color="secondary">• Container atom for layout • Typography atom for headings • Button atom for CTA • Image atom for media • BenefitList molecule for checkmark items • ExperienceBadge/ReviewBadge molecules for features</Typography>
+          </div>
+          
+          <div class="organism-block">
+            <Hero 
+              title="Get Your <b>Home Loan Approved</b> With Brisbane's Leading Mortgage Broker"
+              benefits={[
+                { text: "No upfront fees or charges" },
+                { text: "Pre-approved in 24 hours", hoverText: "24 hours", tooltip: "Most applications receive conditional approval within 24 hours of submission with complete documentation." },
+                { text: "Expert guidance through the entire process" },
+                { text: "Access to 40+ lenders and exclusive rates" }
+              ]}
+              ctaText="Get Pre-Approved Today"
+              ctaUrl="#calculator"
+              imageUrl="https://via.placeholder.com/500x400/FDB948/000000?text=Hero+Image"
+              imageAlt="Hunter Galloway mortgage broker team"
+              features={[
+                { type: "experience", text: "14", label: "Years of experience" },
+                { type: "reviews", text: "5★ Google Reviews", label: "Trusted by thousands" }
+              ]}
+            />
+          </div>
+          
+          <div class="component-docs">
+            <div class="component-title">Hero Organism (New)</div>
+            <div class="component-description">
+              Complete hero section organism that combines multiple atoms and molecules for landing page headers.<br><br>
+              <strong>Atomic Composition:</strong>
+              <br>• Container atom for layout wrapper
+              <br>• Typography atom for main heading
+              <br>• BenefitList molecule for checkmark items (with tooltip support)
+              <br>• Button atom for call-to-action
+              <br>• Image atom for hero media
+              <br>• ExperienceBadge & ReviewBadge molecules for social proof
+              <br><br>
+              <strong>Features:</strong> Responsive design, tooltip support for benefits, flexible feature badges, WordPress-exact styling
+            </div>
+            <div class="component-props">title: string, benefits: BenefitItem[], ctaText: string, ctaUrl: string, imageUrl: string, imageAlt: string, features?: FeatureBadge[]</div>
+            <div class="component-props">🎯 Organism Role: Combines multiple molecules into a complete hero section interface</div>
+          </div>
+        </div>
+
         <!-- Header Organism -->
         <div class="component-demo">
-          <Typography element="h3" size="xl" weight="heading">Header</Typography>
+          <Typography element="h3" size="xl" weight="heading">Header (Refactored)</Typography>
+          
+          <div style="margin-bottom: 1rem; padding: 1rem; background: #f0fdf4; border-radius: 8px; border-left: 4px solid #10b981;">
+            <Typography size="sm" weight="strong">✅ Atomic Design Refactoring Complete</Typography>
+            <Typography size="xs" color="secondary">Now properly composes atoms and molecules instead of raw HTML elements:</Typography>
+            <Typography size="xs" color="secondary">• Logo atom • NavItem/NavLink molecules • Button atom • Icon atoms • Input atom • NavDropdown molecules • PhoneLink molecule • Container atom</Typography>
+          </div>
+          
           <div class="organism-block">
             <Header />
           </div>
           
           <div class="component-docs">
-            <div class="component-title">Header Component</div>
-            <div class="component-description">Main navigation header with logo, navigation menu, and contact information.</div>
+            <div class="component-title">Header Organism (Refactored)</div>
+            <div class="component-description">
+              <strong>Before:</strong> Used raw HTML elements (a, li, button) with inline styling and logic.<br>
+              <strong>After:</strong> Properly composes atoms and molecules according to atomic design principles.<br><br>
+              <strong>Atomic Composition:</strong>
+              <br>• Container atom for layout wrapper
+              <br>• Logo atom for branding
+              <br>• NavItem/NavLink molecules for navigation (with proper dropdown behavior)
+              <br>• Button atom for CTAs
+              <br>• Icon atoms for visual elements
+              <br>• Input atom for search functionality
+              <br>• PhoneLink molecule for contact info
+            </div>
+            <div class="component-props">💡 Hover over navigation items to see dropdown menus. Only one dropdown is visible at a time to prevent overlap.</div>
+            <div class="component-props">🎯 Organism Role: Composes multiple molecules into a complex navigation interface</div>
           </div>
         </div>
 
@@ -614,11 +1253,26 @@ import { colors, typography, spacing, effects, semantic, primitive } from '../to
           <Typography element="h3" size="xl" weight="heading">Other Organisms</Typography>
           <div class="organism-stack">
             <div class="organism-block">
-              <Typography element="h4" size="lg" weight="heading">Awards Section</Typography>
+              <Typography element="h4" size="lg" weight="heading">Awards Section (Improved Spacing)</Typography>
+              
+              <div style="margin-bottom: 1rem; padding: 1rem; background: #f0fdf4; border-radius: 8px; border-left: 4px solid #10b981;">
+                <Typography size="sm" weight="strong">✅ Spacing Improvements Complete</Typography>
+                <Typography size="xs" color="secondary">Added proper padding between award logos using design tokens:</Typography>
+                <Typography size="xs" color="secondary">• Desktop: 3rem gap • Tablet: 2rem gap • Mobile: 1.5rem gap</Typography>
+              </div>
+              
               <Awards />
             </div>
             <div class="organism-block">
-              <Typography element="h4" size="lg" weight="heading">Bank Logos</Typography>
+              <Typography element="h4" size="lg" weight="heading">Bank Logos (Refactored)</Typography>
+              
+              <div style="margin-bottom: 1rem; padding: 1rem; background: #f0fdf4; border-radius: 8px; border-left: 4px solid #10b981;">
+                <Typography size="sm" weight="strong">✅ Atomic Design Refactoring Complete</Typography>
+                <Typography size="xs" color="secondary">Now properly composes atoms and molecules instead of raw HTML elements:</Typography>
+                <Typography size="xs" color="secondary">• Container atom for layout • Typography atom for title • BankLogo molecules for individual logos</Typography>
+                <Typography size="xs" color="secondary">• Uses real bank logo files from /public/images/logos/ directory</Typography>
+              </div>
+              
               <BankLogos />
             </div>
             <div class="organism-block">
@@ -637,7 +1291,14 @@ import { colors, typography, spacing, effects, semantic, primitive } from '../to
           
           <div class="component-docs">
             <div class="component-title">Additional Organisms</div>
-            <div class="component-description">Complex components that form major sections of the website including awards, statistics, reviews, and interactive tools.</div>
+            <div class="component-description">
+              Complex components that form major sections of the website including awards, statistics, reviews, and interactive tools.
+              <br><br><strong>Recent Improvements:</strong>
+              <br>• <strong>BankLogos:</strong> Now properly composes atoms and molecules with uniform logo sizing
+              <br>• <strong>Awards:</strong> Improved spacing between award logos using responsive design tokens (3rem → 2rem → 1.5rem)
+              <br>• <strong>Statistics:</strong> StatCard now uses Typography atoms, simplified props, proper design tokens
+              <br>• <strong>Reviews:</strong> Full atomic refactor with new Avatar/StarRating atoms, ReviewCard uses proper composition
+            </div>
           </div>
         </div>
       </section>
@@ -649,6 +1310,37 @@ import { colors, typography, spacing, effects, semantic, primitive } from '../to
         <div class="section-header">
           <Typography element="h2" size="2xl" weight="heading">Page Templates</Typography>
           <Typography>Complete page layouts and patterns that combine organisms into full page experiences.</Typography>
+        </div>
+
+        <!-- PageTemplate Component -->
+        <div class="component-demo">
+          <Typography element="h3" size="xl" weight="heading">PageTemplate Component</Typography>
+          <Typography size="sm" color="secondary" style="margin-bottom: 1rem;">Layout-only template with named slots for header, main, and footer content.</Typography>
+          
+          <div style="border: 2px dashed #e5e7eb; padding: 2rem; border-radius: 8px; background: #fafafa;">
+            <div style="border: 1px solid #3b82f6; padding: 1rem; margin-bottom: 1rem; background: #f0f8ff; border-radius: 4px;">
+              <Typography size="sm" weight="strong">Header Slot</Typography>
+              <Typography size="xs" color="secondary">Header organism goes here</Typography>
+            </div>
+            <div style="border: 1px solid #10b981; padding: 2rem; margin-bottom: 1rem; background: #f0fdf4; border-radius: 4px; min-height: 200px; display: flex; align-items: center; justify-content: center;">
+              <div style="text-align: center;">
+                <Typography size="sm" weight="strong">Main Content Slot</Typography>
+                <Typography size="xs" color="secondary">Page content and organisms go here</Typography>
+              </div>
+            </div>
+            <div style="border: 1px solid #f59e0b; padding: 1rem; background: #fffbeb; border-radius: 4px;">
+              <Typography size="sm" weight="strong">Footer Slot</Typography>
+              <Typography size="xs" color="secondary">Footer organism goes here</Typography>
+            </div>
+          </div>
+          
+          <div class="component-docs">
+            <div class="component-title">PageTemplate Component</div>
+            <div class="component-description">Layout-only template component that defines page structure without visual styling. Uses named slots for flexible content composition.</div>
+            <div class="component-props">layout: 'default' | 'landing' | 'calculator'</div>
+            <div class="component-props">Slots: header, main, footer</div>
+            <div class="component-props">✅ Template Principles: Layout only, no visual styling, max 5 props</div>
+          </div>
         </div>
 
         <div class="component-demo">
@@ -687,6 +1379,10 @@ import { colors, typography, spacing, effects, semantic, primitive } from '../to
     </div>
   </div>
 
+  <style>
+    /* Remove problematic dropdown overrides - let the header work normally */
+  </style>
+
   <script>
     // Tab functionality
     document.addEventListener('DOMContentLoaded', function() {
@@ -706,6 +1402,8 @@ import { colors, typography, spacing, effects, semantic, primitive } from '../to
           document.getElementById(targetTab).classList.add('active');
         });
       });
+      
+
     });
   </script>
 </Layout>

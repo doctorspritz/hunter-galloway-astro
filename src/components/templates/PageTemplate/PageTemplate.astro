@@ -1,0 +1,85 @@
+---
+/**
+ * PageTemplate Template
+ * Hunter Galloway Design System - Template Component
+ * 
+ * Layout-only component that defines page structure.
+ * Templates should only handle layout, not visual styling.
+ */
+
+import type { PageTemplateProps } from './PageTemplate.types';
+import { semantic } from '../../../tokens/semantic';
+
+interface Props extends PageTemplateProps {}
+
+const {
+  layout = 'default',
+  class: additionalClasses = '',
+} = Astro.props;
+
+// Build CSS classes
+const templateClasses = [
+  'hg-page-template',
+  `hg-page-template--${layout}`,
+  additionalClasses,
+].filter(Boolean).join(' ');
+---
+
+<div class={templateClasses}>
+  <header class="hg-page-template__header">
+    <slot name="header" />
+  </header>
+  
+  <main class="hg-page-template__main">
+    <slot name="main" />
+  </main>
+  
+  <footer class="hg-page-template__footer">
+    <slot name="footer" />
+  </footer>
+</div>
+
+<style define:vars={{
+  containerMaxWidth: '1229px',
+  spaceMd: semantic.space.md,
+}}>
+.hg-page-template {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  max-width: var(--containerMaxWidth);
+  margin: 0 auto;
+  padding: 0 var(--spaceMd);
+}
+
+.hg-page-template__header {
+  flex-shrink: 0;
+}
+
+.hg-page-template__main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.hg-page-template__footer {
+  flex-shrink: 0;
+}
+
+/* Layout variants */
+.hg-page-template--landing .hg-page-template__main {
+  padding: 0;
+}
+
+.hg-page-template--calculator .hg-page-template__main {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+/* Responsive behavior */
+@media (max-width: 768px) {
+  .hg-page-template {
+    padding: 0 var(--spaceMd);
+  }
+}
+</style>

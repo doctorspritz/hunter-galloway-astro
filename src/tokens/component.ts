@@ -442,6 +442,152 @@ export const component = {
       gap: '20px',
     },
   },
+  
+  // Hero organism tokens
+  hero: {
+    layout: {
+      maxWidth: '1272px',
+      contentMaxWidth: '50%',
+      imageMaxWidth: '50%',
+      gap: '64px',
+      gapMobile: '32px',
+    },
+    typography: {
+      titleSize: '2.5rem', // 40px from live site
+      titleSizeMobile: '2rem', // 32px mobile
+      titleWeight: '700',
+      titleLineHeight: '1.2',
+      titleColor: '#000',
+    },
+    spacing: {
+      paddingY: '50px',
+      paddingYMobile: '32px',
+      listGap: '16px',
+      itemGap: '12px',
+      featuresGap: '24px',
+      buttonMarginTop: '32px',
+    },
+    colors: {
+      background: '#fff',
+      checkmarkColor: '#77B255', // From live site
+      accentColor: '#EC9B16', // Orange from experience badge
+    },
+    experience: {
+      numberSize: '29px',
+      numberWeight: '800',
+      numberColor: '#EC9B16',
+      labelSize: '16px',
+      labelWeight: '400',
+      labelColor: '#262626',
+      borderColor: '#EC9B16',
+      borderRadius: '27px',
+      width: '54px',
+      height: '54px',
+    },
+  },
+  
+  // BankLogos organism tokens
+  bankLogos: {
+    layout: {
+      maxWidth: '1000px',
+      gap: '2rem',
+      gapMobile: '1rem',
+    },
+    spacing: {
+      paddingY: '50px',
+      titleMarginBottom: '5rem',
+    },
+    title: {
+      maxWidth: '800px',
+      textAlign: 'center',
+    },
+    colors: {
+      background: '#ffffff',
+    },
+  },
+  
+  // BankLogo molecule tokens
+  bankLogo: {
+    dimensions: {
+      // Fixed dimensions for uniform sizing
+      maxHeight: '50px',
+      maxHeightMobile: '40px',
+      maxHeightSmall: '35px',
+      maxWidth: '120px',
+      maxWidthMobile: '100px',
+      maxWidthSmall: '80px',
+      // Aspect ratio for consistent proportions
+      aspectRatio: '2.4', // 120px / 50px = 2.4:1
+    },
+    opacity: {
+      default: '0.7',
+      hover: '1',
+    },
+    transition: 'opacity 0.3s ease',
+    container: {
+      backgroundColor: 'transparent',
+      borderRadius: '4px',
+      padding: '8px',
+    },
+  },
+  
+  // Awards organism tokens
+  awards: {
+    layout: {
+      gap: '3rem',
+      gapTablet: '2rem',
+      gapMobile: '1.5rem',
+      maxWidth: '100%',
+    },
+    spacing: {
+      paddingY: '3rem',
+      paddingYMobile: '2rem',
+    },
+    colors: {
+      background: '#f8f9fa',
+    },
+  },
+  
+  // Statistics organism tokens
+  statistics: {
+    layout: {
+      gap: '2rem',
+      gapMobile: '1rem',
+      maxWidth: '1200px',
+    },
+    spacing: {
+      paddingY: '4rem',
+      paddingYMobile: '2rem',
+      titleMarginBottom: '3rem',
+    },
+    colors: {
+      background: '#ffffff',
+    },
+  },
+  
+  // Reviews organism tokens
+  reviews: {
+    layout: {
+      gap: '24px',
+      gapMobile: '20px',
+      cardWidth: '450px', // Increased from 350px for better proportions
+      cardWidthMobile: '100%',
+      maxWidth: '1272px',
+    },
+    spacing: {
+      paddingY: '50px',
+      paddingYMobile: '40px',
+      titleMarginBottom: '16px',
+      subtitleMarginBottom: '48px',
+    },
+    colors: {
+      background: semantic.color.surface.highlight, // Peach background
+    },
+    navigation: {
+      buttonSize: '40px',
+      buttonOffset: '20px',
+    },
+  },
 } as const;
 
 export default component;

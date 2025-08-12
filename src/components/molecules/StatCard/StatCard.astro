@@ -1,13 +1,14 @@
 ---
 /**
- * StatCard Component
+ * StatCard Molecule
  * Hunter Galloway Design System - Molecular Component
  * 
- * A card component for displaying statistics with large numbers and descriptions.
- * Built to match the exact WordPress structure and styling.
+ * Composes Typography atoms to create statistic display cards.
+ * Used in Statistics organism for showcasing key metrics.
  */
 
 import type { StatCardProps } from './StatCard.types';
+import Typography from '../../atoms/Typography/Typography.astro';
 import { semantic } from '../../../tokens/semantic';
 import { component } from '../../../tokens/component';
 
@@ -16,95 +17,72 @@ interface Props extends StatCardProps {}
 const {
   number,
   description,
-  background = 'lightBlue',
-  size = 'md',
-  hoverable = true,
+  variant = 'default',
   class: additionalClasses = '',
 } = Astro.props;
 ---
 
-<div class={`hg-stat-card why_choose-item ${additionalClasses}`}>
-  <p class="stat-number">{number}</p>
-  <p class="stat-description">{description}</p>
+<div class={`hg-stat-card hg-stat-card--${variant} ${additionalClasses}`}>
+  <Typography 
+    element="p" 
+    size="5xl" 
+    weight="display" 
+    class="hg-stat-card__number"
+  >
+    {number}
+  </Typography>
+  
+  <Typography 
+    element="p" 
+    size="md" 
+    weight="emphasis" 
+    class="hg-stat-card__description"
+  >
+    {description}
+  </Typography>
 </div>
 
 <style define:vars={{
-  surfaceAccent: component.card.stat.background,
-  textPrimary: component.card.stat.numberColor,
-  textSecondary: component.card.stat.descriptionColor,
-  fontSize5xl: component.card.stat.numberSize,
-  fontSize4xl: component.card.stat.numberSizeTablet,
-  fontSize3xl: component.card.stat.numberSizeMobile,
-  fontSizeMd: component.card.stat.descriptionSize,
-  fontWeightDisplay: component.card.stat.numberWeight,
-  fontWeightEmphasis: component.card.stat.descriptionWeight,
-  lineHeightTight: semantic.typography.lineHeight.tight,
-  lineHeightBody: semantic.typography.lineHeight.body,
-  radiusMd: component.card.stat.borderRadius,
-  durationNormal: component.card.stat.transition,
-  spaceXl: semantic.space.xl,
-  spaceMd: semantic.space.md,
-  spaceSm: semantic.space.sm,
+  background: component.card.stat.background,
+  borderRadius: component.card.stat.borderRadius,
+  padding: semantic.space.xl,
+  paddingX: semantic.space.md,
+  transition: component.card.stat.transition,
+  hoverTransform: component.card.stat.hoverTransform,
   minWidth: component.card.stat.minWidth,
   maxWidth: component.card.stat.maxWidth,
   maxWidthMobile: component.card.stat.maxWidthMobile,
-  hoverTransform: component.card.stat.hoverTransform,
-  paddingMobile: component.card.stat.paddingMobile,
-  breakpointTablet: semantic.breakpoint.tablet,
-  breakpointMobile: semantic.breakpoint.mobile,
+  marginBottom: semantic.space.sm,
 }}>
-/* StatCard component styles - Using design tokens */
 .hg-stat-card {
   text-align: center;
   flex: 1;
   min-width: var(--minWidth);
   max-width: var(--maxWidth);
-  background: var(--surfaceAccent);
-  padding: var(--spaceXl) var(--spaceMd);
-  border-radius: var(--radiusMd);
-  transition: transform var(--durationNormal) ease;
+  background: var(--background);
+  padding: var(--padding) var(--paddingX);
+  border-radius: var(--borderRadius);
+  transition: transform var(--transition) ease;
 }
 
 .hg-stat-card:hover {
   transform: var(--hoverTransform);
 }
 
-.stat-number {
-  font-size: var(--fontSize5xl);
-  font-weight: var(--fontWeightDisplay);
-  color: var(--textPrimary);
-  margin: 0 0 var(--spaceSm) 0;
-  line-height: var(--lineHeightTight);
+.hg-stat-card__number {
+  margin: 0 0 var(--marginBottom) 0 !important;
 }
 
-.stat-description {
-  font-size: var(--fontSizeMd);
-  color: var(--textSecondary);
-  margin: 0;
-  line-height: var(--lineHeightBody);
-  font-weight: var(--fontWeightEmphasis);
+.hg-stat-card__description {
+  margin: 0 !important;
 }
 
-/* Responsive design using design tokens */
-@media (max-width: var(--breakpointTablet)) {
+/* Responsive design */
+@media (max-width: 768px) {
   .hg-stat-card {
     min-width: auto;
     max-width: var(--maxWidthMobile);
     width: 100%;
-  }
-  
-  .stat-number {
-    font-size: var(--fontSize4xl);
-  }
-}
-
-@media (max-width: var(--breakpointMobile)) {
-  .stat-number {
-    font-size: var(--fontSize3xl);
-  }
-  
-  .hg-stat-card {
-    padding: var(--paddingMobile);
   }
 }
 </style>

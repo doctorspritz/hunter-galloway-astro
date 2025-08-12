@@ -1,13 +1,16 @@
 ---
 /**
- * ReviewCard Component
+ * ReviewCard Molecule
  * Hunter Galloway Design System - Molecular Component
  * 
- * A customer review card matching the exact WordPress structure and styling
- * Refactored to use semantic design tokens for consistency
+ * Composes Avatar, StarRating, and Typography atoms to create customer review cards.
+ * Follows atomic design principles with proper component composition.
  */
 
 import type { ReviewCardProps } from './ReviewCard.types';
+import Avatar from '../../atoms/Avatar/Avatar.astro';
+import StarRating from '../../atoms/StarRating/StarRating.astro';
+import Typography from '../../atoms/Typography/Typography.astro';
 import { semantic } from '../../../tokens/semantic';
 
 interface Props extends ReviewCardProps {}
@@ -44,16 +47,31 @@ const readMoreClasses = [
 ---
 
 <div class={`${cardClasses} swiper-slide`}>
-  <div class="hg-review-card__image">
-    <img src={image} alt={name} loading="lazy" />
-  </div>
+  <Avatar 
+    src={image} 
+    alt={name} 
+    size="lg" 
+    bordered={true}
+    class="hg-review-card__avatar"
+  />
   
-  <p class="hg-review-card__name">{name}</p>
+  <Typography 
+    element="p" 
+    size="lg" 
+    weight="strong"
+    class="hg-review-card__name"
+  >
+    {name}
+  </Typography>
   
   <div class="hg-review-card__content">
-    <p class={textClasses}>
+    <Typography 
+      element="p" 
+      size="sm" 
+      class={textClasses}
+    >
       {text}
-    </p>
+    </Typography>
     
     {shouldShowReadMore && (
       <a class={readMoreClasses}>
@@ -63,11 +81,11 @@ const readMoreClasses = [
     )}
   </div>
   
-  <div class="hg-review-card__rating">
-    {Array.from({ length: rating }, (_, i) => (
-      <img key={i} src="/images/star.svg" alt="star" width="16" height="16" />
-    ))}
-  </div>
+  <StarRating 
+    rating={rating} 
+    size="md"
+    class="hg-review-card__rating"
+  />
 </div>
 
 <style define:vars={{
@@ -96,7 +114,7 @@ const readMoreClasses = [
   border-radius: var(--radiusMd);
   padding: var(--spaceLg) var(--spaceMd);
   text-align: center;
-  min-height: 350px;
+  min-height: 280px;
   display: flex;
   flex-direction: column;
   position: relative;
@@ -109,26 +127,12 @@ const readMoreClasses = [
   box-shadow: var(--shadowCard);
 }
 
-.hg-review-card__image {
-  width: 72px;
-  height: 72px;
-  border-radius: 50%;
-  overflow: hidden;
-  margin: 0 auto var(--spaceSm);
-}
-
-.hg-review-card__image img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+.hg-review-card__avatar {
+  margin: 0 auto var(--spaceSm) auto;
 }
 
 .hg-review-card__name {
-  font-size: var(--fontSizeLg);
-  font-weight: var(--fontWeightStrong);
-  color: var(--textPrimary);
   margin: 0 0 var(--spaceSm) 0;
-  line-height: var(--lineHeightTight);
 }
 
 .hg-review-card__content {
@@ -137,9 +141,6 @@ const readMoreClasses = [
 }
 
 .hg-review-card__text {
-  font-size: var(--fontSizeSm);
-  line-height: var(--lineHeightBody);
-  color: var(--textSecondary);
   margin: 0 0 calc(var(--spaceSm) * 0.75) 0;
   text-align: left;
 }
@@ -184,15 +185,8 @@ const readMoreClasses = [
 }
 
 .hg-review-card__rating {
-  display: flex;
   justify-content: center;
-  gap: calc(var(--spaceSm) * 0.25);
   margin-top: auto;
-}
-
-.hg-review-card__rating img {
-  width: 16px;
-  height: 16px;
 }
 
 /* Responsive design using semantic tokens */
@@ -200,10 +194,6 @@ const readMoreClasses = [
   .hg-review-card {
     padding: var(--spaceMd) var(--spaceSm);
     min-height: 300px;
-  }
-  
-  .hg-review-card__name {
-    font-size: var(--fontSizeMd);
   }
 }
 </style>

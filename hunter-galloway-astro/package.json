@@ -1,0 +1,35 @@
+{
+  "name": "hunter-galloway-astro",
+  "type": "module",
+  "version": "0.0.1",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro",
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build",
+    "test:storybook": "chromatic --project-token=$CHROMATIC_PROJECT_TOKEN"
+  },
+  "dependencies": {
+    "@astrojs/react": "^4.3.0",
+    "@nanostores/react": "^1.0.0",
+    "@storyblok/astro": "^7.2.3",
+    "@tailwindcss/vite": "^4.1.11",
+    "@types/react": "^19.1.9",
+    "@types/react-dom": "^19.1.7",
+    "astro": "^5.12.8",
+    "autonumeric": "^4.10.8",
+    "axios": "^1.11.0",
+    "nanostores": "^1.0.1",
+    "rc-slider": "^11.1.8",
+    "react": "^19.1.1",
+    "react-dom": "^19.1.1",
+    "swiper": "^11.2.10",
+    "tailwindcss": "^4.1.11",
+    "@storybook/astro": "^7.6.0",
+    "@storybook/addon-essentials": "^7.6.0",
+    "@storybook/addon-links": "^7.6.0",
+    "chromatic": "^6.21.0"
+  }
+}

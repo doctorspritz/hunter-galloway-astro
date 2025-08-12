@@ -13,9 +13,9 @@ import { semantic } from '../../../tokens/semantic';
 interface Props extends BadgeProps {}
 
 const {
+  text,
   variant = 'primary',
   size = 'md',
-  shape = 'rounded',
   class: additionalClasses = '',
 } = Astro.props;
 
@@ -24,13 +24,13 @@ const badgeClasses = [
   'hg-badge',
   `hg-badge--${variant}`,
   `hg-badge--${size}`,
-  `hg-badge--${shape}`,
+  'hg-badge--pill', // Default to pill shape for simplicity
   additionalClasses,
 ].filter(Boolean).join(' ');
 ---
 
 <span class={badgeClasses}>
-  <slot />
+  {text}
 </span>
 
 <style define:vars={{
@@ -113,17 +113,9 @@ const badgeClasses = [
   font-size: var(--fontSizeMd);
 }
 
-/* Shape variants using semantic tokens */
-.hg-badge--rounded {
-  border-radius: var(--radiusSm);
-}
-
+/* Default shape - pill */
 .hg-badge--pill {
   border-radius: var(--radiusPill);
-}
-
-.hg-badge--square {
-  border-radius: 0;
 }
 
 /* Ensure proper spacing for badges with icons */
