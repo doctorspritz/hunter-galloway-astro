@@ -89,7 +89,7 @@ export const component = {
     title: {
       fontSize: semantic.typography.size['5xl'],
       lineHeight: semantic.typography.lineHeight.tight,
-      weight: semantic.typography.weight.display,
+      weight: primitive.fontWeight.extrabold,
       color: semantic.color.text.primary,
     },
     // Live site exact values
