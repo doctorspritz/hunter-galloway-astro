@@ -1,0 +1,156 @@
+/**
+ * Typography Component Styles
+ * Hunter Galloway Design System - Atomic Component
+ * 
+ * CSS styles for the Typography component that ensure consistent
+ * text styling across the application.
+ */
+
+.hg-typography {
+  /* Base typography styles */
+  margin: 0;
+  padding: 0;
+  font-family: var(--hg-font-family-body, 'Open Sans', system-ui, sans-serif);
+  line-height: var(--hg-line-height-body, 1.5);
+  color: var(--hg-color-text-primary, #1f2937);
+  text-align: left;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+
+/* Font Size Variants */
+.hg-typography--xs {
+  font-size: var(--hg-font-size-xs, 0.75rem);
+}
+
+.hg-typography--sm {
+  font-size: var(--hg-font-size-sm, 0.875rem);
+}
+
+.hg-typography--md {
+  font-size: var(--hg-font-size-md, 1rem);
+}
+
+.hg-typography--lg {
+  font-size: var(--hg-font-size-lg, 1.125rem);
+}
+
+.hg-typography--xl {
+  font-size: var(--hg-font-size-xl, 1.25rem);
+}
+
+.hg-typography--2xl {
+  font-size: var(--hg-font-size-2xl, 1.5rem);
+}
+
+.hg-typography--3xl {
+  font-size: var(--hg-font-size-3xl, 1.875rem);
+}
+
+.hg-typography--4xl {
+  font-size: var(--hg-font-size-4xl, 2.25rem);
+}
+
+.hg-typography--4_5xl {
+  font-size: var(--hg-font-size-4_5xl, 2.5rem);
+}
+
+.hg-typography--5xl {
+  font-size: var(--hg-font-size-5xl, 3rem);
+}
+
+/* Font Weight Variants */
+.hg-typography--body {
+  font-weight: var(--hg-font-weight-body, 400);
+}
+
+.hg-typography--emphasis {
+  font-weight: var(--hg-font-weight-emphasis, 500);
+}
+
+.hg-typography--strong {
+  font-weight: var(--hg-font-weight-strong, 600);
+}
+
+.hg-typography--heading {
+  font-weight: var(--hg-font-weight-heading, 700);
+}
+
+.hg-typography--display {
+  font-weight: var(--hg-font-weight-display, 800);
+}
+
+/* Color Variants */
+.hg-typography--primary {
+  color: var(--hg-color-text-primary, #1f2937);
+}
+
+.hg-typography--secondary {
+  color: var(--hg-color-text-secondary, #4b5563);
+}
+
+.hg-typography--tertiary {
+  color: var(--hg-color-text-tertiary, #6b7280);
+}
+
+.hg-typography--inverse {
+  color: var(--hg-color-text-inverse, #ffffff);
+}
+
+/* Text Alignment */
+.hg-typography--left {
+  text-align: left;
+}
+
+.hg-typography--center {
+  text-align: center;
+}
+
+.hg-typography--right {
+  text-align: right;
+}
+
+.hg-typography--justify {
+  text-align: justify;
+}
+
+/* Line Height Adjustments */
+.hg-typography--tight {
+  line-height: var(--hg-line-height-tight, 1.25);
+}
+
+.hg-typography--body {
+  line-height: var(--hg-line-height-body, 1.5);
+}
+
+/* No Wrap */
+.hg-typography--no-wrap {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .hg-typography--4_5xl {
+    font-size: var(--hg-font-size-4xl, 2.25rem);
+  }
+  
+  .hg-typography--5xl {
+    font-size: var(--hg-font-size-4xl, 2.25rem);
+  }
+}
+
+@media (max-width: 480px) {
+  .hg-typography--4xl {
+    font-size: var(--hg-font-size-3xl, 1.875rem);
+  }
+  
+  .hg-typography--4_5xl {
+    font-size: var(--hg-font-size-3xl, 1.875rem);
+  }
+  
+  .hg-typography--5xl {
+    font-size: var(--hg-font-size-3xl, 1.875rem);
+  }
+}
