@@ -124,7 +124,7 @@ const {
   // Typography
   titleFontSize: component.heroWidget.typography.title.fontSizeExact,
   titleLineHeight: component.heroWidget.typography.title.lineHeightExact,
-  titleWeightExtrabold: '800', // Use primitive value directly
+  titleWeightExtrabold: component.heroWidget.typography.title.weightExtrabold,
   
   buttonFontSize: component.heroWidget.typography.button.fontSizeExact,
   buttonLineHeight: component.heroWidget.typography.button.lineHeightExact,
@@ -164,9 +164,7 @@ const {
   padding-bottom: var(--paddingBottomTitle);
 }
 
-.hero-widget__title h1 b {
-  font-weight: var(--titleWeightExtrabold);
-}
+/* Bold text styling is now handled via inline styles in the HTML */
 
 .hero-widget__benefits {
   display: flex;
