@@ -1,0 +1,40 @@
+---
+import HeroWidget from '../../../../components/organisms/HeroWidget/HeroWidget.astro';
+---
+<h1>HeroWidget</h1>
+
+<!-- General variant -->
+<HeroWidget
+  titleHtml={'<b>Get a home loan</b> with full guidance and expert assistance'}
+  benefits={[
+    { text: '97% loan approval rate' },
+    { text: 'Access to 30+ Australian lenders' },
+  ]}
+  cta={{ text: 'Calculate my borrowing capacity', href: '/mortgage-calculator/' }}
+  image={{
+    desktop: '/images/upgrade.webp',
+    mobile: '/images/upgrade.webp',
+    alt: 'Family holding cardboard house',
+  }}
+  yearsExperience={'14'}
+  reviews={{ text: 'Based on 2,000+ reviews' }}
+  variant={'general'}
+  mediaPosition={'right'}
+/>
+
+<!-- Professional variant -->
+<HeroWidget
+  titleHtml={'For medical professionals: <b>Specialist lending</b> with premium policy access'}
+  benefits={[
+    { text: 'Doctor, Dentist, Vet and Allied Health policy expertise' },
+    { text: 'LMI waivers up to 90–95% with select lenders' },
+  ]}
+  cta={{ text: 'Talk to a specialist', href: '/contact/' }}
+  image={{ desktop: '/images/upgrade.webp', mobile: '/images/upgrade.webp', alt: 'Professional client' }}
+  yearsExperience={'14'}
+  reviews={{ text: 'Trusted by 2,000+ customers' }}
+  variant={'professional'}
+  mediaPosition={'left'}
+/>
+
+
