@@ -469,21 +469,7 @@ grep -r "border-radius:" style.css
 grep -r "box-shadow:" style.css
 ```
 
-### Syncing Figma Variables
 
-Design tokens originate from Figma variable collections. When values change in Figma, update the local token files using the sync script.
-
-1. Store your Figma API token in `.env`:
-
-   ```bash
-   FIGMA_TOKEN=your-token
-   ```
-
-2. Run the sync script with one or more Figma file IDs. Each collection found in the file will generate or update a matching TypeScript file in `src/tokens/`.
-
-   ```bash
-   npx tsx scripts/sync-figma-variables.ts <FILE_ID> [ANOTHER_FILE_ID]
-   ```
 
 ## 🎯 Design System Benefits
 

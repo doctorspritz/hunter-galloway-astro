@@ -1,275 +1,711 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import Badge from '../components/atoms/Badge/Badge.astro';
+import Typography from '../components/atoms/Typography/Typography.astro';
 import Button from '../components/atoms/Button/Button.astro';
-import Container from '../components/atoms/Container/Container.astro';
-import Icon from '../components/atoms/Icon/Icon.astro';
 import Input from '../components/atoms/Input/Input.astro';
+import Badge from '../components/atoms/Badge/Badge.astro';
+import Icon from '../components/atoms/Icon/Icon.astro';
 import Logo from '../components/atoms/Logo/Logo.astro';
 import Slider from '../components/atoms/Slider/Slider.astro';
-import Typography from '../components/atoms/Typography/Typography.astro';
-import AwardItem from '../components/molecules/AwardItem/AwardItem.astro';
-import CalculatorResult from '../components/molecules/CalculatorResult/CalculatorResult.astro';
-import FooterNavigation from '../components/molecules/FooterNavigation/FooterNavigation.astro';
-import FooterStatCard from '../components/molecules/FooterStatCard/FooterStatCard.astro';
-import NavDropdown from '../components/molecules/NavDropdown/NavDropdown.astro';
-import PhoneLink from '../components/molecules/PhoneLink/PhoneLink.astro';
-import PurposeCard from '../components/molecules/PurposeCard/PurposeCard.astro';
-import ReviewCard from '../components/molecules/ReviewCard/ReviewCard.astro';
-import RiskCard from '../components/molecules/RiskCard/RiskCard.astro';
-import SocialLinks from '../components/molecules/SocialLinks/SocialLinks.astro';
+import Container from '../components/atoms/Container/Container.astro';
 import StatCard from '../components/molecules/StatCard/StatCard.astro';
+import PurposeCard from '../components/molecules/PurposeCard/PurposeCard.astro';
+import FooterStatCard from '../components/molecules/FooterStatCard/FooterStatCard.astro';
+import PhoneLink from '../components/molecules/PhoneLink/PhoneLink.astro';
 import Tooltip from '../components/molecules/Tooltip/Tooltip.astro';
-import Awards from '../components/organisms/Awards.astro';
-import BankLogos from '../components/organisms/BankLogos.astro';
-import Footer from '../components/organisms/Footer.astro';
+import SocialLinks from '../components/molecules/SocialLinks/SocialLinks.astro';
+import CalculatorResult from '../components/molecules/CalculatorResult/CalculatorResult.astro';
+import AwardItem from '../components/molecules/AwardItem/AwardItem.astro';
 import Header from '../components/organisms/Header.astro';
 import HeroWidget from '../components/organisms/HeroWidget/HeroWidget.astro';
-import LoanPurpose from '../components/organisms/LoanPurpose.astro';
-import MortgageRentCalculator from '../components/organisms/MortgageRentCalculator/MortgageRentCalculator.astro';
-import PropertyMap from '../components/organisms/PropertyMap.astro';
+import Awards from '../components/organisms/Awards.astro';
+import BankLogos from '../components/organisms/BankLogos.astro';
+import Statistics from '../components/organisms/Statistics.astro';
 import Reviews from '../components/organisms/Reviews.astro';
 import RiskWidget from '../components/organisms/RiskWidget/RiskWidget.astro';
-import Statistics from '../components/organisms/Statistics.astro';
-import { semantic } from '../tokens/semantic';
-// Demo data for organisms that require props
-const riskWidgetDemo = {
-  title: 'How we reduce your risk when applying for a home loan',
-  description:
-    'Lenders are declining over {40%} of home loan applications. Here’s how we protect your application.',
-  marketStatistic: {
-    value: '40%',
-    tooltip: {
-      content: 'Source: Industry data across major lenders over the past 12 months.',
-    },
-  },
-  riskItems: [
-    {
-      id: 'plan',
-      title: 'Strategic Loan Plan',
-      content: [
-        'We build a tailored plan that matches your profile to the right lenders and policies.',
-      ],
-      icon: 'scheme',
-    },
-    {
-      id: 'docs',
-      title: 'Document Pre‑Check',
-      content: [
-        'We pre‑validate your documents to reduce back‑and‑forth and avoid unnecessary delays.',
-      ],
-      icon: 'puzzle',
-    },
-    {
-      id: 'present',
-      title: 'Application Presentation',
-      content: [
-        'Your file is packaged to policy, highlighting strengths and mitigating any potential red flags.',
-      ],
-      icon: 'umbrella',
-    },
-  ],
-};
+import MortgageRentCalculator from '../components/organisms/MortgageRentCalculator/MortgageRentCalculator.astro';
+import Footer from '../components/organisms/Footer.astro';
+import { colors, typography, spacing, effects, semantic, primitive } from '../tokens';
 ---
 
 <Layout title="Design System">
   <style>
-    .section { margin-bottom: 4rem; }
-    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.5rem; }
-    .swatch { border: 1px solid #eee; border-radius: 8px; padding: 1rem; }
-    .swatch-box { height: 64px; border-radius: 6px; margin-bottom: .75rem; }
-    /* Organisms are full-width sections; stack them, don't grid them */
-    .organism-stack { display: flex; flex-direction: column; gap: 3rem; }
-    .organism-block { width: 100%; position: relative; overflow: visible; }
-    .organism-block > * { display: block; width: 100%; }
+    .design-system {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 2rem;
+    }
+    
+    .section {
+      margin-bottom: 4rem;
+      padding: 2rem;
+      border: 1px solid #e5e7eb;
+      border-radius: 12px;
+      background: #fff;
+    }
+    
+    .section-header {
+      margin-bottom: 2rem;
+      padding-bottom: 1rem;
+      border-bottom: 2px solid #f3f4f6;
+    }
+    
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+    }
+    
+    .component-demo {
+      border: 1px solid #e5e7eb;
+      border-radius: 8px;
+      padding: 1.5rem;
+      background: #fafafa;
+    }
+    
+    .component-docs {
+      margin-top: 1rem;
+      padding: 1rem;
+      background: #f8fafc;
+      border-radius: 6px;
+      border-left: 4px solid #3b82f6;
+    }
+    
+    .component-title {
+      font-weight: 600;
+      color: #1f2937;
+      margin-bottom: 0.5rem;
+    }
+    
+    .component-description {
+      color: #6b7280;
+      font-size: 0.875rem;
+      margin-bottom: 0.5rem;
+    }
+    
+    .component-props {
+      font-family: 'Monaco', 'Menlo', monospace;
+      font-size: 0.75rem;
+      color: #374151;
+      background: #f3f4f6;
+      padding: 0.25rem 0.5rem;
+      border-radius: 4px;
+    }
+    
+    .swatch {
+      border: 1px solid #e5e7eb;
+      border-radius: 8px;
+      padding: 1rem;
+      background: #fff;
+    }
+    
+    .swatch-box {
+      height: 64px;
+      border-radius: 6px;
+      margin-bottom: 0.75rem;
+      border: 1px solid #d1d5db;
+    }
+    
+    .token-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1rem;
+    }
+    
+    .organism-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 3rem;
+    }
+    
+    .organism-block {
+      width: 100%;
+      position: relative;
+      overflow: visible;
+    }
+    
+    .organism-block > * {
+      display: block;
+      width: 100%;
+    }
+    
+    .nav-tabs {
+      display: flex;
+      gap: 0.5rem;
+      margin-bottom: 2rem;
+      border-bottom: 1px solid #e5e7eb;
+    }
+    
+    .nav-tab {
+      padding: 0.75rem 1.5rem;
+      border: none;
+      background: none;
+      cursor: pointer;
+      border-bottom: 2px solid transparent;
+      color: #6b7280;
+      font-weight: 500;
+      transition: all 0.2s ease;
+    }
+    
+    .nav-tab:hover {
+      color: #3b82f6;
+    }
+    
+    .nav-tab.active {
+      color: #3b82f6;
+      border-bottom-color: #3b82f6;
+    }
+    
+    .tab-content {
+      display: none;
+    }
+    
+    .tab-content.active {
+      display: block;
+    }
   </style>
 
-  <section class="section">
-    <Typography element="h1" size="3xl" weight="display">Design System</Typography>
-    <Typography>Atomic components rendered directly in Astro.</Typography>
-  </section>
-
-  <section class="section">
-    <Typography element="h2" size="2xl" weight="heading">Tokens · Colors</Typography>
-    <div class="grid">
-      <div class="swatch">
-        <div class="swatch-box" style={`background:${semantic.color.brand.primary}`}></div>
-        <Typography size="sm">brand.primary</Typography>
+  <div class="design-system">
+    <section class="section">
+      <div class="section-header">
+        <Typography element="h1" size="3xl" weight="display">Hunter Galloway Design System</Typography>
+        <Typography>A comprehensive atomic design system built with Astro components and design tokens.</Typography>
       </div>
-      <div class="swatch">
-        <div class="swatch-box" style={`background:${semantic.color.surface.secondary}`}></div>
-        <Typography size="sm">surface.secondary</Typography>
-      </div>
-      <div class="swatch">
-        <div class="swatch-box" style={`background:${semantic.color.surface.highlight}`}></div>
-        <Typography size="sm">surface.highlight</Typography>
-      </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- Atoms -->
-  <section class="section">
-    <Typography element="h2" size="2xl" weight="heading">Atoms</Typography>
-    <Typography element="h3" size="xl" weight="heading">Typography</Typography>
-    <div class="grid">
-      <Typography element="h1">Heading 1</Typography>
-      <Typography element="h2">Heading 2</Typography>
-      <Typography element="p">Body text example</Typography>
+    <!-- Navigation Tabs -->
+    <div class="nav-tabs">
+      <button class="nav-tab active" data-tab="tokens">Design Tokens</button>
+      <button class="nav-tab" data-tab="atoms">Atoms</button>
+      <button class="nav-tab" data-tab="molecules">Molecules</button>
+      <button class="nav-tab" data-tab="organisms">Organisms</button>
+      <button class="nav-tab" data-tab="templates">Page Templates</button>
     </div>
 
-    <Typography element="h3" size="xl" weight="heading">Buttons</Typography>
-    <div style="display:flex;gap:12px;flex-wrap:wrap">
-      <Button variant="primary" size="md">Primary</Button>
-      <Button variant="secondary" size="md">Secondary</Button>
-      <Button variant="ghost" size="md">Ghost</Button>
-      <Button variant="outline" size="md">Outline</Button>
-      <Button variant="primary" size="lg">Large</Button>
-      <Button variant="primary" size="sm">Small</Button>
+    <!-- Design Tokens Tab -->
+    <div id="tokens" class="tab-content active">
+      <section class="section">
+        <div class="section-header">
+          <Typography element="h2" size="2xl" weight="heading">Design Tokens</Typography>
+          <Typography>Foundation values for colors, typography, spacing, and effects used throughout the system.</Typography>
+        </div>
+
+        <!-- Colors -->
+        <div class="component-demo">
+          <Typography element="h3" size="xl" weight="heading">Colors</Typography>
+          <div class="token-grid">
+            <div class="swatch">
+              <div class="swatch-box" style={`background:${colors.primary.yellow}`}></div>
+              <Typography size="sm" weight="strong">Primary Yellow</Typography>
+              <Typography size="xs" color="secondary">{colors.primary.yellow}</Typography>
+            </div>
+            <div class="swatch">
+              <div class="swatch-box" style={`background:${colors.primary.yellowDark}`}></div>
+              <Typography size="sm" weight="strong">Primary Dark</Typography>
+              <Typography size="xs" color="secondary">{colors.primary.yellowDark}</Typography>
+            </div>
+            <div class="swatch">
+              <div class="swatch-box" style={`background:${colors.neutral.dark}`}></div>
+              <Typography size="sm" weight="strong">Neutral Dark</Typography>
+              <Typography size="xs" color="secondary">{colors.neutral.dark}</Typography>
+            </div>
+            <div class="swatch">
+              <div class="swatch-box" style={`background:${colors.semantic.success}`}></div>
+              <Typography size="sm" weight="strong">Success</Typography>
+              <Typography size="xs" color="secondary">{colors.semantic.success}</Typography>
+            </div>
+            <div class="swatch">
+              <div class="swatch-box" style={`background:${colors.semantic.error}`}></div>
+              <Typography size="sm" weight="strong">Error</Typography>
+              <Typography size="xs" color="secondary">{colors.semantic.error}</Typography>
+            </div>
+            <div class="swatch">
+              <div class="swatch-box" style={`background:${colors.semantic.warning}`}></div>
+              <Typography size="sm" weight="strong">Warning</Typography>
+              <Typography size="xs" color="secondary">{colors.semantic.warning}</Typography>
+            </div>
+            <div class="swatch">
+              <div class="swatch-box" style={`background:${colors.semantic.info}`}></div>
+              <Typography size="sm" weight="strong">Info</Typography>
+              <Typography size="xs" color="secondary">{colors.semantic.info}</Typography>
+            </div>
+            <div class="swatch">
+              <div class="swatch-box" style={`background:${colors.semantic.lightBlue}`}></div>
+              <Typography size="sm" weight="strong">Light Blue</Typography>
+              <Typography size="xs" color="secondary">{colors.semantic.lightBlue}</Typography>
+            </div>
+            <div class="swatch">
+              <div class="swatch-box" style={`background:${colors.semantic.cream}`}></div>
+              <Typography size="sm" weight="strong">Cream</Typography>
+              <Typography size="xs" color="secondary">{colors.semantic.cream}</Typography>
+            </div>
+          </div>
+          
+          <div class="component-docs">
+            <div class="component-title">Color System</div>
+            <div class="component-description">Primary brand colors, semantic colors, and component-specific colors with CSS custom properties for easy theming.</div>
+            <div class="component-props">import { colors, semantic } from '@/tokens'</div>
+          </div>
+        </div>
+
+        <!-- Typography -->
+        <div class="component-demo">
+          <Typography element="h3" size="xl" weight="heading">Typography</Typography>
+          <div class="grid">
+            <div>
+              <Typography element="h1" size="5xl" weight="display">Heading 1</Typography>
+              <Typography size="sm" color="secondary">5xl / Display / Tight</Typography>
+            </div>
+            <div>
+              <Typography element="h2" size="3xl" weight="heading">Heading 2</Typography>
+              <Typography size="sm" color="secondary">3xl / Heading / Tight</Typography>
+            </div>
+            <div>
+              <Typography element="h3" size="2xl" weight="heading">Heading 3</Typography>
+              <Typography size="sm" color="secondary">2xl / Heading / Snug</Typography>
+            </div>
+            <div>
+              <Typography size="lg">Body Large</Typography>
+              <Typography size="sm" color="secondary">lg / Body / Normal</Typography>
+            </div>
+            <div>
+              <Typography>Body Text</Typography>
+              <Typography size="sm" color="secondary">base / Body / Normal</Typography>
+            </div>
+            <div>
+              <Typography size="sm">Body Small</Typography>
+              <Typography size="xs" color="secondary">sm / Body / Normal</Typography>
+            </div>
+            <div>
+              <Typography size="xs">Caption</Typography>
+              <Typography size="xs" color="secondary">xs / Body / Normal</Typography>
+            </div>
+          </div>
+          
+          <div class="component-docs">
+            <div class="component-title">Typography System</div>
+            <div class="component-description">Font families, sizes, weights, line heights, and predefined text styles for consistent typography.</div>
+            <div class="component-props">import { typography, semantic } from '@/tokens'</div>
+            <div class="component-props">Available sizes: xs, sm, md, lg, xl, 2xl, 3xl, 4xl, 4.5xl, 5xl</div>
+            <div class="component-props">Available weights: body, emphasis, strong, heading, display</div>
+          </div>
+        </div>
+
+        <!-- Spacing -->
+        <div class="component-demo">
+          <Typography element="h3" size="xl" weight="heading">Spacing Scale</Typography>
+          <div class="grid">
+            <div style="display: flex; align-items: center; gap: 1rem;">
+              <div style={`width: ${spacing.scale[4]}; height: ${spacing.scale[4]}; background: #3b82f6; border-radius: 4px;`}></div>
+              <Typography size="sm">4 (1rem / 16px)</Typography>
+            </div>
+            <div style="display: flex; align-items: center; gap: 1rem;">
+              <div style={`width: ${spacing.scale[8]}; height: ${spacing.scale[8]}; background: #3b82f6; border-radius: 4px;`}></div>
+              <Typography size="sm">8 (2rem / 32px)</Typography>
+            </div>
+            <div style="display: flex; align-items: center; gap: 1rem;">
+              <div style={`width: ${spacing.scale[12]}; height: ${spacing.scale[12]}; background: #3b82f6; border-radius: 4px;`}></div>
+              <Typography size="sm">12 (3rem / 48px)</Typography>
+            </div>
+            <div style="display: flex; align-items: center; gap: 1rem;">
+              <div style={`width: ${spacing.scale[16]}; height: ${spacing.scale[16]}; background: #3b82f6; border-radius: 4px;`}></div>
+              <Typography size="sm">16 (4rem / 64px)</Typography>
+            </div>
+            <div style="display: flex; align-items: center; gap: 1rem;">
+              <div style={`width: ${spacing.scale[20]}; height: ${spacing.scale[20]}; background: #3b82f6; border-radius: 4px;`}></div>
+              <Typography size="sm">20 (5rem / 80px)</Typography>
+            </div>
+            <div style="display: flex; align-items: center; gap: 1rem;">
+              <div style={`width: ${spacing.scale[24]}; height: ${spacing.scale[24]}; background: #3b82f6; border-radius: 4px;`}></div>
+              <Typography size="sm">24 (6rem / 96px)</Typography>
+            </div>
+          </div>
+          
+          <div class="component-docs">
+            <div class="component-title">Spacing System</div>
+            <div class="component-description">Consistent spacing scale, component spacing, and responsive breakpoint spacing for layout consistency.</div>
+            <div class="component-props">import { spacing } from '@/tokens'</div>
+            <div class="component-props">Available scales: 0, 1, 2, 3, 4, 5, 6, 7, 8, 10, 12, 16, 20, 24</div>
+          </div>
+        </div>
+
+        <!-- Effects -->
+        <div class="component-demo">
+          <Typography element="h3" size="xl" weight="heading">Effects & Transitions</Typography>
+          <div class="grid">
+            <div>
+              <Typography size="sm" weight="strong">Shadows</Typography>
+              <Typography size="xs" color="secondary">sm: {effects.shadow.sm}</Typography>
+              <Typography size="xs" color="secondary">md: {effects.shadow.md}</Typography>
+              <Typography size="xs" color="secondary">lg: {effects.shadow.lg}</Typography>
+            </div>
+            <div>
+              <Typography size="sm" weight="strong">Transitions</Typography>
+              <Typography size="xs" color="secondary">fast: {effects.transition.fast}</Typography>
+              <Typography size="xs" color="secondary">normal: {effects.transition.normal}</Typography>
+              <Typography size="xs" color="secondary">slow: {effects.transition.slow}</Typography>
+            </div>
+            <div>
+              <Typography size="sm" weight="strong">Border Radius</Typography>
+              <Typography size="xs" color="secondary">sm: {spacing.borderRadius.sm}</Typography>
+              <Typography size="xs" color="secondary">md: {spacing.borderRadius.md}</Typography>
+              <Typography size="xs" color="secondary">lg: {spacing.borderRadius.lg}</Typography>
+              <Typography size="xs" color="secondary">pill: {spacing.borderRadius.pill}</Typography>
+            </div>
+          </div>
+          
+          <div class="component-docs">
+            <div class="component-title">Effects System</div>
+            <div class="component-description">Shadows, transitions, transforms, and visual effects for consistent component styling.</div>
+            <div class="component-props">import { effects } from '@/tokens'</div>
+          </div>
+        </div>
+      </section>
     </div>
 
-    <Typography element="h3" size="xl" weight="heading">Inputs</Typography>
-    <div class="grid">
-      <Input label="Name" name="name" placeholder="Your name" />
-      <Input label="Email" name="email" type="email" placeholder="you@example.com" />
+    <!-- Atoms Tab -->
+    <div id="atoms" class="tab-content">
+      <section class="section">
+        <div class="section-header">
+          <Typography element="h2" size="2xl" weight="heading">Atoms</Typography>
+          <Typography>Basic building blocks - the smallest functional components in the system.</Typography>
+        </div>
+
+        <!-- Typography Atom -->
+        <div class="component-demo">
+          <Typography element="h3" size="xl" weight="heading">Typography</Typography>
+          <div class="grid">
+            <Typography element="h1">Heading 1</Typography>
+            <Typography element="h2">Heading 2</Typography>
+            <Typography element="h3">Heading 3</Typography>
+            <Typography element="p">Body text example</Typography>
+            <Typography size="lg">Large text</Typography>
+            <Typography size="sm">Small text</Typography>
+          </div>
+          
+          <div class="component-docs">
+            <div class="component-title">Typography Component</div>
+            <div class="component-description">Flexible text component that renders any HTML element with consistent styling and responsive behavior.</div>
+            <div class="component-props">element: 'h1' | 'h2' | 'h3' | 'p' | 'span' | 'div' | 'label'</div>
+            <div class="component-props">size: 'xs' | 'sm' | 'base' | 'lg' | 'xl' | '2xl' | '3xl' | '4xl' | '5xl'</div>
+            <div class="component-props">weight: 'body' | 'emphasis' | 'strong' | 'heading' | 'bold' | 'display'</div>
+          </div>
+        </div>
+
+        <!-- Button Atom -->
+        <div class="component-demo">
+          <Typography element="h3" size="xl" weight="heading">Button</Typography>
+          <div style="display:flex;gap:12px;flex-wrap:wrap;margin-bottom:1rem;">
+            <Button variant="primary" size="md">Primary</Button>
+            <Button variant="secondary" size="md">Secondary</Button>
+            <Button variant="ghost" size="md">Ghost</Button>
+            <Button variant="outline" size="md">Outline</Button>
+          </div>
+          <div style="display:flex;gap:12px;flex-wrap:wrap;">
+            <Button variant="primary" size="lg">Large</Button>
+            <Button variant="primary" size="md">Medium</Button>
+            <Button variant="primary" size="sm">Small</Button>
+          </div>
+          
+          <div class="component-docs">
+            <div class="component-title">Button Component</div>
+            <div class="component-description">Interactive button component with multiple variants, sizes, and states for consistent user interactions.</div>
+            <div class="component-props">variant: 'primary' | 'secondary' | 'ghost' | 'outline'</div>
+            <div class="component-props">size: 'sm' | 'md' | 'lg'</div>
+            <div class="component-props">disabled: boolean</div>
+          </div>
+        </div>
+
+        <!-- Input Atom -->
+        <div class="component-demo">
+          <Typography element="h3" size="xl" weight="heading">Input</Typography>
+          <div class="grid">
+            <Input label="Name" name="name" placeholder="Your name" />
+            <Input label="Email" name="email" type="email" placeholder="you@example.com" />
+            <Input label="Phone" name="phone" type="tel" placeholder="0400 000 000" />
+          </div>
+          
+          <div class="component-docs">
+            <div class="component-title">Input Component</div>
+            <div class="component-description">Form input component with labels, validation states, and consistent styling across all form types.</div>
+            <div class="component-props">label: string</div>
+            <div class="component-props">name: string</div>
+            <div class="component-props">type: 'text' | 'email' | 'tel' | 'password' | 'number'</div>
+            <div class="component-props">placeholder: string</div>
+            <div class="component-props">required: boolean</div>
+          </div>
+        </div>
+
+        <!-- Other Atoms -->
+        <div class="component-demo">
+          <Typography element="h3" size="xl" weight="heading">Other Atoms</Typography>
+          <div class="grid">
+            <div>
+              <Badge>Most Popular</Badge>
+              <Typography size="sm" color="secondary">Badge Component</Typography>
+            </div>
+            <div>
+              <Icon name="phone" />
+              <Typography size="sm" color="secondary">Icon Component</Typography>
+            </div>
+            <div>
+              <Logo />
+              <Typography size="sm" color="secondary">Logo Component</Typography>
+            </div>
+            <div>
+              <Slider min={0} max={100} value={50} step={5} />
+              <Typography size="sm" color="secondary">Slider Component</Typography>
+            </div>
+          </div>
+          
+          <div class="component-docs">
+            <div class="component-title">Additional Atoms</div>
+            <div class="component-description">Badge, Icon, Logo, and Slider components for various UI needs.</div>
+          </div>
+        </div>
+
+        <!-- Container Atom -->
+        <div class="component-demo">
+          <Typography element="h3" size="xl" weight="heading">Layout · Container</Typography>
+          <Container>
+            <Typography>Container provides max-width and responsive padding for consistent layout boundaries.</Typography>
+          </Container>
+          
+          <div class="component-docs">
+            <div class="component-title">Container Component</div>
+            <div class="component-description">Layout wrapper that provides consistent max-width and responsive padding for content sections.</div>
+            <div class="component-props">maxWidth: string (default: '1272px')</div>
+            <div class="component-props">padding: string (default: '1rem')</div>
+          </div>
+        </div>
+      </section>
     </div>
 
-    <Typography element="h3" size="xl" weight="heading">Badges, Icons, Logo, Slider</Typography>
-    <div class="grid">
-      <Badge>Most Popular</Badge>
-      <Icon name="phone" />
-      <Logo />
-      <Slider min={0} max={100} value={50} step={5} />
+    <!-- Molecules Tab -->
+    <div id="molecules" class="tab-content">
+      <section class="section">
+        <div class="section-header">
+          <Typography element="h2" size="2xl" weight="heading">Molecules</Typography>
+          <Typography>Simple combinations of atoms that form more complex, reusable components.</Typography>
+        </div>
+
+        <!-- Stat Cards -->
+        <div class="component-demo">
+          <Typography element="h3" size="xl" weight="heading">Stat Cards</Typography>
+          <div class="grid">
+            <StatCard value="97%" label="Loan approval rate" />
+            <StatCard value="14" label="Years of experience" />
+            <StatCard value="2,000+" label="Happy customers" />
+          </div>
+          
+          <div class="component-docs">
+            <div class="component-title">StatCard Component</div>
+            <div class="component-description">Display key statistics with large numbers and descriptive labels for highlighting important metrics.</div>
+            <div class="component-props">value: string</div>
+            <div class="component-props">label: string</div>
+            <div class="component-props">variant: 'default' | 'highlight'</div>
+          </div>
+        </div>
+
+        <!-- Purpose Cards -->
+        <div class="component-demo">
+          <Typography element="h3" size="xl" weight="heading">Purpose Cards</Typography>
+          <div class="grid">
+            <PurposeCard 
+              title="Buy My First Home" 
+              description="Navigate your first home purchase confidently and stress-free with full guidance on each step." 
+              icon="home-icon" 
+              image="/images/upgrade.webp" 
+              href="#" 
+              badge="Most Popular" 
+              variant="peach" 
+            />
+            <PurposeCard 
+              title="Refinance My Loan" 
+              description="Reduce your home loan repayments and achieve financial flexibility." 
+              icon="upgrade-icon" 
+              image="/images/upgrade.webp" 
+              href="#" 
+              variant="default" 
+            />
+          </div>
+          
+          <div class="component-docs">
+            <div class="component-title">PurposeCard Component</div>
+            <div class="component-description">Feature cards for different loan purposes with images, descriptions, and call-to-action links.</div>
+            <div class="component-props">title: string</div>
+            <div class="component-props">description: string</div>
+            <div class="component-props">icon: string</div>
+            <div class="component-props">image: string</div>
+            <div class="component-props">href: string</div>
+            <div class="component-props">badge?: string</div>
+            <div class="component-props">variant: 'default' | 'peach' | 'blue'</div>
+          </div>
+        </div>
+
+        <!-- Other Molecules -->
+        <div class="component-demo">
+          <Typography element="h3" size="xl" weight="heading">Other Molecules</Typography>
+          <div class="grid">
+            <div>
+              <FooterStatCard number="97%" description="Loan approval rate" />
+              <Typography size="sm" color="secondary">FooterStatCard</Typography>
+            </div>
+            <div>
+              <PhoneLink phone="1300 088 065" />
+              <Typography size="sm" color="secondary">PhoneLink</Typography>
+            </div>
+            <div>
+              <Tooltip text="Helpful tip">Hover me</Tooltip>
+              <Typography size="sm" color="secondary">Tooltip</Typography>
+            </div>
+            <div>
+              <SocialLinks />
+              <Typography size="sm" color="secondary">SocialLinks</Typography>
+            </div>
+          </div>
+          
+          <div class="grid">
+            <div>
+              <CalculatorResult label="Borrowing Power" value="$650,000" />
+              <Typography size="sm" color="secondary">CalculatorResult</Typography>
+            </div>
+            <div>
+              <AwardItem 
+                title="Mortgage Broker of the Year 2024" 
+                image="/images/awards/Mortgage-Broker-Brisbane-Hunter-Galloway-Award-2024.webp" 
+              />
+              <Typography size="sm" color="secondary">AwardItem</Typography>
+            </div>
+          </div>
+          
+          <div class="component-docs">
+            <div class="component-title">Additional Molecules</div>
+            <div class="component-description">Various molecular components for different UI patterns and interactions.</div>
+          </div>
+        </div>
+      </section>
     </div>
 
-    <Typography element="h3" size="xl" weight="heading">Layout · Container</Typography>
-    <Container>
-      <Typography>Container provides max-width and responsive padding.</Typography>
-    </Container>
-  </section>
+    <!-- Organisms Tab -->
+    <div id="organisms" class="tab-content">
+      <section class="section">
+        <div class="section-header">
+          <Typography element="h2" size="2xl" weight="heading">Organisms</Typography>
+          <Typography>Complex components composed of molecules and atoms that form distinct sections of the interface.</Typography>
+        </div>
 
-  <section class="section">
-    <Typography element="h2" size="2xl" weight="heading">Molecules · Stat Cards</Typography>
-    <div class="grid">
-      <StatCard value="97%" label="Loan approval rate" />
-      <StatCard value="14" label="Years of experience" />
-      <StatCard value="2,000+" label="Happy customers" />
-    </div>
-  </section>
+        <!-- Header Organism -->
+        <div class="component-demo">
+          <Typography element="h3" size="xl" weight="heading">Header</Typography>
+          <div class="organism-block">
+            <Header />
+          </div>
+          
+          <div class="component-docs">
+            <div class="component-title">Header Component</div>
+            <div class="component-description">Main navigation header with logo, navigation menu, and contact information.</div>
+          </div>
+        </div>
 
-  <section class="section">
-    <Typography element="h2" size="2xl" weight="heading">Molecules · Purpose Cards</Typography>
-    <div class="grid">
-      <PurposeCard title="Buy My First Home" description="Navigate your first home purchase confidently and stress-free with full guidance on each step." icon="home-icon" image="/images/upgrade.webp" href="#" badge="Most Popular" variant="peach" />
-      <PurposeCard title="Refinance My Loan" description="Reduce your home loan repayments and achieve financial flexibility." icon="upgrade-icon" image="/images/upgrade.webp" href="#" variant="default" />
+        <!-- Other Organisms -->
+        <div class="component-demo">
+          <Typography element="h3" size="xl" weight="heading">Other Organisms</Typography>
+          <div class="organism-stack">
+            <div class="organism-block">
+              <Typography element="h4" size="lg" weight="heading">Awards Section</Typography>
+              <Awards />
+            </div>
+            <div class="organism-block">
+              <Typography element="h4" size="lg" weight="heading">Bank Logos</Typography>
+              <BankLogos />
+            </div>
+            <div class="organism-block">
+              <Typography element="h4" size="lg" weight="heading">Statistics</Typography>
+              <Statistics />
+            </div>
+            <div class="organism-block">
+              <Typography element="h4" size="lg" weight="heading">Reviews</Typography>
+              <Reviews />
+            </div>
+            <div class="organism-block">
+              <Typography element="h4" size="lg" weight="heading">Mortgage Calculator</Typography>
+              <MortgageRentCalculator />
+            </div>
+          </div>
+          
+          <div class="component-docs">
+            <div class="component-title">Additional Organisms</div>
+            <div class="component-description">Complex components that form major sections of the website including awards, statistics, reviews, and interactive tools.</div>
+          </div>
+        </div>
+      </section>
     </div>
-  </section>
 
-  <section class="section">
-    <Typography element="h2" size="2xl" weight="heading">Molecules · Other</Typography>
-    <div class="grid">
-      <FooterStatCard number="97%" description="Loan approval rate" />
-      <PhoneLink phone="1300 088 065" />
-      <Tooltip text="Helpful tip">Hover me</Tooltip>
-      <SocialLinks />
-    </div>
-    <div class="grid">
-      <CalculatorResult label="Borrowing Power" value="$650,000" />
-      <AwardItem title="Mortgage Broker of the Year 2024" image="/images/awards/Mortgage-Broker-Brisbane-Hunter-Galloway-Award-2024.webp" />
-    </div>
-  </section>
+    <!-- Page Templates Tab -->
+    <div id="templates" class="tab-content">
+      <section class="section">
+        <div class="section-header">
+          <Typography element="h2" size="2xl" weight="heading">Page Templates</Typography>
+          <Typography>Complete page layouts and patterns that combine organisms into full page experiences.</Typography>
+        </div>
 
-  <section class="section">
-    <Typography element="h2" size="2xl" weight="heading">Organisms</Typography>
-    <div class="organism-stack">
-      <div class="organism-block"><Header /></div>
-      <div class="organism-block">
-        <HeroWidget
-          titleHtml={'<b>Get a home loan </b>with full <span class="text-nowrap">guidance and</span> expert assistance'}
-          benefits={[
-            {
-              text: 'Market-leading loan approval rate in Australia of 97%',
-              tooltip:
-                "Approximately 40% of home loan applications were rejected in December 2018 based on a survey of 52,000 households completed by 'DigitalFinance Analytics DFA'. In 2017 to 2018 Hunter Galloway submitted 342 home loan applications and had 8 applications rejected, giving a 2.33% rejection rate.",
-            },
-            { text: 'Variety of options due to direct access to 30+ Australian banks & lenders' },
-            {
-              text: '#1 rated Mortgage Broker in Brisbane',
-              tooltip:
-                'The highest rated and most reviewed Mortgage Broker in Brisbane: 5-star rating based on 2000+ reviews on Google',
-            },
-          ]}
-          cta={{ text: 'Calculate my borrowing capacity', href: '/mortgage-calculator/' }}
-          image={{
-            desktop:
-              '/images/what-you-see-when-you-look-up-full-length-shot-affectionate-family-four-holding-cardboard-roof-their-heads-while-sitting-living-room-home.jpg',
-            mobile:
-              '/images/what-you-see-when-you-look-up-full-length-shot-affectionate-family-four-holding-cardboard-roof-their-heads-while-sitting-living-room-home.png',
-            alt: 'Family holding cardboard house',
-          }}
-          yearsExperience={'14'}
-          reviews={{ logoSrc: '/images/google.svg', text: 'Based on<br class="d-lg-block d-none"> 2000+ reviews' }}
-          variant={'general'}
-          mediaPosition={'right'}
-        />
-      </div>
+        <div class="component-demo">
+          <Typography element="h3" size="xl" weight="heading">Home Page Template</Typography>
+          <Typography>Standard home page layout combining HeroWidget, Awards, Statistics, Reviews, and Footer organisms.</Typography>
+          
+          <div class="component-docs">
+            <div class="component-title">Home Page Pattern</div>
+            <div class="component-description">Main landing page template with hero section, social proof, and conversion elements.</div>
+            <div class="component-props">Layout: Header → Hero → Awards → Statistics → Reviews → Footer</div>
+          </div>
+        </div>
+
+        <div class="component-demo">
+          <Typography element="h3" size="xl" weight="heading">Calculator Page Template</Typography>
+          <Typography>Interactive calculator page with MortgageRentCalculator organism and supporting content.</Typography>
+          
+          <div class="component-docs">
+            <div class="component-title">Calculator Page Pattern</div>
+            <div class="component-description">Interactive tool page template focused on user engagement and conversion.</div>
+            <div class="component-props">Layout: Header → Calculator → Supporting Content → Footer</div>
+          </div>
+        </div>
+
+        <div class="component-demo">
+          <Typography element="h3" size="xl" weight="heading">Contact/About Page Template</Typography>
+          <Typography>Information pages with HeroWidget (professional variant), content sections, and contact forms.</Typography>
+          
+          <div class="component-docs">
+            <div class="component-title">Contact/About Page Pattern</div>
+            <div class="component-description">Professional information page template with hero section and content areas.</div>
+            <div class="component-props">Layout: Header → Hero (professional) → Content → Contact Form → Footer</div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+
+  <script>
+    // Tab functionality
+    document.addEventListener('DOMContentLoaded', function() {
+      const tabs = document.querySelectorAll('.nav-tab');
+      const tabContents = document.querySelectorAll('.tab-content');
       
-      <!-- Variant demos -->
-      <div class="organism-block">
-        <HeroWidget
-          titleHtml={'For medical professionals: <b>Specialist lending</b> with premium policy access'}
-          benefits={[
-            { text: 'Doctor, Dentist, Vet and Allied Health policy expertise' },
-            { text: 'LMI waivers up to 90–95% with select lenders' },
-            { text: 'Dedicated case management to move fast' },
-          ]}
-          cta={{ text: 'Talk to a specialist', href: '/contact/' }}
-          image={{
-            desktop: '/images/upgrade.webp',
-            mobile: '/images/upgrade.webp',
-            alt: 'Professional client profile',
-          }}
-          yearsExperience={'14'}
-          reviews={{ text: 'Based on 2,000+ reviews' }}
-          variant={'professional'}
-          mediaPosition={'left'}
-        />
-      </div>
-      
-      <div class="organism-block">
-        <HeroWidget
-          titleHtml={'Check your <b>borrowing power</b> in minutes'}
-          benefits={[
-            { text: 'Takes 2 minutes — no credit check' },
-            { text: 'See repayments and lenders instantly' },
-          ]}
-          cta={{ text: 'Open calculator', href: '/mortgage-calculator/' }}
-          image={{
-            desktop: '/images/upgrade.webp',
-            mobile: '/images/upgrade.webp',
-            alt: 'Calculator preview',
-          }}
-          reviews={{ text: 'Trusted by 2,000+ customers' }}
-          variant={'calculator'}
-          mediaPosition={'right'}
-        />
-      </div>
-      <div class="organism-block"><LoanPurpose /></div>
-      <div class="organism-block"><Awards /></div>
-      <div class="organism-block"><BankLogos /></div>
-      <div class="organism-block"><Statistics /></div>
-      <div class="organism-block"><Reviews /></div>
-      <div class="organism-block">
-        <RiskWidget 
-          title={riskWidgetDemo.title}
-          description={riskWidgetDemo.description}
-          marketStatistic={riskWidgetDemo.marketStatistic}
-          riskItems={riskWidgetDemo.riskItems}
-          variant="default"
-        />
-      </div>
-      <div class="organism-block"><PropertyMap /></div>
-      <div class="organism-block"><MortgageRentCalculator /></div>
-      <div class="organism-block"><Footer /></div>
-    </div>
-  </section>
+      tabs.forEach(tab => {
+        tab.addEventListener('click', function() {
+          const targetTab = this.getAttribute('data-tab');
+          
+          // Remove active class from all tabs and contents
+          tabs.forEach(t => t.classList.remove('active'));
+          tabContents.forEach(content => content.classList.remove('active'));
+          
+          // Add active class to clicked tab and target content
+          this.classList.add('active');
+          document.getElementById(targetTab).classList.add('active');
+        });
+      });
+    });
+  </script>
 </Layout>
