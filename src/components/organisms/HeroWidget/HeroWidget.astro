@@ -84,10 +84,8 @@ const isMediaLeft = mediaPosition === 'left';
                     {item.text}
                     <span class="item_tooltip hidden">{item.tooltip}</span>
                   </span>
-                  <span class="hero-widget-benefit-tooltip-text">
-                    {item.text === 'Market-leading' ? ' loan approval rate in Australia of 97%' : 
-                     item.text === '#1 rated' ? ' Mortgage Broker in Brisbane' : ''}
-                  </span>
+                  {item.text === 'Market-leading' ? ' loan approval rate in Australia of 97%' : 
+                   item.text === '#1 rated' ? ' Mortgage Broker in Brisbane' : ''}
                 </div>
               ) : (
                 <span class="hero-widget-benefit-text-normal">
@@ -287,7 +285,9 @@ const isMediaLeft = mediaPosition === 'left';
 
 .hero-widget-benefit-tooltip {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  align-items: baseline;
+  gap: 0;
 }
 
 .hero-widget-benefit-tooltip-trigger {
@@ -297,6 +297,7 @@ const isMediaLeft = mediaPosition === 'left';
   text-decoration: underline;
   line-height: var(--bodyLineHeight);
   cursor: help;
+  white-space: nowrap;
 }
 
 .hero-widget-benefit-tooltip-text {
