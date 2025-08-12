@@ -82,12 +82,12 @@ const isMediaLeft = mediaPosition === 'left';
                 {item.tooltip ? (
                   <p>
                     <span class="item_hover">
-                      {item.text}
+                      <span set:html={item.text} />
                       <span class="item_tooltip hidden">{item.tooltip}</span>
                     </span>
                   </p>
                 ) : (
-                  <p>{item.text}</p>
+                  <p set:html={item.text} />
                 )}
               </li>
             ))}
