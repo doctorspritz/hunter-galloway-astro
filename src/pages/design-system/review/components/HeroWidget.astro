@@ -6,12 +6,22 @@ import HeroWidget from '../../../../components/organisms/HeroWidget/HeroWidget.a
 <Layout title="HeroWidget Demo - Design System">
   <h1>HeroWidget</h1>
 
-  <!-- General variant -->
+  <!-- General variant - matches the expected screenshot -->
   <HeroWidget
     titleHtml={'<b>Get a home loan</b> with full guidance and expert assistance'}
     benefits={[
-      { text: '97% loan approval rate' },
-      { text: 'Access to 30+ Australian lenders' },
+      { 
+        text: 'Market-leading loan approval rate in Australia of 97%',
+        tooltip: 'We have the highest approval rate in the industry'
+      },
+      { 
+        text: 'Variety of options due to direct access to 30+ Australian banks & lenders',
+        tooltip: 'Access to major banks, credit unions, and specialist lenders'
+      },
+      { 
+        text: '#1 rated Mortgage Broker in Brisbane',
+        tooltip: 'Consistently rated 5 stars by our customers'
+      },
     ]}
     cta={{ text: 'Calculate my borrowing capacity', href: '/mortgage-calculator/' }}
     image={{
@@ -20,7 +30,10 @@ import HeroWidget from '../../../../components/organisms/HeroWidget/HeroWidget.a
       alt: 'Family holding cardboard house',
     }}
     yearsExperience={'14'}
-    reviews={{ text: 'Based on 2,000+ reviews' }}
+    reviews={{ 
+      logoSrc: '/images/google.svg', 
+      text: 'Based on 2000+ reviews' 
+    }}
     variant={'general'}
     mediaPosition={'right'}
   />
@@ -29,13 +42,22 @@ import HeroWidget from '../../../../components/organisms/HeroWidget/HeroWidget.a
   <HeroWidget
     titleHtml={'For medical professionals: <b>Specialist lending</b> with premium policy access'}
     benefits={[
-      { text: 'Doctor, Dentist, Vet and Allied Health policy expertise' },
-      { text: 'LMI waivers up to 90–95% with select lenders' },
+      { 
+        text: 'Doctor, Dentist, Vet and Allied Health policy expertise',
+        tooltip: 'Specialized lending solutions for medical professionals'
+      },
+      { 
+        text: 'LMI waivers up to 90–95% with select lenders',
+        tooltip: 'Save thousands on Lenders Mortgage Insurance'
+      },
     ]}
     cta={{ text: 'Talk to a specialist', href: '/contact/' }}
     image={{ desktop: '/images/upgrade.webp', mobile: '/images/upgrade.webp', alt: 'Professional client' }}
     yearsExperience={'14'}
-    reviews={{ text: 'Trusted by 2,000+ customers' }}
+    reviews={{ 
+      logoSrc: '/images/google.svg', 
+      text: 'Trusted by 2,000+ customers' 
+    }}
     variant={'professional'}
     mediaPosition={'left'}
   />

@@ -86,6 +86,12 @@ export const component = {
     breakpoint: {
       tablet: semantic.breakpoint.tablet,
     },
+    title: {
+      fontSize: semantic.typography.size['5xl'],
+      lineHeight: semantic.typography.lineHeight.tight,
+      fontWeight: semantic.typography.weight.display,
+      color: semantic.color.text.primary,
+    },
   },
 
   // Card component tokens

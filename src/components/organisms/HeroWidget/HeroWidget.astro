@@ -148,6 +148,10 @@ const isMediaLeft = mediaPosition === 'left';
   tooltipWidth: component.heroWidget.tooltip.width,
   tooltipFontSize: component.heroWidget.tooltip.fontSize,
   breakpointTablet: component.heroWidget.breakpoint.tablet,
+  titleFontSize: component.heroWidget.title.fontSize,
+  titleLineHeight: component.heroWidget.title.lineHeight,
+  titleWeight: component.heroWidget.title.weight,
+  titleColor: component.heroWidget.title.color,
 }}>
 .hg-hero {
   padding: var(--spaceMd) 0 var(--spaceXxl) 0;
@@ -181,7 +185,7 @@ const isMediaLeft = mediaPosition === 'left';
   font-size: var(--titleFontSize);
   line-height: var(--titleLineHeight);
   font-weight: var(--titleWeight);
-  color: var(--textPrimary);
+  color: var(--titleColor);
   margin: 0 0 var(--spaceMd) 0;
 }
 
