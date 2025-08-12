@@ -58,194 +58,528 @@ const {
 const isMediaLeft = mediaPosition === 'left';
 ---
 
-<section class={[
-  'hg-hero',
-  `hg-hero--${variant}`,
-  isMediaLeft ? 'hg-hero--media-left' : 'hg-hero--media-right',
-].join(' ')}>
-  <Container>
-    <div class="hg-hero__inner">
-      {isMediaLeft && (
-        <picture class="hg-hero__media d-lg-block d-none">
-          <img src={image.desktop} alt={image.alt} loading="eager"/>
-        </picture>
-      )}
-
-      <div class="hg-hero__content">
-        <h1 set:html={titleHtml} />
-
-        {benefits?.length > 0 && (
-          <ul class="hg-hero__benefits list">
-            {benefits.map((item) => (
-              <li class="flex">
-                <img src="/images/24_checkmark.svg" alt="checkmark" />
-                {item.tooltip ? (
-                  <p>
-                    <span class="item_hover">
-                      <span set:html={item.text} />
-                      <span class="item_tooltip hidden">{item.tooltip}</span>
-                    </span>
-                  </p>
-                ) : (
-                  <p set:html={item.text} />
-                )}
-              </li>
-            ))}
-          </ul>
-        )}
-
-        <Button variant="primary" size="lg" href={cta.href} class="hg-hero__cta">
-          {cta.text}
-          <img class="d-lg-none ml-2" src="/images/16_arrow_r_black.svg" alt="arrow image" />
-        </Button>
-
-        <div class="flex hg-hero__features">
-          <div class="items-center hg-hero__years">
-            <div class="hg-hero__count">
-              <p class="d-lg-block d-none">{yearsExperience}</p>
-              <svg class="d-lg-none hg-hero__years-icon" xmlns="http://www.w3.org/2000/svg" width="56" height="37" viewBox="0 0 56 37" fill="none">
-                <path d="M22.8952 32H15.7V18.6477C15.7 18.4015 15.7 17.9521 15.7 17.2996C15.7 16.6347 15.706 15.9022 15.7179 15.1019C15.7419 14.3016 15.7718 13.5814 15.8077 12.9412C15.4966 13.3228 15.2036 13.6491 14.9284 13.92C14.6653 14.1908 14.4081 14.4432 14.1569 14.6772L11.1783 17.2072L7.5 12.5534L16.5074 5H22.8952V32Z" fill="currentColor" />
-                <path d="M48.5 26.7736H45.6112V32H38.6133V26.7736H28.1525V21.4179L39.0619 5H45.6112V21.3256H48.5V26.7736ZM38.6133 21.3256V18.186C38.6133 17.9029 38.6193 17.5458 38.6313 17.1149C38.6433 16.684 38.6552 16.2531 38.6672 15.8222C38.6911 15.3789 38.709 15.0096 38.721 14.7141C38.7449 14.4063 38.7629 14.2401 38.7748 14.2155H38.5775C38.3502 14.7695 38.1408 15.2312 37.9495 15.6005C37.7581 15.9576 37.5069 16.3824 37.1958 16.8748L34.2891 21.3256H38.6133Z" fill="currentColor" />
-              </svg>
-            </div>
-            <p>Years<br class="d-lg-block d-none" /> of experience</p>
-          </div>
-          <div class="items-center hg-hero__reviews">
-            {reviews.logoSrc && <img src={reviews.logoSrc} alt="reviews logo" />}
-            <p set:html={reviews.text} />
-          </div>
+<div class="hero-widget-container">
+  <div class="hero-widget-inner">
+    <div class="hero-widget-content">
+      
+      <!-- Title Section -->
+      <div class="hero-widget-title">
+        <div class="hero-widget-title-inner">
+          <span set:html={titleHtml} />
         </div>
       </div>
 
-      {!isMediaLeft && (
-        <picture class="hg-hero__media d-lg-block d-none">
-          <img src={image.desktop} alt={image.alt} loading="eager"/>
-        </picture>
-      )}
+      <!-- Benefits Section -->
+      <div class="hero-widget-benefits">
+        {benefits.map((item) => (
+          <div class="hero-widget-benefit-item">
+            <div class="hero-widget-checkmark-container">
+              <div class="hero-widget-checkmark">
+                <div class="hero-widget-checkmark-bg"></div>
+                <div class="hero-widget-checkmark-check"></div>
+              </div>
+            </div>
+            <div class="hero-widget-benefit-text">
+              {item.tooltip ? (
+                <div class="hero-widget-benefit-tooltip">
+                  <div class="hero-widget-benefit-tooltip-trigger">
+                    <span class="item_hover">
+                      {item.text}
+                      <span class="item_tooltip hidden">{item.tooltip}</span>
+                    </span>
+                  </div>
+                  <div class="hero-widget-benefit-tooltip-text">
+                    {item.text === 'Market-leading' ? ' loan approval rate in Australia of 97%' : 
+                     item.text === '#1 rated' ? ' Mortgage Broker in Brisbane' : ''}
+                  </div>
+                </div>
+              ) : (
+                <div class="hero-widget-benefit-text-normal">
+                  {item.text}
+                </div>
+              )}
+            </div>
+          </div>
+        ))}
+      </div>
 
-      <picture class="hg-hero__media d-lg-none">
-        <img src={image.mobile} alt={image.alt} loading="eager"/>
-      </picture>
+      <!-- CTA Button -->
+      <div class="hero-widget-cta">
+        <div class="hero-widget-cta-text">
+          <a href={cta.href} class="hero-widget-cta-link">{cta.text}</a>
+        </div>
+      </div>
+
+      <!-- Features Section -->
+      <div class="hero-widget-features">
+        <div class="hero-widget-experience">
+          <div class="hero-widget-experience-circle">
+            <div class="hero-widget-experience-number">{yearsExperience}</div>
+          </div>
+          <div class="hero-widget-experience-text">
+            <div>Years<br/>of experience</div>
+          </div>
+        </div>
+        <div class="hero-widget-reviews">
+          <div class="hero-widget-logo-container">
+            {reviews.logoSrc && (
+              <div class="hero-widget-logo">
+                <img src={reviews.logoSrc} alt="reviews logo" />
+              </div>
+            )}
+          </div>
+          <div class="hero-widget-reviews-text">
+            <div set:html={reviews.text} />
+          </div>
+        </div>
+      </div>
     </div>
-  </Container>
-</section>
+
+    <!-- Media Section -->
+    <img 
+      class="hero-widget-media" 
+      src={image.desktop} 
+      alt={image.alt}
+      loading="eager"
+    />
+  </div>
+</div>
 
 <style define:vars={{
-  spaceMd: semantic.space.md,
-  spaceLg: semantic.space.lg,
-  spaceXl: semantic.space.xl,
-  spaceXxl: semantic.space['2xl'],
-  radiusMd: semantic.radius.md,
-  brandPrimary: semantic.color.brand.primary,
-  surfacePrimary: semantic.color.surface.primary,
-  textPrimary: semantic.color.text.primary,
-  shadowSubtle: semantic.shadow.subtle,
-  durationNormal: semantic.duration.normal,
-  contentMaxWidth: component.heroWidget.content.maxWidth,
-  mediaMaxWidth: component.heroWidget.media.maxWidth,
-  checkmarkSize: component.heroWidget.checkmark.size,
-  checkmarkMarginTop: component.heroWidget.checkmark.marginTop,
+  // Layout
+  containerMaxWidth: component.heroWidget.layout.containerMaxWidth,
+  contentMaxWidth: component.heroWidget.layout.contentMaxWidth,
+  checkmarkContainerMaxWidth: component.heroWidget.layout.checkmarkContainerMaxWidth,
+  mediaMaxWidth: component.heroWidget.layout.mediaMaxWidth,
+  mediaWidth: component.heroWidget.layout.mediaWidth,
+  minHeight: component.heroWidget.layout.minHeight,
+  
+  // Spacing
+  paddingX: component.heroWidget.spacing.paddingX,
+  paddingTop: component.heroWidget.spacing.paddingTop,
+  paddingBottom: component.heroWidget.spacing.paddingBottom,
+  paddingBottomSmall: component.heroWidget.spacing.paddingBottomSmall,
+  paddingBottomMedium: component.heroWidget.spacing.paddingBottomMedium,
+  paddingTopLarge: component.heroWidget.spacing.paddingTopLarge,
+  paddingRight: component.heroWidget.spacing.paddingRight,
+  paddingContainer: component.heroWidget.spacing.paddingContainer,
+  paddingPixel: component.heroWidget.spacing.paddingPixel,
+  
+  // Gaps
+  gapSmall: component.heroWidget.gaps.small,
+  gapMedium: component.heroWidget.gaps.medium,
+  gapLarge: component.heroWidget.gaps.large,
+  gapExtraLarge: component.heroWidget.gaps.extraLarge,
+  
+  // Checkmark dimensions
+  checkmarkWidth: component.heroWidget.dimensions.checkmark.width,
+  checkmarkHeight: component.heroWidget.dimensions.checkmark.height,
+  checkmarkInnerWidth: component.heroWidget.dimensions.checkmark.innerWidth,
+  checkmarkInnerHeight: component.heroWidget.dimensions.checkmark.innerHeight,
+  checkmarkCheckWidth: component.heroWidget.dimensions.checkmark.checkWidth,
+  checkmarkCheckHeight: component.heroWidget.dimensions.checkmark.checkHeight,
+  checkmarkLeftOffset: component.heroWidget.dimensions.checkmark.leftOffset,
+  checkmarkTopOffset: component.heroWidget.dimensions.checkmark.topOffset,
+  checkmarkCheckLeftOffset: component.heroWidget.dimensions.checkmark.checkLeftOffset,
+  checkmarkCheckTopOffset: component.heroWidget.dimensions.checkmark.checkTopOffset,
+  
+  // Button dimensions
+  buttonWidth: component.heroWidget.dimensions.button.width,
+  buttonMinHeight: component.heroWidget.dimensions.button.minHeight,
+  buttonBorderRadius: component.heroWidget.dimensions.button.borderRadius,
+  
+  // Experience dimensions
+  experienceWidth: component.heroWidget.dimensions.experience.width,
+  experienceHeight: component.heroWidget.dimensions.experience.height,
+  experienceFontSize: component.heroWidget.dimensions.experience.fontSize,
+  experienceLineHeight: component.heroWidget.dimensions.experience.lineHeight,
+  experienceBorderRadius: component.heroWidget.dimensions.experience.borderRadius,
+  experienceOutlineWidth: component.heroWidget.dimensions.experience.outlineWidth,
+  experienceOutlineOffset: component.heroWidget.dimensions.experience.outlineOffset,
+  
+  // Logo dimensions
+  logoWidth: component.heroWidget.dimensions.logo.width,
+  logoHeight: component.heroWidget.dimensions.logo.height,
+  logoMaxWidth: component.heroWidget.dimensions.logo.maxWidth,
+  
+  // Colors
+  colorGrey27: component.heroWidget.colors.grey27,
+  colorGrey15: component.heroWidget.colors.grey15,
+  colorChartreuseGreen52: component.heroWidget.colors.chartreuseGreen52,
+  colorWhiteSolid: component.heroWidget.colors.whiteSolid,
+  colorOrange64: component.heroWidget.colors.orange64,
+  
+  // Typography
+  titleFontSize: component.heroWidget.typography.title.fontSize,
+  titleLineHeight: component.heroWidget.typography.title.lineHeight,
+  titleWeightExtrabold: component.heroWidget.typography.title.weightExtrabold,
+  titleWeightNormal: component.heroWidget.typography.title.weightNormal,
+  
+  bodyFontSize: component.heroWidget.typography.body.fontSize,
+  bodyLineHeight: component.heroWidget.typography.body.lineHeight,
+  bodyWeightNormal: component.heroWidget.typography.body.weightNormal,
+  bodyWeightSemibold: component.heroWidget.typography.body.weightSemibold,
+  
+  buttonFontSize: component.heroWidget.typography.button.fontSize,
+  buttonLineHeight: component.heroWidget.typography.button.lineHeight,
+  buttonWeightSemibold: component.heroWidget.typography.button.weightSemibold,
+  
+  experienceFontSize: component.heroWidget.typography.experience.fontSize,
+  experienceLineHeight: component.heroWidget.typography.experience.lineHeight,
+  experienceWeightExtrabold: component.heroWidget.typography.experience.weightExtrabold,
+  
+  // Shadows
+  tooltipShadow: component.heroWidget.shadows.tooltip,
   tooltipWidth: component.heroWidget.tooltip.width,
-  tooltipFontSize: component.heroWidget.tooltip.fontSize,
-  breakpointTablet: component.heroWidget.breakpoint.tablet,
-  titleFontSize: component.heroWidget.title.fontSize,
-  titleLineHeight: component.heroWidget.title.lineHeight,
-  titleWeight: component.heroWidget.title.weight,
-  titleColor: component.heroWidget.title.color,
+  
+  // Responsive
+  responsiveBreakpoint: component.heroWidget.responsive.breakpoint,
+  mobilePadding: component.heroWidget.responsive.mobilePadding,
+  mobileGap: component.heroWidget.responsive.mobileGap,
+  mobileMediaWidth: component.heroWidget.responsive.mobileMediaWidth,
 }}>
-.hg-hero {
-  padding: var(--spaceMd) 0 var(--spaceXxl) 0;
-  background: var(--surfacePrimary);
+
+.hero-widget-container {
+  align-self: stretch;
+  padding-left: var(--paddingX);
+  padding-right: var(--paddingX);
+  padding-top: var(--paddingTop);
+  padding-bottom: var(--paddingBottom);
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  display: inline-flex;
 }
 
-.hg-hero--professional {
-  background: var(--surfacePrimary);
-}
-
-.hg-hero--calculator {
-  background: var(--surfacePrimary);
-}
-
-.hg-hero__inner {
+.hero-widget-inner {
+  width: 100%;
+  max-width: var(--containerMaxWidth);
+  padding-left: var(--paddingContainer);
+  padding-right: var(--paddingContainer);
+  overflow: hidden;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
   display: flex;
+}
+
+.hero-widget-content {
+  align-self: stretch;
+  min-height: var(--minHeight);
+  justify-content: flex-start;
   align-items: flex-start;
-  gap: var(--spaceXl);
-}
-
-.hg-hero--media-left .hg-hero__inner {
-  flex-direction: row-reverse;
-}
-
-.hg-hero__content {
+  display: inline-flex;
+  flex: 1 1 0;
   max-width: var(--contentMaxWidth);
-  width: 100%;
+  gap: var(--gapLarge);
 }
 
-.hg-hero__content h1 {
-  font-size: var(--titleFontSize);
-  line-height: var(--titleLineHeight);
-  font-weight: var(--titleWeight);
-  color: var(--titleColor);
-  margin: 0 0 var(--spaceMd) 0;
-}
-
-.hg-hero__media img {
-  max-width: var(--mediaMaxWidth);
-  width: 100%;
-  border-radius: var(--radiusMd);
-}
-
-.hg-hero__benefits {
-  padding: var(--spaceLg) 0;
-}
-
-.hg-hero__benefits li {
+.hero-widget-title {
+  align-self: stretch;
+  padding-bottom: var(--paddingBottomMedium);
+  flex-direction: column;
+  justify-content: flex-start;
   align-items: flex-start;
-  gap: var(--spaceMd);
-  margin-bottom: var(--spaceMd);
+  display: flex;
 }
 
-.hg-hero__benefits li img { 
-  width: var(--checkmarkSize); 
-  height: var(--checkmarkSize); 
-  flex-shrink: 0; 
-  margin-top: var(--checkmarkMarginTop); 
+.hero-widget-title-inner {
+  align-self: stretch;
+  justify-content: center;
+  display: flex;
+  flex-direction: column;
 }
 
-.item_hover { position: relative; cursor: help; text-decoration: underline; }
+.hero-widget-benefits {
+  align-self: stretch;
+  padding-bottom: var(--paddingBottomSmall);
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: var(--gapSmall);
+  display: flex;
+}
+
+.hero-widget-benefit-item {
+  align-self: stretch;
+  justify-content: flex-start;
+  align-items: flex-start;
+  display: inline-flex;
+}
+
+.hero-widget-checkmark-container {
+  max-width: var(--checkmarkContainerMaxWidth);
+  padding-right: var(--paddingRight);
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  display: inline-flex;
+}
+
+.hero-widget-checkmark {
+  max-width: var(--contentMaxWidth);
+  overflow: hidden;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  display: flex;
+  width: var(--checkmarkWidth);
+  height: var(--checkmarkHeight);
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+.hero-widget-checkmark-bg {
+  width: var(--checkmarkInnerWidth);
+  height: var(--checkmarkInnerHeight);
+  left: var(--checkmarkLeftOffset);
+  top: var(--checkmarkTopOffset);
+  position: absolute;
+  background: var(--colorChartreuseGreen52);
+}
+
+.hero-widget-checkmark-check {
+  width: var(--checkmarkCheckWidth);
+  height: var(--checkmarkCheckHeight);
+  left: var(--checkmarkCheckLeftOffset);
+  top: var(--checkmarkCheckTopOffset);
+  position: absolute;
+  background: var(--colorWhiteSolid);
+}
+
+.hero-widget-benefit-text {
+  align-self: stretch;
+  flex: justify-content: flex-start;
+  align-items: flex-start;
+  gap: 0;
+  display: flex;
+}
+
+.hero-widget-benefit-tooltip {
+  flex: justify-content: flex-start;
+  align-items: flex-start;
+  display: flex;
+}
+
+.hero-widget-benefit-tooltip-trigger {
+  justify-content: center;
+  display: flex;
+  flex-direction: column;
+  color: var(--colorGrey15);
+  font-size: var(--bodyFontSize);
+  font-family: 'Open Sans';
+  font-weight: var(--bodyWeightSemibold);
+  text-decoration: underline;
+  line-height: var(--bodyLineHeight);
+  word-wrap: break-word;
+}
+
+.hero-widget-benefit-tooltip-text {
+  justify-content: center;
+  display: flex;
+  flex-direction: column;
+  color: var(--colorGrey15);
+  font-size: var(--bodyFontSize);
+  font-family: 'Open Sans';
+  font-weight: var(--bodyWeightNormal);
+  line-height: var(--bodyLineHeight);
+  word-wrap: break-word;
+}
+
+.hero-widget-benefit-text-normal {
+  justify-content: center;
+  display: flex;
+  flex-direction: column;
+  color: var(--colorGrey15);
+  font-size: var(--bodyFontSize);
+  font-family: 'Open Sans';
+  font-weight: var(--bodyWeightNormal);
+  line-height: var(--bodyLineHeight);
+  word-wrap: break-word;
+}
+
+.hero-widget-cta {
+  width: var(--buttonWidth);
+  max-width: var(--buttonWidth);
+  min-height: var(--buttonMinHeight);
+  background: var(--colorOrange64);
+  border-radius: var(--buttonBorderRadius);
+  justify-content: center;
+  align-items: center;
+  display: inline-flex;
+}
+
+.hero-widget-cta-text {
+  text-align: center;
+  justify-content: center;
+  display: flex;
+  flex-direction: column;
+  color: var(--colorGrey15);
+  font-size: var(--buttonFontSize);
+  font-family: 'Open Sans';
+  font-weight: var(--buttonWeightSemibold);
+  line-height: var(--buttonLineHeight);
+  word-wrap: break-word;
+}
+
+.hero-widget-cta-link {
+  color: inherit;
+  text-decoration: none;
+}
+
+.hero-widget-features {
+  align-self: stretch;
+  padding-top: var(--paddingTopLarge);
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: var(--gapExtraLarge);
+  display: inline-flex;
+}
+
+.hero-widget-experience {
+  align-self: stretch;
+  justify-content: flex-start;
+  align-items: center;
+  gap: var(--gapMedium);
+  display: flex;
+}
+
+.hero-widget-experience-circle {
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  display: inline-flex;
+  width: var(--experienceWidth);
+  height: var(--experienceHeight);
+  padding: var(--paddingPixel);
+  border-radius: var(--experienceBorderRadius);
+  outline: var(--experienceOutlineWidth) var(--colorOrange64) solid;
+  outline-offset: var(--experienceOutlineOffset);
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  display: flex;
+}
+
+.hero-widget-experience-number {
+  text-align: center;
+  justify-content: center;
+  display: flex;
+  flex-direction: column;
+  color: var(--colorOrange64);
+  font-size: var(--experienceFontSize);
+  font-family: 'Open Sans';
+  font-weight: var(--experienceWeightExtrabold);
+  line-height: var(--experienceLineHeight);
+  word-wrap: break-word;
+}
+
+.hero-widget-experience-text {
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  display: inline-flex;
+  justify-content: center;
+  display: flex;
+  flex-direction: column;
+  color: var(--colorGrey15);
+  font-size: var(--bodyFontSize);
+  font-family: 'Open Sans';
+  font-weight: var(--bodyWeightNormal);
+  line-height: var(--bodyLineHeight);
+  word-wrap: break-word;
+}
+
+.hero-widget-reviews {
+  align-self: stretch;
+  justify-content: flex-start;
+  align-items: center;
+  gap: var(--gapMedium);
+  display: flex;
+}
+
+.hero-widget-logo-container {
+  max-width: var(--logoMaxWidth);
+  overflow: hidden;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  display: inline-flex;
+}
+
+.hero-widget-logo {
+  width: var(--logoWidth);
+  height: var(--logoHeight);
+  overflow: hidden;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+}
+
+.hero-widget-logo img {
+  width: 100%;
+  height: 100%;
+}
+
+.hero-widget-reviews-text {
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  display: inline-flex;
+  justify-content: center;
+  display: flex;
+  flex-direction: column;
+  color: var(--colorGrey15);
+  font-size: var(--bodyFontSize);
+  font-family: 'Open Sans';
+  font-weight: var(--bodyWeightNormal);
+  line-height: var(--bodyLineHeight);
+  word-wrap: break-word;
+}
+
+.hero-widget-media {
+  width: var(--mediaWidth);
+  align-self: stretch;
+  max-width: var(--mediaMaxWidth);
+  position: relative;
+  border-radius: 0.5rem;
+}
+
+/* Tooltip styles */
+.item_hover { position: relative; cursor: help; }
 .item_hover:hover .item_tooltip {
   display: block !important;
   position: absolute;
-  background: var(--surfacePrimary);
-  color: var(--textPrimary);
-  padding: var(--spaceMd);
-  border-radius: var(--radiusMd);
+  background: white;
+  color: var(--colorGrey15);
+  padding: 1rem;
+  border-radius: 0.5rem;
   width: var(--tooltipWidth);
   top: 100%;
   left: 0;
   z-index: 1000;
-  font-size: var(--tooltipFontSize);
+  font-size: 0.875rem;
   line-height: 1.4;
-  box-shadow: var(--shadowSubtle);
+  box-shadow: var(--tooltipShadow);
 }
 
-.hg-hero__cta { margin-top: var(--spaceLg); }
-
-.hg-hero__features { gap: var(--spaceXl); margin-top: var(--spaceXl); }
-.hg-hero__years, .hg-hero__reviews { display: flex; align-items: center; gap: var(--spaceMd); }
-.hg-hero__count p { font-size: 3rem; font-weight: 800; color: var(--brandPrimary); margin: 0; }
-.hg-hero__years-icon { color: var(--brandPrimary); }
-
-/* Responsive display helpers (match WordPress pattern used elsewhere) */
-.d-lg-none { display: none; }
-.d-lg-block { display: block; }
-
-@media (max-width: var(--breakpointTablet)) {
-  .hg-hero__inner { flex-direction: column; }
-  .hg-hero__media img { max-width: 100%; }
-  .hg-hero__features { justify-content: space-between; }
-  .d-lg-none { display: block; }
-  .d-lg-block { display: none; }
+/* Responsive design */
+@media (max-width: var(--responsiveBreakpoint)) {
+  .hero-widget-container {
+    padding-left: var(--mobilePadding);
+    padding-right: var(--mobilePadding);
+  }
+  
+  .hero-widget-features {
+    gap: var(--mobileGap);
+  }
+  
+  .hero-widget-media {
+    width: var(--mobileMediaWidth);
+    max-width: var(--mobileMediaWidth);
+  }
 }
 </style>
 
