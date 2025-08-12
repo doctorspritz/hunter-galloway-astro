@@ -140,6 +140,9 @@ const isMediaLeft = mediaPosition === 'left';
   textPrimary: semantic.color.text.primary,
   shadowSubtle: semantic.shadow.subtle,
   durationNormal: semantic.duration.normal,
+  titleFontSize: semantic.typography.size['5xl'],
+  titleLineHeight: semantic.typography.lineHeight.tight,
+  titleWeight: semantic.typography.weight.display,
 }}>
 .hg-hero {
   padding: var(--spaceMd) 0 var(--spaceXxl) 0;
@@ -167,6 +170,14 @@ const isMediaLeft = mediaPosition === 'left';
 .hg-hero__content {
   max-width: 680px;
   width: 100%;
+}
+
+.hg-hero__content h1 {
+  font-size: var(--titleFontSize);
+  line-height: var(--titleLineHeight);
+  font-weight: var(--titleWeight);
+  color: var(--textPrimary);
+  margin: 0 0 var(--spaceMd) 0;
 }
 
 .hg-hero__media img {
