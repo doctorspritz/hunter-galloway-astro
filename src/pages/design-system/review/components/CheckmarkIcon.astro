@@ -1,0 +1,27 @@
+---
+import Layout from '../../../../layouts/Layout.astro';
+import CheckmarkIcon from '../../../../components/atoms/CheckmarkIcon/CheckmarkIcon.astro';
+---
+
+<Layout title="CheckmarkIcon Demo - Design System">
+  <h1>CheckmarkIcon</h1>
+  <p>Green circle with white checkmark icon in different sizes.</p>
+
+  <div style="display: flex; gap: 20px; align-items: center; margin: 20px 0;">
+    <div>
+      <h3>Small</h3>
+      <CheckmarkIcon size="sm" />
+    </div>
+    <div>
+      <h3>Medium</h3>
+      <CheckmarkIcon size="md" />
+    </div>
+    <div>
+      <h3>Large</h3>
+      <CheckmarkIcon size="lg" />
+    </div>
+  </div>
+
+  <h2>Usage</h2>
+  <pre><code>&lt;CheckmarkIcon size="md" /&gt;</code></pre>
+</Layout>

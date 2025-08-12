@@ -4,6 +4,8 @@
  * Logo with review text
  */
 
+import { component } from '../../../tokens/component';
+
 interface Props {
   logoSrc: string;
   text: string;
@@ -22,16 +24,24 @@ const { logoSrc, text, className = '' } = Astro.props;
   </div>
 </div>
 
-<style>
+<style define:vars={{
+  textColor: component.reviewBadge.colors.text,
+  fontSize: component.reviewBadge.typography.fontSize,
+  lineHeight: component.reviewBadge.typography.lineHeight,
+  weight: component.reviewBadge.typography.weight,
+  logoWidth: component.reviewBadge.dimensions.logoWidth,
+  logoHeight: component.reviewBadge.dimensions.logoHeight,
+  gap: component.reviewBadge.spacing.gap,
+}}>
 .review-badge {
   display: flex;
   align-items: center;
-  gap: 20px;
+  gap: var(--gap);
 }
 
 .review-badge__logo {
-  width: 108px;
-  height: 40px;
+  width: var(--logoWidth);
+  height: var(--logoHeight);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -43,9 +53,9 @@ const { logoSrc, text, className = '' } = Astro.props;
 }
 
 .review-badge__text {
-  color: #262626;
-  font-size: 16px;
-  font-weight: 400;
-  line-height: 24px;
+  color: var(--textColor);
+  font-size: var(--fontSize);
+  font-weight: var(--weight);
+  line-height: var(--lineHeight);
 }
 </style>

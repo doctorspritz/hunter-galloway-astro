@@ -1,0 +1,24 @@
+---
+import Layout from '../../../../layouts/Layout.astro';
+import ExperienceBadge from '../../../../components/molecules/ExperienceBadge/ExperienceBadge.astro';
+---
+
+<Layout title="ExperienceBadge Demo - Design System">
+  <h1>ExperienceBadge</h1>
+  <p>Circular badge with number and label for displaying years of experience.</p>
+
+  <div style="margin: 20px 0;">
+    <h3>Default Experience</h3>
+    <ExperienceBadge years="14" />
+    
+    <h3>Different Years</h3>
+    <div style="display: flex; gap: 40px; margin: 20px 0;">
+      <ExperienceBadge years="5" />
+      <ExperienceBadge years="10" />
+      <ExperienceBadge years="20" />
+    </div>
+  </div>
+
+  <h2>Usage</h2>
+  <pre><code>&lt;ExperienceBadge years="14" /&gt;</code></pre>
+</Layout>

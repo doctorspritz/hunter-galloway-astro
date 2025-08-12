@@ -112,7 +112,7 @@ export const component = {
       paddingContainer: '1rem', // px-4
       paddingPixel: '1px', // p-px
       // Live site exact padding values
-      paddingExact: '12px 324px 50px 324px',
+      paddingExact: '12px 0 50px 0',
       paddingContainerExact: '0 16px',
       paddingBottomTitle: '10px',
       paddingBottomBenefits: '8px',
@@ -155,6 +155,7 @@ export const component = {
         // Live site exact values
         widthExact: '384px',
         minHeightExact: '48px',
+        paddingHorizontal: '32px',
       },
       experience: {
         width: '3.5rem', // w-14
@@ -361,6 +362,85 @@ export const component = {
     headingWeight: semantic.typography.weight.heading,
     headingLineHeight: semantic.typography.lineHeight.tight,
     headingMarginBottom: semantic.space.xl,
+  },
+  checkmarkIcon: {
+    sizes: {
+      sm: '16px',
+      md: '24px',
+      lg: '32px',
+    },
+    colors: {
+      fill: '#77B255',
+      stroke: 'white',
+    },
+    dimensions: {
+      rectWidth: '20px',
+      rectHeight: '20px',
+      strokeWidth: '2px',
+    },
+  },
+  benefitItem: {
+    colors: {
+      text: '#262626',
+    },
+    typography: {
+      fontSize: '16px',
+      lineHeight: '24px',
+      weightNormal: '400',
+      weightSemibold: '600',
+    },
+    spacing: {
+      gap: '8px',
+    },
+    tooltip: {
+      width: '300px',
+      padding: '16px',
+      borderRadius: '8px',
+      fontSize: '14px',
+      lineHeight: '1.4',
+      shadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1)',
+    },
+  },
+  experienceBadge: {
+    colors: {
+      number: '#FDB948',
+      text: '#262626',
+      border: '#FDB948',
+    },
+    typography: {
+      numberFontSize: '29px',
+      numberLineHeight: '52px',
+      numberWeight: '800',
+      textFontSize: '16px',
+      textLineHeight: '24px',
+      textWeight: '400',
+    },
+    dimensions: {
+      circleWidth: '54px',
+      circleHeight: '54px',
+      borderRadius: '27px',
+      borderWidth: '1px',
+    },
+    spacing: {
+      gap: '20px',
+    },
+  },
+  reviewBadge: {
+    colors: {
+      text: '#262626',
+    },
+    typography: {
+      fontSize: '16px',
+      lineHeight: '24px',
+      weight: '400',
+    },
+    dimensions: {
+      logoWidth: '108px',
+      logoHeight: '40px',
+    },
+    spacing: {
+      gap: '20px',
+    },
   },
 } as const;
 

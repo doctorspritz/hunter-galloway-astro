@@ -1,0 +1,29 @@
+---
+import Layout from '../../../../layouts/Layout.astro';
+import BenefitItem from '../../../../components/molecules/BenefitItem/BenefitItem.astro';
+---
+
+<Layout title="BenefitItem Demo - Design System">
+  <h1>BenefitItem</h1>
+  <p>Checkmark icon with benefit text and optional tooltip.</p>
+
+  <div style="margin: 20px 0;">
+    <h3>Basic Benefit</h3>
+    <BenefitItem text="Variety of options due to direct access to 30+ Australian banks & lenders" />
+    
+    <h3>With Tooltip</h3>
+    <BenefitItem 
+      text="Market-leading" 
+      tooltip="Approximately 40% of home loan applications were rejected in December 2018 based on a survey of 52,000 households completed by 'DigitalFinance Analytics DFA'. In 2017 to 2018 Hunter Galloway submitted 342 home loan applications and had 8 applications rejected, giving a 2.33% rejection rate." 
+    />
+    
+    <h3>Another Tooltip Example</h3>
+    <BenefitItem 
+      text="#1 rated" 
+      tooltip="The highest rated and most reviewed Mortgage Broker in Brisbane: 5-star rating based on 2000+ reviews on Google" 
+    />
+  </div>
+
+  <h2>Usage</h2>
+  <pre><code>&lt;BenefitItem text="Benefit text" tooltip="Optional tooltip text" /&gt;</code></pre>
+</Layout>

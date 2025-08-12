@@ -2,31 +2,37 @@
 
 | Canonical Name | Level | Path | Variants | WP refs / Notes |
 |---|---|---|---|---|
-| Badge | atoms | src/components/atoms/Badge/ | default | Badge display |
-| Button | atoms | src/components/atoms/Button/ | primary, secondary, ghost, outline | WordPress button styles |
-| Container | atoms | src/components/atoms/Container/ | default | Layout container |
-| Icon | atoms | src/components/atoms/Icon/ | default | Icon display |
-| Input | atoms | src/components/atoms/Input/ | default | Form input |
-| Logo | atoms | src/components/atoms/Logo/ | default | Company logo |
-| Slider | atoms | src/components/atoms/Slider/ | default | Range slider |
-| Typography | atoms | src/components/atoms/Typography/ | default | Text elements |
-| AwardItem | molecules | src/components/molecules/AwardItem/ | default | Award display |
-| CalculatorResult | molecules | src/components/molecules/CalculatorResult/ | default | Calculator results |
-| FooterNavigation | molecules | src/components/molecules/FooterNavigation/ | default | Footer navigation |
-| FooterStatCard | molecules | src/components/molecules/FooterStatCard/ | default | Footer stats |
-| NavDropdown | molecules | src/components/molecules/NavDropdown/ | default | Navigation dropdown |
-| PhoneLink | molecules | src/components/molecules/PhoneLink/ | default | Phone link |
-| PurposeCard | molecules | src/components/molecules/PurposeCard/ | normal, highlighted, with-badge | Purpose selection cards |
-| ReviewCard | molecules | src/components/molecules/ReviewCard/ | default | Review display |
-| RiskCard | molecules | src/components/molecules/RiskCard/ | default, compact, highlighted | Risk information cards |
-| SocialLinks | molecules | src/components/molecules/SocialLinks/ | default | Social media links |
-| StatCard | molecules | src/components/molecules/StatCard/ | default, compact, featured | WordPress stats display |
-| Tooltip | molecules | src/components/molecules/Tooltip/ | default | Tooltip display |
-| WhyChooseItem | molecules | src/components/molecules/WhyChooseItem/ | default | Why choose item |
-| HeroWidget | organisms | src/components/organisms/HeroWidget/ | professional, nurse, general, calculator, refinance | Hero sections |
-| MortgageRentCalculator | organisms | src/components/organisms/MortgageRentCalculator/ | default | Mortgage calculator |
-| RiskWidget | organisms | src/components/organisms/RiskWidget/ | default, light, reversed | Risk widget sections |
-| WhyChoose | organisms | src/components/organisms/WhyChoose/ | default, light, dark | Why choose sections |
-| RiskWidget | sections | src/components/sections/RiskWidget/ | default, light, reversed | Section-level risk widget |
+| Badge | atoms | src/components/atoms/Badge/Badge.astro | sm,md,lg | |
+| Button | atoms | src/components/atoms/Button/Button.astro | sm,md,lg | |
+| CheckmarkIcon | atoms | src/components/atoms/CheckmarkIcon/CheckmarkIcon.astro | sm,md,lg | Green circle with white checkmark |
+| Container | atoms | src/components/atoms/Container/Container.astro | sm,md,lg | |
+| Icon | atoms | src/components/atoms/Icon/Icon.astro | sm,md,lg | |
+| Input | atoms | src/components/atoms/Input/Input.astro | sm,md,lg | |
+| Logo | atoms | src/components/atoms/Logo/Logo.astro | sm,md,lg | |
+| Slider | atoms | src/components/atoms/Slider/Slider.astro | sm,md,lg | |
+| Typography | atoms | src/components/atoms/Typography/Typography.astro | sm,md,lg | |
+| AwardItem | molecules | src/components/molecules/AwardItem/AwardItem.astro | | |
+| BenefitItem | molecules | src/components/molecules/BenefitItem/BenefitItem.astro | | Checkmark + text with optional tooltip |
+| CalculatorResult | molecules | src/components/molecules/CalculatorResult/CalculatorResult.astro | sm,md,lg | |
+| ExperienceBadge | molecules | src/components/molecules/ExperienceBadge/ExperienceBadge.astro | | Circular badge with number and label |
+| FooterNavigation | molecules | src/components/molecules/FooterNavigation/FooterNavigation.astro | | |
+| FooterStatCard | molecules | src/components/molecules/FooterStatCard/FooterStatCard.astro | | |
+| NavDropdown | molecules | src/components/molecules/NavDropdown/NavDropdown.astro | | |
+| PhoneLink | molecules | src/components/molecules/PhoneLink/PhoneLink.astro | | |
+| PurposeCard | molecules | src/components/molecules/PurposeCard/PurposeCard.astro | sm,md,lg | |
+| ReviewBadge | molecules | src/components/molecules/ReviewBadge/ReviewBadge.astro | | Logo with review text |
+| ReviewCard | molecules | src/components/molecules/ReviewCard/ReviewCard.astro | sm,md,lg | |
+| RiskCard | molecules | src/components/molecules/RiskCard/RiskCard.astro | | |
+| SocialLinks | molecules | src/components/molecules/SocialLinks/SocialLinks.astro | | |
+| StatCard | molecules | src/components/molecules/StatCard/StatCard.astro | sm,md,lg | |
+| Tooltip | molecules | src/components/molecules/Tooltip/Tooltip.astro | | |
+| WhyChooseItem | molecules | src/components/molecules/WhyChooseItem/WhyChooseItem.astro | | |
+| Awards | organisms | src/components/organisms/Awards.astro | | |
+| BankLogos | organisms | src/components/organisms/BankLogos.astro | | |
+| Footer | organisms | src/components/organisms/Footer.astro | | |
+| HeroWidget | organisms | src/components/organisms/HeroWidget/HeroWidget.astro | | Combines multiple molecules into hero section |
+| MortgageRentCalculator | organisms | src/components/organisms/MortgageRentCalculator/MortgageRentCalculator.astro | | |
+| RiskWidget | organisms | src/components/organisms/RiskWidget/RiskWidget.astro | | |
+| WhyChoose | organisms | src/components/organisms/WhyChoose/WhyChoose.astro | | |
 
 

@@ -4,6 +4,8 @@
  * Circular badge with number and label
  */
 
+import { component } from '../../../tokens/component';
+
 interface Props {
   years: string;
   className?: string;
@@ -21,34 +23,49 @@ const { years, className = '' } = Astro.props;
   </div>
 </div>
 
-<style>
+<style define:vars={{
+  numberColor: component.experienceBadge.colors.number,
+  textColor: component.experienceBadge.colors.text,
+  borderColor: component.experienceBadge.colors.border,
+  numberFontSize: component.experienceBadge.typography.numberFontSize,
+  numberLineHeight: component.experienceBadge.typography.numberLineHeight,
+  numberWeight: component.experienceBadge.typography.numberWeight,
+  textFontSize: component.experienceBadge.typography.textFontSize,
+  textLineHeight: component.experienceBadge.typography.textLineHeight,
+  textWeight: component.experienceBadge.typography.textWeight,
+  circleWidth: component.experienceBadge.dimensions.circleWidth,
+  circleHeight: component.experienceBadge.dimensions.circleHeight,
+  borderRadius: component.experienceBadge.dimensions.borderRadius,
+  borderWidth: component.experienceBadge.dimensions.borderWidth,
+  gap: component.experienceBadge.spacing.gap,
+}}>
 .experience-badge {
   display: flex;
   align-items: center;
-  gap: 20px;
+  gap: var(--gap);
 }
 
 .experience-badge__circle {
-  width: 54px;
-  height: 54px;
-  border: 1px solid #FDB948;
-  border-radius: 27px;
+  width: var(--circleWidth);
+  height: var(--circleHeight);
+  border: var(--borderWidth) solid var(--borderColor);
+  border-radius: var(--borderRadius);
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
 .experience-badge__number {
-  color: #FDB948;
-  font-size: 29px;
-  font-weight: 800;
-  line-height: 52px;
+  color: var(--numberColor);
+  font-size: var(--numberFontSize);
+  font-weight: var(--numberWeight);
+  line-height: var(--numberLineHeight);
 }
 
 .experience-badge__text {
-  color: #262626;
-  font-size: 16px;
-  font-weight: 400;
-  line-height: 24px;
+  color: var(--textColor);
+  font-size: var(--textFontSize);
+  font-weight: var(--textWeight);
+  line-height: var(--textLineHeight);
 }
 </style>

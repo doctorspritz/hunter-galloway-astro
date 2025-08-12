@@ -1,0 +1,32 @@
+---
+import Layout from '../../../../layouts/Layout.astro';
+import ReviewBadge from '../../../../components/molecules/ReviewBadge/ReviewBadge.astro';
+---
+
+<Layout title="ReviewBadge Demo - Design System">
+  <h1>ReviewBadge</h1>
+  <p>Logo with review text for displaying review information.</p>
+
+  <div style="margin: 20px 0;">
+    <h3>Google Reviews</h3>
+    <ReviewBadge 
+      logoSrc="/images/img_new/google.svg" 
+      text="Based on<br/>2000+ reviews" 
+    />
+    
+    <h3>Trustpilot Reviews</h3>
+    <ReviewBadge 
+      logoSrc="/images/img_new/trustpilot.svg" 
+      text="Trusted by<br/>2,000+ customers" 
+    />
+    
+    <h3>Custom Review Text</h3>
+    <ReviewBadge 
+      logoSrc="/images/img_new/google.svg" 
+      text="5-star rating<br/>from our clients" 
+    />
+  </div>
+
+  <h2>Usage</h2>
+  <pre><code>&lt;ReviewBadge logoSrc="/path/to/logo.svg" text="Review text" /&gt;</code></pre>
+</Layout>
