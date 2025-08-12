@@ -3,12 +3,17 @@
  * Typography Component
  * Hunter Galloway Design System - Atomic Component
  * 
- * A flexible typography component that ensures consistent text styling
- * across the application using design tokens.
+ * A focused, single-responsibility typography component that ensures
+ * consistent text styling across the application.
+ * 
+ * Atomic Design Principles:
+ * - Single responsibility: Only handles typography styling
+ * - Composable: Can be combined with other atoms
+ * - Reusable: Consistent API across the system
+ * - Token-driven: Uses design system tokens
  */
 
 import type { TypographyProps } from './Typography.types';
-import { semantic } from '../../../tokens/semantic';
 
 interface Props extends TypographyProps {}
 
@@ -22,7 +27,7 @@ const {
   class: additionalClasses = '',
 } = Astro.props;
 
-// Build CSS classes using design tokens
+// Build BEM-style CSS classes for atomic design
 const sizeClass = size === '4.5xl' ? '4_5xl' : size;
 const textClasses = [
   'hg-typography',
@@ -34,82 +39,121 @@ const textClasses = [
   additionalClasses,
 ].filter(Boolean).join(' ');
 
-// Clean component - no debug logging
-
-// Create inline CSS variables using semantic tokens
-const inlineStyles = [
-  `--fontSize45xl: ${semantic.typography.size['4.5xl']}`,
-  `--fontSize5xl: ${semantic.typography.size['5xl']}`,
-  `--fontSize4xl: ${semantic.typography.size['4xl']}`,
-  `--fontSize3xl: ${semantic.typography.size['3xl']}`,
-  `--fontSize2xl: ${semantic.typography.size['2xl']}`,
-  `--fontSizeXl: ${semantic.typography.size.xl}`,
-  `--fontSizeLg: ${semantic.typography.size.lg}`,
-  `--fontSizeMd: ${semantic.typography.size.md}`,
-  `--fontSizeSm: ${semantic.typography.size.sm}`,
-  `--fontSizeXs: ${semantic.typography.size.xs}`,
-  
-  `--fontWeightHeading: ${semantic.typography.weight.heading}`,
-  `--fontWeightDisplay: ${semantic.typography.weight.display}`,
-  `--fontWeightStrong: ${semantic.typography.weight.strong}`,
-  `--fontWeightEmphasis: ${semantic.typography.weight.emphasis}`,
-  `--fontWeightBody: ${semantic.typography.weight.body}`,
-  
-  `--colorTextPrimary: ${semantic.color.text.primary}`,
-  `--colorTextSecondary: ${semantic.color.text.secondary}`,
-  `--colorTextTertiary: ${semantic.color.text.tertiary}`,
-  `--colorTextInverse: ${semantic.color.text.inverse}`,
-].join('; ');
-
-// Dynamic component rendering
+// Dynamic component rendering for semantic HTML
 const Element = element;
 ---
 
-<Element class={textClasses} style={inlineStyles}>
+<Element class={textClasses}>
   <slot />
 </Element>
 
 <style>
-/* Typography component base styles */
+/* Base typography component - follows atomic design principles */
 .hg-typography {
-  font-family: 'Open Sans', system-ui, sans-serif;
+  /* Base typography properties */
+  font-family: var(--hg-font-family-body);
   margin: 0;
+  padding: 0;
+  
+  /* Font smoothing for better readability */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  
+  /* Default line height for body text */
+  line-height: var(--hg-line-height-body);
+  
+  /* Ensure proper text rendering */
+  text-rendering: optimizeLegibility;
 }
 
-/* Size variants */
-.hg-typography--xs { font-size: var(--fontSizeXs); }
-.hg-typography--sm { font-size: var(--fontSizeSm); }
-.hg-typography--md { font-size: var(--fontSizeMd); }
-.hg-typography--lg { font-size: var(--fontSizeLg); }
-.hg-typography--xl { font-size: var(--fontSizeXl); }
-.hg-typography--2xl { font-size: var(--fontSize2xl); }
-.hg-typography--3xl { font-size: var(--fontSize3xl); }
-.hg-typography--4xl { font-size: var(--fontSize4xl); }
-.hg-typography--4_5xl { font-size: var(--fontSize45xl); }
-.hg-typography--5xl { font-size: var(--fontSize5xl); }
+/* Size variants - each size is a distinct atomic unit */
+.hg-typography--xs { 
+  font-size: var(--hg-font-size-xs);
+  line-height: var(--hg-line-height-tight);
+}
+.hg-typography--sm { 
+  font-size: var(--hg-font-size-sm);
+  line-height: var(--hg-line-height-body);
+}
+.hg-typography--md { 
+  font-size: var(--hg-font-size-md);
+  line-height: var(--hg-line-height-body);
+}
+.hg-typography--lg { 
+  font-size: var(--hg-font-size-lg);
+  line-height: var(--hg-line-height-body);
+}
+.hg-typography--xl { 
+  font-size: var(--hg-font-size-xl);
+  line-height: var(--hg-line-height-tight);
+}
+.hg-typography--2xl { 
+  font-size: var(--hg-font-size-2xl);
+  line-height: var(--hg-line-height-tight);
+}
+.hg-typography--3xl { 
+  font-size: var(--hg-font-size-3xl);
+  line-height: var(--hg-line-height-tight);
+}
+.hg-typography--4xl { 
+  font-size: var(--hg-font-size-4xl);
+  line-height: var(--hg-line-height-tight);
+}
+.hg-typography--4_5xl { 
+  font-size: var(--hg-font-size-4_5xl);
+  line-height: var(--hg-line-height-tight);
+}
+.hg-typography--5xl { 
+  font-size: var(--hg-font-size-5xl);
+  line-height: var(--hg-line-height-tight);
+}
 
-/* Weight variants */
-.hg-typography--body { font-weight: var(--fontWeightBody); }
-.hg-typography--emphasis { font-weight: var(--fontWeightEmphasis); }
-.hg-typography--strong { font-weight: var(--fontWeightStrong); }
-.hg-typography--heading { font-weight: var(--fontWeightHeading); }
-.hg-typography--bold { font-weight: var(--fontWeightHeading); }
-.hg-typography--display { font-weight: var(--fontWeightDisplay); }
+/* Weight variants - each weight is a distinct atomic unit */
+.hg-typography--body { font-weight: var(--hg-font-weight-body); }
+.hg-typography--emphasis { font-weight: var(--hg-font-weight-emphasis); }
+.hg-typography--strong { font-weight: var(--hg-font-weight-strong); }
+.hg-typography--heading { font-weight: var(--hg-font-weight-heading); }
+.hg-typography--bold { font-weight: var(--hg-font-weight-heading); }
+.hg-typography--display { font-weight: var(--hg-font-weight-display); }
 
-/* Color variants */
-.hg-typography--primary { color: var(--colorTextPrimary); }
-.hg-typography--secondary { color: var(--colorTextSecondary); }
-.hg-typography--tertiary { color: var(--colorTextTertiary); }
-.hg-typography--inverse { color: var(--colorTextInverse); }
+/* Color variants - each color is a distinct atomic unit */
+.hg-typography--primary { color: var(--hg-color-text-primary); }
+.hg-typography--secondary { color: var(--hg-color-text-secondary); }
+.hg-typography--tertiary { color: var(--hg-color-text-tertiary); }
+.hg-typography--inverse { color: var(--hg-color-text-inverse); }
 
-/* Alignment variants */
+/* Alignment variants - each alignment is a distinct atomic unit */
 .hg-typography--left { text-align: left; }
 .hg-typography--center { text-align: center; }
 .hg-typography--right { text-align: right; }
 .hg-typography--justify { text-align: justify; }
 
-/* Utility classes */
+/* Utility variants - atomic utility classes */
 .hg-typography--nowrap { white-space: nowrap; }
+
+/* Responsive design - mobile-first approach */
+@media (max-width: 768px) {
+  /* Scale down large text on mobile for better readability */
+  .hg-typography--4xl,
+  .hg-typography--4_5xl,
+  .hg-typography--5xl {
+    font-size: var(--hg-font-size-3xl);
+  }
+  
+  .hg-typography--3xl {
+    font-size: var(--hg-font-size-2xl);
+  }
+  
+  .hg-typography--2xl {
+    font-size: var(--hg-font-size-xl);
+  }
+}
+
+/* Print styles for accessibility */
+@media print {
+  .hg-typography {
+    color: #000 !important;
+    background: transparent !important;
+  }
+}
 </style>

@@ -2,7 +2,40 @@
 @import "tailwindcss";
 
 /* Variables come from TokenStyles.astro (semantic tokens to CSS vars) */
-:root {}
+:root {
+  /* Design System CSS Custom Properties */
+  --hg-font-family-body: 'Open Sans', system-ui, sans-serif;
+  --hg-font-family-heading: 'Open Sans', system-ui, sans-serif;
+  
+  /* Font Sizes */
+  --hg-font-size-xs: 0.75rem;
+  --hg-font-size-sm: 0.875rem;
+  --hg-font-size-md: 1rem;
+  --hg-font-size-lg: 1.125rem;
+  --hg-font-size-xl: 1.25rem;
+  --hg-font-size-2xl: 1.5rem;
+  --hg-font-size-3xl: 1.875rem;
+  --hg-font-size-4xl: 2.25rem;
+  --hg-font-size-4_5xl: 2.5rem;
+  --hg-font-size-5xl: 3rem;
+  
+  /* Font Weights */
+  --hg-font-weight-body: 400;
+  --hg-font-weight-emphasis: 500;
+  --hg-font-weight-strong: 600;
+  --hg-font-weight-heading: 700;
+  --hg-font-weight-display: 800;
+  
+  /* Line Heights */
+  --hg-line-height-tight: 1.25;
+  --hg-line-height-body: 1.5;
+  
+  /* Colors */
+  --hg-color-text-primary: #1f2937;
+  --hg-color-text-secondary: #4b5563;
+  --hg-color-text-tertiary: #6b7280;
+  --hg-color-text-inverse: #ffffff;
+}
 
 /* Base Styles - Match WordPress exactly */
 body { font-family: var(--font-family-body); padding: 0 !important; background: var(--color-surface-primary); color: var(--color-text-primary); }

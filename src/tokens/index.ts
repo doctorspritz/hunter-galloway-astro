@@ -69,11 +69,13 @@ export const cssVariables = {
   '--hg-font-size-2xl': semantic.typography.size['2xl'],
   '--hg-font-size-3xl': semantic.typography.size['3xl'],
   '--hg-font-size-4xl': semantic.typography.size['4xl'],
+  '--hg-font-size-4_5xl': semantic.typography.size['4.5xl'],
   '--hg-font-size-5xl': semantic.typography.size['5xl'],
   '--hg-font-weight-body': semantic.typography.weight.body,
   '--hg-font-weight-emphasis': semantic.typography.weight.emphasis,
   '--hg-font-weight-strong': semantic.typography.weight.strong,
   '--hg-font-weight-heading': semantic.typography.weight.heading,
+  '--hg-font-weight-display': semantic.typography.weight.display,
   '--hg-line-height-tight': semantic.typography.lineHeight.tight,
   '--hg-line-height-body': semantic.typography.lineHeight.body,
 
