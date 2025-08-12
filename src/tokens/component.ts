@@ -111,12 +111,24 @@ export const component = {
       paddingRight: '0.5rem', // pr-2
       paddingContainer: '1rem', // px-4
       paddingPixel: '1px', // p-px
+      // Live site exact padding values
+      paddingExact: '12px 324px 50px 324px',
+      paddingContainerExact: '0 16px',
+      paddingBottomTitle: '10px',
+      paddingBottomBenefits: '8px',
+      paddingTopFeatures: '40px',
+      paddingMobile: '12px 32px 50px 32px',
     },
     gaps: {
       small: '0.5rem', // gap-2
       medium: '1.25rem', // gap-5
       large: '1.5rem', // gap-6
       extraLarge: '4rem', // gap-16
+      // Live site exact gap values
+      gapExact: '64px',
+      gapSmallExact: '8px',
+      gapMediumExact: '20px',
+      gapMobile: '32px',
     },
     dimensions: {
       checkmark: {
@@ -130,11 +142,19 @@ export const component = {
         topOffset: '2px',
         checkLeftOffset: '7px',
         checkTopOffset: '8px',
+        // Live site exact values
+        widthExact: '24px',
+        heightExact: '24px',
+        innerWidthExact: '20px',
+        innerHeightExact: '20px',
       },
       button: {
         width: '24rem', // w-96
         minHeight: '3rem', // min-h-12
         borderRadius: '33px',
+        // Live site exact values
+        widthExact: '384px',
+        minHeightExact: '48px',
       },
       experience: {
         width: '3.5rem', // w-14
@@ -144,11 +164,26 @@ export const component = {
         borderRadius: '27px',
         outlineWidth: '1px',
         outlineOffset: '-1px',
+        // Live site exact values
+        widthExact: '54px',
+        heightExact: '54px',
       },
       logo: {
         width: '7rem', // w-28
         height: '2.5rem', // h-10
         maxWidth: '15rem', // max-w-60
+        // Live site exact values
+        widthExact: '108px',
+        heightExact: '40px',
+      },
+      media: {
+        widthExact: '560px',
+        borderRadius: '8px',
+      },
+      tooltip: {
+        widthExact: '300px',
+        paddingExact: '16px',
+        borderRadius: '8px',
       },
     },
     colors: {
@@ -164,22 +199,37 @@ export const component = {
         lineHeight: '48px',
         weightExtrabold: '800',
         weightNormal: '400',
+        // Live site exact values
+        fontSizeExact: '40px',
+        lineHeightExact: '48px',
       },
       body: {
         fontSize: '1rem', // text-base
         lineHeight: '1.5',
         weightNormal: '400',
         weightSemibold: '600',
+        // Live site exact values
+        fontSizeExact: '16px',
+        lineHeightExact: '24px',
       },
       button: {
         fontSize: '1.125rem', // text-lg
         lineHeight: '48px',
         weightSemibold: '600',
+        // Live site exact values
+        fontSizeExact: '18px',
+        lineHeightExact: '48px',
       },
       experience: {
         fontSize: '1.875rem', // text-3xl
         lineHeight: '52px',
         weightExtrabold: '800',
+        // Live site exact values
+        fontSizeExact: '29px',
+        lineHeightExact: '52px',
+      },
+      tooltip: {
+        fontSizeExact: '14px',
       },
     },
     shadows: {

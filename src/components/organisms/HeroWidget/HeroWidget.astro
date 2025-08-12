@@ -58,45 +58,41 @@ const {
 const isMediaLeft = mediaPosition === 'left';
 ---
 
-<div class="hero-widget-container">
-  <div class="hero-widget-inner">
+<div class="hero-widget">
+  <div class="hero-widget-container">
     <div class="hero-widget-content">
       
       <!-- Title Section -->
       <div class="hero-widget-title">
-        <div class="hero-widget-title-inner">
-          <span set:html={titleHtml} />
-        </div>
+        <h1 set:html={titleHtml}></h1>
       </div>
 
       <!-- Benefits Section -->
       <div class="hero-widget-benefits">
         {benefits.map((item) => (
           <div class="hero-widget-benefit-item">
-            <div class="hero-widget-checkmark-container">
-              <div class="hero-widget-checkmark">
-                <div class="hero-widget-checkmark-bg"></div>
-                <div class="hero-widget-checkmark-check"></div>
-              </div>
+            <div class="hero-widget-checkmark">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                <rect x="2" y="2" width="20" height="20" fill="var(--colorChartreuseGreen52)"/>
+                <path d="M7 12l3 3 7-7" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
             </div>
             <div class="hero-widget-benefit-text">
               {item.tooltip ? (
                 <div class="hero-widget-benefit-tooltip">
-                  <div class="hero-widget-benefit-tooltip-trigger">
-                    <span class="item_hover">
-                      {item.text}
-                      <span class="item_tooltip hidden">{item.tooltip}</span>
-                    </span>
-                  </div>
-                  <div class="hero-widget-benefit-tooltip-text">
+                  <span class="hero-widget-benefit-tooltip-trigger item_hover">
+                    {item.text}
+                    <span class="item_tooltip hidden">{item.tooltip}</span>
+                  </span>
+                  <span class="hero-widget-benefit-tooltip-text">
                     {item.text === 'Market-leading' ? ' loan approval rate in Australia of 97%' : 
                      item.text === '#1 rated' ? ' Mortgage Broker in Brisbane' : ''}
-                  </div>
+                  </span>
                 </div>
               ) : (
-                <div class="hero-widget-benefit-text-normal">
+                <span class="hero-widget-benefit-text-normal">
                   {item.text}
-                </div>
+                </span>
               )}
             </div>
           </div>
@@ -105,43 +101,40 @@ const isMediaLeft = mediaPosition === 'left';
 
       <!-- CTA Button -->
       <div class="hero-widget-cta">
-        <div class="hero-widget-cta-text">
-          <a href={cta.href} class="hero-widget-cta-link">{cta.text}</a>
-        </div>
+        <a href={cta.href} class="hero-widget-cta-link">{cta.text}</a>
       </div>
 
       <!-- Features Section -->
       <div class="hero-widget-features">
         <div class="hero-widget-experience">
           <div class="hero-widget-experience-circle">
-            <div class="hero-widget-experience-number">{yearsExperience}</div>
+            <span class="hero-widget-experience-number">{yearsExperience}</span>
           </div>
           <div class="hero-widget-experience-text">
-            <div>Years<br/>of experience</div>
+            <span>Years<br/>of experience</span>
           </div>
         </div>
         <div class="hero-widget-reviews">
-          <div class="hero-widget-logo-container">
+          <div class="hero-widget-logo">
             {reviews.logoSrc && (
-              <div class="hero-widget-logo">
-                <img src={reviews.logoSrc} alt="reviews logo" />
-              </div>
+              <img src={reviews.logoSrc} alt="reviews logo" />
             )}
           </div>
           <div class="hero-widget-reviews-text">
-            <div set:html={reviews.text} />
+            <span set:html={reviews.text}></span>
           </div>
         </div>
       </div>
     </div>
 
     <!-- Media Section -->
-    <img 
-      class="hero-widget-media" 
-      src={image.desktop} 
-      alt={image.alt}
-      loading="eager"
-    />
+    <div class="hero-widget-media">
+      <img 
+        src={image.desktop} 
+        alt={image.alt}
+        loading="eager"
+      />
+    </div>
   </div>
 </div>
 
@@ -149,436 +142,302 @@ const isMediaLeft = mediaPosition === 'left';
   // Layout
   containerMaxWidth: component.heroWidget.layout.containerMaxWidth,
   contentMaxWidth: component.heroWidget.layout.contentMaxWidth,
-  checkmarkContainerMaxWidth: component.heroWidget.layout.checkmarkContainerMaxWidth,
-  mediaMaxWidth: component.heroWidget.layout.mediaMaxWidth,
   mediaWidth: component.heroWidget.layout.mediaWidth,
   minHeight: component.heroWidget.layout.minHeight,
   
   // Spacing
-  paddingX: component.heroWidget.spacing.paddingX,
-  paddingTop: component.heroWidget.spacing.paddingTop,
-  paddingBottom: component.heroWidget.spacing.paddingBottom,
-  paddingBottomSmall: component.heroWidget.spacing.paddingBottomSmall,
-  paddingBottomMedium: component.heroWidget.spacing.paddingBottomMedium,
-  paddingTopLarge: component.heroWidget.spacing.paddingTopLarge,
-  paddingRight: component.heroWidget.spacing.paddingRight,
-  paddingContainer: component.heroWidget.spacing.paddingContainer,
-  paddingPixel: component.heroWidget.spacing.paddingPixel,
+  paddingExact: component.heroWidget.spacing.paddingExact,
+  paddingContainerExact: component.heroWidget.spacing.paddingContainerExact,
+  paddingBottomTitle: component.heroWidget.spacing.paddingBottomTitle,
+  paddingBottomBenefits: component.heroWidget.spacing.paddingBottomBenefits,
+  paddingTopFeatures: component.heroWidget.spacing.paddingTopFeatures,
+  paddingMobile: component.heroWidget.spacing.paddingMobile,
   
   // Gaps
-  gapSmall: component.heroWidget.gaps.small,
-  gapMedium: component.heroWidget.gaps.medium,
-  gapLarge: component.heroWidget.gaps.large,
-  gapExtraLarge: component.heroWidget.gaps.extraLarge,
+  gapExact: component.heroWidget.gaps.gapExact,
+  gapSmallExact: component.heroWidget.gaps.gapSmallExact,
+  gapMediumExact: component.heroWidget.gaps.gapMediumExact,
+  gapMobile: component.heroWidget.gaps.gapMobile,
   
   // Checkmark dimensions
-  checkmarkWidth: component.heroWidget.dimensions.checkmark.width,
-  checkmarkHeight: component.heroWidget.dimensions.checkmark.height,
-  checkmarkInnerWidth: component.heroWidget.dimensions.checkmark.innerWidth,
-  checkmarkInnerHeight: component.heroWidget.dimensions.checkmark.innerHeight,
-  checkmarkCheckWidth: component.heroWidget.dimensions.checkmark.checkWidth,
-  checkmarkCheckHeight: component.heroWidget.dimensions.checkmark.checkHeight,
-  checkmarkLeftOffset: component.heroWidget.dimensions.checkmark.leftOffset,
-  checkmarkTopOffset: component.heroWidget.dimensions.checkmark.topOffset,
-  checkmarkCheckLeftOffset: component.heroWidget.dimensions.checkmark.checkLeftOffset,
-  checkmarkCheckTopOffset: component.heroWidget.dimensions.checkmark.checkTopOffset,
+  checkmarkWidth: component.heroWidget.dimensions.checkmark.widthExact,
+  checkmarkHeight: component.heroWidget.dimensions.checkmark.heightExact,
+  checkmarkInnerWidth: component.heroWidget.dimensions.checkmark.innerWidthExact,
+  checkmarkInnerHeight: component.heroWidget.dimensions.checkmark.innerHeightExact,
   
   // Button dimensions
-  buttonWidth: component.heroWidget.dimensions.button.width,
-  buttonMinHeight: component.heroWidget.dimensions.button.minHeight,
+  buttonWidth: component.heroWidget.dimensions.button.widthExact,
+  buttonMinHeight: component.heroWidget.dimensions.button.minHeightExact,
   buttonBorderRadius: component.heroWidget.dimensions.button.borderRadius,
   
   // Experience dimensions
-  experienceWidth: component.heroWidget.dimensions.experience.width,
-  experienceHeight: component.heroWidget.dimensions.experience.height,
-  experienceFontSize: component.heroWidget.dimensions.experience.fontSize,
-  experienceLineHeight: component.heroWidget.dimensions.experience.lineHeight,
+  experienceWidth: component.heroWidget.dimensions.experience.widthExact,
+  experienceHeight: component.heroWidget.dimensions.experience.heightExact,
   experienceBorderRadius: component.heroWidget.dimensions.experience.borderRadius,
   experienceOutlineWidth: component.heroWidget.dimensions.experience.outlineWidth,
   experienceOutlineOffset: component.heroWidget.dimensions.experience.outlineOffset,
   
   // Logo dimensions
-  logoWidth: component.heroWidget.dimensions.logo.width,
-  logoHeight: component.heroWidget.dimensions.logo.height,
-  logoMaxWidth: component.heroWidget.dimensions.logo.maxWidth,
+  logoWidth: component.heroWidget.dimensions.logo.widthExact,
+  logoHeight: component.heroWidget.dimensions.logo.heightExact,
+  
+  // Media dimensions
+  mediaWidth: component.heroWidget.dimensions.media.widthExact,
+  mediaBorderRadius: component.heroWidget.dimensions.media.borderRadius,
+  
+  // Tooltip dimensions
+  tooltipWidth: component.heroWidget.dimensions.tooltip.widthExact,
+  tooltipPadding: component.heroWidget.dimensions.tooltip.paddingExact,
+  tooltipBorderRadius: component.heroWidget.dimensions.tooltip.borderRadius,
   
   // Colors
   colorGrey27: component.heroWidget.colors.grey27,
   colorGrey15: component.heroWidget.colors.grey15,
   colorChartreuseGreen52: component.heroWidget.colors.chartreuseGreen52,
-  colorWhiteSolid: component.heroWidget.colors.whiteSolid,
   colorOrange64: component.heroWidget.colors.orange64,
   
   // Typography
-  titleFontSize: component.heroWidget.typography.title.fontSize,
-  titleLineHeight: component.heroWidget.typography.title.lineHeight,
+  titleFontSize: component.heroWidget.typography.title.fontSizeExact,
+  titleLineHeight: component.heroWidget.typography.title.lineHeightExact,
   titleWeightExtrabold: component.heroWidget.typography.title.weightExtrabold,
   titleWeightNormal: component.heroWidget.typography.title.weightNormal,
   
-  bodyFontSize: component.heroWidget.typography.body.fontSize,
-  bodyLineHeight: component.heroWidget.typography.body.lineHeight,
+  bodyFontSize: component.heroWidget.typography.body.fontSizeExact,
+  bodyLineHeight: component.heroWidget.typography.body.lineHeightExact,
   bodyWeightNormal: component.heroWidget.typography.body.weightNormal,
   bodyWeightSemibold: component.heroWidget.typography.body.weightSemibold,
   
-  buttonFontSize: component.heroWidget.typography.button.fontSize,
-  buttonLineHeight: component.heroWidget.typography.button.lineHeight,
+  buttonFontSize: component.heroWidget.typography.button.fontSizeExact,
+  buttonLineHeight: component.heroWidget.typography.button.lineHeightExact,
   buttonWeightSemibold: component.heroWidget.typography.button.weightSemibold,
   
-  experienceFontSize: component.heroWidget.typography.experience.fontSize,
-  experienceLineHeight: component.heroWidget.typography.experience.lineHeight,
+  experienceFontSize: component.heroWidget.typography.experience.fontSizeExact,
+  experienceLineHeight: component.heroWidget.typography.experience.lineHeightExact,
   experienceWeightExtrabold: component.heroWidget.typography.experience.weightExtrabold,
+  
+  tooltipFontSize: component.heroWidget.typography.tooltip.fontSizeExact,
   
   // Shadows
   tooltipShadow: component.heroWidget.shadows.tooltip,
-  tooltipWidth: component.heroWidget.tooltip.width,
   
   // Responsive
   responsiveBreakpoint: component.heroWidget.responsive.breakpoint,
-  mobilePadding: component.heroWidget.responsive.mobilePadding,
-  mobileGap: component.heroWidget.responsive.mobileGap,
-  mobileMediaWidth: component.heroWidget.responsive.mobileMediaWidth,
 }}>
 
-.hero-widget-container {
-  align-self: stretch;
-  padding-left: var(--paddingX);
-  padding-right: var(--paddingX);
-  padding-top: var(--paddingTop);
-  padding-bottom: var(--paddingBottom);
-  flex-direction: column;
-  justify-content: center;
-  align-items: flex-start;
-  display: inline-flex;
+.hero-widget {
+  padding: var(--paddingExact);
+  background: white;
 }
 
-.hero-widget-inner {
-  width: 100%;
+.hero-widget-container {
   max-width: var(--containerMaxWidth);
-  padding-left: var(--paddingContainer);
-  padding-right: var(--paddingContainer);
-  overflow: hidden;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: flex-start;
+  margin: 0 auto;
+  padding: var(--paddingContainerExact);
   display: flex;
+  align-items: flex-start;
+  gap: var(--gapExact);
+  min-height: var(--minHeight);
 }
 
 .hero-widget-content {
-  align-self: stretch;
-  min-height: var(--minHeight);
-  justify-content: flex-start;
-  align-items: flex-start;
-  display: inline-flex;
-  flex: 1 1 0;
+  flex: 1;
   max-width: var(--contentMaxWidth);
-  gap: var(--gapLarge);
-}
-
-.hero-widget-title {
-  align-self: stretch;
-  padding-bottom: var(--paddingBottomMedium);
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: flex-start;
-  display: flex;
-}
-
-.hero-widget-title-inner {
-  align-self: stretch;
-  justify-content: center;
   display: flex;
   flex-direction: column;
+  gap: var(--gapSmallExact);
+}
+
+.hero-widget-title h1 {
+  font-family: 'Open Sans', sans-serif;
+  font-size: var(--titleFontSize);
+  line-height: var(--titleLineHeight);
+  color: var(--colorGrey27);
+  margin: 0;
+  padding-bottom: var(--paddingBottomTitle);
+}
+
+.hero-widget-title h1 b {
+  font-weight: var(--titleWeightExtrabold);
 }
 
 .hero-widget-benefits {
-  align-self: stretch;
-  padding-bottom: var(--paddingBottomSmall);
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: flex-start;
-  gap: var(--gapSmall);
   display: flex;
+  flex-direction: column;
+  gap: var(--gapSmallExact);
+  padding-bottom: var(--paddingBottomBenefits);
 }
 
 .hero-widget-benefit-item {
-  align-self: stretch;
-  justify-content: flex-start;
+  display: flex;
   align-items: flex-start;
-  display: inline-flex;
-}
-
-.hero-widget-checkmark-container {
-  max-width: var(--checkmarkContainerMaxWidth);
-  padding-right: var(--paddingRight);
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: flex-start;
-  display: inline-flex;
+  gap: var(--gapSmallExact);
 }
 
 .hero-widget-checkmark {
-  max-width: var(--contentMaxWidth);
-  overflow: hidden;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: flex-start;
-  display: flex;
+  flex-shrink: 0;
   width: var(--checkmarkWidth);
   height: var(--checkmarkHeight);
-  justify-content: center;
-  align-items: center;
-  overflow: hidden;
-}
-
-.hero-widget-checkmark-bg {
-  width: var(--checkmarkInnerWidth);
-  height: var(--checkmarkInnerHeight);
-  left: var(--checkmarkLeftOffset);
-  top: var(--checkmarkTopOffset);
-  position: absolute;
-  background: var(--colorChartreuseGreen52);
-}
-
-.hero-widget-checkmark-check {
-  width: var(--checkmarkCheckWidth);
-  height: var(--checkmarkCheckHeight);
-  left: var(--checkmarkCheckLeftOffset);
-  top: var(--checkmarkCheckTopOffset);
-  position: absolute;
-  background: var(--colorWhiteSolid);
 }
 
 .hero-widget-benefit-text {
-  align-self: stretch;
-  flex: justify-content: flex-start;
-  align-items: flex-start;
-  gap: 0;
   display: flex;
+  flex-direction: column;
+  gap: 0;
 }
 
 .hero-widget-benefit-tooltip {
-  flex: justify-content: flex-start;
-  align-items: flex-start;
   display: flex;
+  flex-direction: column;
 }
 
 .hero-widget-benefit-tooltip-trigger {
-  justify-content: center;
-  display: flex;
-  flex-direction: column;
   color: var(--colorGrey15);
   font-size: var(--bodyFontSize);
-  font-family: 'Open Sans';
   font-weight: var(--bodyWeightSemibold);
   text-decoration: underline;
   line-height: var(--bodyLineHeight);
-  word-wrap: break-word;
+  cursor: help;
 }
 
 .hero-widget-benefit-tooltip-text {
-  justify-content: center;
-  display: flex;
-  flex-direction: column;
   color: var(--colorGrey15);
   font-size: var(--bodyFontSize);
-  font-family: 'Open Sans';
   font-weight: var(--bodyWeightNormal);
   line-height: var(--bodyLineHeight);
-  word-wrap: break-word;
 }
 
 .hero-widget-benefit-text-normal {
-  justify-content: center;
-  display: flex;
-  flex-direction: column;
   color: var(--colorGrey15);
   font-size: var(--bodyFontSize);
-  font-family: 'Open Sans';
   font-weight: var(--bodyWeightNormal);
   line-height: var(--bodyLineHeight);
-  word-wrap: break-word;
 }
 
 .hero-widget-cta {
   width: var(--buttonWidth);
-  max-width: var(--buttonWidth);
   min-height: var(--buttonMinHeight);
   background: var(--colorOrange64);
   border-radius: var(--buttonBorderRadius);
+  display: flex;
   justify-content: center;
   align-items: center;
-  display: inline-flex;
-}
-
-.hero-widget-cta-text {
-  text-align: center;
-  justify-content: center;
-  display: flex;
-  flex-direction: column;
-  color: var(--colorGrey15);
-  font-size: var(--buttonFontSize);
-  font-family: 'Open Sans';
-  font-weight: var(--buttonWeightSemibold);
-  line-height: var(--buttonLineHeight);
-  word-wrap: break-word;
 }
 
 .hero-widget-cta-link {
-  color: inherit;
+  color: var(--colorGrey15);
+  font-size: var(--buttonFontSize);
+  font-weight: var(--buttonWeightSemibold);
+  line-height: var(--buttonLineHeight);
   text-decoration: none;
+  text-align: center;
 }
 
 .hero-widget-features {
-  align-self: stretch;
-  padding-top: var(--paddingTopLarge);
-  justify-content: flex-start;
-  align-items: flex-start;
-  gap: var(--gapExtraLarge);
-  display: inline-flex;
+  display: flex;
+  gap: var(--gapExact);
+  padding-top: var(--paddingTopFeatures);
 }
 
 .hero-widget-experience {
-  align-self: stretch;
-  justify-content: flex-start;
-  align-items: center;
-  gap: var(--gapMedium);
   display: flex;
+  align-items: center;
+  gap: var(--gapMediumExact);
 }
 
 .hero-widget-experience-circle {
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: flex-start;
-  display: inline-flex;
   width: var(--experienceWidth);
   height: var(--experienceHeight);
-  padding: var(--paddingPixel);
+  border: var(--experienceOutlineWidth) solid var(--colorOrange64);
   border-radius: var(--experienceBorderRadius);
-  outline: var(--experienceOutlineWidth) var(--colorOrange64) solid;
-  outline-offset: var(--experienceOutlineOffset);
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: center;
   display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .hero-widget-experience-number {
-  text-align: center;
-  justify-content: center;
-  display: flex;
-  flex-direction: column;
   color: var(--colorOrange64);
   font-size: var(--experienceFontSize);
-  font-family: 'Open Sans';
   font-weight: var(--experienceWeightExtrabold);
   line-height: var(--experienceLineHeight);
-  word-wrap: break-word;
 }
 
 .hero-widget-experience-text {
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: flex-start;
-  display: inline-flex;
-  justify-content: center;
-  display: flex;
-  flex-direction: column;
   color: var(--colorGrey15);
   font-size: var(--bodyFontSize);
-  font-family: 'Open Sans';
   font-weight: var(--bodyWeightNormal);
   line-height: var(--bodyLineHeight);
-  word-wrap: break-word;
 }
 
 .hero-widget-reviews {
-  align-self: stretch;
-  justify-content: flex-start;
-  align-items: center;
-  gap: var(--gapMedium);
   display: flex;
-}
-
-.hero-widget-logo-container {
-  max-width: var(--logoMaxWidth);
-  overflow: hidden;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: flex-start;
-  display: inline-flex;
+  align-items: center;
+  gap: var(--gapMediumExact);
 }
 
 .hero-widget-logo {
   width: var(--logoWidth);
   height: var(--logoHeight);
-  overflow: hidden;
-  flex-direction: column;
+  display: flex;
   justify-content: center;
   align-items: center;
-  display: flex;
 }
 
 .hero-widget-logo img {
-  width: 100%;
-  height: 100%;
+  max-width: 100%;
+  max-height: 100%;
 }
 
 .hero-widget-reviews-text {
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: flex-start;
-  display: inline-flex;
-  justify-content: center;
-  display: flex;
-  flex-direction: column;
   color: var(--colorGrey15);
   font-size: var(--bodyFontSize);
-  font-family: 'Open Sans';
   font-weight: var(--bodyWeightNormal);
   line-height: var(--bodyLineHeight);
-  word-wrap: break-word;
 }
 
 .hero-widget-media {
+  flex-shrink: 0;
   width: var(--mediaWidth);
-  align-self: stretch;
-  max-width: var(--mediaMaxWidth);
-  position: relative;
-  border-radius: 0.5rem;
+  max-width: var(--mediaWidth);
+}
+
+.hero-widget-media img {
+  width: 100%;
+  height: auto;
+  border-radius: var(--mediaBorderRadius);
 }
 
 /* Tooltip styles */
-.item_hover { position: relative; cursor: help; }
+.item_hover { position: relative; }
 .item_hover:hover .item_tooltip {
   display: block !important;
   position: absolute;
   background: white;
   color: var(--colorGrey15);
-  padding: 1rem;
-  border-radius: 0.5rem;
+  padding: var(--tooltipPadding);
+  border-radius: var(--tooltipBorderRadius);
   width: var(--tooltipWidth);
   top: 100%;
   left: 0;
   z-index: 1000;
-  font-size: 0.875rem;
+  font-size: var(--tooltipFontSize);
   line-height: 1.4;
   box-shadow: var(--tooltipShadow);
 }
 
 /* Responsive design */
 @media (max-width: var(--responsiveBreakpoint)) {
-  .hero-widget-container {
-    padding-left: var(--mobilePadding);
-    padding-right: var(--mobilePadding);
+  .hero-widget {
+    padding: var(--paddingMobile);
   }
   
-  .hero-widget-features {
-    gap: var(--mobileGap);
+  .hero-widget-container {
+    flex-direction: column;
+    gap: var(--gapMobile);
   }
   
   .hero-widget-media {
-    width: var(--mobileMediaWidth);
-    max-width: var(--mobileMediaWidth);
+    width: 100%;
+    max-width: 100%;
   }
 }
 </style>
