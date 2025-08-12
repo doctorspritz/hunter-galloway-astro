@@ -6,33 +6,32 @@ import HeroWidget from '../../../../components/organisms/HeroWidget/HeroWidget.a
 <Layout title="HeroWidget Demo - Design System">
   <h1>HeroWidget</h1>
 
-  <!-- General variant - matches the expected screenshot -->
+  <!-- General variant - matches the live site exactly -->
   <HeroWidget
-    titleHtml={'<b>Get a home loan</b> with full guidance and expert assistance'}
+    titleHtml={'<b>Get a home loan </b>with full <span class="text-nowrap">guidance and</span> expert assistance'}
     benefits={[
       { 
         text: 'Market-leading loan approval rate in Australia of 97%',
-        tooltip: 'We have the highest approval rate in the industry'
+        tooltip: 'Approximately 40% of home loan applications were rejected in December 2018 based on a survey of 52,000 households completed by \'DigitalFinance Analytics DFA\'. In 2017 to 2018 Hunter Galloway submitted 342 home loan applications and had 8 applications rejected, giving a 2.33% rejection rate.'
       },
       { 
-        text: 'Variety of options due to direct access to 30+ Australian banks & lenders',
-        tooltip: 'Access to major banks, credit unions, and specialist lenders'
+        text: 'Variety of options due to direct access to 30+ Australian banks & lenders'
       },
       { 
         text: '#1 rated Mortgage Broker in Brisbane',
-        tooltip: 'Consistently rated 5 stars by our customers'
+        tooltip: 'The highest rated and most reviewed Mortgage Broker in Brisbane: 5-star rating based on 2000+ reviews on Google'
       },
     ]}
     cta={{ text: 'Calculate my borrowing capacity', href: '/mortgage-calculator/' }}
     image={{
-      desktop: '/images/upgrade.webp',
-      mobile: '/images/upgrade.webp',
+      desktop: '/images/img_new/what-you-see-when-you-look-up-full-length-shot-affectionate-family-four-holding-cardboard-roof-their-heads-while-sitting-living-room-home.jpg',
+      mobile: '/images/img_new/what-you-see-when-you-look-up-full-length-shot-affectionate-family-four-holding-cardboard-roof-their-heads-while-sitting-living-room-home.png',
       alt: 'Family holding cardboard house',
     }}
     yearsExperience={'14'}
     reviews={{ 
-      logoSrc: '/images/google.svg', 
-      text: 'Based on 2000+ reviews' 
+      logoSrc: '/images/img_new/google.svg', 
+      text: 'Based on<br class="d-lg-block d-none"> 2000+ reviews' 
     }}
     variant={'general'}
     mediaPosition={'right'}
@@ -55,7 +54,7 @@ import HeroWidget from '../../../../components/organisms/HeroWidget/HeroWidget.a
     image={{ desktop: '/images/upgrade.webp', mobile: '/images/upgrade.webp', alt: 'Professional client' }}
     yearsExperience={'14'}
     reviews={{ 
-      logoSrc: '/images/google.svg', 
+      logoSrc: '/images/img_new/google.svg', 
       text: 'Trusted by 2,000+ customers' 
     }}
     variant={'professional'}
